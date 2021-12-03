@@ -7,7 +7,13 @@
 
 - The website will be able to Keep tracks of events, team and activities of club and 
 display wide information in interactive way. 
-​
+
+- The most important feature of this project is centralization. We will have a single backend as well as frontend for websites of all the clubs
+  of the college, and both of them will be completely customizable and flexible. 
+
+- Flexibility here means that the club heads will be able to choose the theme for their website, the various sections displayed on their webiste 
+  such as Events, Projects, Announcements will be constraint-free and customizable 
+  
 - It will also serve as a point of attraction for the industry and sponsors
 
 - Central website system will have customizable theme and server storing information in central database.
@@ -24,34 +30,3 @@ display wide information in interactive way.
 - Backend : Node JS , Express JS
 - Database: MongoDB
 
-#### Team Details
-
-##### 1) Akash Gupta:
-	- Roll Number: 190003007
-	- GitHub : akashg3627
-	- Role : Mentor
-
-##### 2) Suman Jaiswal:
-	- Roll Number: 200002072
-	- GitHub : Suman-Jaiswal
-	- Role : Frontend and Backend
-
-##### 3) Neha:
-	- Roll Number: 200001051
-	- GitHub : InquisitiveMe15
-	- Role : Frontend
-
-##### 4) Mihir Karandikar
-	- Roll Number: 200001044
-	- GitHub : MihirK1212
-	- Role : Backend
-
-##### 5) Vankayalapati Sai Venkata Satwik :
-	- Roll Number: 200001077
-	- GitHub : Satwik2002
-	- Role : Backend
-
-##### 6) Neyasha Sinha
-	- Roll Number: 200005025
-	- GitHub : Ny-sinha20
-	- Role : UI Designer
