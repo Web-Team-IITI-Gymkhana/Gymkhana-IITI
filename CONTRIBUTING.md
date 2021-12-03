@@ -11,10 +11,13 @@
 
 4. In your forked repository, make your changes in a new git branch:
    - git checkout -b my-fix-branch master
+   
+5. After making all the required changes, stage all the files for commit using add command
+   - git add .
 
 5. Commit your changes using a descriptive commit message that follows our commit message conventions. Adherence to these conventions is 
 necessary because release notes are automatically generated from these messages.
-   - git commit --all
+   - git commit -m "Your Message Here"
 
 6. Push your branch to GitHub:
    - git push origin my-fix-branch
