@@ -1,25 +1,15 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose')
+const sectionsSchema = require('./sections')
 
-const sectionsSchema = mongoose.Schema({
-    sectionName : String,
-    sectionID : Number,
-    sectionHeader : String,
-    sectionContent: {
-        sectionChildName : String,
-        sectionChildImage : String,
-        sectionChildDesc : String
-    }
-})
-
-const clubsSchema = mongoose.Schema({
+const usersSchema = mongoose.Schema({
     userID : {
         email : {type:String , required:true},
         goAuth : {type:String , required:true}
     },
 
-    clubDetails : {
-        clubName : {type:String , required:true},
-        clubLogo : {type:String , required:true},
+    userDetails : {
+        userName : {type:String , required:true},
+        userLogo : {type:String , required:true},
         socialMedia : [String]
     },
 
@@ -41,9 +31,6 @@ const clubsSchema = mongoose.Schema({
     }
 })
 
+var Users = mongoose.model('Users', usersSchema);
 
-
-
-var Clubs = mongoose.model('Clubs', clubsSchema);
-
-export default Clubs;
+export default Users;
