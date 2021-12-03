@@ -21,6 +21,11 @@ mongoose.connect(DB_URI, {
 // app.use(cors)
 
 app.use(express.json())
+app.get('/', (req, res) => {
+    res.status(200).json({
+        msg: "This is the server of Gymkhana IITI"
+    })
+})
 
 // server
 app.listen(port, () => {
