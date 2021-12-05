@@ -79,7 +79,24 @@ const updateGeneralDetails = async(req,res) => {
 }
 
 const publishVersion = async(req,res)=>{
-    console.log("Hello")
+    const {userName : userName} = req.params
+    let user = await Users.findOne({userName:userName})
+    let contentVersions = user.contentVersions
+
+    let versionIndex = contentVersions.length - 1
+
+    if(versionIndex==-1)
+    {
+        
+        contentVersions.push({})
+    }
+    else
+    {
+        contentVersions.push(contentVersions[index]);
+    }
+    
+
+
 }
 
 module.exports = {getAllUsers,addUser,getUser , updateGeneralDetails , publishVersion , deleteUser}
