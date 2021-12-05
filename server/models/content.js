@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 const sectionsSchema = require('./sections')
 
 const contentSchema = mongoose.Schema({
@@ -22,10 +23,10 @@ const contentSchema = mongoose.Schema({
 
     Sections : { type : [sectionsSchema]},
 
-    themeDetails = {
+    themeDetails : {
         color : {type: String , default: ''},
         font : {type: String , default:''}
     }
 })
 
-export default contentSchema
+module.exports =  contentSchema
