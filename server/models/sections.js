@@ -11,4 +11,4 @@ const sectionsSchema = mongoose.Schema({
     }]
 })
 
-export default sectionsSchema
+module.exports = sectionsSchema

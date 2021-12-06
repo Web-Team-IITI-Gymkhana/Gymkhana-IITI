@@ -1,3 +1,4 @@
+import Button from '@restart/ui/esm/Button';
 import React, { useContext } from 'react'
 import GoogleLogin from 'react-google-login';
 import { CLIENT_ID } from '../../CLIENT_ID';
@@ -23,14 +24,15 @@ export default function LoginPage() {
             <div className="display-3 mb-5 text-center">
                 Gymkhana Login Portal
             </div>
-            <GoogleLogin
+            <a href="http://localhost:5000/google">Login</a>
+            {/* <GoogleLogin
             clientId={CLIENT_ID}
             onSuccess={onLoginSuccess}
             onFailure={onFailure}
             isSignedIn={true}
             cookiePolicy={'single_host_origin'}
             // onAutoLoadFinished={() => dispatch({type: 'LOADING', payload: false})}
-        />
+        /> */}
         </div>
     )
 }
