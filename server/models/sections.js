@@ -5,10 +5,11 @@ const sectionsSchema = mongoose.Schema({
     sectionID : Number,
     sectionHeader : String,
     sectionContent: [{
+        sectionChildID : Number,
         sectionChildName : String,
         sectionChildImage : String,
         sectionChildDesc : String
     }]
 })
 
-export default sectionsSchema
+module.exports =  sectionsSchema
