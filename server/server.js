@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
@@ -6,6 +7,8 @@ const path = require('path')
 require('dotenv').config()
 const DB_URI = process.env.MONGO_URI
 const port = process.env.PORT || 5000;
+const passport = require('passport')
+require('./passport-setup')
 
 //database connection
 mongoose.connect(DB_URI, {
@@ -13,25 +16,63 @@ mongoose.connect(DB_URI, {
     // useCreateIndex: true,
     useUnifiedTopology: true
 })
-.then(res => console.log('mongoDB connected...'))
-.catch(err => console.log(err))
+    .then(res => console.log('mongoDB connected...'))
+    .catch(err => console.log(err))
 
 
 //middleware
+app.use(session({
+    secret: 'cats'
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 // app.use(cors)
 
 app.use(express.json())
+
 app.get('/', (req, res) => {
-    res.status(200).json({
-        msg: "This is the server of Gymkhana IITI"
-    })
+    res.send('<a href="/google"> Login with google </a>')
+})
+
+const isLoggedIn = (req, res, next) => {
+    if (req.user) {
+        next()
+    }
+    else {
+        res.sendStatus(401)
+    }
+}
+
+app.get('/failed', (req, res) => {
+    res.send("Login failed!")
+})
+app.get('/protected', isLoggedIn, (req, res) => {
+    res.send("Admin portal" + '<a href="/logout"> Logout</a>')
+})
+
+app.get('/google',
+    passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+
+app.get('/google/callback',
+    passport.authenticate('google',
+        {
+            failureRedirect: '/failed',
+            successRedirect: '/protected'
+        }),
+);
+
+app.get('/logout', (req, res) => {
+    req.session = null
+    req.logOut()
+    res.redirect('/')
 })
 
 const usersRoute = require('./routes/users')
-app.use('/users',usersRoute)
+app.use('/users', usersRoute)
 
 const contentRoute = require('./routes/content')
-app.use('/content',contentRoute)
+app.use('/content', contentRoute)
 
 // server
 app.listen(port, () => {
