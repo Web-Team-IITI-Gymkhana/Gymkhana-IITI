@@ -30,10 +30,6 @@ app.use(passport.session())
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.send('<a href="/google"> Login with google </a>')
-})
-
 const isLoggedIn = (req, res, next) => {
     if (req.user) {
         next()
@@ -52,15 +48,6 @@ app.get('/protected', isLoggedIn, (req, res) => {
 
 app.get('/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-
-app.get('/google/callback',
-    passport.authenticate('google',
-        {
-            failureRedirect: '/failed',
-            successRedirect: '/protected'
-        }),
-);
 
 app.get('/logout', (req, res) => {
     req.session = null
