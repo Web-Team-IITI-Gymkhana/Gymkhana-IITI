@@ -36,7 +36,7 @@ const getUser = async(req,res) => {
         const {userName : userName} = req.params
         const user = await Users.findOne({userName:userName})
         return res.status(201).json({user:user})
-    
+
     } catch (error) {
         return res.status(404).json({message:error})
     }
@@ -48,7 +48,7 @@ const updateGeneralDetails = async(req,res) => {
 
         let user = await Users.findOne({userName:userName})
         const versionIndex = (user.contentVersions).length - 1;
-        
+
         const updateDetails = req.body;
 
         console.log(updateDetails)
@@ -61,7 +61,7 @@ const updateGeneralDetails = async(req,res) => {
         let email = updateDetails.email;
         let phoneNumber = updateDetails.phoneNumber;
 
-        
+
         user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.name`] : name}})
         user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.logo`] : logo}})
         user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.socialMedia`] : socialMedia}})
@@ -87,14 +87,13 @@ const publishVersion = async(req,res)=>{
 
     if(versionIndex==-1)
     {
-        
-        contentVersions.push({})
+       contentVersions.push({})
     }
     else
     {
         contentVersions.push(contentVersions[index]);
     }
-    
+
 
 
 }
