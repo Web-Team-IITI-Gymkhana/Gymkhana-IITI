@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const sectionsSchema = require('./sections')
 
 const contentSchema = mongoose.Schema({
-    
+
     contentVersion : Number,
-    
+
     userDetails : {
         name : {type:String , required:true},
         logo : {type:String , required:true},

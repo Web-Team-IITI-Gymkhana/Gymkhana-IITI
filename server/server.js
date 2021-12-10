@@ -7,6 +7,8 @@ require('dotenv').config()
 const DB_URI = process.env.MONGO_URI
 const port = process.env.PORT || 5000;
 
+app.use(cors())
+
 //database connection
 mongoose.connect(DB_URI, {
     useNewUrlParser: true,
