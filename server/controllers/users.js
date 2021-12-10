@@ -7,7 +7,7 @@ const deleteUser = async(req,res) => {
         return res.status(201).json({"message":"Deleted Successfully"})
 
     } catch (error) {
-        return res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
@@ -17,17 +17,17 @@ const getAllUsers = async(req,res) => {
         return res.status(201).json({"users":users})
 
     } catch (error) {
-        return res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
 const addUser = async(req,res) => {
     try {
         const user = await Users.create(req.body)
-        return res.status(201).json(user)
+        return res.status(201).json({"newUser":user})
 
     } catch (error) {
-        return res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
@@ -35,7 +35,7 @@ const getUser = async(req,res) => {
     try {
         const {userName : userName} = req.params
         const user = await Users.findOne({userName:userName})
-        return res.status(201).json({user:user})
+        return res.status(201).json({"user":user})
 
     } catch (error) {
         return res.status(404).json({message:error})
@@ -62,15 +62,15 @@ const updateGeneralDetails = async(req,res) => {
         let phoneNumber = updateDetails.phoneNumber;
 
 
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.name`] : name}})
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.logo`] : logo}})
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.socialMedia`] : socialMedia}})
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.src`] : src}})
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.caption`] : caption}})
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.contactDetails.email`] : email }})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.name`] : name}},{new:true})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.logo`] : logo}},{new:true})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.socialMedia`] : socialMedia}},{new:true})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.src`] : src}},{new:true})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.caption`] : caption}},{new:true})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.contactDetails.email`] : email }},{new:true})
         user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.contactDetails.phoneNumber`] : phoneNumber}},{new:true})
 
-        return res.status(201).json({user:user});
+        return res.status(201).json({"updatedUser":user});
 
     } catch (error) {
         console.log(error)
@@ -93,9 +93,6 @@ const publishVersion = async(req,res)=>{
     {
         contentVersions.push(contentVersions[index]);
     }
-
-
-
 }
 
 module.exports = {getAllUsers,addUser,getUser , updateGeneralDetails , publishVersion , deleteUser}

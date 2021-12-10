@@ -8,11 +8,11 @@ const  getAllSections = async(req,res) => {
 
         const allSections = user.contentVersions[versionIndex].Sections;
 
-        return res.status(201).json({"Sections": allSections})
+        return res.status(201).json({"sections": allSections})
 
     } catch (error) {
         console.log(error)
-        res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
@@ -30,14 +30,14 @@ const  addSection = async(req,res) => {
 
         allSections.push(newSection);
 
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}},{new:true})
 
-        return res.status(201).json({"user": user})
+        return res.status(201).json({"updatedUser": user})
 
 
     } catch (error) {
         console.log(error)
-        return res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
@@ -57,7 +57,7 @@ const  getSection = async(req,res) => {
 
     } catch (error) {
         console.log(error)
-        res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
@@ -77,32 +77,39 @@ const updateGeneralSection = async(req,res) => {
 
         const sectionIndex = allSections.findIndex((element) => element.sectionID === parseInt(sectionID));
 
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionName`] : sectionName}})
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionHeader`] : sectionHeader}})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionName`] : sectionName}},{new:true})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionHeader`] : sectionHeader}},{new:true})
 
-        return res.status(201).json({"user": user})
+        return res.status(201).json({"updatedUser": user})
 
     } catch (error) {
         console.log(error)
-        return res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
 const deleteSection = async (req,res)=>{
-    const {userName : userName , sectionID : sectionID} = req.params
 
-    let user = await Users.findOne({userName:userName})
-    const versionIndex = (user.contentVersions).length - 1;
+    try {
+      const {userName : userName , sectionID : sectionID} = req.params
 
-    let allSections = user.contentVersions[versionIndex].Sections;
+      let user = await Users.findOne({userName:userName})
+      const versionIndex = (user.contentVersions).length - 1;
 
-    const sectionIndex = allSections.findIndex((element) => element.sectionID === parseInt(sectionID));
+      let allSections = user.contentVersions[versionIndex].Sections;
 
-    allSections.splice(sectionIndex,1);
+      const sectionIndex = allSections.findIndex((element) => element.sectionID === parseInt(sectionID));
 
-    user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}})
+      allSections.splice(sectionIndex,1);
 
-    return res.status(201).json({"user": user})
+      user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}},{new:true})
+
+      return res.status(201).json({"updatedUser": user})
+
+    } catch (error) {
+      return res.status(404).json({"message":error})
+    }
+
 }
 
 const  getSectionChild = async(req,res) => {
@@ -123,7 +130,7 @@ const  getSectionChild = async(req,res) => {
 
     } catch (error) {
         console.log(error)
-        return res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
@@ -148,15 +155,15 @@ const  updateSectionChild = async(req,res) => {
         let sectionChildIndex = sectionContent.findIndex((element) => element.sectionChildID === parseInt(sectionChildID))
 
 
-       user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildName`] : sectionChildName}})
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildImage`] : sectionChildImage}})
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildDesc`] : sectionChildDesc}})
+       user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildName`] : sectionChildName}},{new:true})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildImage`] : sectionChildImage}},{new:true})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildDesc`] : sectionChildDesc}},{new:true})
 
-        return res.status(201).json({"user": user})
+        return res.status(201).json({"updatedUser": user})
 
     } catch (error) {
         console.log(error)
-        return res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
@@ -177,11 +184,11 @@ const  addSectionChild = async(req,res) => {
 
         sectionContent.push(newSectionChild)
 
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent`] : sectionContent}})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent`] : sectionContent}},{new:true})
 
-        res.status(201).json({"user":user})
+        return res.status(201).json({"updatedUser":user})
     } catch (error) {
-        res.status(404).json({message:error})
+        return res.status(404).json({"message":error})
     }
 }
 
@@ -199,12 +206,12 @@ const deleteSectionChild = async(req,res)=>{
 
         sectionContent.splice(sectionChildIndex,1);
 
-        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent`] : sectionContent}})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent`] : sectionContent}},{new:true})
 
-        res.status(201).json({"user":user})
+        return res.status(201).json({"updatedUser":user})
     } catch (error) {
         console.log(error);
-        res.status(404).json({"message":"Error" })
+        return res.status(404).json({"message":"Error" })
     }
 
 }
