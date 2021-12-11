@@ -30,20 +30,8 @@ app.use(passport.session())
 
 app.use(express.json())
 
-const isLoggedIn = (req, res, next) => {
-    if (req.user) {
-        next()
-    }
-    else {
-        res.sendStatus(401)
-    }
-}
-
 app.get('/failed', (req, res) => {
     res.send("Login failed!")
-})
-app.get('/protected', isLoggedIn, (req, res) => {
-    res.send("Admin portal" + '<a href="/logout"> Logout</a>')
 })
 
 app.get('/google',
