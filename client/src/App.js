@@ -20,8 +20,8 @@ function App() {
         dispatch(getSections("Cynaptics"))
     },[dispatch]);
 
-    const users = useSelector((state)=> state)
-    console.log(users)
+    const data = useSelector((state)=> state)
+    console.log(data)
 
   return (
     <>
