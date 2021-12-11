@@ -1,20 +1,20 @@
 const Users = require('../models/users')
 
+const getAllUsers = async(req,res) => {
+  try {
+      const users = await Users.find({})
+      return res.status(201).json({"users":users})
+
+  } catch (error) {
+      return res.status(404).json({"message":error})
+  }
+}
+
 const deleteUser = async(req,res) => {
     try {
         const {userName : userName} = req.params
         await Users.deleteOne({userName:userName});
         return res.status(201).json({"message":"Deleted Successfully"})
-
-    } catch (error) {
-        return res.status(404).json({"message":error})
-    }
-}
-
-const getAllUsers = async(req,res) => {
-    try {
-        const users = await Users.find({})
-        return res.status(201).json({"users":users})
 
     } catch (error) {
         return res.status(404).json({"message":error})
