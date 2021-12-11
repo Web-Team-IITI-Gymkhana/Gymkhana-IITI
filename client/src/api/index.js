@@ -1,5 +1,7 @@
 import axios from 'axios'
 
-const url = "http://localhost:5000/users"
+const usersURL = "http://localhost:5000/users"
+const contentURL = "http://localhost:5000/content"
 
-export const fetchUsers = () => axios.get(url)
+export const fetchUsers = () => axios.get(usersURL)
+export const fetchSections = (userName) => axios.get(`${contentURL}/sections/${userName}`)

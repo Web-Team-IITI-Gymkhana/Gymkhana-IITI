@@ -7,7 +7,8 @@ import Profile from "./components/Profile";
 import { useDispatch , useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import {getUsers} from "./actions/users"
+import {getUsers} from "./redux/actions/users"
+import { getSections } from "./redux/actions/sections";
 
 import React from "react";
 import Authenticate from "./components/Authenticate";
@@ -17,10 +18,11 @@ function App() {
 
     useEffect(()=>{
         dispatch(getUsers());
+        dispatch(getSections("Cynaptics"))
     },[dispatch]);
 
-    const users = useSelector((state)=> state.users)
-    console.log(users)
+    const data = useSelector((state)=> state)
+    console.log(data)
 
   return (
     <>

@@ -59,5 +59,3 @@ app.use('/content', contentRoute)
 app.listen(port, () => {
     console.log(`Listening on the port: ${port}`);
 });
-
-
