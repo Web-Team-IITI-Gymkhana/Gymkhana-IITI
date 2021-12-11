@@ -1,4 +1,4 @@
-const axios = require('axios')
+import axios from 'axios'
 
 const usersURL = "http://localhost:5000/users"
 const contentURL = "http://localhost:5000/content"

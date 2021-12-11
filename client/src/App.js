@@ -11,6 +11,7 @@ import {getUsers} from "./redux/actions/users"
 import { getSections } from "./redux/actions/sections";
 
 import React from "react";
+import Authenticate from "./components/Authenticate";
 function App() {
 
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
         <Route path="/home" element={<Home />}/>
         <Route path="/about" element={<About />}/>
         <Route path="/profile" element={<Profile />}/>
+        <Route path="/login" element={<Authenticate />}/>
       </Routes>
     </Router>
     </>
