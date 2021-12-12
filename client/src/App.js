@@ -12,6 +12,7 @@ import { getSections } from "./redux/actions/sections";
 
 import React from "react";
 import Authenticate from "./components/Authenticate";
+import './index.css';
 function App() {
 
   const dispatch = useDispatch();
@@ -26,11 +27,11 @@ function App() {
 
   return (
     <>
-    <div className="App">
+    {/* <div className="App">
       <header className="App-header">
         <h1>Welcome to Gymkhana IITI</h1>
       </header>
-     </div>
+     </div> */}
 
     <Router>
       <Routes>
