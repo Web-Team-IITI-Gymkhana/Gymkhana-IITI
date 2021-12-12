@@ -5,7 +5,7 @@ export const getUsers = () => async (dispatch) => {
         const {data} = await api.fetchUsers()
         dispatch({type:"FETCH_ALL_USERS",payload:data.users})
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
     }
 }
 
@@ -23,6 +23,15 @@ export const deleteUser = (userName) => async (dispatch) => {
       await api.deleteUser(userName)
       dispatch({type:"DELETE_USER"})
   } catch (error) {
-      console.log(error.message)
+      console.log(error)
+  }
+}
+
+export const updateGeneralDetails = (userName) => async (dispatch) => {
+  try {
+    await api.updateGeneralDetails(userName)
+    dispatch({type:"UPDATE_GENERAL_DETAILS"})
+  } catch (error) {
+    console.log(error)
   }
 }

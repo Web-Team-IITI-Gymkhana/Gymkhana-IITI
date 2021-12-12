@@ -7,37 +7,42 @@ import Profile from "./components/Profile";
 import { useDispatch , useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import {getUser, getUsers ,deleteUser} from "./redux/actions/users"
+import {getUser, getUsers ,deleteUser , updateGeneralDetails} from "./redux/actions/users"
 import { getSections } from "./redux/actions/sections";
 
 import React from "react";
+
 function App() {
 
   const dispatch = useDispatch();
 
-    useEffect(()=>{
-        console.log("In use Effect")
-        let allUsers = true;
-        if(allUsers)
-        {
-          dispatch(getUsers());
-        }
-        else
-        {
-          dispatch(getUser("PClub"))
-        }
+  let allUsers = false;
 
-        dispatch(getSections("Cynaptics"))
+  useEffect(()=>{
+      console.log("In use Effect")
 
-    },[dispatch]);
+      if(allUsers)
+      {
+        dispatch(getUsers());
+      }
+      else
+      {
+        dispatch(getUser("Cynaptics"))
+      }
 
-    const handleDelete = (userName) => {
-      dispatch(deleteUser(userName))
-      dispatch(getUsers())
-    }
+      dispatch(getSections("Cynaptics"))
 
-    const data = useSelector((state)=> state)
-    console.log(data)
+  },[allUsers,dispatch]);
+
+  const handleDelete = (userName) => {
+    dispatch(deleteUser(userName))
+  }
+  const handleUpdateUserGeneral = (userName) => {
+    dispatch(updateGeneralDetails(userName))
+  }
+
+  const data = useSelector((state)=> state)
+  console.log(data)
 
   return (
     <>
@@ -45,7 +50,7 @@ function App() {
       <header className="App-header">
         <h1>Welcome to Gymkhana IITI</h1>
       </header>
-      <button onClick={()=>handleDelete("PClub")}>Delete User</button>
+      <button onClick={()=>handleUpdateUserGeneral("Cynaptics")}>User Action</button>
      </div>
 
     <Router>

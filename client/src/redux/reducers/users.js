@@ -6,7 +6,10 @@ const reducer =  (users=[],action) => {
         case "FETCH_USER":
           return action.payload
 
-        case "DELETE_USRER":
+        case "DELETE_USER":
+          return users
+
+        case "UPDATE_GENERAL_DETAILS":
           return users
 
         default:
