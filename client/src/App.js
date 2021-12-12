@@ -7,7 +7,7 @@ import Profile from "./components/Profile";
 import { useDispatch , useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import {getUsers} from "./redux/actions/users"
+import {getUser, getUsers} from "./redux/actions/users"
 import { getSections } from "./redux/actions/sections";
 
 import React from "react";
@@ -18,6 +18,7 @@ function App() {
     useEffect(()=>{
         dispatch(getUsers());
         dispatch(getSections("Cynaptics"))
+        dispatch(getUser("Cynaptics"))
     },[dispatch]);
 
     const data = useSelector((state)=> state)

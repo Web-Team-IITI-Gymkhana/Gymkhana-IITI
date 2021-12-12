@@ -3,6 +3,9 @@ const reducer =  (users=[],action) => {
         case "FETCH_ALL_USERS":
             return action.payload;
 
+        case "FETCH_USER":
+          return action.payload
+
         default:
             return users;
 

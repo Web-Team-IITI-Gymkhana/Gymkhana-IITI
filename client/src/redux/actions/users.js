@@ -8,3 +8,12 @@ export const getUsers = () => async (dispatch) => {
         console.log(error.message)
     }
 }
+
+export const getUser = (userName) => async (dispatch) => {
+  try {
+      const {data} = await api.fetchUser(userName)
+      dispatch({type:"FETCH_USER",payload:data.user})
+  } catch (error) {
+      console.log(error.message)
+  }
+}
