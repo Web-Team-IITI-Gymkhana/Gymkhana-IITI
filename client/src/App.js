@@ -11,11 +11,8 @@ import {getUser, getUsers ,deleteUser , updateGeneralDetails} from "./redux/acti
 import { getSections } from "./redux/actions/sections";
 
 import React from "react";
-<<<<<<< HEAD
 import Authenticate from "./components/Authenticate";
-=======
 
->>>>>>> ReduxConf
 function App() {
 
   const dispatch = useDispatch();
