@@ -17,3 +17,12 @@ export const getUser = (userName) => async (dispatch) => {
       console.log(error.message)
   }
 }
+
+export const deleteUser = (userName) => async (dispatch) => {
+  try {
+      await api.deleteUser(userName)
+      dispatch({type:"DELETE_USER"})
+  } catch (error) {
+      console.log(error.message)
+  }
+}

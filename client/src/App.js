@@ -7,7 +7,7 @@ import Profile from "./components/Profile";
 import { useDispatch , useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import {getUser, getUsers} from "./redux/actions/users"
+import {getUser, getUsers ,deleteUser} from "./redux/actions/users"
 import { getSections } from "./redux/actions/sections";
 
 import React from "react";
@@ -16,10 +16,25 @@ function App() {
   const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(getUsers());
+        console.log("In use Effect")
+        let allUsers = true;
+        if(allUsers)
+        {
+          dispatch(getUsers());
+        }
+        else
+        {
+          dispatch(getUser("PClub"))
+        }
+
         dispatch(getSections("Cynaptics"))
-        dispatch(getUser("Cynaptics"))
+
     },[dispatch]);
+
+    const handleDelete = (userName) => {
+      dispatch(deleteUser(userName))
+      dispatch(getUsers())
+    }
 
     const data = useSelector((state)=> state)
     console.log(data)
@@ -30,6 +45,7 @@ function App() {
       <header className="App-header">
         <h1>Welcome to Gymkhana IITI</h1>
       </header>
+      <button onClick={()=>handleDelete("PClub")}>Delete User</button>
      </div>
 
     <Router>
