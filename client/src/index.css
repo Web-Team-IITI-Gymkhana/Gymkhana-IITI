@@ -1,13 +1,95 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  /* margin: 0px; */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: rgb(255, 249, 223); */
+  background-color: rgb(252, 243, 206);
+  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQpDjrY7DbGVhyimsbuhpx399TYzUC-nTMGw&usqp=CAU"); */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.navbar {
+  /* background-color: #D7D1AC; */
+  padding: 0.7%;
+}
+
+.nav-btn {
+  margin-right: 20px !important;
+  background-color: #69a3fa !important;
+}
+
+#first-btn {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+#third-btn {
+  /* float: right !important; */
+  margin-right: 20px !important;
+}
+
+#dp {
+  float: right !important;
+  margin-right: 20px;
+  margin-top: 5px !important;
+}
+
+#fourth-btn {
+  /* float: right !important; */
+  margin-right: 20px;
+  background-color: #d7d1ac !important;
+}
+
+#right{
+  float: right;
+}
+
+#edit-poster {
+  background-color: #d7d1ac;
+  position: relative;
+  /* top: 50%; */
+  left: 89%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.logo {
+  padding: 6% !important;
+}
+
+#logo,
+#btn,
+#form {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* padding: 3%; */
+}
+#btn {
+  background-color: #d7d1ac !important;
+}
+
+#info {
+  padding: 6% !important;
+}
+.field {
+  background-color: #d7d1ac;
+  /* border-radius: 4px; */
+}
+
+.handle2 {
+  /* position: relative; */
+  float: right;
+}
+
+#apply {
+  background-color: #d7d1ac;
+  margin-top: 15px;
 }
