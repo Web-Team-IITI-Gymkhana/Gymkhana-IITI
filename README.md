@@ -1,6 +1,6 @@
 # Central Website for Students’ Gymkhana​
 
-## An Initiative by Gymkhana Web Team
+### An Initiative by Gymkhana Web Team
 
 - This project aims to create a centralized website for the numerous clubs and departments of IIT Indore.
 - This is to ensure better communication within as well as outside the IITI community.
@@ -23,8 +23,12 @@ display wide information in interactive way.
 
 - Whereas the Club Head will have complete access to edit and update information, the website will be view-only for the students and genral public
 
+### Hosted Links
 
-#### Tech Stacks
+- Client: [https://gymkhana-iiti.netlify.app](https://gymkhana-iiti.netlify.app)
+- Server: [https://gymkhana-iiti.herokuapp.com](https://gymkhana-iiti.herokuapp.com)
+
+### Tech Stacks
 
 - Frontend : React , Material UIB
 - Backend : Node JS , Express JS
