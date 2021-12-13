@@ -3,7 +3,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Profile from "./components/Profile";
 import { useDispatch , useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
 
 import {getUser, getUsers ,deleteUser , updateGeneralDetails} from "./redux/actions/users"
 import { getSections } from "./redux/actions/sections";
@@ -30,7 +30,7 @@ function App() {
       }
 
       dispatch(getSections("Cynaptics"))
-
+      setLoading(false)
   },[allUsers,dispatch]);
 
   const handleDelete = (userName) => {
