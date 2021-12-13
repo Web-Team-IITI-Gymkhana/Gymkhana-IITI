@@ -2,19 +2,17 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import About from "./components/About";
 import Profile from "./components/Profile";
-
-
 import { useDispatch , useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import {getUser, getUsers ,deleteUser , updateGeneralDetails} from "./redux/actions/users"
 import { getSections } from "./redux/actions/sections";
-
 import React from "react";
 import Authenticate from "./components/Authenticate";
+import Loader from "./components/Loader";
 
 function App() {
-
+  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch();
 
   let allUsers = false;
@@ -47,13 +45,13 @@ function App() {
 
   return (
     <>
-    <div className="App">
+    {
+      loading ? <Loader/> :
+      <div className="App">
       <header className="App-header">
         <h1>Welcome to Gymkhana IITI</h1>
       </header>
       <button onClick={()=>handleUpdateUserGeneral("Cynaptics")}>User Action</button>
-     </div>
-
     <Router>
       <Routes>
         <Route path="/home" element={<Home />}/>
@@ -62,6 +60,9 @@ function App() {
         <Route path="/login" element={<Authenticate />}/>
       </Routes>
     </Router>
+     </div>
+    }
+
     </>
   );
 }
