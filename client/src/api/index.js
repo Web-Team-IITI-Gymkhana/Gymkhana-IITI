@@ -10,3 +10,4 @@ export const deleteUser = (userName) => axios.delete(`${usersURL}/${userName}`)
 
 
 export const fetchSections = (userName) => axios.get(`${contentURL}/sections/${userName}`)
+export const updateGeneralSection = (userName,sectionID) => axios.patch(`${contentURL}/sections/${userName}/${sectionID}`,{"sectionName" : "Projects Latest Redux", "sectionHeader" : "Header Latest Redux"})
