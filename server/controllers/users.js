@@ -51,8 +51,6 @@ const updateGeneralDetails = async(req,res) => {
 
         const updateDetails = req.body;
 
-        console.log(updateDetails)
-
         let name = updateDetails.name;
         let logo = updateDetails.logo;
         let socialMedia = updateDetails.socialMedia;

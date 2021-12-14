@@ -3,8 +3,9 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Profile from "./components/Profile";
 import { useDispatch , useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import {getUsers} from "./redux/actions/users"
+import { useEffect , useState } from "react";
+
+import {getUser, getUsers ,deleteUser , updateGeneralDetails} from "./redux/actions/users"
 import { getSections } from "./redux/actions/sections";
 import React from "react";
 import Authenticate from "./components/Authenticate";
@@ -14,14 +15,33 @@ function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch();
 
-    useEffect(()=>{
-        dispatch(getUsers());
-        dispatch(getSections("Cynaptics"))
-        setLoading(false)
-    },[dispatch]);
+  let allUsers = false;
 
-    const data = useSelector((state)=> state)
-    console.log(data)
+  useEffect(()=>{
+      console.log("In use Effect")
+
+      if(allUsers)
+      {
+        dispatch(getUsers());
+      }
+      else
+      {
+        dispatch(getUser("Cynaptics"))
+      }
+
+      dispatch(getSections("Cynaptics"))
+      setLoading(false)
+  },[allUsers,dispatch]);
+
+  const handleDelete = (userName) => {
+    dispatch(deleteUser(userName))
+  }
+  const handleUpdateUserGeneral = (userName) => {
+    dispatch(updateGeneralDetails(userName))
+  }
+
+  const data = useSelector((state)=> state)
+  console.log(data)
 
   return (
     <>
@@ -31,7 +51,7 @@ function App() {
       <header className="App-header">
         <h1>Welcome to Gymkhana IITI</h1>
       </header>
-
+      <button onClick={()=>handleUpdateUserGeneral("Cynaptics")}>User Action</button>
     <Router>
       <Routes>
         <Route path="/home" element={<Home />}/>
