@@ -18,10 +18,10 @@ export const addSection = (userName) => async (dispatch) => {
   }
 }
 
-export const updateGeneralSection = (userName,sectionID) => async (dispatch) => {
+export const updateSection = (userName,sectionID) => async (dispatch) => {
   try {
-    await api.updateGeneralSection(userName,sectionID)
-    dispatch({type:"UPDATE_GENERAL_SECTION"})
+    await api.updateSection(userName,sectionID)
+    dispatch({type:"UPDATE_SECTION"})
   } catch (error) {
       console.log(error)
   }

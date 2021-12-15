@@ -4,7 +4,7 @@ const reducer =  (sections=[],action) => {
           return action.payload;
 
       case "ADD_SECTION":
-      case "UPDATE_GENERAL_SECTION":
+      case "UPDATE_SECTION":
       case "DELETE_SECTION":
       case "ADD_SECTION_CHILD":
       case "UPDATE_SECTION_CHILD":

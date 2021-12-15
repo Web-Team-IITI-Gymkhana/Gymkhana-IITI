@@ -61,7 +61,7 @@ const  getSection = async(req,res) => {
     }
 }
 
-const updateGeneralSection = async(req,res) => {
+const updateSection = async(req,res) => {
     try {
         const {userName : userName , sectionID : sectionID} = req.params
 
@@ -216,5 +216,5 @@ const deleteSectionChild = async(req,res)=>{
 
 }
 
-module.exports = {addSection, updateGeneralSection, getAllSections, getSectionChild,
+module.exports = {addSection, updateSection, getAllSections, getSectionChild,
                   addSectionChild, getSection,updateSectionChild , deleteSectionChild, deleteSection}
