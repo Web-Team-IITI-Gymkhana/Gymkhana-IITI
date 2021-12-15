@@ -6,7 +6,7 @@ import { useDispatch , useSelector } from "react-redux";
 import { useEffect , useState } from "react";
 
 import {getUser, getUsers ,deleteUser , updateGeneralDetails} from "./redux/actions/users"
-import { getSections } from "./redux/actions/sections";
+import { getSections , updateSection , addSectionChild , updateSectionChild ,addSection , deleteSection , deleteSectionChild} from "./redux/actions/sections";
 import React from "react";
 import Authenticate from "./components/Authenticate";
 import Loader from "./components/Loader";
@@ -15,30 +15,15 @@ function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch();
 
-  let allUsers = false;
+  const currentUser = "Cynaptics"
 
   useEffect(()=>{
-      console.log("In use Effect")
-
-      if(allUsers)
-      {
-        dispatch(getUsers());
-      }
-      else
-      {
-        dispatch(getUser("Cynaptics"))
-      }
-
-      dispatch(getSections("Cynaptics"))
+      dispatch(getUser(currentUser))
+      dispatch(getSections(currentUser))
       setLoading(false)
-  },[allUsers,dispatch]);
+  },[dispatch]);
 
-  const handleDelete = (userName) => {
-    dispatch(deleteUser(userName))
-  }
-  const handleUpdateUserGeneral = (userName) => {
-    dispatch(updateGeneralDetails(userName))
-  }
+
 
   const data = useSelector((state)=> state)
   console.log(data)
@@ -51,7 +36,7 @@ function App() {
       <header className="App-header">
         <h1>Welcome to Gymkhana IITI</h1>
       </header>
-      <button onClick={()=>handleUpdateUserGeneral("Cynaptics")}>User Action</button>
+      <button onClick={()=>dispatch(updateSection("Cynaptics",2))}>Sections Action</button>
     <Router>
       <Routes>
         <Route path="/home" element={<Home />}/>
