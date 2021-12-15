@@ -6,7 +6,7 @@ import { useDispatch , useSelector } from "react-redux";
 import { useEffect , useState } from "react";
 
 import {getUser, getUsers ,deleteUser , updateGeneralDetails} from "./redux/actions/users"
-import { getSections , updateGeneralSection } from "./redux/actions/sections";
+import { getSections , updateGeneralSection , addSectionChild , updateSectionChild ,addSection , deleteSection , deleteSectionChild} from "./redux/actions/sections";
 import React from "react";
 import Authenticate from "./components/Authenticate";
 import Loader from "./components/Loader";
@@ -23,9 +23,7 @@ function App() {
       setLoading(false)
   },[dispatch]);
 
-  const handleUpdateGeneralSection = (userName,sectionID)=>{
-    dispatch(updateGeneralSection(userName,sectionID))
-  }
+
 
   const data = useSelector((state)=> state)
   console.log(data)
@@ -38,7 +36,7 @@ function App() {
       <header className="App-header">
         <h1>Welcome to Gymkhana IITI</h1>
       </header>
-      <button onClick={()=>handleUpdateGeneralSection(currentUser,2)}>Sections Action</button>
+      <button onClick={()=>console.log("Button Click")}>Sections Action</button>
     <Router>
       <Routes>
         <Route path="/home" element={<Home />}/>

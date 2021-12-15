@@ -3,7 +3,12 @@ const reducer =  (sections=[],action) => {
       case "FETCH_ALL_SECTIONS":
           return action.payload;
 
+      case "ADD_SECTION":
       case "UPDATE_GENERAL_SECTION":
+      case "DELETE_SECTION":
+      case "ADD_SECTION_CHILD":
+      case "UPDATE_SECTION_CHILD":
+      case "DELETE_SECTION_CHILD":
         return sections
 
       default:
