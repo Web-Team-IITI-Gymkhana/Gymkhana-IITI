@@ -1,15 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import About from "./components/About";
-import Profile from "./components/Profile";
-import { useDispatch , useSelector } from "react-redux";
-import { useEffect , useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-import {getUser, getUsers ,deleteUser , updateGeneralDetails} from "./redux/actions/users"
-import { getSections , updateSection , addSectionChild , updateSectionChild ,addSection , deleteSection , deleteSectionChild} from "./redux/actions/sections";
+import { getUser, getUsers, deleteUser, updateGeneralDetails } from "./redux/actions/users"
+import { getSections, updateSection, addSectionChild, updateSectionChild, addSection, deleteSection, deleteSectionChild } from "./redux/actions/sections";
 import React from "react";
-import Authenticate from "./components/Authenticate";
-import Loader from "./components/Loader";
+import Authenticate from "./components/Auth/Authenticate";
+import Loader from "./components/Loader/Loader";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -17,36 +15,34 @@ function App() {
 
   const currentUser = "Cynaptics"
 
-  useEffect(()=>{
-      dispatch(getUser(currentUser))
-      dispatch(getSections(currentUser))
-      setLoading(false)
-  },[dispatch]);
+  useEffect(() => {
+    dispatch(getUser(currentUser))
+    dispatch(getSections(currentUser))
+    setLoading(false)
+  }, [dispatch]);
 
 
 
-  const data = useSelector((state)=> state)
+  const data = useSelector((state) => state)
   console.log(data)
 
   return (
     <>
-    {
-      loading ? <Loader/> :
-      <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Gymkhana IITI</h1>
-      </header>
-      <button onClick={()=>dispatch(updateSection("Cynaptics",2))}>Sections Action</button>
-    <Router>
-      <Routes>
-        <Route path="/home" element={<Home />}/>
-        <Route path="/about" element={<About />}/>
-        <Route path="/profile" element={<Profile />}/>
-        <Route path="/login" element={<Authenticate />}/>
-      </Routes>
-    </Router>
-     </div>
-    }
+      {
+        loading ? <Loader /> :
+          <div className="App">
+            <header className="App-header">
+              <h1>Welcome to Gymkhana IITI</h1>
+            </header>
+            <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button>
+            <Router>
+              <Routes>
+                <Route path="/home" element={<HomePage />} />
+                <Route path="/login" element={<Authenticate />} />
+              </Routes>
+            </Router>
+          </div>
+      }
 
     </>
   );
