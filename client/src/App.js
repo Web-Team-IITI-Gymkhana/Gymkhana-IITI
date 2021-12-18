@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
 import { getUser, getUsers, deleteUser, updateGeneralDetails } from "./redux/actions/users"
 import { getSections, updateSection, addSectionChild, updateSectionChild, addSection, deleteSection, deleteSectionChild } from "./redux/actions/sections";
 import React from "react";
@@ -31,12 +30,17 @@ function App() {
       {
         loading ? <Loader /> :
           <div className="App">
-            <header className="App-header">
-              <h1>Welcome to Gymkhana IITI</h1>
-            </header>
-            <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button>
+
             <Router>
               <Routes>
+                <Route path="/" element={
+                  <>
+                    <header className="App-header">
+                      <h1>Welcome to Gymkhana IITI</h1>
+                    </header>
+                    <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button>
+                  </>
+                } />
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/login" element={<Authenticate />} />
               </Routes>
