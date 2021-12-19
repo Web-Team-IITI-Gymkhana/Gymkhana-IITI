@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import dp from "./photos/dp.svg";
 function Navbar() {
   return (
     <div className="navbar">
@@ -40,10 +41,11 @@ function Navbar() {
         </Button>
         <img
           id="dp"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9uvF65nH7m-aoxHulInp9xFBJjZsuZuOw1w&usqp=CAU"
+          src={dp}
+          // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9uvF65nH7m-aoxHulInp9xFBJjZsuZuOw1w&usqp=CAU"
           alt="dp"
-          height="30px"
-          width="35px"
+          height="45px"
+          width="40px"
           radius="3px"
         ></img>
       </span>
