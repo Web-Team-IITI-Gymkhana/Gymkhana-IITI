@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import logo from "../photos/logo.jpg";
+import logo from "../../photos/logo.jpg";
 function Logo() {
   return (
     <Grid className="logo" item xs={6}>

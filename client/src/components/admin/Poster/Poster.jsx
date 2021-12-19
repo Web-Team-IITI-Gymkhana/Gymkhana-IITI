@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import poster from "../photos/poster.jpg"
+import poster from "../../photos/poster.jpg"
 
 function Poster() {
   return (

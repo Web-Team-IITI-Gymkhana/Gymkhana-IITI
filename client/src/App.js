@@ -7,10 +7,10 @@ import { getSections, updateSection, addSectionChild, updateSectionChild, addSec
 import React from "react";
 import Authenticate from "./components/Auth/Authenticate";
 import Loader from "./components/Loader/Loader";
-import HomePage from "./pages/HomePage/HomePage";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import AdminProfilePage from "./adminpages/AdminProfilePage";
-import AdminHomePage from "./adminpages/AdminHomePage";
+import HomePage from "./pages/public/HomePage/HomePage";
+import ProfilePage from "./pages/public/ProfilePage/ProfilePage";
+import AdminProfilePage from "./pages/admin/AdminProfilePage";
+import AdminHomePage from "./pages/admin/AdminHomePage";
 
 // function App() {
 //   const [loading, setLoading] = useState(true)

@@ -1,8 +1,8 @@
 import React from 'react'
-import EventsSection from "../../components/sections/EventsSection/EventsSection";
-import TeamSection from "../../components/sections/TeamSection/TeamSection";
+import EventsSection from "../../../components/sections/EventsSection/EventsSection";
+import TeamSection from "../../../components/sections/TeamSection/TeamSection";
 import {Box} from "@mui/material";
-import WorkSection from "../../components/sections/WorkSection/WorkSection";
+import WorkSection from "../../../components/sections/WorkSection/WorkSection";
 
 const eventsDummyArr = [{
   imageUrl: 'https://picsum.photos/200',
