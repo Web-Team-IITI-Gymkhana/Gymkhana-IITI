@@ -3,6 +3,9 @@
   height: 80px;
   width: 80px;
 }
+.burger {
+  display: none;
+}
 
 @media only screen and (max-width: 500px) {
   .club-logo {
@@ -14,5 +17,11 @@
   }
   .quick-links {
     font-size: 13px;
+  }
+  .links-wrapper {
+    display: none;
+  }
+  .burger {
+    display: block;
   }
 }

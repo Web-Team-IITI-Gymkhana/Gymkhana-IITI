@@ -6,7 +6,9 @@ import { getSections, updateSection, addSectionChild, updateSectionChild, addSec
 import React from "react";
 import Authenticate from "./components/Auth/Authenticate";
 import Loader from "./components/Loader/Loader";
-import HomePage from "./pages/HomePage/HomePage";
+import HomePage from "./pages/public/HomePage/HomePage";
+import AdminPage from "./pages/admin/AdminPage/AdminPage";
+import ProfilePage from "./pages/admin/ProfilePage/ProfilePage";
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -42,6 +44,8 @@ function App() {
                   </>
                 } />
                 <Route path="/home" element={<HomePage />} />
+                <Route path="/admin" element={<AdminPage />} />
+                <Route path="/admin/profile" element={<ProfilePage />} />
                 <Route path="/login" element={<Authenticate />} />
               </Routes>
             </Router>
