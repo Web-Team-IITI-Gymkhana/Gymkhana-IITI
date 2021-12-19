@@ -9,6 +9,8 @@ import Authenticate from "./components/Auth/Authenticate";
 import Loader from "./components/Loader/Loader";
 import HomePage from "./pages/HomePage/HomePage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import AdminProfilePage from "./adminpages/AdminProfilePage";
+import AdminHomePage from "./adminpages/AdminHomePage";
 
 // function App() {
 //   const [loading, setLoading] = useState(true)
@@ -18,10 +20,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 
 import './index.css';
-import './components/Navbar/Navbar.css';
-import './components/Logo/Logo.css';
-import './components/Poster/Poster.css';
-import './components/Form/Form.css';
+
 
 
 
