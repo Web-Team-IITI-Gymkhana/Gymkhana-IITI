@@ -5,6 +5,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -18,4 +19,15 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0 !important;
+}
+hr {
+  margin: 0% !important;
+}
+a{
+  text-decoration: none;
+  color: black;
 }

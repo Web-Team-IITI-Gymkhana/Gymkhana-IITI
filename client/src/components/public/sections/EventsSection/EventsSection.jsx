@@ -15,7 +15,7 @@ const EventsSection = ({eventCardsData}) => {
       </Box>
 
       {/*the carousel*/}
-      <Paper sx={{width: '90%', maxWidth: '1000px'}} elevation={4}>
+      <Paper sx={{width: '90%', maxWidth: '1150px'}} elevation={3}>
         <Carousel autoPlay={false}>
           {eventCardsData.map(eventCardsData => <EventCard key={eventCardsData.eventName} data={eventCardsData}/>)}
         </Carousel>

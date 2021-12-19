@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  max-width: 1200px !important;
 }
 
 @media (max-width: 800px) {
