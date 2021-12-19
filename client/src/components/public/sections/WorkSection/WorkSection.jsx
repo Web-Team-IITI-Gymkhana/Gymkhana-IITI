@@ -15,7 +15,7 @@ const WorkSection = ({workCardsData}) => {
       </Box>
 
       {/*the carousel*/}
-      <Paper sx={{width: '90%', maxWidth: '1000px'}} elevation={4}>
+      <Paper sx={{width: '90%', maxWidth: '1150px'}} elevation={3}>
         <Carousel autoPlay={false}>
           {workCardsData.map(workCardData => <WorkCard key={workCardData.eventName} data={workCardData}/>)}
         </Carousel>

@@ -13,7 +13,7 @@ const TeamSection = ({teamCardsData}) => {
         </Box>
       </Box>
 
-      <Box display={"flex"} gap={2} flexWrap={"wrap"} justifyContent={"center"}>
+      <Box sx={{width: '90%', maxWidth: '1150px'}} display={"flex"} gap={5} flexWrap={"wrap"} justifyContent={"center"}>
         {teamCardsData.map(teamSectionData => <TeamCard key={teamSectionData.name} data={teamSectionData}/>)}
       </Box>
     </Box>
