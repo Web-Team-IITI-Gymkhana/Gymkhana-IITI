@@ -8,6 +8,7 @@ import React from "react";
 import Authenticate from "./components/Auth/Authenticate";
 import Loader from "./components/Loader/Loader";
 import HomePage from "./pages/HomePage/HomePage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 // function App() {
 //   const [loading, setLoading] = useState(true)
@@ -43,6 +44,7 @@ function App() {
             <Router>
               <Routes>
                 <Route path="/home" element={<HomePage />} />
+                <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/login" element={<Authenticate />} />
               </Routes>
             </Router>
