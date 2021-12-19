@@ -9,15 +9,16 @@ import Authenticate from "./components/Auth/Authenticate";
 import Loader from "./components/Loader/Loader";
 import HomePage from "./pages/HomePage/HomePage";
 
-function App() {
-  const [loading, setLoading] = useState(true)
-  const dispatch = useDispatch();
+// function App() {
+//   const [loading, setLoading] = useState(true)
+//   const dispatch = useDispatch();
 
-  const currentUser = "Cynaptics"
+//   const currentUser = "Cynaptics"
 
 import React from "react";
 import Authenticate from "./components/Authenticate";
 import './index.css';
+
 function App() {
   useEffect(() => {
     dispatch(getUser(currentUser))
