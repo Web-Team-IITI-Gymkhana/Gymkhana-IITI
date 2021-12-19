@@ -16,11 +16,20 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 //   const currentUser = "Cynaptics"
 
-import React from "react";
-import Authenticate from "./components/Authenticate";
+
 import './index.css';
+import './components/Navbar/Navbar.css';
+import './components/Logo/Logo.css';
+import './components/Poster/Poster.css';
+import './components/Form/Form.css';
+
+
 
 function App() {
+  const [loading, setLoading] = useState(true)
+  const currentUser = "Cynaptics"
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getUser(currentUser))
     dispatch(getSections(currentUser))
@@ -45,6 +54,8 @@ function App() {
               <Routes>
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/adminhome" element={<AdminHomePage />} />
+                <Route path="/adminprofile" element={<AdminProfilePage />} />
                 <Route path="/login" element={<Authenticate />} />
               </Routes>
             </Router>
