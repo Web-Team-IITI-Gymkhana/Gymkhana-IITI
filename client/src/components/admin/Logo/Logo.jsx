@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import logo from "../../photos/logo.jpg";
 function Logo() {
   return (
-    <Grid className="logo" item xs={6}>
+    <Grid className="logo" item md={6}>
       <div className="logo">
         <div>
           <img

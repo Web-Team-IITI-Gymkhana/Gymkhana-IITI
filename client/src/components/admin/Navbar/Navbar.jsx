@@ -22,6 +22,7 @@ function Navbar() {
           Publish
         </Button>
       </span>
+
       <span id="right">
         <Button
           variant="contained"
@@ -42,14 +43,13 @@ function Navbar() {
         <img
           id="dp"
           src={dp}
-          // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9uvF65nH7m-aoxHulInp9xFBJjZsuZuOw1w&usqp=CAU"
           alt="dp"
           height="45px"
           width="40px"
           radius="3px"
         ></img>
       </span>
-      {/* <img id="dp" src="./photos/dp.svg"></img> */}
+
     </div>
   );
 }

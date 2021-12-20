@@ -48,7 +48,7 @@ function App() {
             <header className="App-header">
               <h1>Welcome to Gymkhana IITI</h1>
             </header>
-            <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button>
+            {/* <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button> */}
             <Router>
               <Routes>
                 <Route path="/home" element={<HomePage />} />

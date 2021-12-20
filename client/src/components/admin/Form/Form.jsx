@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 function Form() {
   return (
-    <Grid item xs={6} id="info">
+    <Grid item md={6} id="info">
       <div>
         <form id="form">
           <TextField
@@ -48,7 +48,7 @@ function Form() {
               variant="outlined"
               margin="normal"
               required
-              halfWidth
+              fullWidth
               name="handle1"
               label="Social media 1"
               type="text"
@@ -60,7 +60,7 @@ function Form() {
               variant="outlined"
               margin="normal"
               required
-              halfWidth
+              fullWidth
               name="handle2"
               label="Social media 2"
               type="text"
