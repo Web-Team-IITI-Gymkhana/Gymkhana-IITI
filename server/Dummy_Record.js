@@ -1,4 +1,4 @@
-const user = 
+const user =
 {
     "userName":"Cynaptics",
     "userEmailId":"cynaptics@iiti.ac.in",
@@ -9,7 +9,7 @@ const user =
                 "userDetails": {"name":"Cyn Club","logo":"logoCyn.com","socialMedia":["instaCyn.com","fbCyn.com"]},
                 "homePagePoster": {"src":"posterCyn","caption":"Caption Cyn"},
                 "contactDetails": {"email":"cynaptics@iiti.ac.in","phoneNumber":123123},
-                
+
                 "Sections":
                     [
                         {
