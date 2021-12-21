@@ -7,14 +7,26 @@ import React from "react";
 import Authenticate from "./components/Auth/Authenticate";
 import Loader from "./components/Loader/Loader";
 import HomePage from "./pages/public/HomePage/HomePage";
-import AdminPage from "./pages/admin/AdminPage/AdminPage";
-import ProfilePage from "./pages/admin/ProfilePage/ProfilePage";
+import ProfilePage from "./pages/public/ProfilePage/ProfilePage";
+import AdminProfilePage from "./pages/admin/AdminProfilePage";
+import AdminHomePage from "./pages/admin/AdminHomePage";
+
+// function App() {
+//   const [loading, setLoading] = useState(true)
+//   const dispatch = useDispatch();
+
+//   const currentUser = "Cynaptics"
+
+
+import './index.css';
+
+
+
 
 function App() {
   const [loading, setLoading] = useState(true)
-  const dispatch = useDispatch();
-
   const currentUser = "Cynaptics"
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUser(currentUser))
@@ -32,20 +44,17 @@ function App() {
       {
         loading ? <Loader /> :
           <div className="App">
-
+            <header className="App-header">
+              <h1>Welcome to Gymkhana IITI</h1>
+            </header>
+            {/* <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button> */}
             <Router>
               <Routes>
-                <Route path="/" element={
-                  <>
-                    <header className="App-header">
-                      <h1>Welcome to Gymkhana IITI</h1>
-                    </header>
-                    <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button>
-                  </>
-                } />
+                
                 <Route path="/home" element={<HomePage />} />
-                <Route path="/admin" element={<AdminPage />} />
-                <Route path="/admin/profile" element={<ProfilePage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/adminhome" element={<AdminHomePage />} />
+                <Route path="/adminprofile" element={<AdminProfilePage />} />
                 <Route path="/login" element={<Authenticate />} />
               </Routes>
             </Router>
