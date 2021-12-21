@@ -1,0 +1,34 @@
+.navbar {
+  padding: 0.7%;
+}
+
+.nav-btn {
+  margin-right: 20px !important;
+  background-color: #69a3fa !important;
+}
+
+#first-btn {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+#third-btn {
+  /* float: right !important; */
+  margin-right: 20px !important;
+}
+
+#dp {
+  float: right !important;
+  margin-right: 20px;
+  /* margin-top: 5px !important; */
+}
+
+#fourth-btn {
+  /* float: right !important; */
+  margin-right: 20px;
+  background-color: #d7d1ac !important;
+}
+
+#right {
+  float: right;
+}

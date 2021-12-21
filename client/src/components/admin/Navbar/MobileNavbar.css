@@ -1,0 +1,12 @@
+.ham{
+  display: inline;
+}
+.hamburger-react{
+  display: inline !important;
+}
+
+#home-btn {
+  float: right !important;
+  margin-right: 20px;
+  background-color: #d7d1ac !important;
+}

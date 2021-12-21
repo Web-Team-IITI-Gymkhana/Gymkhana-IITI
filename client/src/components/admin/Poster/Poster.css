@@ -1,0 +1,12 @@
+#poster{
+    opacity: 0.7;
+  }
+  
+  #edit-poster {
+    background-color: #d7d1ac;
+    position: relative;
+    /* top: 50%; */
+    left: 89%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
