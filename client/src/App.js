@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUser, getUsers, deleteUser, updateGeneralDetails } from "./redux/actions/users"
@@ -23,7 +23,6 @@ function App() {
   }, [dispatch]);
 
 
-
   const data = useSelector((state) => state)
   console.log(data)
 
@@ -41,6 +40,7 @@ function App() {
                       <h1>Welcome to Gymkhana IITI</h1>
                     </header>
                     <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button>
+                    <Link to='/home'>Go to HomePage</Link>
                   </>
                 } />
                 <Route path="/home" element={<HomePage />} />

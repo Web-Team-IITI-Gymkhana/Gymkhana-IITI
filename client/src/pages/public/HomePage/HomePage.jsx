@@ -28,22 +28,6 @@ const eventsDummyArr = [{
 
 const teamDummyArr = [{
     imageUrl: 'https://picsum.photos/100',
-    name: 'Random Name 1',
-    position: 'Random Position 1',
-    email: 'randomemail1@gmail.com',
-    facebookLink: 'facebookLink',
-    instaLink: 'instaLink',
-},
-{
-    imageUrl: 'https://picsum.photos/100',
-    name: 'Random Name 2',
-    position: 'Random Position 2',
-    email: 'randomemail2@gmail.com',
-    facebookLink: 'facebookLink',
-    instaLink: 'instaLink',
-},
-{
-    imageUrl: 'https://picsum.photos/100',
     name: 'Random Name 2',
     position: 'Random Position 2',
     email: 'randomemail2@gmail.com',
