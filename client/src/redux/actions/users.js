@@ -27,9 +27,9 @@ export const deleteUser = (userName) => async (dispatch) => {
   }
 }
 
-export const updateGeneralDetails = (userName) => async (dispatch) => {
+export const updateGeneralDetails = (userName,postData) => async (dispatch) => {
   try {
-    await api.updateGeneralDetails(userName)
+    await api.updateGeneralDetails(userName,postData)
     dispatch({type:"UPDATE_GENERAL_DETAILS"})
   } catch (error) {
     console.log(error)

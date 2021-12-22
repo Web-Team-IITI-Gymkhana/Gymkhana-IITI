@@ -11,20 +11,14 @@ import ProfilePage from "./pages/public/ProfilePage/ProfilePage";
 import AdminProfilePage from "./pages/admin/AdminProfilePage";
 import AdminHomePage from "./pages/admin/AdminHomePage";
 
-// function App() {
-//   const [loading, setLoading] = useState(true)
-//   const dispatch = useDispatch();
-
-//   const currentUser = "Cynaptics"
-
-
 import './index.css';
-
-
-
 
 function App() {
     const [loading, setLoading] = useState(true)
+
+    const [sections, setSections] = useState([])
+    const [userProfile, setProfile] = useState([])
+
     const currentUser = "Cynaptics"
     const dispatch = useDispatch();
 
@@ -34,30 +28,60 @@ function App() {
         setLoading(false)
     }, [dispatch]);
 
-
     const data = useSelector((state) => state)
     console.log(data)
+    let user = data.users
+
+    useEffect(() => {
+        try {
+            let latestVersion = user.contentVersions[(user.contentVersions).length - 1]
+            let name = latestVersion.userDetails.name
+            let logoSrc = latestVersion.userDetails.logo
+            let socialMedia = latestVersion.userDetails.socialMedia
+
+
+            setSections(latestVersion.Sections)
+
+            let email = latestVersion.contactDetails.email
+            let phoneNumber = latestVersion.contactDetails.phoneNumber
+
+            let homePagePoster = latestVersion.homePagePoster
+            let themeDetails = latestVersion.themeDetails
+
+            setProfile([{
+                "name": name, "email": email, "logo": logoSrc, "socialMedia": socialMedia, "phoneNumber": phoneNumber,
+                "src": homePagePoster.src, "caption": homePagePoster.caption, "theme": themeDetails
+            }])
+
+        } catch (error) {
+            console.log(error)
+        }
+    }, [data])
+
+    console.log(sections)
+    console.log(userProfile)
 
     return (
         <>
-            <Router>
-                {
-                    loading ? <Loader /> :
-                        <div className="App">
-                            {/* <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button> */}
+            {
+                loading || sections.length === 0 ? <Loader /> :
+                    <div className="App">
+                        <header className="App-header">
+                            <h1>Welcome to Gymkhana IITI</h1>
+                        </header>
 
+                        <Router>
                             <Routes>
-                                <Route path='/' element={<><h1>Welcome to Gymkhana IITI</h1> <Link to='/home'>Go to Home</Link></>} />
-                                <Route path="/home" element={<HomePage />} />
+                                <Route path="/home" element={<HomePage sections={sections} />} />
                                 <Route path="/profile" element={<ProfilePage />} />
                                 <Route path="/adminhome" element={<AdminHomePage />} />
-                                <Route path="/adminprofile" element={<AdminProfilePage />} />
+                                <Route path="/adminprofile" element={<AdminProfilePage userProfile={userProfile[0]} updateGeneralDetails={updateGeneralDetails} />} />
                                 <Route path="/login" element={<Authenticate />} />
                             </Routes>
-                        </div>
-                }
+                        </Router>
+                    </div>
+            }
 
-            </Router>
         </>
     );
 }
