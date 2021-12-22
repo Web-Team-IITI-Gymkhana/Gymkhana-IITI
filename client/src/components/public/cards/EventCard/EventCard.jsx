@@ -3,15 +3,16 @@ import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import './EventCard.css'
 
-const EventCard = ({ data }) => {
+const EventCard = ({ sectionChild }) => {
   return(
+
     <Box gap={5} padding={3} className={'wrapper'}  >
-    <img src={data.imageUrl} style={{ borderRadius: '50%' }} alt={'Event Image'} height={250}
+    <img src={sectionChild.sectionChildImage} style={{ borderRadius: '50%' }} alt={'Event Image'} height={250}
       width={250} />
     <Box>
-      <Typography variant={'h4'} marginBottom={1}>{data.eventName}</Typography>
-      <Typography variant={'body1'} marginBottom={2}>{data.eventDescription}</Typography>
-      <Link to={data.buttonLink}
+      <Typography variant={'h4'} marginBottom={1}>{sectionChild.sectionChildName}</Typography>
+      <Typography variant={'body1'} marginBottom={2}>{sectionChild.sectionChildDesc}</Typography>
+      {/* <Link to={data.buttonLink}
         style={{
           color: 'black',
           textDecoration: 'none',
@@ -20,7 +21,7 @@ const EventCard = ({ data }) => {
           backgroundColor: '#cccccc',
           padding: '5px 10px',
           borderRadius: '4px',
-        }}>{data.buttonText}</Link>
+        }}>{data.buttonText}</Link> */}
     </Box>
   </Box>
   )

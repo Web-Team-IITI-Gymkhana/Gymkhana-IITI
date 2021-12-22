@@ -11,50 +11,70 @@ import ProfilePage from "./pages/public/ProfilePage/ProfilePage";
 import AdminProfilePage from "./pages/admin/AdminProfilePage";
 import AdminHomePage from "./pages/admin/AdminHomePage";
 
-// function App() {
-//   const [loading, setLoading] = useState(true)
-//   const dispatch = useDispatch();
-
-//   const currentUser = "Cynaptics"
-
-
 import './index.css';
 
-
-
-
 function App() {
-  const [loading, setLoading] = useState(true)
-  const currentUser = "Cynaptics"
-  const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    dispatch(getUser(currentUser))
-    dispatch(getSections(currentUser))
-    setLoading(false)
-  }, [dispatch]);
+    const [sections, setSections] = useState([])
+    const [userProfile, setProfile] = useState([])
+
+    const currentUser = "Cynaptics"
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getUser(currentUser))
+        dispatch(getSections(currentUser))
+        setLoading(false)
+    },[dispatch]);
+
+    const data = useSelector((state) => state)
+    console.log(data)
+    let user = data.users
+
+    useEffect(()=>{
+        try {
+            let latestVersion = user.contentVersions[(user.contentVersions).length - 1]
+            let name = latestVersion.userDetails.name
+            let logoSrc = latestVersion.userDetails.logo
+            let socialMedia = latestVersion.userDetails.socialMedia
 
 
+            setSections(latestVersion.Sections)
 
-  const data = useSelector((state) => state)
-  console.log(data)
+            let email = latestVersion.contactDetails.email
+            let phoneNumber = latestVersion.contactDetails.phoneNumber
 
-  return (
+            let homePagePoster = latestVersion.homePagePoster
+            let themeDetails = latestVersion.themeDetails
+
+            setProfile([{"emailID":email,"name":name,"logo":logoSrc,"socialMedia":socialMedia,"phone":phoneNumber,
+                                "homePagePoster":homePagePoster,"theme":themeDetails}])
+
+        } catch (error) {
+            console.log(error)
+        }
+    },[data])
+
+    console.log(sections)
+    console.log(userProfile)
+
+    return (
     <>
       {
-        loading ? <Loader /> :
+        loading || sections.length===0 ? <Loader /> :
           <div className="App">
             <header className="App-header">
               <h1>Welcome to Gymkhana IITI</h1>
             </header>
-            {/* <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button> */}
+
             <Router>
               <Routes>
-                
-                <Route path="/home" element={<HomePage />} />
+
+                <Route path="/home" element={<HomePage sections={sections}/>} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/adminhome" element={<AdminHomePage />} />
-                <Route path="/adminprofile" element={<AdminProfilePage />} />
+                {/* <Route path="/adminprofile" element={<AdminProfilePage userProfile={[userProfile]} />} /> */}
                 <Route path="/login" element={<Authenticate />} />
               </Routes>
             </Router>
