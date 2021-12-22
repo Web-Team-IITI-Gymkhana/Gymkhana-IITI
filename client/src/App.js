@@ -48,8 +48,8 @@ function App() {
             let homePagePoster = latestVersion.homePagePoster
             let themeDetails = latestVersion.themeDetails
 
-            setProfile([{"emailID":email,"name":name,"logo":logoSrc,"socialMedia":socialMedia,"phone":phoneNumber,
-                                "homePagePoster":homePagePoster,"theme":themeDetails}])
+            setProfile([{"name":name,"email":email,"logo":logoSrc,"socialMedia":socialMedia,"phoneNumber":phoneNumber,
+                                "src":homePagePoster.src,"caption":homePagePoster.caption,"theme":themeDetails}])
 
         } catch (error) {
             console.log(error)
@@ -74,7 +74,7 @@ function App() {
                 <Route path="/home" element={<HomePage sections={sections}/>} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/adminhome" element={<AdminHomePage />} />
-                {/* <Route path="/adminprofile" element={<AdminProfilePage userProfile={[userProfile]} />} /> */}
+                <Route path="/adminprofile" element={<AdminProfilePage userProfile={userProfile[0]} updateGeneralDetails={updateGeneralDetails} />} />
                 <Route path="/login" element={<Authenticate />} />
               </Routes>
             </Router>

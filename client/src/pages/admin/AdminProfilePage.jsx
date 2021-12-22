@@ -17,7 +17,8 @@ import { useMediaQuery, useTheme } from "@material-ui/core";
 // import Button from "@material-ui/core/Button";
 // import TextField from "@material-ui/core/TextField";
 
-function AdminProfilePage() {
+function AdminProfilePage({userProfile,updateGeneralDetails}) {
+    console.log(userProfile)
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
@@ -37,7 +38,7 @@ function AdminProfilePage() {
         <div>
           <Grid container spacing={2}>
             <Logo />
-            <Form />
+            <Form userProfile={userProfile} updateGeneralDetails={updateGeneralDetails} />
           </Grid>
         </div>
       </div>
