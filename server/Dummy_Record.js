@@ -50,6 +50,7 @@ const user =
                     ],
 
                 "themeDetails" : {"color":"Blue","font":"Arial"}
-            }
+            },
+
         ]
 }
