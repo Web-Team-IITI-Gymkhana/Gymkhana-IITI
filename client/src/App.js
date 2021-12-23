@@ -42,16 +42,18 @@ import './index.css';
 
 //   const currentUser = "Cynaptics"
 
-import React from "react";
-import Authenticate from "./components/Authenticate";
-import './index.css';
+
+
+
 
 function App() {
-  useEffect(() => {
-    dispatch(getUser(currentUser))
-    dispatch(getSections(currentUser))
-    setLoading(false)
-  }, [dispatch]);
+    const [loading, setLoading] = useState(true);
+    const [sections, setSections] = useState([]);
+    const [userProfile, setProfile] = useState([]);
+
+    const currentUser = "Cynaptics";
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         dispatch(getUser(currentUser))
@@ -95,7 +97,7 @@ function App() {
     return (
         <>
             {
-                loading || sections.length === 0 ? <Loader /> :
+                loading ? <Loader /> :
                     <div className="App">
                         <header className="App-header">
                             <h1>Welcome to Gymkhana IITI</h1>
@@ -103,11 +105,13 @@ function App() {
 
                         <Router>
                             <Routes>
-                                <Route path="/home" element={<HomePage sections={sections} />} />
-                                <Route path="/profile" element={<ProfilePage />} />
-                                <Route path="/adminhome" element={<AdminHomePage />} />
-                                <Route path="/adminprofile" element={<AdminProfilePage userProfile={userProfile[0]} updateGeneralDetails={updateGeneralDetails} />} />
-                                <Route path="/login" element={<Authenticate />} />
+                            <Route path="/public" element={<Public />} />
+                            <Route path="/admin" element={<Admin />} />
+                            <Route path="/admin/profile" element={<AdminProfilePage />} />
+                            <Route path="/admin/home" element={<AdminHomePage />} />
+                            <Route path="/admin/login" element={<Authenticate />} />
+                            <Route path="/public/home" element={<HomePage sections={sections}/>} />
+                            <Route path="/public/profile" element={<ProfilePage />} />
                             </Routes>
                         </Router>
                     </div>
