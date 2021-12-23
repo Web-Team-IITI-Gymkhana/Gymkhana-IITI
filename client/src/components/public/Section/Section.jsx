@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Paper, Typography} from "@mui/material";
-import EventCard from "../cards/EventCard/EventCard";
 import Carousel from 'react-material-ui-carousel'
+import SectionChildCard from '../SectionChild/SectionChildCard';
 
 const Section = ({section}) => {
 
@@ -18,7 +18,7 @@ const Section = ({section}) => {
       {/*the carousel*/}
       <Paper sx={{width: '90%', maxWidth: '1150px'}} elevation={3}>
         <Carousel autoPlay={false}>
-          {section.sectionContent.map(sectionChild => <EventCard key={sectionChild.sectionChildID} sectionChild={sectionChild}/>)}
+          {section.sectionContent.map(sectionChild => <SectionChildCard key={sectionChild.sectionChildID} sectionChild={sectionChild}/>)}
         </Carousel>
       </Paper>
     </Box>
