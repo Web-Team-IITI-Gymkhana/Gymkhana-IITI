@@ -19,6 +19,7 @@ function App() {
     const [sections, setSections] = useState([])
     const [userProfile, setProfile] = useState([])
 
+    // const currentUser = "PClub"
     const currentUser = "Cynaptics"
     const dispatch = useDispatch();
 
@@ -34,6 +35,7 @@ function App() {
 
     useEffect(() => {
         try {
+            let userName = user.userName
             let latestVersion = user.contentVersions[(user.contentVersions).length - 1]
             let name = latestVersion.userDetails.name
             let logoSrc = latestVersion.userDetails.logo
@@ -49,7 +51,7 @@ function App() {
             let themeDetails = latestVersion.themeDetails
 
             setProfile([{
-                "name": name, "email": email, "logo": logoSrc, "socialMedia": socialMedia, "phoneNumber": phoneNumber,
+                "userName":userName,"name": name, "email": email, "logo": logoSrc, "socialMedia": socialMedia, "phoneNumber": phoneNumber,
                 "src": homePagePoster.src, "caption": homePagePoster.caption, "theme": themeDetails
             }])
 

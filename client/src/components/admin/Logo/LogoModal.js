@@ -27,7 +27,7 @@ export default function PosterModal({userName}) {
             uploadImage(reader.result);
         };
         reader.onerror = () => {
-            console.error('Error in image upload!');
+            console.error('Error in image upload');
         };
     };
 
@@ -37,7 +37,7 @@ export default function PosterModal({userName}) {
                 method: 'POST',
                 img : JSON.stringify({ data: base64EncodedImage }),
                 userName : userName,
-                dataFor : "poster",
+                dataFor : "logo",
                 headers: { 'Content-Type': 'application/json' }}))
 
 
@@ -90,8 +90,8 @@ export default function PosterModal({userName}) {
 
     return (
         <div>
-            <Button variant="contained" id="edit-poster" color="primary" onClick={handleOpen}>
-                Edit Poster
+            <Button variant="contained" id="btn" color="primary" onClick={handleOpen}>
+                Edit Logo
             </Button>
 
             <Modal

@@ -72,9 +72,9 @@ app.route('/uploadImage').post(async (req, res) => {
     imgData = JSON.parse(imgData)
     const imgString = imgData.data
 
-    const uploadResponse = await cloudinary.uploader.upload(imgString);
-    console.log(uploadResponse)
+    const dataFor = req.body.dataFor
 
+    const uploadResponse = await cloudinary.uploader.upload(imgString);
     const imgURL = uploadResponse.url
 
     let userName = req.body.userName
@@ -82,7 +82,14 @@ app.route('/uploadImage').post(async (req, res) => {
     let user = await Users.findOne({userName:userName})
     const versionIndex = (user.contentVersions).length - 1;
 
-    user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.src`] : imgURL}},{new:true})
+    if(dataFor=="poster")
+    {
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.src`] : imgURL}},{new:true})
+    }
+    else if(dataFor=="logo")
+    {
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.logo`] : imgURL}},{new:true})
+    }
 
     res.json({ msg: 'success' });
   } catch (error) {
