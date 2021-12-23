@@ -36,14 +36,22 @@ import AdminHomePage from "./pages/admin/AdminHomePage";
 
 import './index.css';
 
+// function App() {
+//   const [loading, setLoading] = useState(true)
+//   const dispatch = useDispatch();
+
+//   const currentUser = "Cynaptics"
+
+import React from "react";
+import Authenticate from "./components/Authenticate";
+import './index.css';
+
 function App() {
-    const [loading, setLoading] = useState(false)
-
-    const [sections, setSections] = useState([])
-    const [userProfile, setProfile] = useState([])
-
-    const currentUser = "Cynaptics"
-    const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser(currentUser))
+    dispatch(getSections(currentUser))
+    setLoading(false)
+  }, [dispatch]);
 
     useEffect(() => {
         dispatch(getUser(currentUser))
