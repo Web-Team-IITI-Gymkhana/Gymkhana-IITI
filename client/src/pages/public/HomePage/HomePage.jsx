@@ -4,6 +4,7 @@ import TeamSection from "../../../components/public/sections/TeamSection/TeamSec
 import {Box} from "@mui/material";
 import WorkSection from "../../../components/public/sections/WorkSection/WorkSection";
 
+<<<<<<< HEAD
 const eventsDummyArr = [{
   imageUrl: 'https://picsum.photos/200',
   eventName: "Random Event 1",
@@ -85,6 +86,34 @@ export default function HomePage() {
       {/*footer*/}
 
 
+=======
+
+export default function HomePage({sections}) {
+    console.log("Homepage",sections)
+  return (
+     <div>
+        {/*header*/}
+
+        {/*body*/}
+
+
+        {
+            sections.map(section=><EventsSection key={section.sectionID} section={section}/>)
+        }
+
+
+        {/*
+
+        <EventsSection eventCardsData={[]}/>
+        <Box height={20}/>
+        <TeamSection teamCardsData={[]}/>
+        <Box height={20}/>
+        <WorkSection workCardsData={[]}/> */}
+
+        {/*footer*/}
+
+
+>>>>>>> 92eff95266c52458ae9ba036ae4a5e370e00922d
     </div>
   )
 }

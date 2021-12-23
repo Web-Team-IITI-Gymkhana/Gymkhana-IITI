@@ -5,7 +5,7 @@ const contentURL = "http://localhost:5000/content"
 
 export const fetchUsers = () => axios.get(usersURL)
 export const fetchUser = (userName) => axios.get(`${usersURL}/${userName}`)
-export const updateGeneralDetails = (userName) => axios.patch(`${usersURL}/${userName}`,{"name":"Cynaptics SUPER!!!","logo":"logoSUPER.com","socialMedia":["instaSUPER.com","fbSUPER.com"],"src":"homePageWOW.com","caption":"Cynaptics Caption WOW!!!","email":"cynapticsWOW@iiti.ac.in","phoneNumber":7777})
+export const updateGeneralDetails = (userName,postData) => axios.patch(`${usersURL}/${userName}`,postData)
 export const deleteUser = (userName) => axios.delete(`${usersURL}/${userName}`)
 
 
