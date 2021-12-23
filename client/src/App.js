@@ -36,19 +36,13 @@ import AdminHomePage from "./pages/admin/AdminHomePage";
 
 import './index.css';
 
-// function App() {
-//   const [loading, setLoading] = useState(true)
-//   const dispatch = useDispatch();
-
-//   const currentUser = "Cynaptics"
-
 
 function App() {
     const [loading, setLoading] = useState(true);
     const [sections, setSections] = useState([]);
     const [userProfile, setProfile] = useState([]);
 
-    const currentUser = "Cynaptics";
+    const currentUser = "PClub";
     const dispatch = useDispatch();
 
 
@@ -95,7 +89,7 @@ function App() {
     return (
         <>
             {
-                loading ? <Loader /> :
+                loading || sections.length === 0 ? <Loader /> :
                     <div className="App">
                         <header className="App-header">
                             <h1>Welcome to Gymkhana IITI</h1>
@@ -105,7 +99,7 @@ function App() {
                             <Routes>
                             <Route path="/public" element={<Public />} />
                             <Route path="/admin" element={<Admin />} />
-                            <Route path="/admin/profile" element={<AdminProfilePage />} />
+                            <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile[0]} updateGeneralDetails={updateGeneralDetails}/>} />
                             <Route path="/admin/home" element={<AdminHomePage />} />
                             <Route path="/admin/login" element={<Authenticate />} />
                             <Route path="/public/home" element={<HomePage sections={sections}/>} />
