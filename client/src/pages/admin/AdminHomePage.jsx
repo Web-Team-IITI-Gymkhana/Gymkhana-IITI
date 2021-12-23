@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
-function AdminHomePage(){
-    return(
-        <h1>This is Admin side Home Page.</h1>
+function AdminHomePage() {
+    return (
+        <div>
+
+        </div>
     )
 }
 
 export default AdminHomePage;
-
-

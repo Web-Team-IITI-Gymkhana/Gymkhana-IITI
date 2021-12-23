@@ -12,6 +12,9 @@ const reducer =  (users=[],action) => {
         case "UPDATE_GENERAL_DETAILS":
           return users
 
+        case "UPLOAD_IMAGE":
+            return users
+
         default:
             return users;
 

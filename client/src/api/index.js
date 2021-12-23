@@ -3,6 +3,8 @@ import axios from 'axios'
 const usersURL = "http://localhost:5000/users"
 const contentURL = "http://localhost:5000/content"
 
+export const uploadImageServer = (imageData) => axios.post("http://localhost:5000/uploadImage",imageData)
+
 export const fetchUsers = () => axios.get(usersURL)
 export const fetchUser = (userName) => axios.get(`${usersURL}/${userName}`)
 export const updateGeneralDetails = (userName,postData) => axios.patch(`${usersURL}/${userName}`,postData)

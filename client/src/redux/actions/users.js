@@ -35,3 +35,12 @@ export const updateGeneralDetails = (userName,postData) => async (dispatch) => {
     console.log(error)
   }
 }
+
+export const uploadImageServer = (imageData) => async (dispatch) => {
+    try {
+        await api.uploadImageServer(imageData)
+        dispatch({type:"UPLOAD_IMAGE"})
+    } catch(error){
+        console.log(error)
+    }
+}

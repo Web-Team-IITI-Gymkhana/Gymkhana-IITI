@@ -6,14 +6,7 @@ function Public(){
     return(
         <>
         <h1>This is Public side interface.</h1>
-        {/* <Router>
-              <Routes>
-
-                <Route path="/home" element={<HomePage />} />
-
-
-              </Routes>
-            </Router> */}
+        
             </>
     )
 }

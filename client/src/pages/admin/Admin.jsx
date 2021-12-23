@@ -8,17 +8,7 @@ function Admin(){
     return(
         <>
         <h1>This is Admin side interface.</h1>
-        {/* <Router>
-              <Routes>
-
-                <Route path="/home" element={<AdminHomePage />} />
-                <Route path="/profile" element={<AdminProfilePage />} />
-                <Route path="/login" element={<Authenticate />} />
-
-
-
-              </Routes>
-            </Router> */}
+        
             </>
     )
 }
