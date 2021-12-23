@@ -37,7 +37,7 @@ import AdminHomePage from "./pages/admin/AdminHomePage";
 import './index.css';
 
 function App() {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const [sections, setSections] = useState([])
     const [userProfile, setProfile] = useState([])
@@ -85,7 +85,7 @@ function App() {
     return (
     <>
       {
-        loading || sections.length===0 ? <Loader /> :
+        loading ? <Loader /> :
           <div className="App">
             <header className="App-header">
               <h1>Welcome to Gymkhana IITI</h1>
