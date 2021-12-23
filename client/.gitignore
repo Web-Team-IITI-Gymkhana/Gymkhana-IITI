@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+#webstrom local folder
+/.idea
+
 # testing
 /coverage
 
