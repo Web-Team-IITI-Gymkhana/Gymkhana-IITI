@@ -42,7 +42,7 @@ function App() {
     const [sections, setSections] = useState([]);
     const [userProfile, setProfile] = useState([]);
 
-    const currentUser = "PClub";
+    const currentUser = "PClub"
     const dispatch = useDispatch();
 
 

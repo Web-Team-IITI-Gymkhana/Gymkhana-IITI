@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import LogoModal from "./LogoModal"
+import ImgUploadModal from "../Modal/ImgUploadModal"
 
 function Logo({userProfile}) {
   return (
@@ -16,7 +16,7 @@ function Logo({userProfile}) {
         </div>
         <br></br>
         <div>
-          <LogoModal userName={userProfile.userName}/>
+        <ImgUploadModal userName={userProfile.userName} type="logo"/>
         </div>
       </div>
     </Grid>

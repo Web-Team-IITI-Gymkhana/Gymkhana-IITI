@@ -1,5 +1,5 @@
 import React from "react";
-import PosterModal from "./PosterModal";
+import ImgUploadModal from "../Modal/ImgUploadModal"
 
 function Poster({userProfile}) {
   return (
@@ -12,7 +12,7 @@ function Poster({userProfile}) {
             height="300px"
             id="poster"></img>
 
-        <PosterModal userName={userProfile.userName}/>
+        <ImgUploadModal userName={userProfile.userName} type="poster"/>
     </div>
   );
 }
