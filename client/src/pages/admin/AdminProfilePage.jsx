@@ -33,7 +33,7 @@ function AdminProfilePage({userProfile,updateGeneralDetails}) {
           </>
         )}
 
-        <Poster />
+        <Poster posterSrc={userProfile.src}/>
 
         <div>
           <Grid container spacing={2}>
