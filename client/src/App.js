@@ -1,11 +1,34 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    useRouteMatch,
+    Link,
+    useParams,
+} from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getUser, getUsers, deleteUser, updateGeneralDetails } from "./redux/actions/users"
-import { getSections, updateSection, addSectionChild, updateSectionChild, addSection, deleteSection, deleteSectionChild } from "./redux/actions/sections";
-import React from "react";
-import Authenticate from "./components/Auth/Authenticate";
+import {
+    getUser,
+    getUsers,
+    deleteUser,
+    updateGeneralDetails,
+} from "./redux/actions/users";
+import {
+    getSections,
+    updateSection,
+    addSectionChild,
+    updateSectionChild,
+    addSection,
+    deleteSectionChild,
+} from "./redux/actions/sections";
 import Loader from "./components/Loader/Loader";
+
+import Public from "./pages/public/Public";
+import Admin from "./pages/admin/Admin";
+import Authenticate from "./components/Auth/Authenticate";
 import HomePage from "./pages/public/HomePage/HomePage";
 import ProfilePage from "./pages/public/ProfilePage/ProfilePage";
 import AdminProfilePage from "./pages/admin/AdminProfilePage";
@@ -17,52 +40,55 @@ import AdminHomePage from "./pages/admin/AdminHomePage";
 
 //   const currentUser = "Cynaptics"
 
-
-import './index.css';
-
-
-
+import "./index.css";
 
 function App() {
-  const [loading, setLoading] = useState(true)
-  const currentUser = "Cynaptics"
-  const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
+    const [sections, setSections] = useState([]);
+    const [userProfile, setProfile] = useState([]);
 
-  useEffect(() => {
-    dispatch(getUser(currentUser))
-    dispatch(getSections(currentUser))
-    setLoading(false)
-  }, [dispatch]);
+    const currentUser = "Cynaptics";
+    const dispatch = useDispatch();
+    // const { path, url } = useRouteMatch()
 
+    useEffect(() => {
+        dispatch(getUser(currentUser));
+        dispatch(getSections(currentUser));
+        setLoading(false);
+    }, [dispatch]);
 
+    const data = useSelector((state) => state);
+    console.log(data);
 
-  const data = useSelector((state) => state)
-  console.log(data)
-
-  return (
-    <>
+    return (
+        <>
       {
         loading ? <Loader /> :
           <div className="App">
             <header className="App-header">
               <h1>Welcome to Gymkhana IITI</h1>
             </header>
-            {/* <button onClick={() => dispatch(updateSection("Cynaptics", 2))}>Sections Action</button> */}
+
             <Router>
               <Routes>
-                
-                <Route path="/home" element={<HomePage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/adminhome" element={<AdminHomePage />} />
+
+                <Route path="/public" element={<Public />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/admin/profile" element={<AdminProfilePage />} />
+                <Route path="/admin/home" element={<AdminHomePage />} />
+                <Route path="/admin/login" element={<Authenticate />} />
+                <Route path="/public/home" element={<HomePage sections={sections}/>} />
+                <Route path="/public/profile" element={<ProfilePage />} />
+                {/* <Route path="/adminhome" element={<AdminHomePage />} />
                 <Route path="/adminprofile" element={<AdminProfilePage />} />
-                <Route path="/login" element={<Authenticate />} />
+                <Route path="/login" element={<Authenticate />} /> */}
               </Routes>
             </Router>
           </div>
       }
 
     </>
-  );
+    );
 }
 
 export default App;
