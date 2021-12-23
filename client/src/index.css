@@ -13,9 +13,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: rgb(255, 249, 223); */
+  background-color: rgb(255, 249, 223);
   /* background-color: rgb(252, 243, 206); */
-  background-image: url("https://wallpaperaccess.com/full/5296578.jpg");
+  /* background-image: url("https://wallpaperaccess.com/full/5296578.jpg"); */
   /* background-image: url("./components/photos/background.jpg");*/
   background-repeat: no-repeat;
   background-size: cover;

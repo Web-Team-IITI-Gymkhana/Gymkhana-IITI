@@ -1,34 +1,27 @@
 import React from 'react'
-import EventsSection from "../../../components/public/sections/EventsSection/EventsSection";
-import TeamSection from "../../../components/public/sections/TeamSection/TeamSection";
-import {Box} from "@mui/material";
-import WorkSection from "../../../components/public/sections/WorkSection/WorkSection";
+import Navbar from '../../../components/public/Navbar/Navbar';
+import Hero from '../../../components/public/Hero/Hero';
+import Footer from '../../../components/public/Footer/Footer';
+import Section from '../../../components/public/Section/Section';
 
 
 export default function HomePage({sections}) {
-    console.log("Homepage",sections)
+
   return (
      <div>
         {/*header*/}
+        <Navbar/>
+        <Hero/>
+
 
         {/*body*/}
-
-
         {
-            sections.map(section=><EventsSection key={section.sectionID} section={section}/>)
+            sections.map(section=><Section key={section.sectionID} section={section}/>)
         }
 
 
-        {/*
-
-        <EventsSection eventCardsData={[]}/>
-        <Box height={20}/>
-        <TeamSection teamCardsData={[]}/>
-        <Box height={20}/>
-        <WorkSection workCardsData={[]}/> */}
-
         {/*footer*/}
-
+        <Footer/>
 
     </div>
   )

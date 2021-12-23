@@ -5,7 +5,7 @@ import './Hero.css'
 
 export default function Hero() {
   return (
-    <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
+    <Box paddingBottom={5} display={"flex"} flexDirection={"column"} alignItems={"center"}>
 
       {/*the heading, wrapped by two divs for skewing purposes*/}
       <img className='bg' src="bg.jpg" alt="" />
