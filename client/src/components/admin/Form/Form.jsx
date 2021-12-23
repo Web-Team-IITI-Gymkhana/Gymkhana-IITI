@@ -70,27 +70,13 @@ function Form({userProfile,updateGeneralDetails}) {
             //   required
               fullWidth
               name="handle1"
-              label="Social media 1"
+              label="Social media"
               type="text"
-              id="handle1"
+              id="handle"
               autoComplete="#"
-              className=" field handle1"
-              value={postData.socialMedia[0]}
-              onChange={(e) => setPostData({ ...postData, socialMedia :[e.target.value,postData.socialMedia[1]] })}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-            //   required
-              fullWidth
-              name="handle2"
-              label="Social media 2"
-              type="text"
-              id="handle2"
-              autoComplete="#"
-              className=" field handle2"
-              value={postData.socialMedia[1]}
-              onChange={(e) => setPostData({ ...postData, socialMedia :[postData.socialMedia[0],e.target.value] })}
+              className=" field handle"
+              value={postData.socialMedia}
+              onChange={(e) => setPostData({ ...postData, socialMedia : e.target.value.split(',') })}
             />
           </div>
           <TextField
