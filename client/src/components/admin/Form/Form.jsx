@@ -12,7 +12,7 @@ function Form({userProfile,updateGeneralDetails}) {
     const handleSubmit  = (e)=>{
        e.preventDefault();
 
-        dispatch(updateGeneralDetails("Cynaptics",postData))
+        dispatch(updateGeneralDetails(userProfile.userName,postData))
 
         window.location.reload()
     }

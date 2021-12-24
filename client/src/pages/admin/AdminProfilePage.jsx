@@ -33,11 +33,11 @@ function AdminProfilePage({userProfile,updateGeneralDetails}) {
           </>
         )}
 
-        <Poster posterSrc={userProfile.src}/>
+        <Poster userProfile={userProfile}/>
 
         <div>
           <Grid container spacing={2}>
-            <Logo />
+            <Logo userProfile={userProfile}/>
             <Form userProfile={userProfile} updateGeneralDetails={updateGeneralDetails} />
           </Grid>
         </div>

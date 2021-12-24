@@ -36,22 +36,13 @@ import AdminHomePage from "./pages/admin/AdminHomePage";
 
 import './index.css';
 
-// function App() {
-//   const [loading, setLoading] = useState(true)
-//   const dispatch = useDispatch();
-
-//   const currentUser = "Cynaptics"
-
-
-
-
 
 function App() {
     const [loading, setLoading] = useState(true);
     const [sections, setSections] = useState([]);
     const [userProfile, setProfile] = useState([]);
 
-    const currentUser = "Cynaptics";
+    const currentUser = "PClub"
     const dispatch = useDispatch();
 
 
@@ -67,6 +58,7 @@ function App() {
 
     useEffect(() => {
         try {
+            let userName = user.userName
             let latestVersion = user.contentVersions[(user.contentVersions).length - 1]
             let name = latestVersion.userDetails.name
             let logoSrc = latestVersion.userDetails.logo
@@ -82,7 +74,7 @@ function App() {
             let themeDetails = latestVersion.themeDetails
 
             setProfile([{
-                "name": name, "email": email, "logo": logoSrc, "socialMedia": socialMedia, "phoneNumber": phoneNumber,
+                "userName":userName,"name": name, "email": email, "logo": logoSrc, "socialMedia": socialMedia, "phoneNumber": phoneNumber,
                 "src": homePagePoster.src, "caption": homePagePoster.caption, "theme": themeDetails
             }])
 
@@ -97,7 +89,7 @@ function App() {
     return (
         <>
             {
-                loading ? <Loader /> :
+                loading || sections.length === 0 ? <Loader /> :
                     <div className="App">
                         <header className="App-header">
                             <h1>Welcome to Gymkhana IITI</h1>
@@ -107,7 +99,7 @@ function App() {
                             <Routes>
                             <Route path="/public" element={<Public />} />
                             <Route path="/admin" element={<Admin />} />
-                            <Route path="/admin/profile" element={<AdminProfilePage />} />
+                            <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile[0]} updateGeneralDetails={updateGeneralDetails}/>} />
                             <Route path="/admin/home" element={<AdminHomePage />} />
                             <Route path="/admin/login" element={<Authenticate />} />
                             <Route path="/public/home" element={<HomePage sections={sections}/>} />

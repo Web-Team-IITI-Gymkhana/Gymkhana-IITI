@@ -52,17 +52,13 @@ const updateGeneralDetails = async(req,res) => {
         const updateDetails = req.body;
 
         let name = updateDetails.name;
-        let logo = updateDetails.logo;
         let socialMedia = updateDetails.socialMedia;
-        let src = updateDetails.src;
         let caption = updateDetails.caption;
         let email = updateDetails.email;
         let phoneNumber = updateDetails.phoneNumber;
 
         if(name){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.name`] : name}},{new:true})}
-        if(logo){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.logo`] : logo}},{new:true})}
         if(socialMedia){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.socialMedia`] : socialMedia}},{new:true})}
-        if(src){ user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.src`] : src}},{new:true})}
         if(caption){ user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.caption`] : caption}},{new:true})}
         if(email){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.contactDetails.email`] : email }},{new:true})}
         if(phoneNumber){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.contactDetails.phoneNumber`] : phoneNumber}},{new:true})}
