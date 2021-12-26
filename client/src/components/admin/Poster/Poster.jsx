@@ -12,7 +12,9 @@ function Poster({userProfile}) {
             height="300px"
             id="poster"></img>
 
-        <ImgUploadModal userName={userProfile.userName} type="poster"/>
+        <ImgUploadModal userName={userProfile.userName} type="poster"
+            buttonName = "Edit Poster"
+        />
     </div>
   );
 }

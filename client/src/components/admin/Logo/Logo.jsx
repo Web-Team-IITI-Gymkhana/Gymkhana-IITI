@@ -16,7 +16,9 @@ function Logo({userProfile}) {
         </div>
         <br></br>
         <div>
-        <ImgUploadModal userName={userProfile.userName} type="logo"/>
+        <ImgUploadModal userName={userProfile.userName} type="logo"
+            buttonName = "Edit Logo"
+        />
         </div>
       </div>
     </Grid>
