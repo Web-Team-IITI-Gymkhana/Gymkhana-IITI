@@ -6,7 +6,7 @@ import { useState } from "react";
 import {uploadImageServer} from "../../../redux/actions/users"
 import { useDispatch } from "react-redux";
 
-export default function ImgUploadModal({userName,type}) {
+export default function ImgUploadModal({userName,type, buttonName}) {
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
 
@@ -91,7 +91,7 @@ export default function ImgUploadModal({userName,type}) {
     return (
         <div>
             <Button variant="contained" id="edit-poster" color="primary" onClick={handleOpen}>
-                Edit Poster
+                {buttonName}
             </Button>
 
             <Modal
