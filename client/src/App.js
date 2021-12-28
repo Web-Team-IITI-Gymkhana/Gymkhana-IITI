@@ -43,6 +43,7 @@ function App() {
     const [userProfile, setProfile] = useState([]);
 
     const currentUser = "PClub"
+    // const currentUser = "Cynaptics"
     const dispatch = useDispatch();
 
 
@@ -88,8 +89,8 @@ function App() {
 
     return (
         <>
-             { 
-                 loading || sections.length === 0 ? <Loader /> : 
+             {
+                 loading || sections.length === 0 ? <Loader /> :
                     <div className="App">
                         {/* <header className="App-header">
                             <h1>Welcome to Gymkhana IITI</h1>
@@ -100,14 +101,14 @@ function App() {
                             <Route path="/public" element={<Public />} />
                             <Route path="/admin" element={<Admin />} />
                             <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile[0]} updateGeneralDetails={updateGeneralDetails}/>} />
-                            <Route path="/admin/home" element={<AdminHomePage sections={sections}/>} />
+                            <Route path="/admin/home" element={<AdminHomePage sections={sections} userProfile={userProfile[0]}/>} />
                             <Route path="/admin/login" element={<Authenticate />} />
                             <Route path="/public/home" element={<HomePage sections={sections}/>} />
                             <Route path="/public/profile" element={<ProfilePage />} />
                             </Routes>
                         </Router>
                     </div>
-             } 
+             }
 
         </>
     );

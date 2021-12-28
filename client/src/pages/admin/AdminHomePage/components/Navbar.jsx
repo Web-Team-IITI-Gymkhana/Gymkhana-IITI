@@ -9,14 +9,15 @@ import Form from "react-bootstrap/Form";
 import { useNavigate } from 'react-router-dom';
 
 function AdminHomePageNavbar(props) {
-    
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleAdd = () => {
         setShow(false);
-        let x = document.getElementById("myForm").elements[0].value;
-        props.handlingAdd(x);
+        let sectionName = document.getElementById("myForm").elements[0].value;
+        let sectionHeader = document.getElementById("myForm").elements[1].value;
+        props.handlingAdd(sectionName,sectionHeader);
     }
     const navigate = useNavigate();
     const redirect = () => {
@@ -36,10 +37,11 @@ function AdminHomePageNavbar(props) {
                 </Button>
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Enter Name of the Section</Modal.Title>
+                        <Modal.Title>Enter Name and Header of the Section</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form method="POST" id="myForm">
+                                <Form.Control as="textarea" id="sectionName" rows={1} />
                                 <Form.Control as="textarea" id="sectionHeader" rows={1} />
                         </Form>
                     </Modal.Body>

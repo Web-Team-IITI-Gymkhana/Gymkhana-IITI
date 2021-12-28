@@ -12,7 +12,7 @@ export const deleteUser = (userName) => axios.delete(`${usersURL}/${userName}`)
 
 
 export const fetchSections = (userName) => axios.get(`${contentURL}/sections/${userName}`)
-export const addSection = (userName) => axios.post(`${contentURL}/sections/${userName}`,{"sectionName": "Tasdasd","sectionHeader": "Cynaptics xcvcx","sectionContent":[]})
+export const addSection = (userName,postData) => axios.post(`${contentURL}/sections/${userName}`,postData)
 
 export const updateSection = (userName,sectionID) => axios.patch(`${contentURL}/sections/${userName}/${sectionID}`,{"sectionName" : "Projects Latest Redux", "sectionHeader" : "Header Latest Redux"})
 export const addSectionChild = (userName,sectionID) => axios.post(`${contentURL}/sections/${userName}/${sectionID}`,{"sectionChildName" : "Latest Project","sectionChildImage" : "ImgLatestProject","sectionChildDesc" : "Latest Project is very good"})
