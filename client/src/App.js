@@ -27,12 +27,12 @@ import {
 import Loader from "./components/Loader/Loader";
 
 import Public from "./pages/public/Public";
-import Admin from "./pages/admin/Admin";
+import Admin from "./pages/admin/Admin/Admin";
 import Authenticate from "./components/Auth/Authenticate";
 import HomePage from "./pages/public/HomePage/HomePage";
 import ProfilePage from "./pages/public/ProfilePage/ProfilePage";
 import AdminProfilePage from "./pages/admin/AdminProfilePage";
-import AdminHomePage from "./pages/admin/AdminHomePage";
+import AdminHomePage from "./pages/admin/AdminHomePage/AdminHomePage";
 
 import './index.css';
 
@@ -91,16 +91,16 @@ function App() {
              { 
                  loading || sections.length === 0 ? <Loader /> : 
                     <div className="App">
-                        <header className="App-header">
+                        {/* <header className="App-header">
                             <h1>Welcome to Gymkhana IITI</h1>
-                        </header>
+                        </header> */}
 
                         <Router>
                             <Routes>
                             <Route path="/public" element={<Public />} />
                             <Route path="/admin" element={<Admin />} />
                             <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile[0]} updateGeneralDetails={updateGeneralDetails}/>} />
-                            <Route path="/admin/home" element={<AdminHomePage />} />
+                            <Route path="/admin/home" element={<AdminHomePage sections={sections}/>} />
                             <Route path="/admin/login" element={<Authenticate />} />
                             <Route path="/public/home" element={<HomePage sections={sections}/>} />
                             <Route path="/public/profile" element={<ProfilePage />} />
