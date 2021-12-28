@@ -1,4 +1,4 @@
-import React, {useState, Component} from "react";
+import React, {useState, useEffect} from "react";
 import "../../../index.css";
 import Container from "@material-ui/core/Container";
 import Navbar from "./components/Navbar";
@@ -6,13 +6,14 @@ import Box from "@material-ui/core/Box";
 import "../../admin/AdminHomePage/AdminHomePage.css"
 import Card from "@material-ui/core/Card";
 import { Typography } from "@material-ui/core";
+import {addSection} from "../../../redux/actions/sections"
+import { useDispatch} from "react-redux";
 
-function AdminHomePage(props) {
-    const sectionHeaders = [];
-    props.sections.forEach(function(obj){
-        sectionHeaders.push(obj.sectionName);
-    });
-    const [cardInfoSectionHeader, setcardInfoSectionHeader] = useState(sectionHeaders);
+function AdminHomePage({sections,userProfile}) {
+    const [currSections,setSections] = useState(sections)
+    const currentUser = userProfile.userName
+    const dispatch = useDispatch()
+
     const RenderSectionHeader = (sectionHeader) => {
         return(
             <Card className="sectionHeaderCard">
@@ -20,17 +21,15 @@ function AdminHomePage(props) {
             </Card>
         )
     };
-    const handledAdd = (name) =>{
-        let x = cardInfoSectionHeader
-        x.push(name);
-        setcardInfoSectionHeader(x);
-        
-    }
-        
 
-    return (
+    const handledAdd = (sectionName,sectionHeader)=>{
+        const newSection = {"sectionName": sectionName,"sectionHeader": sectionHeader,"sectionContent":[]}
+        setSections([...currSections,newSection])
+        dispatch(addSection(currentUser,newSection))
+    }
+
+   return (
         <div>
-            {/* Navbar */}
             <Navbar handlingAdd={handledAdd}/>
 
             <Container maxWidth="100">
@@ -38,12 +37,15 @@ function AdminHomePage(props) {
                 <Box className="sectionHeader">
                     <Box marginTop={"5px"}>
                     <Typography variant="h5" align="center">
-                        {cardInfoSectionHeader.map(RenderSectionHeader)}
+
+                        {
+                            currSections.map(section=>RenderSectionHeader(section.sectionHeader))
+                        }
                     </Typography>
                     </Box>
                 </Box>
                 <Box className="sectionContent">
-                    
+
                 </Box>
             </Box>
             </Container>

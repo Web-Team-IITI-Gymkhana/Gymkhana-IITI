@@ -9,9 +9,9 @@ export const getSections = (userName) => async (dispatch) => {
     }
 }
 
-export const addSection = (userName) => async (dispatch) => {
+export const addSection = (userName,postData) => async (dispatch) => {
   try {
-      await api.addSection(userName)
+      await api.addSection(userName,postData)
       dispatch({type:"ADD_SECTION"})
   } catch (error) {
       console.log(error)
