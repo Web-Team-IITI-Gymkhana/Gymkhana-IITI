@@ -11,12 +11,16 @@ import { useDispatch} from "react-redux";
 
 function AdminHomePage({sections,userProfile}) {
     const [currSections,setSections] = useState(sections)
+    const [currSectionID,setSectionID] = useState(0)
+
+
+    console.log(currSectionID)
     const currentUser = userProfile.userName
     const dispatch = useDispatch()
 
-    const RenderSectionHeader = (sectionHeader) => {
+    const RenderSectionHeader = (sectionID,sectionHeader) => {
         return(
-            <Card className="sectionHeaderCard">
+            <Card className="sectionHeaderCard" onClick={()=>{setSectionID(sectionID)}}>
                 {sectionHeader}
             </Card>
         )
@@ -39,13 +43,13 @@ function AdminHomePage({sections,userProfile}) {
                     <Typography variant="h5" align="center">
 
                         {
-                            currSections.map(section=>RenderSectionHeader(section.sectionHeader))
+                            currSections.map(section=>RenderSectionHeader(section.sectionID,section.sectionHeader))
                         }
                     </Typography>
                     </Box>
                 </Box>
                 <Box className="sectionContent">
-
+                        {/* Render section child here */}
                 </Box>
             </Box>
             </Container>
