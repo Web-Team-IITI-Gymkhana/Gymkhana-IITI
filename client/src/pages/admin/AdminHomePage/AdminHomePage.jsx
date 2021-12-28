@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import "../../../index.css";
 import Container from "@material-ui/core/Container";
 import Navbar from "./components/Navbar";
+import SectionChild from "../../../components/admin/SectionChild/SectionChild";
+import Section from "../../../components/admin/Section/Section";
 import Box from "@material-ui/core/Box";
 import "../../admin/AdminHomePage/AdminHomePage.css"
 import Card from "@material-ui/core/Card";
@@ -50,6 +52,8 @@ function AdminHomePage({sections,userProfile}) {
                 </Box>
                 <Box className="sectionContent">
                         {/* Render section child here */}
+                        <Section />
+                        {/* <SectionChild /> */}
                 </Box>
             </Box>
             </Container>

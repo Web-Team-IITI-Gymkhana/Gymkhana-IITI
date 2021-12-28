@@ -1,7 +1,9 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+
 import dp from "../../photos/dp.svg";
 function Navbar() {
+
   return (
     <div className="navbar">
       <span id="left">
