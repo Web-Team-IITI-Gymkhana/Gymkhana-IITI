@@ -90,6 +90,16 @@ app.route('/uploadImage').post(async (req, res) => {
     {
         user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.logo`] : imgURL}},{new:true})
     }
+    else if(dataFor=="editSectionChild")
+    {
+        const sectionID = req.body.sectionID
+        const sectionChildID = req.body.sectionChildID
+        let allSections = user.contentVersions[versionIndex].Sections;
+        let sectionIndex = allSections.findIndex((element) => element.sectionID === parseInt(sectionID));
+        let sectionContent = allSections[sectionIndex].sectionContent;
+        let sectionChildIndex = sectionContent.findIndex((element) => element.sectionChildID === parseInt(sectionChildID))
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildImage`] : imgURL}},{new:true})
+    }
 
     res.json({ msg: 'success' });
   } catch (error) {

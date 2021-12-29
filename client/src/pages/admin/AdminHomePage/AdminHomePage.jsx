@@ -13,12 +13,16 @@ import { useDispatch} from "react-redux";
 
 function AdminHomePage({sections,userProfile}) {
     const [currSections,setSections] = useState(sections)
+
     const [currSectionID,setSectionID] = useState(0)
+    const [selectedSection,setSelectedSection] = useState([])
 
-
-    console.log(currSectionID)
     const currentUser = userProfile.userName
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        setSelectedSection(currSections.filter((section)=>section.sectionID==currSectionID))
+    },[currSectionID])
 
     const RenderSectionHeader = (sectionID,sectionHeader) => {
         return(
@@ -51,9 +55,11 @@ function AdminHomePage({sections,userProfile}) {
                     </Box>
                 </Box>
                 <Box className="sectionContent">
-                        {/* Render section child here */}
-                        <Section />
-                        {/* <SectionChild /> */}
+                        {
+                            selectedSection.length===0 ? <h1>No Section Selected</h1>:
+                                                         <Section section={selectedSection[0]} userName={currentUser}/>
+                        }
+
                 </Box>
             </Box>
             </Container>

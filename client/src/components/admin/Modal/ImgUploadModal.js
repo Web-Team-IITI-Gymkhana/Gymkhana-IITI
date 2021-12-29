@@ -44,7 +44,7 @@ export default function ImgUploadModal({userName,type, buttonName}) {
 
 
             setFileInputState('');
-            setOpen('false')
+            setOpen(false)
         } catch (err) {
             console.error(err);
         }
