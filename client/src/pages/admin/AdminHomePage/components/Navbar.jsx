@@ -41,8 +41,8 @@ function AdminHomePageNavbar(props) {
                     </Modal.Header>
                     <Modal.Body>
                         <Form method="POST" id="myForm">
-                                <Form.Control as="textarea" id="sectionName" rows={1} />
-                                <Form.Control as="textarea" id="sectionHeader" rows={1} />
+                                <Form.Control as="textarea" id="sectionName" rows={1} placeholder="Section Name"/>
+                                <Form.Control as="textarea" id="sectionHeader" rows={1} placeholder="Section Header"/>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>

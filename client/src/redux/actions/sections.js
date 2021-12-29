@@ -35,9 +35,9 @@ export const deleteSection = (userName,sectionID) => async (dispatch) => {
   }
 }
 
-export const addSectionChild = (userName,sectionID) => async (dispatch) => {
+export const addSectionChild = (userName,sectionID,postData) => async (dispatch) => {
   try {
-    await api.addSectionChild(userName,sectionID)
+    await api.addSectionChild(userName,sectionID,postData)
     dispatch({type:"ADD_SECTION_CHILD"})
   } catch (error) {
       console.log(error)
@@ -45,9 +45,9 @@ export const addSectionChild = (userName,sectionID) => async (dispatch) => {
 }
 
 
-export const updateSectionChild = (userName,sectionID,sectionChildID) => async (dispatch) => {
+export const updateSectionChild = (userName,sectionID,sectionChildID,updateData) => async (dispatch) => {
   try {
-    await api.updateSectionChild(userName,sectionID,sectionChildID)
+    await api.updateSectionChild(userName,sectionID,sectionChildID,updateData)
     dispatch({type:"UPDATE_SECTION_CHILD"})
   } catch (error) {
       console.log(error)

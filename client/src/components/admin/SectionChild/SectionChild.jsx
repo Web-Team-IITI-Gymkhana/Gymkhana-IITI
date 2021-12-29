@@ -15,6 +15,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Photo from "../../photos/background.jpg";
 import "./SectionChild.css";
 
+import SectionChildModal from "../Modal/SectionChildModal";
+
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
@@ -26,12 +28,17 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-function SectionChild() {
+// {"sectionChildName" : "","sectionChildImage" : "","sectionChildDesc" : ""}
+
+function SectionChild({userName,sectionID,sectionChild}) {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    const editButton = {"buttonName":"Edit","buttonID":"edit","buttonVariant":"text"}
+
     return (
         <div className="sectionChild-div">
             <Card sx={{ maxWidth: 345 }}>
@@ -43,22 +50,22 @@ function SectionChild() {
                     }
                     title="Section Child"
                 /> */}
-                <h5 className="child-header">Section Child</h5>
-                <Button id="edit" variant="text">Edit</Button>
+                <h5 className="child-header">{sectionChild.sectionChildName}</h5>
+                <SectionChildModal userName={userName} sectionID={sectionID} sectionChildID={sectionChild.sectionChildID} sectionChild={sectionChild}  type={"editSectionChild"} buttonStyle={editButton}/>
                 <Button id="delete" variant="text">Delete</Button>
 
                 <CardMedia
                     component="img"
                     height="100"
-                    image={Photo}
+                    image={sectionChild.sectionChildImage}
                     alt="event-photo"
                 />
                 <CardContent>
                     <Typography variant="body2" color="text.secondary">
-                        Here, the description of the event will be shown.
+                        {sectionChild.sectionChildDesc}
                     </Typography>
                 </CardContent>
-                <CardActions disableSpacing>
+                {/* <CardActions disableSpacing>
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
@@ -77,7 +84,7 @@ function SectionChild() {
                             Detailed Info about the Event.
                         </Typography>
                     </CardContent>
-                </Collapse>
+                </Collapse> */}
             </Card>
         </div>
     );

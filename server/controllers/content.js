@@ -144,9 +144,7 @@ const  updateSectionChild = async(req,res) => {
         let versionIndex = (user.contentVersions).length - 1;
 
         let updateDetails = req.body;
-
         let sectionChildName = updateDetails.sectionChildName;
-        let sectionChildImage = updateDetails.sectionChildImage;
         let sectionChildDesc = updateDetails.sectionChildDesc;
 
 
@@ -158,7 +156,6 @@ const  updateSectionChild = async(req,res) => {
 
 
         if(sectionChildName){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildName`] : sectionChildName}},{new:true})}
-        if(sectionChildImage){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildImage`] : sectionChildImage}},{new:true})}
         if(sectionChildDesc){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildDesc`] : sectionChildDesc}},{new:true})}
 
         return res.status(201).json({"updatedUser": user})
@@ -182,7 +179,12 @@ const  addSectionChild = async(req,res) => {
         let sectionContent = user.contentVersions[versionIndex].Sections[sectionIndex].sectionContent;
 
         let newSectionChild = req.body
-        newSectionChild.sectionChildID = sectionContent[sectionContent.length-1].sectionChildID + 1
+        try {
+          newSectionChild.sectionChildID = sectionContent[sectionContent.length-1].sectionChildID + 1
+        } catch (error) {
+          newSectionChild.sectionChildID = 1
+        }
+
 
         sectionContent.push(newSectionChild)
 
