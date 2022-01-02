@@ -27,7 +27,7 @@ function App() {
     const [loading, setLoading] = useState(true);
 
     const [sections, setSections] = useState([]);
-    const [userProfile, setProfile] = useState([]);
+    const [userProfile, setProfile] = useState({});
 
     const currentUser = "PClub"
 
@@ -57,10 +57,10 @@ function App() {
             let homePagePoster = latestVersion.homePagePoster
             let themeDetails = latestVersion.themeDetails
 
-            setProfile([{
+            setProfile({
                 "userName":userName,"name": name, "email": email, "logo": logoSrc, "socialMedia": socialMedia, "phoneNumber": phoneNumber,
                 "src": homePagePoster.src, "caption": homePagePoster.caption, "theme": themeDetails
-            }])
+            })
 
         } catch (error) {
             console.log(error)
@@ -76,8 +76,8 @@ function App() {
                             <Routes>
                             <Route path="/public" element={<Public />} />
                             <Route path="/admin" element={<Admin />} />
-                            <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile[0]}/>} />
-                            <Route path="/admin/home" element={<AdminHomePage userProfile={userProfile[0]}/>} />
+                            <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile}/>} />
+                            <Route path="/admin/home" element={<AdminHomePage userProfile={userProfile}/>} />
                             <Route path="/admin/login" element={<Authenticate />} />
                             <Route path="/public/home" element={<HomePage sections={sections}/>} />
                             <Route path="/public/profile" element={<ProfilePage />} />
