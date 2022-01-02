@@ -90,7 +90,7 @@ function App() {
     return (
         <>
              {
-                 loading || sections.length === 0 ? <Loader /> :
+                //  loading || sections.length === 0 ? <Loader /> :
                     <div className="App">
                         {/* <header className="App-header">
                             <h1>Welcome to Gymkhana IITI</h1>
