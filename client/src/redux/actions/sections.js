@@ -62,7 +62,3 @@ export const deleteSectionChild = (userName,sectionID,sectionChildID) => async (
       console.log(error)
   }
 }
-
-export const updateContent = ()=> async()=>{
-    console.log("Update Entire Content")
-}

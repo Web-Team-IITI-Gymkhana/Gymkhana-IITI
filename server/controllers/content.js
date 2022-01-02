@@ -26,7 +26,13 @@ const  addSection = async(req,res) => {
 
 
         const newSection = req.body;
-        newSection.sectionID = allSections[allSections.length-1].sectionID + 1
+
+        try{
+          newSection.sectionID = allSections[allSections.length-1].sectionID + 1
+        }
+        catch{
+          newSection.sectionID = 1
+        }
 
         allSections.push(newSection);
 

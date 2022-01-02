@@ -2,27 +2,29 @@ import React, {useState, useEffect} from "react";
 import "../../../index.css";
 import Container from "@material-ui/core/Container";
 import Navbar from "./components/Navbar";
-import SectionChild from "../../../components/admin/SectionChild/SectionChild";
 import Section from "../../../components/admin/Section/Section";
 import Box from "@material-ui/core/Box";
 import "../../admin/AdminHomePage/AdminHomePage.css"
 import Card from "@material-ui/core/Card";
 import { Typography } from "@material-ui/core";
-import {addSection} from "../../../redux/actions/sections"
-import { useDispatch} from "react-redux";
 
-function AdminHomePage({sections,userProfile}) {
-    const [currSections,setSections] = useState(sections)
+import { addSection } from "../../../redux/actions/contentVersions";
+import { useSelector,useDispatch} from "react-redux";
+
+function AdminHomePage({userProfile}) {
+
+    let contentVersions = useSelector((state)=> state.contentVersions)
+    let sections = contentVersions[(contentVersions).length - 1].Sections
 
     const [currSectionID,setSectionID] = useState(0)
-    const [selectedSection,setSelectedSection] = useState([])
+    const [reload,setReload] = useState(false)
 
     const currentUser = userProfile.userName
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        setSelectedSection(currSections.filter((section)=>section.sectionID==currSectionID))
-    },[currSectionID])
+        console.log("AllSectionsUseEffect",sections)
+    },[sections,reload])
 
     const RenderSectionHeader = (sectionID,sectionHeader) => {
         return(
@@ -34,8 +36,8 @@ function AdminHomePage({sections,userProfile}) {
 
     const handledAdd = (sectionName,sectionHeader)=>{
         const newSection = {"sectionName": sectionName,"sectionHeader": sectionHeader,"sectionContent":[]}
-        setSections([...currSections,newSection])
         dispatch(addSection(currentUser,newSection))
+        setTimeout(()=>{setReload(true)},2000)
     }
 
    return (
@@ -49,15 +51,15 @@ function AdminHomePage({sections,userProfile}) {
                     <Typography variant="h5" align="center">
 
                         {
-                            currSections.map(section=>RenderSectionHeader(section.sectionID,section.sectionHeader))
+                            sections.map(section=>RenderSectionHeader(section.sectionID,section.sectionHeader))
                         }
                     </Typography>
                     </Box>
                 </Box>
                 <Box className="sectionContent">
                         {
-                            selectedSection.length===0 ? <h1>No Section Selected</h1>:
-                                                         <Section section={selectedSection[0]} userName={currentUser}/>
+                            currSectionID===0 ? <h1>No Section Selected</h1>:
+                                                         <Section userName={currentUser} currSectionID={currSectionID}/>
                         }
 
                 </Box>

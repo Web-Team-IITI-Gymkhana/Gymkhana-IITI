@@ -4,17 +4,16 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
 import { useDispatch} from "react-redux";
+import { updateGeneralDetails } from "../../../redux/actions/contentVersions";
 
-function Form({userProfile,updateGeneralDetails}) {
+function Form({userProfile}) {
     const [postData,setPostData] = useState(userProfile)
     const dispatch = useDispatch();
 
     const handleSubmit  = (e)=>{
        e.preventDefault();
 
-        dispatch(updateGeneralDetails(userProfile.userName,postData))
-
-        window.location.reload()
+       dispatch(updateGeneralDetails(userProfile.userName,postData));
     }
 
   return (
