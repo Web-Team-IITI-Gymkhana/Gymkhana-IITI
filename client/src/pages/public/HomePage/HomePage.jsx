@@ -3,8 +3,8 @@ import Navbar from '../../../components/public/Navbar/Navbar';
 import Hero from '../../../components/public/Hero/Hero';
 import Footer from '../../../components/public/Footer/Footer';
 import Section from '../../../components/public/Section/Section';
-import { Box, Skeleton } from '@mui/material'
-import './HomePage.css'
+import SectionLoading from '../../../components/public/Section/SectionLoading';
+import {Box} from '@mui/material'
 
 // const sections = [
 //   {
@@ -36,9 +36,9 @@ import './HomePage.css'
 //   }
 // ]
 
-const sections = []
+// const sections = []
 
-export default function HomePage({ section }) {
+export default function HomePage({ sections }) {
 
   return (
     <div>
@@ -49,11 +49,7 @@ export default function HomePage({ section }) {
 
       {/*body*/}
       {sections.length > 0 ? sections.map(section => <Section key={section.sectionID} section={section} />) :
-        <Box display='flex' flexDirection={'column'} alignItems={'center'}>
-          <SkeletonLoadingTemplate />
-          <SkeletonLoadingTemplate />
-          <SkeletonLoadingTemplate />
-        </Box>
+        <SectionsLoading />
       }
 
 
@@ -64,13 +60,10 @@ export default function HomePage({ section }) {
   )
 }
 
-
-const SkeletonLoadingTemplate = () => {
-  return (<Box gap={5} padding={3} className={'wrapper'} marginBottom={10} >
-    <Skeleton variant="circular" width={250} height={250} animation='wave' />
-    <Box>
-      <Skeleton variant="text" animation='wave' />
-      <Skeleton variant="rectangular" animation='wave' width={300} height={200}/>
-    </Box>
-  </Box>)
+const SectionsLoading = () => {
+  return <Box display='flex' flexDirection={'column'} alignItems={'center'}>
+  <SectionLoading />
+  <SectionLoading />
+  <SectionLoading />
+</Box>
 }
