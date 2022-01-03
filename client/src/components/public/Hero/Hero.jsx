@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { height } from '@mui/system'
+// import bg from "../../../../public/bg.jpg";
 import React from 'react'
 import './Hero.css'
 

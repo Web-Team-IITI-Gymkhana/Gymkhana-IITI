@@ -33,6 +33,7 @@ import HomePage from "./pages/public/HomePage/HomePage";
 import ProfilePage from "./pages/public/ProfilePage/ProfilePage";
 import AdminProfilePage from "./pages/admin/AdminProfilePage";
 import AdminHomePage from "./pages/admin/AdminHomePage/AdminHomePage";
+import SectionView from "./pages/public/HomePage/SectionView";
 
 import './index.css';
 
@@ -104,6 +105,8 @@ function App() {
                             <Route path="/admin/home" element={<AdminHomePage sections={sections} userProfile={userProfile[0]}/>} />
                             <Route path="/admin/login" element={<Authenticate />} />
                             <Route path="/public/home" element={<HomePage sections={sections}/>} />
+                            {sections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView sections={sections} id={section.sectionID}/>} key={section.sectionID} />)}
+                            
                             <Route path="/public/profile" element={<ProfilePage />} />
                             </Routes>
                         </Router>

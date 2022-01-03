@@ -1,9 +1,10 @@
 import { Box, Button, Drawer, List, ListItem, ListItemText } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import './style.css'
 
-export default function Navbar() {
+export default function Navbar({sections}) {
 
     const [state, setState] = React.useState({
         right: false,
@@ -29,7 +30,7 @@ export default function Navbar() {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                {['Events', 'Team', 'Works'].map((text) => (
+                {['Events', 'Team', 'Work'].map((text) => (
                     <ListItem button key={text}>
                         <ListItemText primary={text} />
                     </ListItem>
@@ -37,6 +38,8 @@ export default function Navbar() {
             </List>
         </Box>
     );
+
+
 
     return (
         <>
@@ -69,9 +72,12 @@ export default function Navbar() {
 
                 <div className="container links-wrapper" >
                     <div className="row d-flex" style={{ flexDirection: "row-reverse" }}>
-                        <div className="col-3 quick-links col-lg-2 py-2 text-center "><b> Events</b></div>
-                        <div className="col-2 px-0 quick-links col-lg-2 py-2 text-center "><b> Team</b></div>
-                        <div className="col-3 quick-links col-lg-2 py-2 text-center "><b> Work</b></div>
+                        {sections.map(section=><div className="col-3 quick-links col-lg-2 py-2 text-center " key={section.sectionID}><a href={"/public/home/section/" + section.sectionID } className="link">{section.sectionName}</a></div>)}
+
+                        {/* <div className="col-3 quick-links col-lg-2 py-2 text-center "><a href={"/public/home/section/" + 1 } className="link">Event 1</a></div>
+                        <div className="col-2 px-0 quick-links col-lg-2 py-2 text-center "><a href={"/public/home/section/" + 3 } className="link">Team 3</a></div>
+                        <div className="col-3 quick-links col-lg-2 py-2 text-center "><a href={"/public/home/section/" + 2 } className="link">Work 2</a></div> */}
+
                     </div>
                 </div>
             </div>

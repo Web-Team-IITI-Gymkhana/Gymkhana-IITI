@@ -10,7 +10,7 @@ export default function HomePage({sections}) {
   return (
      <div>
         {/*header*/}
-        <Navbar/>
+        <Navbar sections={sections}/>
         <Hero/>
 
 
