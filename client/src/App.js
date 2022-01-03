@@ -70,7 +70,7 @@ function App() {
     return (
         <>
              {
-                 loading || sections.length === 0 ? <Loader /> :
+                //  loading || sections.length === 0 ? <Loader /> :
                     <div className="App">
                         <Router>
                             <Routes>

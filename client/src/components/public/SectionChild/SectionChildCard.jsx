@@ -7,7 +7,7 @@ const SectionChildCard = ({ sectionChild }) => {
   return(
 
     <Box gap={5} padding={3} className={'wrapper'}  >
-    <img src={sectionChild.sectionChildImage} style={{ borderRadius: '50%' }} alt={'Event Image'} height={250}
+    <img src={sectionChild.sectionChildImage} style={{ borderRadius: '50%' }} alt={sectionChild.sectionChildName} height={250}
       width={250} />
     <Box>
       <Typography variant={'h4'} marginBottom={1}>{sectionChild.sectionChildName}</Typography>
