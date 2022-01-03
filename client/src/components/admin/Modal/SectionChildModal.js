@@ -7,7 +7,7 @@ import {uploadImageServer} from "../../../redux/actions/users"
 import { useDispatch } from "react-redux";
 import "../Form/Form.css"
 import TextField from "@material-ui/core/TextField";
-import { addSectionChild,updateSectionChild } from "../../../redux/actions/sections";
+import { addSectionChild,updateSectionChild } from "../../../redux/actions/contentVersions";
 
 export default function SectionChildModal({userName,sectionID,sectionChildID,sectionChild,type,buttonStyle}) {
 
@@ -26,28 +26,42 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
 
     const handleEdit = (e) => {
         e.preventDefault();
-        if (!selectedFile) return;
+
+        if(!selectedFile)
+        {
+            submitEdit('imageError')
+            return;
+        }
+
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
         reader.onloadend = () => {
             submitEdit(reader.result);
+            return
         };
         reader.onerror = () => {
-            console.error('Error in image upload!');
+            submitEdit('imageError')
+            return
         };
+
+        submitEdit('imageError')
     };
 
     const submitEdit = async (base64EncodedImage) => {
         try {
             dispatch(updateSectionChild(userName,sectionID,sectionChildID,formSectionChild))
-            dispatch(uploadImageServer({
-                method: 'POST',
-                img : JSON.stringify({ data: base64EncodedImage }),
-                userName : userName,
-                dataFor : type,
-                sectionID: sectionID,
-                sectionChildID : sectionChildID,
-                headers: { 'Content-Type': 'application/json' }}))
+
+            if(base64EncodedImage!=='imageError')
+            {
+                dispatch(uploadImageServer({
+                    method: 'POST',
+                    img : JSON.stringify({ data: base64EncodedImage }),
+                    userName : userName,
+                    dataFor : type,
+                    sectionID: sectionID,
+                    sectionChildID : sectionChildID,
+                    headers: { 'Content-Type': 'application/json' }}))
+            }
 
             setFileInputState('');
             setOpen(false)
@@ -119,7 +133,7 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
                 onClose={handleClose}
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <form id="form" onSubmit={type==="editSectionChild"?handleEdit:handleAdd}>
+                    <form id="form">
                         <TextField
                         variant="outlined"
                         margin="normal"
@@ -152,7 +166,7 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
                         {
                             type==="editSectionChild"?<input  id="fileInput" type="file" name="image" onChange={handleFileInputChange} value={fileInputState} />:<></>
                         }
-                        <Button type="submit">{buttonStyle.buttonName}</Button>
+                        <Button type="button" onClick={type==="editSectionChild"?handleEdit:handleAdd}>{buttonStyle.buttonName}</Button>
                     </form>
                 </div>
             </Modal>
