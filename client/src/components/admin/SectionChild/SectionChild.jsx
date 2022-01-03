@@ -16,6 +16,8 @@ import Photo from "../../photos/background.jpg";
 import "./SectionChild.css";
 
 import SectionChildModal from "../Modal/SectionChildModal";
+import { deleteSectionChild } from "../../../redux/actions/contentVersions"
+import { useDispatch } from "react-redux";
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -28,7 +30,6 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-// {"sectionChildName" : "","sectionChildImage" : "","sectionChildDesc" : ""}
 
 function SectionChild({userName,sectionID,sectionChild}) {
     const [expanded, setExpanded] = React.useState(false);
@@ -36,6 +37,11 @@ function SectionChild({userName,sectionID,sectionChild}) {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    const dispatch = useDispatch()
+    const handleDelete = (sectionChildID) => {
+        dispatch(deleteSectionChild(userName,sectionID,sectionChildID))
+    }
 
     const editButton = {"buttonName":"Edit","buttonID":"edit","buttonVariant":"text"}
 
@@ -52,7 +58,7 @@ function SectionChild({userName,sectionID,sectionChild}) {
                 /> */}
                 <h5 className="child-header">{sectionChild.sectionChildName}</h5>
                 <SectionChildModal userName={userName} sectionID={sectionID} sectionChildID={sectionChild.sectionChildID} sectionChild={sectionChild}  type={"editSectionChild"} buttonStyle={editButton}/>
-                <Button id="delete" variant="text">Delete</Button>
+                <Button id="delete" variant="text" onClick={()=>{handleDelete(sectionChild.sectionChildID)}}>Delete</Button>
 
                 <CardMedia
                     component="img"
