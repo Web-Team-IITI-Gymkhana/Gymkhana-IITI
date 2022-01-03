@@ -1,7 +1,5 @@
 import React from 'react'
 import {Box, Paper, Typography} from "@mui/material";
-import Carousel from 'react-material-ui-carousel'
-// import SectionChildCard from '../SectionChild/SectionChildCard';
 import SectionChildCard from '../../../components/public/SectionChild/SectionChildCard';
 
 const Section = ({section}) => {

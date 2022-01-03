@@ -30,10 +30,12 @@ export default function Navbar({sections}) {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                {['Events', 'Team', 'Work'].map((text) => (
-                    <ListItem button key={text}>
-                        <ListItemText primary={text} />
+                {sections.map((text) => (
+                    <a href={"/public/home/section/" + text.sectionID } key={text.sectionID}>
+                    <ListItem button key={text.sectionName}>
+                        <ListItemText primary={text.sectionName} />
                     </ListItem>
+                    </a>
                 ))}
             </List>
         </Box>
