@@ -28,7 +28,6 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-// {"sectionChildName" : "","sectionChildImage" : "","sectionChildDesc" : ""}
 
 function SectionChild({userName,sectionID,sectionChild}) {
     const [expanded, setExpanded] = React.useState(false);

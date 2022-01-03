@@ -40,7 +40,6 @@ function App() {
     let contentVersions = useSelector((state)=> state.contentVersions)
 
     useEffect(() => {
-        console.log("ContentVersionsUseEffect",contentVersions)
         try {
             let userName = currentUser
             let latestVersion = contentVersions[(contentVersions).length - 1]
@@ -71,6 +70,8 @@ function App() {
         <>
              {
                 //  loading || sections.length === 0 ? <Loader /> :
+
+                    sections.length !== 0 ?
                     <div className="App">
                         <Router>
                             <Routes>
@@ -83,7 +84,8 @@ function App() {
                             <Route path="/public/profile" element={<ProfilePage />} />
                             </Routes>
                         </Router>
-                    </div>
+                    </div>:
+                    ""
              }
 
         </>

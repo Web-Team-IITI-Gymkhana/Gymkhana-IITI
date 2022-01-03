@@ -9,7 +9,7 @@ import "../Form/Form.css"
 import TextField from "@material-ui/core/TextField";
 import { addSectionChild,updateSectionChild } from "../../../redux/actions/contentVersions";
 
-export default function SectionChildModal({userName,sectionID,sectionChildID,sectionChild,type,buttonStyle,setReload}) {
+export default function SectionChildModal({userName,sectionID,sectionChildID,sectionChild,type,buttonStyle}) {
 
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
@@ -76,7 +76,6 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
         dispatch(addSectionChild(userName,sectionID,formSectionChild));
         setFileInputState('');
         setOpen(false);
-        setTimeout(()=>{setReload(true)},2000)
     }
 
 

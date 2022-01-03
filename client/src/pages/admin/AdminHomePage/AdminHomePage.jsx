@@ -17,14 +17,9 @@ function AdminHomePage({userProfile}) {
     let sections = contentVersions[(contentVersions).length - 1].Sections
 
     const [currSectionID,setSectionID] = useState(0)
-    const [reload,setReload] = useState(false)
 
     const currentUser = userProfile.userName
     const dispatch = useDispatch()
-
-    useEffect(()=>{
-        console.log("AllSectionsUseEffect",sections)
-    },[sections,reload])
 
     const RenderSectionHeader = (sectionID,sectionHeader) => {
         return(
@@ -37,10 +32,9 @@ function AdminHomePage({userProfile}) {
     const handledAdd = (sectionName,sectionHeader)=>{
         const newSection = {"sectionName": sectionName,"sectionHeader": sectionHeader,"sectionContent":[]}
         dispatch(addSection(currentUser,newSection))
-        setTimeout(()=>{setReload(true)},2000)
     }
 
-   return (
+    return (
         <div>
             <Navbar handlingAdd={handledAdd}/>
 

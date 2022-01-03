@@ -44,22 +44,22 @@ const reducer =  (contentVersions=[],action) => {
             contentVersions[lastIndex].contactDetails.email = action.payload.email
             contentVersions[lastIndex].contactDetails.phoneNumber = action.payload.phoneNumber
 
-            return contentVersions
+            return [... contentVersions]
 
         case "ADD_SECTION":
             (contentVersions[lastIndex].Sections).push({... action.payload,sectionID:findSectionID(contentVersions)})
-            return contentVersions
+            return [... contentVersions]
 
         case "ADD_SECTION_CHILD":
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?addSectionChildHelper(section,action.payload.postData):section)
-            return contentVersions
+            return [... contentVersions]
 
         case "UPDATE_SECTION_CHILD":
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?updateSectionChildHelper(section,action.payload.sectionChildID,action.payload.updateData):section)
-            return contentVersions
+            return [... contentVersions]
 
         default:
-            return contentVersions
+            return [... contentVersions]
 
     }
 }
