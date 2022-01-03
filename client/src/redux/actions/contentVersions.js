@@ -50,3 +50,13 @@ export const updateSectionChild = (userName,sectionID,sectionChildID,updateData)
         console.log(error)
     }
 }
+
+export const deleteSectionChild = (userName,sectionID,sectionChildID) => async (dispatch) => {
+    try{
+        await api.deleteSectionChild(userName,sectionID,sectionChildID)
+        dispatch({type:"DELETE_SECTION_CHILD",payload:{sectionID:sectionID,sectionChildID:sectionChildID}})
+    }
+    catch(error){
+        console.log(error)
+    }
+}
