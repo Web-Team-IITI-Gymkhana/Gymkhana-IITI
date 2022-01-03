@@ -41,10 +41,10 @@ import {Box} from '@mui/material'
 export default function HomePage({ sections }) {
 
   return (
-    <div>
-      {/*header*/}
-      <Navbar />
-      <Hero />
+     <div>
+        {/*header*/}
+        <Navbar sections={sections}/>
+        <Hero/>
 
 
       {/*body*/}

@@ -1,8 +1,14 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import { useNavigate } from 'react-router-dom';
 
 import dp from "../../photos/dp.svg";
 function Navbar() {
+
+    const navigate = useNavigate();
+    const redirect = () => {
+        navigate('/admin/home')
+    }
 
   return (
     <div className="navbar">
@@ -39,6 +45,7 @@ function Navbar() {
           className="nav-btn"
           id="fourth-btn"
           color="primary"
+          onClick={redirect}
         >
           Home Page
         </Button>
