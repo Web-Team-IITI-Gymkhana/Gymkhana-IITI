@@ -1,7 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
@@ -10,9 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@material-ui/core/Button";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import Photo from "../../photos/background.jpg";
 import "./SectionChild.css";
 
 import SectionChildModal from "../Modal/SectionChildModal";
@@ -20,9 +17,10 @@ import { deleteSectionChild } from "../../../redux/actions/contentVersions"
 import { useDispatch } from "react-redux";
 
 const ExpandMore = styled((props) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { expand, ...other } = props;
     return <IconButton {...other} />;
-})(({ theme, expand }) => ({
+    })(({ theme, expand }) => ({
     transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
     marginLeft: "auto",
     transition: theme.transitions.create("transform", {
@@ -48,14 +46,6 @@ function SectionChild({userName,sectionID,sectionChild}) {
     return (
         <div className="sectionChild-div">
             <Card sx={{ maxWidth: 345 }}>
-                {/* <CardHeader
-                    action={
-                        <IconButton aria-label="settings" >
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Section Child"
-                /> */}
                 <h5 className="child-header">{sectionChild.sectionChildName}</h5>
                 <SectionChildModal userName={userName} sectionID={sectionID} sectionChildID={sectionChild.sectionChildID} sectionChild={sectionChild}  type={"editSectionChild"} buttonStyle={editButton}/>
                 <Button id="delete" variant="text" onClick={()=>{handleDelete(sectionChild.sectionChildID)}}>Delete</Button>
@@ -68,10 +58,10 @@ function SectionChild({userName,sectionID,sectionChild}) {
                 />
                 <CardContent>
                     <Typography variant="body2" color="text.secondary">
-                        {sectionChild.sectionChildDesc}
+                        {sectionChild.sectionChildShortDesc}
                     </Typography>
                 </CardContent>
-                {/* <CardActions disableSpacing>
+                <CardActions disableSpacing>
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
@@ -84,13 +74,13 @@ function SectionChild({userName,sectionID,sectionChild}) {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Typography paragraph variant="body2" color="text.secondary">
-                            Further Information :
+                            {sectionChild.sectionChildDesc}
                         </Typography>
                         <Typography paragraph variant="body2" color="text.secondary">
-                            Detailed Info about the Event.
+                        {sectionChild.sectionChildLinks}
                         </Typography>
                     </CardContent>
-                </Collapse> */}
+                </Collapse>
             </Card>
         </div>
     );
