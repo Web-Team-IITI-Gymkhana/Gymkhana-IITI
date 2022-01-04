@@ -1,10 +1,9 @@
 import { Box, Button, Drawer, List, ListItem, ListItemText } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
 import './style.css'
 
-export default function Navbar({sections}) {
+export default function Navbar({userProfile,sections}) {
 
     const [state, setState] = React.useState({
         right: false,
@@ -49,10 +48,10 @@ export default function Navbar({sections}) {
                 <div className="container">
                     <div className="row d-flex align-items-center py-2">
                         <div className="col-2 px-0 col-lg-1 logo-wrapper">
-                            <img className="club-logo" src="logo.jpg" alt="" />
+                            <img className="club-logo" src={userProfile.logo} alt="Club Logo" />
                         </div>
                         <div className="col-8 col-lg-10">
-                            <h2 className="club-name">Club Name</h2>
+                            <h2 className="club-name">{userProfile.name}</h2>
                         </div>
                         <div className="col-2 burger">
 
@@ -75,11 +74,6 @@ export default function Navbar({sections}) {
                 <div className="container links-wrapper" >
                     <div className="row d-flex" style={{ flexDirection: "row-reverse" }}>
                         {sections.map(section=><div className="col-3 quick-links col-lg-2 py-2 text-center " key={section.sectionID}><a href={"/public/home/section/" + section.sectionID } className="link">{section.sectionName}</a></div>)}
-
-                        {/* <div className="col-3 quick-links col-lg-2 py-2 text-center "><a href={"/public/home/section/" + 1 } className="link">Event 1</a></div>
-                        <div className="col-2 px-0 quick-links col-lg-2 py-2 text-center "><a href={"/public/home/section/" + 3 } className="link">Team 3</a></div>
-                        <div className="col-3 quick-links col-lg-2 py-2 text-center "><a href={"/public/home/section/" + 2 } className="link">Work 2</a></div> */}
-
                     </div>
                 </div>
             </div>

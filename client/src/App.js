@@ -74,8 +74,8 @@ function App() {
                             <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile}/>} />
                             <Route path="/admin/home" element={<AdminHomePage userProfile={userProfile}/>} />
                             <Route path="/admin/login" element={<Authenticate />} />
-                            <Route path="/public/home" element={<HomePage sections={sections}/>} />
-                            {sections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView sections={sections} id={section.sectionID}/>} key={section.sectionID} />)}
+                            <Route path="/public/home" element={<HomePage userProfile={userProfile} sections={sections}/>} />
+                            {sections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView userProfile={userProfile} sections={sections} id={section.sectionID}/>} key={section.sectionID} />)}
 
                             <Route path="/public/profile" element={<ProfilePage />} />
                             </Routes>

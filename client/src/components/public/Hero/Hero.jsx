@@ -1,15 +1,13 @@
-import { Box, Typography } from '@mui/material'
-import { height } from '@mui/system'
-// import bg from "../../../../public/bg.jpg";
+import { Box} from '@mui/material'
 import React from 'react'
 import './Hero.css'
 
-export default function Hero() {
+export default function Hero({userProfile}) {
   return (
     <Box paddingBottom={5} display={"flex"} flexDirection={"column"} alignItems={"center"}>
 
       {/*the heading, wrapped by two divs for skewing purposes*/}
-      <img className='bg' src="bg.jpg" alt="" />
+      <img className='bg' src={userProfile.src} alt="" />
 
     </Box>
   )

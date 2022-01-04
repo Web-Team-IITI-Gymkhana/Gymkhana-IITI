@@ -9,6 +9,8 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List"
+import ListItem from "@material-ui/core/ListItem"
 
 import "./SectionChild.css";
 
@@ -27,6 +29,12 @@ const ExpandMore = styled((props) => {
         duration: theme.transitions.duration.shortest,
     }),
 }));
+
+const flexContainer = {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 0,
+};
 
 
 function SectionChild({userName,sectionID,sectionChild}) {
@@ -76,9 +84,14 @@ function SectionChild({userName,sectionID,sectionChild}) {
                         <Typography paragraph variant="body2" color="text.secondary">
                             {sectionChild.sectionChildDesc}
                         </Typography>
+
                         <Typography paragraph variant="body2" color="text.secondary">
-                        {sectionChild.sectionChildLinks}
+                            <h5>Links:</h5>
+                            <List style={flexContainer}>
+                                {sectionChild.sectionChildLinks.map((link)=><ListItem key={link}><a href={link} key={link} style={{ textDecoration: 'none' }}> {link}</a></ListItem>)}
+                            </List>
                         </Typography>
+
                     </CardContent>
                 </Collapse>
             </Card>

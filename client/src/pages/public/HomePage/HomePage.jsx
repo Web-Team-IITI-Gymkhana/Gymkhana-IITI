@@ -6,45 +6,14 @@ import Section from '../../../components/public/Section/Section';
 import SectionLoading from '../../../components/public/Section/SectionLoading';
 import {Box} from '@mui/material'
 
-// const sections = [
-//   {
-//     sectionId: 0,
-//     sectionName: 'Work',
-//     sectionContent: [
-//       {
-//         sectionChildId: 0, sectionChildName: 'dummy_name_0', sectionChildDesc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident enim a neque quasi et animi perspiciatis, qui odit. Ad tempore sunt reiciendis placeat totam quos excepturi cum sit veniam dicta.'
-//       }
-//     ]
-//   },
-//   {
-//     sectionId: 1,
-//     sectionName: 'Team',
-//     sectionContent: [
-//       {
-//         sectionChildId: 0, sectionChildName: 'dummy_name_0', sectionChildDesc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident enim a neque quasi et animi perspiciatis, qui odit. Ad tempore sunt reiciendis placeat totam quos excepturi cum sit veniam dicta.'
-//       }
-//     ]
-//   },
-//   {
-//     sectionId: 2,
-//     sectionName: 'Events',
-//     sectionContent: [
-//       {
-//         sectionChildId: 0, sectionChildName: 'dummy_name_0', sectionChildDesc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident enim a neque quasi et animi perspiciatis, qui odit. Ad tempore sunt reiciendis placeat totam quos excepturi cum sit veniam dicta.'
-//       }
-//     ]
-//   }
-// ]
 
-// const sections = []
-
-export default function HomePage({ sections }) {
-
+export default function HomePage({userProfile, sections }) {
+    console.log("Homepage",userProfile)
   return (
      <div>
         {/*header*/}
-        <Navbar sections={sections}/>
-        <Hero/>
+        <Navbar userProfile={userProfile} sections={sections}/>
+        <Hero userProfile={userProfile}/>
 
 
       {/*body*/}
