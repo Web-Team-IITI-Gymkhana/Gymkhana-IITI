@@ -22,13 +22,17 @@ const user =
                                         "sectionChildID":1,
                                         "sectionChildName":"Cynaptics Workshop 1",
                                         "sectionChildImage":"img1",
-                                        "sectionChildDesc":"xyz"
+                                        "sectionChildShortDesc":"xyz",
+                                        "sectionChildDesc":"asdsdasdasdas",
+                                        "sectionChildLinks" : ["link1","link2"]
                                     },
                                     {
                                         "sectionChildID":2,
                                         "sectionChildName":"Cynaptics Hackathon 1",
                                         "sectionChildImage":"img2",
-                                        "sectionChildDesc":"abc"
+                                        "sectionChildShortDesc":"xasdads",
+                                        "sectionChildDesc":"asdsdasdasdas asda adas",
+                                        "sectionChildLinks" : ["linkabc"]
                                     }
                                 ]
                         },
@@ -42,7 +46,9 @@ const user =
                                         "sectionChildID":1,
                                         "sectionChildName":"Cynaptics Project 1",
                                         "sectionChildImage":"img3",
-                                        "sectionChildDesc":"pqr"
+                                        "sectionChildShortDesc":"xyzsda",
+                                        "sectionChildDesc":"asdsdaadsdass",
+                                        "sectionChildLinks" : ["linkxyz","linkpqr","link123"]
                                     }
                                 ]
                         }

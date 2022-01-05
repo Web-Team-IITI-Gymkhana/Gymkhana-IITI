@@ -8,8 +8,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import Loader from "./components/Loader/Loader";
-
 import Public from "./pages/public/Public";
 import Admin from "./pages/admin/Admin/Admin";
 import Authenticate from "./components/Auth/Authenticate";
@@ -25,17 +23,14 @@ import './index.css';
 
 
 function App() {
-    const [loading, setLoading] = useState(true);
-
     const [sections, setSections] = useState([]);
     const [userProfile, setProfile] = useState({});
 
-    const currentUser = "PClub"
+    const currentUser = "Cynaptics"
 
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(setContentVersions(currentUser))
-        setLoading(false)
     },[dispatch])
 
     let contentVersions = useSelector((state)=> state.contentVersions)
@@ -70,9 +65,7 @@ function App() {
     return (
         <>
              {
-                //  loading || sections.length === 0 ? <Loader /> :
-
-                    sections.length !== 0 ?
+                sections.length !== 0 ?
                     <div className="App">
                         <Router>
                             <Routes>
@@ -81,8 +74,8 @@ function App() {
                             <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile}/>} />
                             <Route path="/admin/home" element={<AdminHomePage userProfile={userProfile}/>} />
                             <Route path="/admin/login" element={<Authenticate />} />
-                            <Route path="/public/home" element={<HomePage sections={sections}/>} />
-                            {sections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView sections={sections} id={section.sectionID}/>} key={section.sectionID} />)}
+                            <Route path="/public/home" element={<HomePage userProfile={userProfile} sections={sections}/>} />
+                            {sections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView userProfile={userProfile} sections={sections} id={section.sectionID}/>} key={section.sectionID} />)}
 
                             <Route path="/public/profile" element={<ProfilePage />} />
                             </Routes>

@@ -154,6 +154,21 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
                         required
                         fullWidth
                         minRows={3}
+                        id="section-child-short-desc"
+                        label="Section Child Short Description"
+                        type="text"
+                        name="section-child-short-desc"
+                        autoComplete="Section Child Short Description"
+                        className="field"
+                        value={formSectionChild.sectionChildShortDesc}
+                        onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildShortDesc : e.target.value })}
+                        />
+                        <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        minRows={3}
                         id="section-child-desc"
                         label="Section Child Description"
                         type="text"
@@ -162,6 +177,21 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
                         className="field"
                         value={formSectionChild.sectionChildDesc}
                         onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildDesc : e.target.value })}
+                        />
+                        <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        minRows={3}
+                        id="section-child-links"
+                        label="Section Child Links"
+                        type="text"
+                        name="section-child-links"
+                        autoComplete="Section Child Links"
+                        className="field"
+                        value={formSectionChild.sectionChildLinks}
+                        onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildLinks : e.target.value.split(',') })}
                         />
                         {
                             type==="editSectionChild"?<input  id="fileInput" type="file" name="image" onChange={handleFileInputChange} value={fileInputState} />:<></>

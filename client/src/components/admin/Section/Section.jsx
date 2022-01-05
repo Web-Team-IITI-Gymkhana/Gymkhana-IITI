@@ -1,4 +1,4 @@
-import React ,{useEffect,useState} from "react";
+import React from "react";
 import SectionChild from "../SectionChild/SectionChild";
 import Box from "@material-ui/core/Box";
 import "./Section.css";
@@ -14,7 +14,7 @@ function Section({userName,currSectionID}){
     let section = sections.find(section=>section.sectionID===currSectionID)
 
     const addButton = {"buttonName":`Add ${section.sectionName}`,"buttonID":"add","buttonVariant":"contained"}
-    const newSectionChild = {"sectionChildName":"","sectionChildImage":"","sectionChildDesc":""}
+    const newSectionChild = {"sectionChildName":"","sectionChildImage":"","sectionChildShortDesc":"","sectionChildDesc":"","sectionChildLinks":[]}
     const sectionID = section.sectionID
 
     return(

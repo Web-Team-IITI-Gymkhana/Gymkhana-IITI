@@ -12,7 +12,9 @@ const addSectionChildHelper = (section,postData)=>{
 
 const updateSectionChild = (sectionChild,updateData)=>{
     sectionChild.sectionChildName = updateData.sectionChildName
+    sectionChild.sectionChildShortDesc = updateData.sectionChildShortDesc
     sectionChild.sectionChildDesc = updateData.sectionChildDesc
+    sectionChild.sectionChildLinks = updateData.sectionChildLinks
     return sectionChild
 }
 
@@ -60,12 +62,13 @@ const reducer =  (contentVersions=[],action) => {
             return [... contentVersions]
 
         case "UPDATE_SECTION_CHILD":
+            console.log(action.payload.updateData);
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?updateSectionChildHelper(section,action.payload.sectionChildID,action.payload.updateData):section)
+            console.log(contentVersions)
             return [... contentVersions]
 
         case "DELETE_SECTION_CHILD":
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?deleteSectionChildHelper(section,action.payload.sectionChildID):section)
-            // console.log(contentVersions)
             return [... contentVersions]
 
         default:
