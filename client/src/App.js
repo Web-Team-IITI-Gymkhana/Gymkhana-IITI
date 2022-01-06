@@ -23,8 +23,11 @@ import './index.css';
 
 
 function App() {
-    const [sections, setSections] = useState([]);
-    const [userProfile, setProfile] = useState({});
+    const [currentSections, setCurrentSections] = useState([]);
+    const [currentUserProfile, setCurrentProfile] = useState({});
+
+    const [publishedSections, setPublishedSections] = useState([]);
+    const [publishedUserProfile, setPublishedProfile] = useState({});
 
     const currentUser = "Cynaptics"
 
@@ -34,28 +37,51 @@ function App() {
     },[dispatch])
 
     let contentVersions = useSelector((state)=> state.contentVersions)
+    let publishedVersionNum = useSelector((state)=>state.publishedVersionNum)
 
     useEffect(() => {
         try {
             let userName = currentUser
-            let latestVersion = contentVersions[(contentVersions).length - 1]
-            let name = latestVersion.userDetails.name
-            let logoSrc = latestVersion.userDetails.logo
-            let socialMedia = latestVersion.userDetails.socialMedia
 
+            let currentVersion = contentVersions[(contentVersions).length - 1]
+            let publishedVersion = contentVersions[publishedVersionNum-1]
 
-            setSections(latestVersion.Sections)
+            let currentName = currentVersion.userDetails.name
+            let currentLogoSrc = currentVersion.userDetails.logo
+            let currentSocialMedia = currentVersion.userDetails.socialMedia
 
-            let email = latestVersion.contactDetails.email
-            let phoneNumber = latestVersion.contactDetails.phoneNumber
+            setCurrentSections(currentVersion.Sections)
 
-            let homePagePoster = latestVersion.homePagePoster
-            let themeDetails = latestVersion.themeDetails
+            let currentEmail = currentVersion.contactDetails.email
+            let currentPhoneNumber = currentVersion.contactDetails.phoneNumber
 
-            setProfile({
-                "userName":userName,"name": name, "email": email, "logo": logoSrc, "socialMedia": socialMedia, "phoneNumber": phoneNumber,
-                "src": homePagePoster.src, "caption": homePagePoster.caption, "theme": themeDetails
+            let currentHomePagePoster = currentVersion.homePagePoster
+            let currentThemeDetails = currentVersion.themeDetails
+
+            setCurrentProfile({
+                "userName":userName,"name": currentName, "email": currentEmail, "logo": currentLogoSrc, "socialMedia": currentSocialMedia, "phoneNumber": currentPhoneNumber,
+                "src": currentHomePagePoster.src, "caption": currentHomePagePoster.caption, "theme": currentThemeDetails
             })
+
+            let publishedName = publishedVersion.userDetails.name
+            let publishedLogoSrc = publishedVersion.userDetails.logo
+            let publishedSocialMedia = publishedVersion.userDetails.socialMedia
+
+            setPublishedSections(publishedVersion.Sections)
+
+            let publishedEmail = publishedVersion.contactDetails.email
+            let publishedPhoneNumber = publishedVersion.contactDetails.phoneNumber
+
+            let publishedHomePagePoster = publishedVersion.homePagePoster
+            let publishedThemeDetails = publishedVersion.themeDetails
+
+            setPublishedProfile({
+                "userName":userName,"name": publishedName, "email": publishedEmail, "logo": publishedLogoSrc, "socialMedia": publishedSocialMedia, "phoneNumber": publishedPhoneNumber,
+                "src": publishedHomePagePoster.src, "caption": publishedHomePagePoster.caption, "theme": publishedThemeDetails
+            })
+
+
+
 
         } catch (error) {
             console.log(error)
@@ -65,17 +91,17 @@ function App() {
     return (
         <>
              {
-                sections.length !== 0 ?
+                currentSections.length !== 0 ?
                     <div className="App">
                         <Router>
                             <Routes>
                             <Route path="/public" element={<Public />} />
                             <Route path="/admin" element={<Admin />} />
-                            <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile}/>} />
-                            <Route path="/admin/home" element={<AdminHomePage userProfile={userProfile}/>} />
+                            <Route path="/admin/profile" element={<AdminProfilePage userProfile={currentUserProfile}/>} />
+                            <Route path="/admin/home" element={<AdminHomePage userProfile={currentUserProfile}/>} />
                             <Route path="/admin/login" element={<Authenticate />} />
-                            <Route path="/public/home" element={<HomePage userProfile={userProfile} sections={sections}/>} />
-                            {sections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView userProfile={userProfile} sections={sections} id={section.sectionID}/>} key={section.sectionID} />)}
+                            <Route path="/public/home" element={<HomePage userProfile={publishedUserProfile} sections={publishedSections}/>} />
+                            {publishedSections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView userProfile={publishedUserProfile} sections={publishedSections} id={section.sectionID}/>} key={section.sectionID} />)}
 
                             <Route path="/public/profile" element={<ProfilePage />} />
                             </Routes>
