@@ -16,6 +16,7 @@ import ProfilePage from "./pages/public/ProfilePage/ProfilePage";
 import AdminProfilePage from "./pages/admin/AdminProfilePage";
 import AdminHomePage from "./pages/admin/AdminHomePage/AdminHomePage";
 import SectionView from "./pages/public/SectionPage/SectionView";
+import PreviewPage from "./pages/admin/PreviewPage/PreviewPage";
 
 import { setContentVersions } from "./redux/actions/contentVersions";
 
@@ -102,7 +103,7 @@ function App() {
                             <Route path="/admin/login" element={<Authenticate />} />
                             <Route path="/public/home" element={<HomePage userProfile={publishedUserProfile} sections={publishedSections}/>} />
                             {publishedSections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView userProfile={publishedUserProfile} sections={publishedSections} id={section.sectionID}/>} key={section.sectionID} />)}
-
+                            <Route path="/admin/preview" element={<PreviewPage userProfile={currentUserProfile} sections={currentSections}/>}/>
                             <Route path="/public/profile" element={<ProfilePage />} />
                             </Routes>
                         </Router>

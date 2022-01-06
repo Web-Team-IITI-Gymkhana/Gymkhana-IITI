@@ -1,6 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import { useState} from "react";
 import Button from "@material-ui/core/Button";
 import "../components/Navbar.css";
 import ProfilePic from "../../../../components/photos/dp.svg";
@@ -15,7 +14,7 @@ import { useDispatch} from "react-redux";
 function AdminHomePageNavbar(props) {
 
     const [show, setShow] = useState(false);
-    const [publish, setPublish] = useState(false);
+    // const [publish, setPublish] = useState(false);
     const [done, setDone] = useState(-1);
     const [loading, setLoading] = useState(-1);
 
@@ -30,6 +29,9 @@ function AdminHomePageNavbar(props) {
     const navigate = useNavigate();
     const redirect = () => {
         navigate('/admin/profile')
+    }
+    const preview = () => {
+        navigate('/admin/preview')
     }
 
     const dispatch = useDispatch()
@@ -85,10 +87,11 @@ function AdminHomePageNavbar(props) {
                     variant="contained"
                     className="nav-btn"
                     id="third-btn"
-                    color="primary">
+                    color="primary"
+                    onClick={preview}>
                     Preview
                 </Button>
-                <Button
+                {/* <Button
                     variant="contained"
                     className="nav-btn"
                     id="third-btn"
@@ -96,7 +99,7 @@ function AdminHomePageNavbar(props) {
                     onClick={getPublish}
                 >
                     Publish
-                </Button>
+                </Button> */}
                     {done===0? (
                         <Loading Loading={loading}/>
                     ):null}
