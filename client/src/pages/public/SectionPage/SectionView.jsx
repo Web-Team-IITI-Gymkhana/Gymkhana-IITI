@@ -1,15 +1,18 @@
 import React from "react";
 import Section from "./Section";
 import Navbar from "../../../components/public/Navbar/Navbar";
+import PreviewNavbar from "../../admin/PreviewPage/PreviewNavbar/PreviewNavbar";
 
-function SectionView({userProfile,sections,id}){
+function SectionView({userProfile,sections,id,type}){
 
     return(
-        // <h3>This is Section View page</h3>
         <div>
+            {
+                type=="public"?<Navbar userProfile={userProfile} sections={sections}/>:<PreviewNavbar userProfile={userProfile} sections={sections}/>
+            }
 
-        <Navbar userProfile={userProfile} sections={sections}/>
-        {sections.filter(section => section.sectionID===id).map(section=><Section key={section.sectionID} section={section}/>)}
+
+            {sections.filter(section => section.sectionID===id).map(section=><Section key={section.sectionID} section={section}/>)}
         </div>
 
     )

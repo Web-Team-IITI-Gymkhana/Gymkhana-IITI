@@ -101,10 +101,13 @@ function App() {
                             <Route path="/admin/profile" element={<AdminProfilePage userProfile={currentUserProfile}/>} />
                             <Route path="/admin/home" element={<AdminHomePage userProfile={currentUserProfile}/>} />
                             <Route path="/admin/login" element={<Authenticate />} />
-                            <Route path="/public/home" element={<HomePage userProfile={publishedUserProfile} sections={publishedSections}/>} />
-                            {publishedSections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView userProfile={publishedUserProfile} sections={publishedSections} id={section.sectionID}/>} key={section.sectionID} />)}
+                            <Route path="/public/home" element={<HomePage userProfile={publishedUserProfile} sections={publishedSections}/>}/>
                             <Route path="/admin/preview" element={<PreviewPage userProfile={currentUserProfile} sections={currentSections}/>}/>
                             <Route path="/public/profile" element={<ProfilePage />} />
+
+                            {publishedSections.map(section=><Route path={"/public/home/section/" + section.sectionID } element={<SectionView userProfile={publishedUserProfile} sections={publishedSections} id={section.sectionID} type="public"/>} key={section.sectionID} />)}
+                            {currentSections.map(section=><Route path={"/admin/preview/section/" + section.sectionID } element={<SectionView userProfile={currentUserProfile} sections={currentSections} id={section.sectionID} type="admin"/>} key={section.sectionID} />)}
+
                             </Routes>
                         </Router>
                     </div>:

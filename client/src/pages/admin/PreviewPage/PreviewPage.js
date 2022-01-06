@@ -1,10 +1,10 @@
 import React from 'react'
-import HomePage from '../../public/HomePage/HomePage'
 import Button from "@material-ui/core/Button";
 import { useState} from "react";
 import Loading from '../../../components/Done/Loading';
 import { useDispatch} from "react-redux";
 import { publishVersion } from '../../../redux/actions/contentVersions';
+import PreviewHome from "./PreviewHome/PreviewHome"
 
 const centerButton = {
     display : 'flex',
@@ -53,7 +53,7 @@ function PreviewPage({userProfile,sections}) {
                         <Loading Loading={loading}/>
                 ):null}
 
-            <HomePage userProfile={userProfile} sections={sections}/>
+            <PreviewHome userProfile={userProfile} sections={sections}/>
         </div>
     )
 }

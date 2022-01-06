@@ -7,9 +7,8 @@ import SectionLoading from '../../../components/public/Section/SectionLoading';
 import {Box} from '@mui/material'
 
 
-export default function HomePage({userProfile, sections }) {
-    console.log("Homepage",userProfile)
-  return (
+export default function HomePage({userProfile, sections}) {
+    return (
      <div>
         {/*header*/}
         <Navbar userProfile={userProfile} sections={sections}/>
