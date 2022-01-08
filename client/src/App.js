@@ -30,11 +30,11 @@ import Public from "./pages/public/Public";
 import Admin from "./pages/admin/Admin";
 import Authenticate from "./components/Auth/Authenticate";
 import HomePage from "./pages/public/HomePage/HomePage";
-import ProfilePage from "./pages/public/ProfilePage/ProfilePage";
 import AdminProfilePage from "./pages/admin/AdminProfilePage";
 import AdminHomePage from "./pages/admin/AdminHomePage";
 
 import './index.css';
+import AboutPage from "./pages/public/AboutPage/AboutPage";
 
 // function App() {
 //   const [loading, setLoading] = useState(true)
@@ -107,11 +107,11 @@ function App() {
                             <Routes>
                             <Route path="/public" element={<Public />} />
                             <Route path="/admin" element={<Admin />} />
-                            <Route path="/admin/profile" element={<AdminProfilePage />} />
+                            <Route path="/admin/profile" element={<AdminProfilePage userProfile={userProfile} />} />
                             <Route path="/admin/home" element={<AdminHomePage />} />
                             <Route path="/admin/login" element={<Authenticate />} />
                             <Route path="/public/home" element={<HomePage sections={sections}/>} />
-                            <Route path="/public/profile" element={<ProfilePage />} />
+                            <Route path="/public/about" element={<AboutPage />} />
                             </Routes>
                         </Router>
                     </div>
