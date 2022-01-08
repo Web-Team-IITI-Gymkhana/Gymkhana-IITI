@@ -6,23 +6,21 @@ import Section from '../../../components/public/Section/Section';
 import SectionLoading from '../../../components/public/Section/SectionLoading';
 import {Box} from '@mui/material'
 
-
-export default function HomePage({userProfile, sections}) {
+export default function HomePage({userProfile, sections,type}) {
     return (
      <div>
-        {/*header*/}
-        <Navbar userProfile={userProfile} sections={sections}/>
+
+
+        <Navbar userProfile={userProfile} sections={sections} type={type}/>
         <Hero userProfile={userProfile}/>
 
 
-      {/*body*/}
-      {sections.length > 0 ? sections.map(section => <Section key={section.sectionID} section={section} />) :
-        <SectionsLoading />
-      }
+        {
+            sections.length > 0 ? sections.map(section => <Section key={section.sectionID} section={section} />) :
+            <SectionsLoading />
+        }
 
-
-      {/*footer*/}
-      <Footer />
+        <Footer />
 
     </div>
   )

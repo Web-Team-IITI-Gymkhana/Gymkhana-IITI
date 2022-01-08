@@ -6,7 +6,7 @@ import * as loadAnimation from './loadAnimation.json';
 
 const loadOptions = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     animationData: loadAnimation.default,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice'
@@ -14,7 +14,7 @@ const loadOptions = {
 };
 const doneOptions = {
     loop: false,
-    autoplay: true, 
+    autoplay: true,
     animationData: doneAnimation.default,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice'
@@ -33,7 +33,7 @@ const Loading = (Loading) =>{
                 <Lottie options={doneOptions} height={200} width={200}/>
             )}
         </Modal>
-       
+
     );
 }
 

@@ -3,7 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
 import './style.css'
 
-export default function Navbar({userProfile,sections}) {
+export default function Navbar({userProfile,sections,type}) {
 
     const [state, setState] = React.useState({
         right: false,
@@ -21,7 +21,16 @@ export default function Navbar({userProfile,sections}) {
         setState({ ...state, [anchor]: open });
     };
 
-    const routeLink="/public/home/section/"
+    let routeLink = ""
+
+    if(type=="public")
+    {
+        routeLink="/public/home/section/"
+    }
+    else
+    {
+        routeLink = "/admin/preview/section/"
+    }
 
     const list = (anchor) => (
         <Box

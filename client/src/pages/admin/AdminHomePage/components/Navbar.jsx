@@ -14,7 +14,6 @@ import { useDispatch} from "react-redux";
 function AdminHomePageNavbar(props) {
 
     const [show, setShow] = useState(false);
-    // const [publish, setPublish] = useState(false);
     const [done, setDone] = useState(-1);
     const [loading, setLoading] = useState(-1);
 
@@ -91,15 +90,15 @@ function AdminHomePageNavbar(props) {
                     onClick={preview}>
                     Preview
                 </Button>
-                {/* <Button
+
+                <Button
                     variant="contained"
                     className="nav-btn"
-                    id="third-btn"
+                    id="first-btn"
                     color="primary"
-                    onClick={getPublish}
-                >
+                    onClick={getPublish}>
                     Publish
-                </Button> */}
+                </Button>
                     {done===0? (
                         <Loading Loading={loading}/>
                     ):null}
