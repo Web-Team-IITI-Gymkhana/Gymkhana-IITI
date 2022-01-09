@@ -72,9 +72,9 @@ app.route('/uploadImage').post(async (req, res) => {
     imgData = JSON.parse(imgData)
     const imgString = imgData.data
 
-    const uploadResponse = await cloudinary.uploader.upload(imgString);
-    console.log(uploadResponse)
+    const dataFor = req.body.dataFor
 
+    const uploadResponse = await cloudinary.uploader.upload(imgString);
     const imgURL = uploadResponse.url
 
     let userName = req.body.userName
@@ -82,7 +82,24 @@ app.route('/uploadImage').post(async (req, res) => {
     let user = await Users.findOne({userName:userName})
     const versionIndex = (user.contentVersions).length - 1;
 
-    user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.src`] : imgURL}},{new:true})
+    if(dataFor=="poster")
+    {
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.src`] : imgURL}},{new:true})
+    }
+    else if(dataFor=="logo")
+    {
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.logo`] : imgURL}},{new:true})
+    }
+    else if(dataFor=="editSectionChild")
+    {
+        const sectionID = req.body.sectionID
+        const sectionChildID = req.body.sectionChildID
+        let allSections = user.contentVersions[versionIndex].Sections;
+        let sectionIndex = allSections.findIndex((element) => element.sectionID === parseInt(sectionID));
+        let sectionContent = allSections[sectionIndex].sectionContent;
+        let sectionChildIndex = sectionContent.findIndex((element) => element.sectionChildID === parseInt(sectionChildID))
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildImage`] : imgURL}},{new:true})
+    }
 
     res.json({ msg: 'success' });
   } catch (error) {

@@ -6,7 +6,7 @@ import { useState } from "react";
 import {uploadImageServer} from "../../../redux/actions/users"
 import { useDispatch } from "react-redux";
 
-export default function PosterModal() {
+export default function ImgUploadModal({userName,type, buttonName}) {
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
 
@@ -27,21 +27,24 @@ export default function PosterModal() {
             uploadImage(reader.result);
         };
         reader.onerror = () => {
-            console.error('AHHHHHHHH!!');
+            console.error('Error in image upload!');
         };
     };
 
     const uploadImage = async (base64EncodedImage) => {
         try {
-            // console.log(base64EncodedImage)
             dispatch(uploadImageServer({
                 method: 'POST',
                 img : JSON.stringify({ data: base64EncodedImage }),
-                userName : "Cynaptics",
-                dataFor : "caption",
+                userName : userName,
+                dataFor : type,
                 headers: { 'Content-Type': 'application/json' }}))
 
+
+
+
             setFileInputState('');
+            setOpen(false)
         } catch (err) {
             console.error(err);
         }
@@ -88,7 +91,7 @@ export default function PosterModal() {
     return (
         <div>
             <Button variant="contained" id="edit-poster" color="primary" onClick={handleOpen}>
-                Edit Poster
+                {buttonName}
             </Button>
 
             <Modal

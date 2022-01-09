@@ -14,14 +14,11 @@ import Form from "../../components/admin/Form/Form";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { useMediaQuery, useTheme } from "@material-ui/core";
-// import Button from "@material-ui/core/Button";
-// import TextField from "@material-ui/core/TextField";
 
-function AdminProfilePage({userProfile,updateGeneralDetails}) {
-    console.log(userProfile)
+function AdminProfilePage({userProfile}) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  return (
+    return (
     <Container component="main">
       <div className="outermost">
         {isMobile ? (
@@ -33,12 +30,12 @@ function AdminProfilePage({userProfile,updateGeneralDetails}) {
           </>
         )}
 
-        <Poster posterSrc={userProfile.src}/>
+        <Poster userProfile={userProfile}/>
 
         <div>
           <Grid container spacing={2}>
-            <Logo />
-            <Form userProfile={userProfile} updateGeneralDetails={updateGeneralDetails} />
+            <Logo userProfile={userProfile}/>
+            <Form userProfile={userProfile}/>
           </Grid>
         </div>
       </div>

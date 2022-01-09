@@ -1,21 +1,20 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-// import poster from "../../photos/poster.jpg"
-import PosterModal from "./PosterModal";
-// import {Box} from "@mui/material";
+import ImgUploadModal from "../Modal/ImgUploadModal"
 
-function Poster({posterSrc}) {
+function Poster({userProfile}) {
   return (
     <div>
 
         <img
-            src={posterSrc}
+            src={userProfile.src}
             alt="Club Poster"
             width="100%"
             height="300px"
             id="poster"></img>
 
-        <PosterModal/>
+        <ImgUploadModal userName={userProfile.userName} type="poster"
+            buttonName = "Edit Poster"
+        />
     </div>
   );
 }
