@@ -3,11 +3,12 @@ import * as api from "../../api";
 export const setContentVersions = (userName) => async (dispatch) => {
     try {
         const {data} = await api.fetchUser(userName)
+        dispatch({type:"SET_PUBLISHED_VERSION",payload:data.user.publishedVersion})
         dispatch({type:"SET_CONTENT_VERSIONS",payload:data.user.contentVersions})
     } catch (error) {
         console.log(error)
     }
-  }
+}
 
 
 export const updateGeneralDetails = (userName,postData) => async (dispatch) => {
@@ -55,6 +56,16 @@ export const deleteSectionChild = (userName,sectionID,sectionChildID) => async (
     try{
         await api.deleteSectionChild(userName,sectionID,sectionChildID)
         dispatch({type:"DELETE_SECTION_CHILD",payload:{sectionID:sectionID,sectionChildID:sectionChildID}})
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
+export const publishVersion = (userName) => async (dispatch) => {
+    try{
+        await api.publishVersion(userName)
+        dispatch({type:"UPDATE_SECTION_CHILD"})
     }
     catch(error){
         console.log(error)
