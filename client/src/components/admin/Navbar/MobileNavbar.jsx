@@ -24,15 +24,15 @@ function MobileNavbar() {
           <List>
             <ListItem onClick={() => setOpenDrawer(false)}>
               <ListItemText>
-                <Link to="#">Preview</Link>
+                <Link to="/admin/preview">Preview</Link>
               </ListItemText>
             </ListItem>
             <Divider />
-            <ListItem onClick={() => setOpenDrawer(false)}>
+            {/* <ListItem onClick={() => setOpenDrawer(false)}>
               <ListItemText>
                 <Link to="#">Publish</Link>
               </ListItemText>
-            </ListItem>
+            </ListItem> */}
             <Divider />
             <ListItem onClick={() => setOpenDrawer(false)}>
               <ListItemText>

@@ -56,12 +56,15 @@ const updateGeneralDetails = async(req,res) => {
         let caption = updateDetails.caption;
         let email = updateDetails.email;
         let phoneNumber = updateDetails.phoneNumber;
+        // let publishedVersion = updateDetails.publishedVersion
+        let publishedVersion = (user.contentVersions).length - 1
 
         if(name){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.name`] : name}},{new:true})}
         if(socialMedia){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.socialMedia`] : socialMedia}},{new:true})}
         if(caption){ user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.caption`] : caption}},{new:true})}
         if(email){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.contactDetails.email`] : email }},{new:true})}
         if(phoneNumber){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.contactDetails.phoneNumber`] : phoneNumber}},{new:true})}
+        if(publishedVersion){await Users.updateOne({userName:userName},{'$set': { [`publishedVersion`] : publishedVersion}},{new:true})}
 
         return res.status(201).json({"updatedUser":user});
 
@@ -72,20 +75,37 @@ const updateGeneralDetails = async(req,res) => {
 }
 
 const publishVersion = async(req,res)=>{
-    const {userName : userName} = req.params
-    let user = await Users.findOne({userName:userName})
-    let contentVersions = user.contentVersions
+  try {
+      const {userName : userName} = req.params
+      let user = await Users.findOne({userName:userName})
+      let contentVersions = user.contentVersions
 
-    let versionIndex = contentVersions.length - 1
+      // contentVersions = [contentVersions[0],contentVersions[1]]
+      // contentVersions[0].contentVersion = 1
+      // contentVersions[1].contentVersion = 2
 
-    if(versionIndex==-1)
-    {
-       contentVersions.push({})
-    }
-    else
-    {
-        contentVersions.push(contentVersions[index]);
-    }
+      let versionIndex = contentVersions.length - 1
+
+      if(versionIndex==-1)
+      {
+        contentVersions.push({})
+      }
+      else
+      {
+          let newVersion = contentVersions[versionIndex]
+          newVersion.contentVersion = contentVersions.length + 1
+          contentVersions.push(newVersion);
+      }
+
+      user = await Users.updateOne({userName:userName},{'$set': { [`publishedVersion`] : contentVersions.length-1}},{new:true})
+      user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions`] : contentVersions}},{new:true})
+      return res.status(201).json({"updatedUser":user})
+
+  } catch (error) {
+    console.log(error)
+    return res.status(404).json({message:error})
+  }
+
 }
 
 module.exports = {getAllUsers,addUser,getUser , updateGeneralDetails , publishVersion , deleteUser}

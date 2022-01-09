@@ -21,3 +21,4 @@ export const deleteSection = (userName,sectionID) => axios.delete(`${contentURL}
 export const updateSectionChild = (userName,sectionID,sectionChildID,updateData) => axios.patch(`${contentURL}/sections/${userName}/${sectionID}/${sectionChildID}`,updateData)
 export const deleteSectionChild = (userName,sectionID,sectionChildID) => axios.delete(`${contentURL}/sections/${userName}/${sectionID}/${sectionChildID}`)
 
+export const publishVersion = (userName) => axios.post(`${usersURL}/${userName}`)
