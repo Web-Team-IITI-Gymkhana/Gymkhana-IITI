@@ -36,7 +36,7 @@ function AdminHomePage({userProfile}) {
 
     return (
         <div>
-            <Navbar handlingAdd={handledAdd}/>
+            <Navbar handlingAdd={handledAdd} userName={currentUser}/>
 
             <Container maxWidth="100">
             <Box className="mainContent" display={"flex"}>

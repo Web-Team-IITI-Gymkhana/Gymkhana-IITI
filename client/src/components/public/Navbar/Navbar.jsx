@@ -3,7 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
 import './style.css'
 
-export default function Navbar({userProfile,sections}) {
+export default function Navbar({userProfile,sections,type}) {
 
     const [state, setState] = React.useState({
         right: false,
@@ -21,6 +21,17 @@ export default function Navbar({userProfile,sections}) {
         setState({ ...state, [anchor]: open });
     };
 
+    let routeLink = ""
+
+    if(type=="public")
+    {
+        routeLink="/public/home/section/"
+    }
+    else
+    {
+        routeLink = "/admin/preview/section/"
+    }
+
     const list = (anchor) => (
         <Box
             role="presentation"
@@ -28,15 +39,18 @@ export default function Navbar({userProfile,sections}) {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
+
             <List>
                 {sections.map((text) => (
-                    <a href={"/public/home/section/" + text.sectionID } key={text.sectionID}>
+                    <a href={routeLink + text.sectionID } key={text.sectionID}>
                     <ListItem button key={text.sectionName}>
                         <ListItemText primary={text.sectionName} />
                     </ListItem>
                     </a>
                 ))}
             </List>
+
+
         </Box>
     );
 
@@ -73,7 +87,7 @@ export default function Navbar({userProfile,sections}) {
 
                 <div className="container links-wrapper" >
                     <div className="row d-flex" style={{ flexDirection: "row-reverse" }}>
-                        {sections.map(section=><div className="col-3 quick-links col-lg-2 py-2 text-center " key={section.sectionID}><a href={"/public/home/section/" + section.sectionID } className="link">{section.sectionName}</a></div>)}
+                        {sections.map(section=><div className="col-3 quick-links col-lg-2 py-2 text-center " key={section.sectionID}><a href={routeLink + section.sectionID } className="link">{section.sectionName}</a></div>)}
                     </div>
                 </div>
             </div>

@@ -1,11 +1,27 @@
 const Users = require('../models/users')
 
-const  getAllSections = async(req,res) => {
-    try {
-        const {userName : userName} = req.params
-        const user = await Users.findOne({userName:userName});
-        const versionIndex = (user.contentVersions).length - 1;
+const  getCurrentSections = async(req,res) => {
+  try {
+      const {userName : userName } = req.params
+      const user = await Users.findOne({userName:userName});
 
+      const versionIndex = (user.contentVersions).length - 1;
+      const allSections = user.contentVersions[versionIndex].Sections;
+
+      return res.status(201).json({"sections": allSections})
+
+  } catch (error) {
+      console.log(error)
+      return res.status(404).json({"message":error})
+  }
+}
+
+const  getPublishedSections = async(req,res) => {
+    try {
+        const {userName : userName , publishedVersion : publishedVersion} = req.params
+        const user = await Users.findOne({userName:userName});
+
+        const versionIndex = publishedVersion-1;
         const allSections = user.contentVersions[versionIndex].Sections;
 
         return res.status(201).json({"sections": allSections})
@@ -47,7 +63,7 @@ const  addSection = async(req,res) => {
     }
 }
 
-const  getSection = async(req,res) => {
+const  getCurrentSection = async(req,res) => {
     try {
         const {userName : userName , sectionID : sectionID} = req.params
 
@@ -65,6 +81,26 @@ const  getSection = async(req,res) => {
         console.log(error)
         return res.status(404).json({"message":error})
     }
+}
+
+const  getPublishedSection = async(req,res) => {
+  try {
+      const {userName : userName , publishedVersion:publishedVersion,sectionID : sectionID} = req.params
+
+      let user = await Users.findOne({userName:userName})
+      const versionIndex = publishedVersion-1
+
+      let allSections = user.contentVersions[versionIndex].Sections;
+
+      const sectionIndex = allSections.findIndex((element) => element.sectionID === parseInt(sectionID));
+      const section = user.contentVersions[versionIndex].Sections[sectionIndex];
+
+      return res.status(201).json({"section":section})
+
+  } catch (error) {
+      console.log(error)
+      return res.status(404).json({"message":error})
+  }
 }
 
 const updateSection = async(req,res) => {
@@ -120,7 +156,7 @@ const deleteSection = async (req,res)=>{
 
 }
 
-const  getSectionChild = async(req,res) => {
+const  getCurrentSectionChild = async(req,res) => {
     try {
         const {userName : userName ,sectionID : sectionID, sectionChildID : sectionChildID} = req.params
 
@@ -140,6 +176,28 @@ const  getSectionChild = async(req,res) => {
         console.log(error)
         return res.status(404).json({"message":error})
     }
+}
+
+const  getPublishedSectionChild = async(req,res) => {
+  try {
+      const {userName : userName ,publishedVersion:publishedVersion,sectionID : sectionID, sectionChildID : sectionChildID} = req.params
+
+      let user = await Users.findOne({userName:userName})
+      const versionIndex = publishedVersion - 1;
+
+      let allSections = user.contentVersions[versionIndex].Sections;
+
+      let sectionIndex = allSections.findIndex((element) => element.sectionID === parseInt(sectionID));
+      let sectionContent = allSections[sectionIndex].sectionContent;
+      let sectionChildIndex = sectionContent.findIndex((element) => element.sectionChildID === parseInt(sectionChildID))
+      let sectionChild = user.contentVersions[versionIndex].Sections[sectionIndex].sectionContent[sectionChildIndex]
+
+      return res.status(201).json({"sectionChild": sectionChild})
+
+  } catch (error) {
+      console.log(error)
+      return res.status(404).json({"message":error})
+  }
 }
 
 const  updateSectionChild = async(req,res) => {
@@ -230,5 +288,5 @@ const deleteSectionChild = async(req,res)=>{
 
 }
 
-module.exports = {addSection, updateSection, getAllSections, getSectionChild,
-                  addSectionChild, getSection,updateSectionChild , deleteSectionChild, deleteSection}
+module.exports = {addSection, updateSection, getCurrentSections,getPublishedSections, getCurrentSectionChild, getPublishedSectionChild,
+                  addSectionChild, getCurrentSection,getPublishedSection,updateSectionChild , deleteSectionChild, deleteSection}

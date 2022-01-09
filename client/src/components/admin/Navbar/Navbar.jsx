@@ -9,6 +9,9 @@ function Navbar() {
     const redirect = () => {
         navigate('/admin/home')
     }
+    const preview = () => {
+        navigate('/admin/preview')
+    }
 
   return (
     <div className="navbar">
@@ -18,17 +21,18 @@ function Navbar() {
           className="nav-btn"
           id="first-btn"
           color="primary"
+          onClick = {preview}
         >
           Preview
         </Button>
-        <Button
+        {/* <Button
           variant="contained"
           className="nav-btn"
           id="second-btn"
           color="primary"
         >
           Publish
-        </Button>
+        </Button> */}
       </span>
 
       <span id="right">
