@@ -2,8 +2,9 @@ import { Box, Button, Drawer, List, ListItem, ListItemText } from '@mui/material
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
 import './style.css'
+import { Link } from 'react-router-dom';
 
-export default function Navbar({userProfile,sections,type}) {
+export default function Navbar({ userProfile, sections, type }) {
 
     const [state, setState] = React.useState({
         right: false,
@@ -23,12 +24,10 @@ export default function Navbar({userProfile,sections,type}) {
 
     let routeLink = ""
 
-    if(type=="public")
-    {
-        routeLink="/public/home/section/"
+    if (type == "public") {
+        routeLink = "/public/home/section/"
     }
-    else
-    {
+    else {
         routeLink = "/admin/preview/section/"
     }
 
@@ -42,10 +41,10 @@ export default function Navbar({userProfile,sections,type}) {
 
             <List>
                 {sections.map((text) => (
-                    <a href={routeLink + text.sectionID } key={text.sectionID}>
-                    <ListItem button key={text.sectionName}>
-                        <ListItemText primary={text.sectionName} />
-                    </ListItem>
+                    <a href={routeLink + text.sectionID} key={text.sectionID}>
+                        <ListItem button key={text.sectionName}>
+                            <ListItemText primary={text.sectionName} />
+                        </ListItem>
                     </a>
                 ))}
             </List>
@@ -87,7 +86,7 @@ export default function Navbar({userProfile,sections,type}) {
 
                 <div className="container links-wrapper" >
                     <div className="row d-flex" style={{ flexDirection: "row-reverse" }}>
-                        {sections.map(section=><div className="col-3 quick-links col-lg-2 py-2 text-center " key={section.sectionID}><a href={routeLink + section.sectionID } className="link">{section.sectionName}</a></div>)}
+                        {sections.map(section => <div className="col-3 quick-links col-lg-2 py-2 text-center " key={section.sectionID}><Link to={routeLink + section.sectionID} className="link">{section.sectionName}</Link></div>)}
                     </div>
                 </div>
             </div>

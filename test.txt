@@ -1,0 +1,239 @@
+Compiled with warnings.
+
+src\App.js
+  Line 9:1:  Missing return type on function  @typescript-eslint/explicit-module-boundary-types
+
+src\api\index.js
+  Line 6:34:   Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 6:35:   Argument 'imageData' should be typed       @typescript-eslint/explicit-module-boundary-types
+  Line 8:27:   Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 9:26:   Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 9:27:   Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 10:37:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 10:38:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 10:47:  Argument 'postData' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 11:27:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 11:28:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 14:30:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 14:31:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 15:27:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 15:28:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 15:37:  Argument 'postData' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 17:30:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 17:31:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 17:40:  Argument 'sectionID' should be typed       @typescript-eslint/explicit-module-boundary-types
+  Line 18:32:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 18:33:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 18:42:  Argument 'sectionID' should be typed       @typescript-eslint/explicit-module-boundary-types
+  Line 18:52:  Argument 'postData' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 19:30:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 19:31:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 19:40:  Argument 'sectionID' should be typed       @typescript-eslint/explicit-module-boundary-types
+  Line 21:35:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 21:36:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 21:45:  Argument 'sectionID' should be typed       @typescript-eslint/explicit-module-boundary-types
+  Line 21:55:  Argument 'sectionChildID' should be typed  @typescript-eslint/explicit-module-boundary-types
+  Line 21:70:  Argument 'updateData' should be typed      @typescript-eslint/explicit-module-boundary-types
+  Line 22:35:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 22:36:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 22:45:  Argument 'sectionID' should be typed       @typescript-eslint/explicit-module-boundary-types
+  Line 22:55:  Argument 'sectionChildID' should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\Done\Loading.jsx
+  Line 25:17:  Missing return type on function     @typescript-eslint/explicit-module-boundary-types
+  Line 25:18:  Argument 'Loading' should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\admin\Form\Form.jsx
+  Line 9:1:   Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 9:15:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\admin\Logo\Logo.jsx
+  Line 5:1:   Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 5:15:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\admin\Modal\ImgUploadModal.js
+  Line 9:16:  Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 9:40:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\admin\Modal\SectionChildModal.js
+  Line 12:16:  Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 12:43:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\admin\Navbar\MobileNavbar.jsx
+  Line 14:8:  'Hamburger' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 16:1:  Missing return type on function        @typescript-eslint/explicit-module-boundary-types
+
+src\components\admin\Navbar\Navbar.jsx
+  Line 6:1:  Missing return type on function  @typescript-eslint/explicit-module-boundary-types
+
+src\components\admin\Poster\Poster.jsx
+  Line 4:1:   Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 4:17:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\admin\SectionChild\SectionChild.jsx
+  Line 40:1:   Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 40:23:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\admin\Section\Section.jsx
+  Line 9:1:   Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 9:18:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\public\Footer\Footer.jsx
+  Line 5:16:  Missing return type on function  @typescript-eslint/explicit-module-boundary-types
+
+src\components\public\Hero\Hero.jsx
+  Line 5:16:  Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 5:30:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\public\Navbar\Navbar.jsx
+  Line 7:16:  Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 7:32:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\public\SectionChild\SectionChildCard.jsx
+  Line 3:10:  'Link' is defined but never used         @typescript-eslint/no-unused-vars
+  Line 6:26:  Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 6:27:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\public\Section\Section.jsx
+  Line 6:17:  Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 6:18:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\components\public\Section\SectionLoading.jsx
+  Line 5:24:  Missing return type on function  @typescript-eslint/explicit-module-boundary-types
+
+src\pages\admin\AdminHomePage\AdminHomePage.jsx
+  Line 14:1:   Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 14:24:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\pages\admin\AdminHomePage\components\Navbar.jsx
+  Line 2:20:   'useEffect' is defined but never used            @typescript-eslint/no-unused-vars
+  Line 3:8:    'ReactDOM' is defined but never used             @typescript-eslint/no-unused-vars
+  Line 12:1:   Missing return type on function                  @typescript-eslint/explicit-module-boundary-types
+  Line 12:30:  Argument 'props' should be typed                 @typescript-eslint/explicit-module-boundary-types
+  Line 15:12:  'publish' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  Line 15:21:  'setPublish' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+src\pages\admin\AdminProfilePage.jsx
+  Line 18:1:   Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 18:27:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\pages\admin\Admin\Admin.jsx
+  Line 2:27:  'Router' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 2:35:  'Routes' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 2:43:  'Route' is defined but never used   @typescript-eslint/no-unused-vars
+  Line 7:1:   Missing return type on function     @typescript-eslint/explicit-module-boundary-types
+
+src\pages\public\HomePage\HomePage.jsx
+  Line 10:16:  Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 10:34:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\pages\public\Public.jsx
+  Line 2:27:  'Router' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 2:35:  'Routes' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 2:43:  'Route' is defined but never used   @typescript-eslint/no-unused-vars
+  Line 5:1:   Missing return type on function     @typescript-eslint/explicit-module-boundary-types
+
+src\pages\public\SectionPage\Section.jsx
+  Line 5:17:  Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 5:18:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\pages\public\SectionPage\SectionView.jsx
+  Line 5:1:   Missing return type on function          @typescript-eslint/explicit-module-boundary-types
+  Line 5:22:  Object pattern argument should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\redux\actions\contentVersions.js
+  Line 3:36:   Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 3:49:   Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 3:56:   Argument 'dispatch' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 13:38:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 13:47:  Argument 'postData' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 13:60:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 13:67:  Argument 'dispatch' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 23:28:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 23:37:  Argument 'postData' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 23:50:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 23:57:  Argument 'dispatch' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 33:33:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 33:42:  Argument 'sectionID' should be typed       @typescript-eslint/explicit-module-boundary-types
+  Line 33:52:  Argument 'postData' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 33:65:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 33:72:  Argument 'dispatch' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 44:36:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 44:45:  Argument 'sectionID' should be typed       @typescript-eslint/explicit-module-boundary-types
+  Line 44:55:  Argument 'sectionChildID' should be typed  @typescript-eslint/explicit-module-boundary-types
+  Line 44:70:  Argument 'updateData' should be typed      @typescript-eslint/explicit-module-boundary-types
+  Line 44:85:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 44:92:  Argument 'dispatch' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 54:36:  Argument 'userName' should be typed        @typescript-eslint/explicit-module-boundary-types
+  Line 54:45:  Argument 'sectionID' should be typed       @typescript-eslint/explicit-module-boundary-types
+  Line 54:55:  Argument 'sectionChildID' should be typed  @typescript-eslint/explicit-module-boundary-types
+  Line 54:74:  Missing return type on function            @typescript-eslint/explicit-module-boundary-types
+  Line 54:81:  Argument 'dispatch' should be typed        @typescript-eslint/explicit-module-boundary-types
+
+src\redux\actions\users.js
+  Line 3:31:   Missing return type on function       @typescript-eslint/explicit-module-boundary-types
+  Line 3:38:   Argument 'dispatch' should be typed   @typescript-eslint/explicit-module-boundary-types
+  Line 12:25:  Argument 'userName' should be typed   @typescript-eslint/explicit-module-boundary-types
+  Line 12:38:  Missing return type on function       @typescript-eslint/explicit-module-boundary-types
+  Line 12:45:  Argument 'dispatch' should be typed   @typescript-eslint/explicit-module-boundary-types
+  Line 21:28:  Argument 'userName' should be typed   @typescript-eslint/explicit-module-boundary-types
+  Line 21:41:  Missing return type on function       @typescript-eslint/explicit-module-boundary-types
+  Line 21:48:  Argument 'dispatch' should be typed   @typescript-eslint/explicit-module-boundary-types
+  Line 30:38:  Argument 'userName' should be typed   @typescript-eslint/explicit-module-boundary-types
+  Line 30:47:  Argument 'postData' should be typed   @typescript-eslint/explicit-module-boundary-types
+  Line 30:60:  Missing return type on function       @typescript-eslint/explicit-module-boundary-types
+  Line 30:67:  Argument 'dispatch' should be typed   @typescript-eslint/explicit-module-boundary-types
+  Line 39:35:  Argument 'imageData' should be typed  @typescript-eslint/explicit-module-boundary-types
+  Line 39:49:  Missing return type on function       @typescript-eslint/explicit-module-boundary-types
+  Line 39:56:  Argument 'dispatch' should be typed   @typescript-eslint/explicit-module-boundary-types
+
+src\redux\reducers\contentVersions.js
+  Line 38:18:  Missing return type on function    @typescript-eslint/explicit-module-boundary-types
+  Line 38:38:  Argument 'action' should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\redux\reducers\publishedVersionNum.js
+  Line 1:18:  Missing return type on function    @typescript-eslint/explicit-module-boundary-types
+  Line 1:41:  Argument 'action' should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\redux\reducers\sections.js
+  Line 1:18:  Missing return type on function    @typescript-eslint/explicit-module-boundary-types
+  Line 1:31:  Argument 'action' should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\redux\reducers\users.js
+  Line 1:18:  Missing return type on function    @typescript-eslint/explicit-module-boundary-types
+  Line 1:28:  Argument 'action' should be typed  @typescript-eslint/explicit-module-boundary-types
+
+src\reportWebVitals.js
+  Line 1:25:  Missing return type on function         @typescript-eslint/explicit-module-boundary-types
+  Line 1:25:  Argument 'onPerfEntry' should be typed  @typescript-eslint/explicit-module-boundary-types
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.        
+
+// module.exports = {
+//   "env": {
+//     node: true,
+//     "browser": true,
+//     "es2021": true
+//   },
+//   "extends": [
+//     "eslint:recommended",
+//     "plugin:react/recommended",
+//     "plugin:@typescript-eslint/recommended"
+//   ],
+//   "parser": "@typescript-eslint/parser",
+//   "parserOptions": {
+//     "ecmaFeatures": {
+//       "jsx": true
+//     },
+//     "ecmaVersion": 13,
+//     "sourceType": "module"
+//   },
+//   "plugins": [
+//     "react",
+//     "@typescript-eslint"
+//   ],
+//   "rules": {
+//     "react/prop-types": "off"
+//   }
+// };
