@@ -41,6 +41,24 @@ export const addSectionChild = (userName,sectionID,postData) => async (dispatch)
     }
 }
 
+export const updateSection = (userName,sectionID,updateData) => async (dispatch) => {
+    try {
+      await api.updateSection(userName,sectionID,updateData)
+      dispatch({type:"UPDATE_SECTION",payload:{sectionID:sectionID,updateData:updateData}})
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+export const deleteSection = (userName,sectionID) => async (dispatch) => {
+    try {
+      await api.deleteSection(userName,sectionID)
+      dispatch({type:"DELETE_SECTION",payload:{sectionID:sectionID}})
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
 
 export const updateSectionChild = (userName,sectionID,sectionChildID,updateData) => async (dispatch) => {
     try{
@@ -65,9 +83,19 @@ export const deleteSectionChild = (userName,sectionID,sectionChildID) => async (
 export const publishVersion = (userName) => async (dispatch) => {
     try{
         await api.publishVersion(userName)
-        dispatch({type:"UPDATE_SECTION_CHILD"})
+        dispatch({type:"PUBLISH_VERSION"})
     }
     catch(error){
+        console.log(error)
+    }
+}
+
+
+export const uploadImageServer = (imageData) => async (dispatch) => {
+    try {
+        await api.uploadImageServer(imageData)
+        dispatch({type:"UPLOAD_IMAGE"})
+    } catch(error){
         console.log(error)
     }
 }

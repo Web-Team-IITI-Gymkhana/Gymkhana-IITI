@@ -11,6 +11,11 @@ import { Typography } from "@material-ui/core";
 import { addSection } from "../../../redux/actions/contentVersions";
 import { useSelector,useDispatch} from "react-redux";
 
+// const sectionHeaderStyle = {
+//     display : 'inline-flex',
+//     justifyContent : 'space-between'
+// }
+
 function AdminHomePage({userProfile}) {
 
     let contentVersions = useSelector((state)=> state.contentVersions)
@@ -23,10 +28,11 @@ function AdminHomePage({userProfile}) {
 
     const RenderSectionHeader = (sectionID,sectionHeader) => {
         return(
-            <Card className="sectionHeaderCard" onClick={()=>{setSectionID(sectionID)}}>
-                {sectionHeader}
-            </Card>
-        )
+
+                <Card className="sectionHeaderCard" onClick={()=>{setSectionID(sectionID)}}>
+                    {sectionHeader}
+                </Card>
+            )
     };
 
     const handledAdd = (sectionName,sectionHeader)=>{

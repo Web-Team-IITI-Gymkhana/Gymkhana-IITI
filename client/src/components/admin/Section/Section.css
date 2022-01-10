@@ -9,10 +9,11 @@
 
 .header{
     display: inline;
-    
+
 }
 
-#add{
+#add , #update {
     float: right;
     background-color: #e7e2c3 !important;
+    margin: 5px;
 }

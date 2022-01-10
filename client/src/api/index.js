@@ -14,7 +14,7 @@ export const deleteUser = (userName) => axios.delete(`${usersURL}/${userName}`)
 export const fetchSections = (userName) => axios.get(`${contentURL}/sections/${userName}`)
 export const addSection = (userName,postData) => axios.post(`${contentURL}/sections/${userName}`,postData)
 
-export const updateSection = (userName,sectionID) => axios.patch(`${contentURL}/sections/${userName}/${sectionID}`,{"sectionName" : "Projects Latest Redux", "sectionHeader" : "Header Latest Redux"})
+export const updateSection = (userName,sectionID,updateData) => axios.patch(`${contentURL}/sections/${userName}/${sectionID}`,updateData)
 export const addSectionChild = (userName,sectionID,postData) => axios.post(`${contentURL}/sections/${userName}/${sectionID}`,postData)
 export const deleteSection = (userName,sectionID) => axios.delete(`${contentURL}/sections/${userName}/${sectionID}`)
 
