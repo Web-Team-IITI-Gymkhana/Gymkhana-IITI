@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateGeneralDetails } from "../../../redux/actions/contentVersions";
-import { startCase, upperCase } from 'lodash'
 import { makeStyles, Paper, Typography } from "@material-ui/core";
 import { styles } from "../../../variable-css";
 
@@ -37,26 +36,24 @@ function Form({ userProfile }) {
   return (
 
     <Paper style={{ padding: 20 }}>
-      <Typography align="center" className={classes.subheading}>{upperCase('general details')}</Typography>
+      <Typography align="center" className={classes.subheading}>GENERAL DETAILS</Typography>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <FormTextField fieldName={'name'} label={startCase('club name')} type={'text'} autoCompleteHint={''} postData={postData} setPostData={setPostData} />
-        <FormTextField fieldName={'email'} label={startCase('email')} type={'email'} autoCompleteHint={'email'} postData={postData} setPostData={setPostData} />
-        <FormTextField fieldName={'phoneNumber'} label={startCase('phone number')} type={'tel'} autoCompleteHint={''} postData={postData} setPostData={setPostData} />
+        <FormTextField fieldName={'name'} label={'Club Name'} type={'text'} autoCompleteHint={''} postData={postData} setPostData={setPostData} />
+        <FormTextField fieldName={'email'} label={'Email'} type={'email'} autoCompleteHint={'email'} postData={postData} setPostData={setPostData} />
+        <FormTextField fieldName={'phoneNumber'} label={'Phone Number'} type={'tel'} autoCompleteHint={''} postData={postData} setPostData={setPostData} />
 
         <TextField
           variant={'standard'}
           fullWidth
-          label={startCase('social media')}
+          label={'Social Media'}
           type={'text'}
           autoComplete={''}
           value={postData.socialMedia}
           onChange={(e) => setPostData({ ...postData, socialMedia: e.target.value.split(',') })} style={{ marginBlock: 10 }} />
 
-        <FormTextField fieldName={'caption'} label={startCase('poster caption')} type={'text'} autoCompleteHint={''} postData={postData} setPostData={setPostData} />
+        <FormTextField fieldName={'caption'} label={'Poster Caption'} type={'text'} autoCompleteHint={''} postData={postData} setPostData={setPostData} />
 
-        <Button type="submit" className={classes.buttonPrimary}>
-          {upperCase('confirm')}
-        </Button>
+        <Button type="submit" className={classes.buttonPrimary}>Confirm</Button>
       </form >
     </Paper>
   );

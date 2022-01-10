@@ -5,7 +5,6 @@ import { useState } from "react";
 import { uploadImageServer } from "../../../redux/actions/users"
 import { useDispatch } from "react-redux";
 import { styles } from "../../../variable-css";
-import { upperCase } from 'lodash'
 
 const useStyles = makeStyles(styles)
 
@@ -59,7 +58,7 @@ export default function ImgUploadModal({ userName, type }) {
             <form onSubmit={handleSubmitFile}>
                 <input type="file" ref={inputRef} onChange={handleFileInputChange} value={fileInputState} style={{ display: 'none' }} />
                 <Button onClick={() => { inputRef.current.click() }} type="submit" className={classes.buttonPrimary}>
-                    {upperCase('edit')}
+                    EDIT
                 </Button>
             </form>
         </div>
