@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setContentVersions } from "../../redux/actions/contentVersions";
-import { useNavigate, useLocation } from 'react-router-dom';
+// import { useNavigate, useLocation } from 'react-router-dom';
 
 import HomePage from "./HomePage/HomePage";
 import SectionView from "./SectionPage/SectionView";
