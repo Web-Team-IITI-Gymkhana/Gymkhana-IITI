@@ -10,13 +10,13 @@ import SectionView from "./SectionPage/SectionView";
 
 function Public(){
 
-    const path = (useLocation()).pathname
+    // const path = (useLocation()).pathname
 
-    console.log(path)
+    // console.log(path)
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    if(path==="/public"){navigate("/public/home")}
+    // if(path==="/public"){navigate("/public/home")}
 
 
 

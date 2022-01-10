@@ -14,7 +14,7 @@ function App() {
                 <div className="App">
                     <Router>
                         <Routes>
-                            <Route exact path="/" element = {<Navigate to="/public"/>}/>
+                            <Route exact path="/" element = {<Navigate to="/public/home"/>}/>
                             <Route path="/public/*" element={<Public/>}/>
                             <Route path="/admin/*" element={<Admin/>}/>
                         </Routes>
