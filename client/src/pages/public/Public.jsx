@@ -1,14 +1,14 @@
 import React from "react";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setContentVersions } from "../../redux/actions/contentVersions";
-import { useNavigate ,useLocation} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import HomePage from "./HomePage/HomePage";
 import SectionView from "./SectionPage/SectionView";
 
-function Public(){
+function Public() {
 
     // const path = (useLocation()).pathname
 
@@ -26,18 +26,18 @@ function Public(){
     const currentUser = "Cynaptics"
 
     const dispatch = useDispatch();
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(setContentVersions(currentUser))
-    },[dispatch])
+    }, [dispatch])
 
-    let contentVersions = useSelector((state)=> state.contentVersions)
-    let publishedVersionNum = useSelector((state)=>state.publishedVersionNum)
+    let contentVersions = useSelector((state) => state.contentVersions)
+    let publishedVersionNum = useSelector((state) => state.publishedVersionNum)
 
     useEffect(() => {
         try {
             let userName = currentUser
 
-            let publishedVersion = contentVersions[publishedVersionNum-1]
+            let publishedVersion = contentVersions[publishedVersionNum - 1]
 
             let publishedName = publishedVersion.userDetails.name
             let publishedLogoSrc = publishedVersion.userDetails.logo
@@ -52,7 +52,7 @@ function Public(){
             let publishedThemeDetails = publishedVersion.themeDetails
 
             setPublishedProfile({
-                "userName":userName,"name": publishedName, "email": publishedEmail, "logo": publishedLogoSrc, "socialMedia": publishedSocialMedia, "phoneNumber": publishedPhoneNumber,
+                "userName": userName, "name": publishedName, "email": publishedEmail, "logo": publishedLogoSrc, "socialMedia": publishedSocialMedia, "phoneNumber": publishedPhoneNumber,
                 "src": publishedHomePagePoster.src, "caption": publishedHomePagePoster.caption, "theme": publishedThemeDetails
             })
 
@@ -64,17 +64,17 @@ function Public(){
         }
     }, [contentVersions])
 
-    return(
+    return (
         <>
-        {
-            publishedSections.length !== 0 ?
-                <div>
-                    <Routes>
-                        <Route path="/home" element={<HomePage userProfile={publishedUserProfile} sections={publishedSections} type="public"/>}/>
-                        {publishedSections.map(section=><Route path={"/home/section/" + section.sectionID } element={<SectionView userProfile={publishedUserProfile} sections={publishedSections} id={section.sectionID} type="public"/>} key={section.sectionID} />)}
-                    </Routes>
-                </div> : ""
-        }
+            {
+                publishedSections.length !== 0 ?
+                    <div>
+                        <Routes>
+                            <Route path="/home" element={<HomePage userProfile={publishedUserProfile} sections={publishedSections} type="public" />} />
+                            {publishedSections.map(section => <Route path={"/home/section/" + section.sectionID} element={<SectionView userProfile={publishedUserProfile} sections={publishedSections} id={section.sectionID} type="public" />} key={section.sectionID} />)}
+                        </Routes>
+                    </div> : ""
+            }
 
         </>
 
