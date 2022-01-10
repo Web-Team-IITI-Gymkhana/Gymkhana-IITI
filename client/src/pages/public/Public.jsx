@@ -3,20 +3,20 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setContentVersions } from "../../redux/actions/contentVersions";
-import { useNavigate, useLocation } from 'react-router-dom';
+// import { useNavigate, useLocation } from 'react-router-dom';
 
 import HomePage from "./HomePage/HomePage";
 import SectionView from "./SectionPage/SectionView";
 
 function Public() {
 
-    const path = (useLocation()).pathname
+    // const path = (useLocation()).pathname
 
-    console.log(path)
+    // console.log(path)
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    if (path === "/public") { navigate("/public/home") }
+    // if(path==="/public"){navigate("/public/home")}
 
 
 
