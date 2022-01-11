@@ -1,45 +1,43 @@
 import React from "react";
-// import ReactDom from "react-dom";
 import "../../index.css";
 import "../../components/admin/Navbar/Navbar.css";
 import "../../components/admin/Navbar/MobileNavbar.css";
 import "../../components/admin/Logo/Logo.css";
 import "../../components/admin/Poster/Poster.css";
 import "../../components/admin/Form/Form.css";
-import Navbar from "../../components/admin/Navbar/Navbar";
-import MobileNavbar from "../../components/admin/Navbar/MobileNavbar";
-import Logo from "../../components/admin/Logo/Logo";
-import Poster from "../../components/admin/Poster/Poster";
 import Form from "../../components/admin/Form/Form";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import { useMediaQuery, useTheme } from "@material-ui/core";
+import { useMediaQuery, useTheme, Box, Typography, makeStyles, Grid } from "@material-ui/core";
+import { EditableProfileImage } from '../../components/admin/EditableProfileImage'
+import { styles } from "../../variable-css";
 
-function AdminProfilePage({userProfile}) {
+function AdminProfilePage({ userProfile }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    return (
-    <Container component="main">
-      <div className="outermost">
-        {isMobile ? (
+  return (
+    <>
+      {/* {isMobile ? (
           <MobileNavbar />
         ) : (
           <>
             <Navbar />
             <hr></hr>
           </>
-        )}
+        )} */}
 
-        <Poster userProfile={userProfile}/>
+      <Grid container spacing={2} style={{ padding: 20, justifyContent: 'center' }}>
+        <Grid item sm={8} xs={12}>
+          <EditableProfileImage userName={userProfile.userName} imageAlt={'Club Poster'} type="poster" imageSrc={userProfile.src} />
+        </Grid>
 
-        <div>
-          <Grid container spacing={2}>
-            <Logo userProfile={userProfile}/>
-            <Form userProfile={userProfile}/>
-          </Grid>
-        </div>
-      </div>
-    </Container>
+        <Grid item sm={4} xs={12}>
+          <EditableProfileImage userName={userProfile.userName} imageAlt={'Club Logo'} type="logo" imageSrc={userProfile.logo} />
+        </Grid>
+
+        <Grid item sm={12} xs={12}>
+          <Form userProfile={userProfile} />
+        </Grid>
+      </Grid>
+    </>
   );
 }
 

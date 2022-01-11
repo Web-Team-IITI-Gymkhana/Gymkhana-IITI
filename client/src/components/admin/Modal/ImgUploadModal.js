@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Modal from '@material-ui/core/Modal';
+import { Button, Box, Modal } from '@material-ui/core';
 import { useState } from "react";
-import {uploadImageServer} from "../../../redux/actions/users"
+import { uploadImageServer } from "../../../redux/actions/users"
 import { useDispatch } from "react-redux";
+import { styles } from "../../../variable-css";
 
-export default function ImgUploadModal({userName,type, buttonName}) {
+const useStyles = makeStyles(styles)
+
+export default function ImgUploadModal({ userName, type }) {
+
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -35,78 +39,37 @@ export default function ImgUploadModal({userName,type, buttonName}) {
         try {
             dispatch(uploadImageServer({
                 method: 'POST',
-                img : JSON.stringify({ data: base64EncodedImage }),
-                userName : userName,
-                dataFor : type,
-                headers: { 'Content-Type': 'application/json' }}))
-
-
-
-
+                img: JSON.stringify({ data: base64EncodedImage }),
+                userName: userName,
+                dataFor: type,
+                headers: { 'Content-Type': 'application/json' }
+            }))
             setFileInputState('');
-            setOpen(false)
         } catch (err) {
             console.error(err);
         }
     };
 
-
-    function getModalStyle() {
-        const top = 50
-        const left = 50
-        return {
-            top: `${top}%`,
-            left: `${left}%`,
-            transform: `translate(-${top}%, -${left}%)`,
-        };
-    }
-
-    const useStyles = makeStyles(theme => ({
-        modal: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        paper: {
-            position: 'absolute',
-            width: 450,
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
-        },
-    }));
-
     const classes = useStyles();
-    const [modalStyle] = useState(getModalStyle);
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     return (
         <div>
-            <Button variant="contained" id="edit-poster" color="primary" onClick={handleOpen}>
-                {buttonName}
-            </Button>
-
             <Modal
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                open={open}
-                onClose={handleClose}
-            >
-                <div style={modalStyle} className={classes.paper}>
+                open={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Box className={classes.fileSelectModal}>
                     <form onSubmit={handleSubmitFile}>
-                        <input  id="fileInput" type="file" name="image" onChange={handleFileInputChange} value={fileInputState} />
-                        <Button type="submit">Upload</Button>
+                        <input type="file" onChange={handleFileInputChange} value={fileInputState} />
+                        <Button type="submit" className={classes.buttonPrimary}>
+                            CONFIRM
+                        </Button>
                     </form>
-                </div>
+                </Box>
             </Modal>
+            <Button onClick={() => setIsModalOpen(true)} type="submit" className={classes.buttonPrimary}>
+                EDIT
+            </Button>
         </div>
     );
 }
