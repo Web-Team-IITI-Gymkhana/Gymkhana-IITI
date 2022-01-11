@@ -1,0 +1,115 @@
+import React from "react";
+import { updateSection } from "../../../redux/actions/contentVersions";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Modal from '@material-ui/core/Modal';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import "../Form/Form.css"
+import TextField from "@material-ui/core/TextField";
+
+export default function SectionModal({userName,sectionID,sectionDetails,type,buttonStyle}) {
+
+    console.log(type)
+
+    const [formSection,setFormSection] = useState(sectionDetails)
+
+    const dispatch = useDispatch();
+
+    const handleEdit = ()=>{
+        dispatch(updateSection(userName,sectionID,formSection));
+        setOpen(false);
+    }
+
+
+
+
+    function getModalStyle() {
+        const top = 50
+        const left = 50
+        return {
+            top: `${top}%`,
+            left: `${left}%`,
+            transform: `translate(-${top}%, -${left}%)`,
+        };
+    }
+
+    const useStyles = makeStyles(theme => ({
+        modal: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        paper: {
+            position: 'absolute',
+            width: 450,
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
+        },
+    }));
+
+    const classes = useStyles();
+    const [modalStyle] = useState(getModalStyle);
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
+
+    return (
+        <div>
+            <Button variant={buttonStyle.buttonVariant} id={buttonStyle.buttonID} onClick={handleOpen}>
+                {buttonStyle.buttonName}
+            </Button>
+
+            <Modal
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+                open={open}
+                onClose={handleClose}
+            >
+                <div style={modalStyle} className={classes.paper}>
+                    <form id="form">
+                        <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="section-name"
+                        label="Section Name"
+                        type="text"
+                        name="section-name"
+                        autoComplete="Section Name"
+                        className="field"
+                        value={formSection.sectionName}
+                        onChange={(e) => setFormSection({ ...formSection, sectionName : e.target.value })}
+                        />
+                        <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        minRows={3}
+                        id="section-header"
+                        label="Section Header"
+                        type="text"
+                        name="section-header"
+                        autoComplete="Section Header"
+                        className="field"
+                        value={formSection.sectionHeader}
+                        onChange={(e) => setFormSection({ ...formSection, sectionHeader : e.target.value })}
+                        />
+                        <Button type="button" onClick={handleEdit}>{buttonStyle.buttonName}</Button>
+                    </form>
+                </div>
+            </Modal>
+        </div>
+    );
+}
