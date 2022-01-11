@@ -1,5 +1,5 @@
 #section-box{
-    background-color: #FEFFD7;
+    background-color: white;
     margin-top: 1.5%;
     margin-right: 1.5%;
     margin-left: 1.5%;
@@ -14,5 +14,6 @@
 
 #add{
     float: right;
-    background-color: #e7e2c3 !important;
+    background-color: #3c2117 !important;
+    color: white;
 }

@@ -4,14 +4,18 @@ import Container from "@material-ui/core/Container";
 import Navbar from "./components/Navbar";
 import Section from "../../../components/admin/Section/Section";
 import Box from "@material-ui/core/Box";
-import "../../admin/AdminHomePage/AdminHomePage.css"
 import Card from "@material-ui/core/Card";
 import { Typography } from "@material-ui/core";
 
 import { addSection } from "../../../redux/actions/contentVersions";
 import { useSelector,useDispatch} from "react-redux";
+import { makeStyles } from "@material-ui/styles"
+import {styles} from "../../../variable-css";
+
+const useStyles = makeStyles(styles)
 
 function AdminHomePage({userProfile}) {
+    const classes = useStyles()
 
     let contentVersions = useSelector((state)=> state.contentVersions)
     let sections = contentVersions[(contentVersions).length - 1].Sections
@@ -23,7 +27,7 @@ function AdminHomePage({userProfile}) {
 
     const RenderSectionHeader = (sectionID,sectionHeader) => {
         return(
-            <Card className="sectionHeaderCard" onClick={()=>{setSectionID(sectionID)}}>
+            <Card className={classes.sectionHeaderCard} onClick={()=>{setSectionID(sectionID)}}>
                 {sectionHeader}
             </Card>
         )
@@ -39,21 +43,20 @@ function AdminHomePage({userProfile}) {
             <Navbar handlingAdd={handledAdd} userName={currentUser}/>
 
             <Container maxWidth="100">
-            <Box className="mainContent" display={"flex"}>
-                <Box className="sectionHeader">
+            <Box className={classes.mainContent} display={"flex"}>
+                <Box className={classes.sectionHeader}>
                     <Box marginTop={"5px"}>
-                    <Typography variant="h5" align="center">
-
+                    <Typography className={classes.subheading}>
                         {
                             sections.map(section=>RenderSectionHeader(section.sectionID,section.sectionHeader))
                         }
                     </Typography>
                     </Box>
                 </Box>
-                <Box className="sectionContent">
+                <Box className={classes.sectionContent}>
                         {
-                            currSectionID===0 ? <h1>No Section Selected</h1>:
-                                                         <Section userName={currentUser} currSectionID={currSectionID}/>
+                            currSectionID===0 ? <Typography className={classes.headingBold}>No Section Selected</Typography>:
+                            <Section userName={currentUser} currSectionID={currSectionID}/>
                         }
 
                 </Box>

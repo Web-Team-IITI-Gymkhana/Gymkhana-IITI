@@ -8,7 +8,7 @@ import "../../components/admin/Form/Form.css";
 import Form from "../../components/admin/Form/Form";
 import { useMediaQuery, useTheme, Box, Typography, makeStyles, Grid } from "@material-ui/core";
 import { EditableProfileImage } from '../../components/admin/EditableProfileImage'
-import { styles } from "../../variable-css";
+// import { styles } from "../../variable-css";
 
 function AdminProfilePage({ userProfile }) {
   const theme = useTheme();
