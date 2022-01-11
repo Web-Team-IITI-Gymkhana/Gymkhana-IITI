@@ -27,4 +27,11 @@ export const styles = {
             backgroundColor: colors.accentShade
         }
     },
+
+    // modal
+    fileSelectModal : {
+        backgroundColor: 'white',
+        padding: 10,
+        borderRadius: 4,
+    }
 }

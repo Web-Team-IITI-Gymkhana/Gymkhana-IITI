@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { Button, Box, Modal } from '@material-ui/core';
 import { useState } from "react";
 import { uploadImageServer } from "../../../redux/actions/users"
 import { useDispatch } from "react-redux";
@@ -10,10 +10,9 @@ const useStyles = makeStyles(styles)
 
 export default function ImgUploadModal({ userName, type }) {
 
-    const inputRef = useRef()
-
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -55,12 +54,22 @@ export default function ImgUploadModal({ userName, type }) {
 
     return (
         <div>
-            <form onSubmit={handleSubmitFile}>
-                <input type="file" ref={inputRef} onChange={handleFileInputChange} value={fileInputState} style={{ display: 'none' }} />
-                <Button onClick={() => { inputRef.current.click() }} type="submit" className={classes.buttonPrimary}>
-                    EDIT
-                </Button>
-            </form>
+            <Modal
+                open={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Box className={classes.fileSelectModal}>
+                    <form onSubmit={handleSubmitFile}>
+                        <input type="file" onChange={handleFileInputChange} value={fileInputState} />
+                        <Button type="submit" className={classes.buttonPrimary}>
+                            CONFIRM
+                        </Button>
+                    </form>
+                </Box>
+            </Modal>
+            <Button onClick={() => setIsModalOpen(true)} type="submit" className={classes.buttonPrimary}>
+                EDIT
+            </Button>
         </div>
     );
 }
