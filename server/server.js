@@ -49,8 +49,9 @@ app.get('/failed', (req, res) => {
   res.send("Login failed!")
 })
 
-app.get('/google',
-  passport.authenticate('google', {scope: ['profile', 'email']}));
+app.get('/google', ()=>{
+  passport.authenticate('google', {scope: ['profile', 'email']})
+});
 
 app.get('/logout', (req, res) => {
   req.session = null

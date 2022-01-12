@@ -1,9 +1,14 @@
 import axios from 'axios'
 
-const usersURL = "http://localhost:5000/users"
-const contentURL = "http://localhost:5000/content"
+// const usersURL = "http://localhost:5000/users"
+// const contentURL = "http://localhost:5000/content"
+// const imgUploadURL = "http://localhost:5000/uploadImage"
 
-export const uploadImageServer = (imageData) => axios.post("http://localhost:5000/uploadImage",imageData)
+const usersURL = "https://gymkhana-iiti.herokuapp.com/users"
+const contentURL = "https://gymkhana-iiti.herokuapp.com/content"
+const imgUploadURL = "https://gymkhana-iiti.herokuapp.com/uploadImage"
+
+export const uploadImageServer = (imageData) => axios.post(imgUploadURL,imageData)
 
 export const fetchUsers = () => axios.get(usersURL)
 export const fetchUser = (userName) => axios.get(`${usersURL}/${userName}`)
