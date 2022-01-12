@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import { useState } from "react";
-import {uploadImageServer} from "../../../redux/actions/users"
+import {uploadImageServer} from "../../../redux/actions/contentVersions"
 import { useDispatch } from "react-redux";
 import "../Form/Form.css"
 import TextField from "@material-ui/core/TextField";

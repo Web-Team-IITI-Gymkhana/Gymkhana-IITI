@@ -35,6 +35,12 @@ const deleteSectionChildHelper = (section,sectionChildID)=>{
     return section
 }
 
+const updateSectionHelper = (section,updateData) => {
+    section.sectionName = updateData.sectionName
+    section.sectionHeader = updateData.sectionHeader
+    return section
+}
+
 const reducer =  (contentVersions=[],action) => {
 
     let lastIndex = contentVersions.length - 1
@@ -61,6 +67,14 @@ const reducer =  (contentVersions=[],action) => {
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?addSectionChildHelper(section,action.payload.postData):section)
             return [... contentVersions]
 
+        case "UPDATE_SECTION":
+            (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?updateSectionHelper(section,action.payload.updateData):section)
+            return [... contentVersions]
+
+        case "DELETE_SECTION":
+            (contentVersions[lastIndex].Sections) = (contentVersions[lastIndex].Sections).filter((section)=>section.sectionID!==action.payload.sectionID)
+            return [... contentVersions]
+
         case "UPDATE_SECTION_CHILD":
             console.log(action.payload.updateData);
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?updateSectionChildHelper(section,action.payload.sectionChildID,action.payload.updateData):section)
@@ -70,6 +84,8 @@ const reducer =  (contentVersions=[],action) => {
         case "DELETE_SECTION_CHILD":
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?deleteSectionChildHelper(section,action.payload.sectionChildID):section)
             return [... contentVersions]
+
+
 
         default:
             return [... contentVersions]
