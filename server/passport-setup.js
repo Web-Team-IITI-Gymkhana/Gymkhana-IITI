@@ -14,12 +14,11 @@ passport.deserializeUser(function (user, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/profile"
+    callbackURL: "http://localhost:3000/admin/profile"
 },
     function (accessToken, refreshToken, profile, done) {
         // use the profile info to check if user is existed or not in db
         console.log(profile)
         return done(null, profile);
-
-    }
+      }
 ));
