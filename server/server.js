@@ -37,6 +37,14 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(cors())
 app.use(express.json({ limit: '50mb' }))
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  next();
+});
+
 
 //endpoints
 app.get('/', (req, res) => {
@@ -65,6 +73,7 @@ const contentRoute = require('./routes/content')
 app.use('/content', contentRoute)
 
 app.route('/uploadImage').post(async (req, res) => {
+
   // console.log(req.body)
 
   try {
@@ -75,7 +84,8 @@ app.route('/uploadImage').post(async (req, res) => {
     const dataFor = req.body.dataFor
 
     const uploadResponse = await cloudinary.uploader.upload(imgString);
-    const imgURL = uploadResponse.url
+    console.log(uploadResponse)
+    const imgURL = uploadResponse.secure_url
 
     let userName = req.body.userName
 
