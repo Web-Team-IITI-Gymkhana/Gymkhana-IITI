@@ -1,12 +1,14 @@
-import React from 'react'
-import Button from '@material-ui/core/Button';
+import React  from 'react'
 
 export default function Authenticate() {
-  return (
-    <div>
-      <form action="http://localhost:5000/google">
-        <Button type='submit' variant='contained'>Login with Google</Button>
-      </form>
-    </div>
-  )
+        return (
+        <div>
+        {/* <form onSubmit={handleSubmit}>
+            <Button type="submit" variant='contained'>Login with Google</Button>
+        </form> */}
+
+        <a href="http://localhost:5000/google">Login With Google</a>
+
+        </div>
+    )
 }

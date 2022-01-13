@@ -30,9 +30,7 @@ mongoose.connect(DB_URI, {
 
 
 //middleware
-app.use(session({
-  secret: 'cats'
-}))
+app.use(session({secret: 'cats'}))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(cors())
@@ -45,6 +43,9 @@ app.use(function(req, res, next) {
   next();
 });
 
+function isLoggedIn(req,res,next){
+  req.user ? next() : res.sendStatus(401)
+}
 
 //endpoints
 app.get('/', (req, res) => {
@@ -53,18 +54,33 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/failed', (req, res) => {
-  res.send("Login failed!")
+app.get('/success', isLoggedIn,(req, res) => {
+  // console.log(req.user)
+  res.redirect("http://localhost:3000")
+})
+
+app.get('/checkUser',isLoggedIn,(req,res)=>{
+  return res.status(201).json({"user":req.user})
+})
+
+app.get('/failure', (req, res) => {
+  res.send("Login failure!")
 })
 
 app.get('/google',
   passport.authenticate('google', {scope: ['profile', 'email']}));
 
 app.get('/logout', (req, res) => {
-  req.session = null
-  req.logOut()
+  req.session.destroy()
+  req.logout()
   res.redirect('/')
 })
+
+app.get('/google/callback',
+passport.authenticate('google',{
+  successRedirect : '/success',
+  failureRedirect : '/failure'
+}))
 
 const usersRoute = require('./routes/users')
 app.use('/users', usersRoute)
