@@ -73,6 +73,7 @@ const contentRoute = require('./routes/content')
 app.use('/content', contentRoute)
 
 app.route('/uploadImage').post(async (req, res) => {
+
   // console.log(req.body)
 
   try {
@@ -83,7 +84,8 @@ app.route('/uploadImage').post(async (req, res) => {
     const dataFor = req.body.dataFor
 
     const uploadResponse = await cloudinary.uploader.upload(imgString);
-    const imgURL = uploadResponse.url
+    console.log(uploadResponse)
+    const imgURL = uploadResponse.secure_url
 
     let userName = req.body.userName
 
