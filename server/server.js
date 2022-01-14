@@ -1,13 +1,15 @@
 const express = require('express')
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
 const passport = require('passport')
+const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const app = express()
 const path = require('path')
 const mongoose = require('mongoose')
 require('dotenv').config()
+const jwt = require('jsonwebtoken')
 
-const passportJwt = require('passport-jwt');
+// const passportJwt = require('passport-jwt');
 
 const DB_URI = process.env.MONGO_URI
 const port = process.env.PORT || 5000;
@@ -16,9 +18,13 @@ const Process = require("process");
 require('./passport-setup')
 const Users = require('./models/users')
 
-app.use(
-  cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
-);
+const config = {secretOrKey:"mysecret"}
+
+// app.use(
+//   cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
+// );
+
+app.use(cookieParser())
 
 const cloudinary = require('cloudinary').v2
 cloudinary.config({
@@ -36,7 +42,7 @@ mongoose.connect(DB_URI, {
 
 
 app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.session())
 
 app.use(
   cors({
@@ -57,15 +63,47 @@ app.get('/', (req, res) => {
   })
 })
 
-function generateUserToken(req, res) {
-  const accessToken = token.generateAccessToken(req.user.id);
-  res.render('authenticated.html', {
-    token: accessToken
-  });
-}
+app.get('/google',  passport.authenticate('google', { scope: ['profile','email'] }))
+
+app.get('/google/callback', passport.authenticate('google'),(req, res)=>{
+  console.log('redirected', req.user)
+  let user = {
+      displayName: req.user.displayName,
+      name: req.user.name.givenName,
+      email: req.user._json.email,
+      provider: req.user.provider }
+  console.log(user)
+
+  let token = jwt.sign({
+      data: user
+      }, 'secret', { expiresIn: 4000 }); // expiry in seconds
+  res.cookie('jwt', token)
+  res.redirect(CLIENT_URL)
+})
+
+app.get('/login/success', passport.authenticate('jwt', { session: false }) ,(req,res)=>{
+  res.status(200).json({user : req.user.email})
+})
+
+// function generateUserToken(req, res) {
+//   const accessToken = token.generateAccessToken(req.user.id);
+//   res.render('authenticated.html', {
+//     token: accessToken
+//   });
+// }
 
 // app.get("/login/failed", (req, res) => {
 //   res.redirect(CLIENT_URL)
+// });
+
+// app.get("/login/success", (req, res) => {
+//   if (req.user) {
+//     res.status(200).json({
+//       success: true,
+//       message: "successfull",
+//       user: req.user,
+//     });
+//   }
 // });
 
 // app.get('/google/success',
@@ -79,34 +117,24 @@ function generateUserToken(req, res) {
 //   passport.authenticate('google', { session: false, scope: ['openid', 'profile', 'email'] }));
 
 
-app.get("/login/success", (req, res) => {
-  if (req.user) {
-    res.status(200).json({
-      success: true,
-      message: "successfull",
-      user: req.user,
-    });
-  }
-});
+// app.get("/login/failed", (req, res) => {
+//   res.redirect(CLIENT_URL)
+// });
 
-app.get("/login/failed", (req, res) => {
-  res.redirect(CLIENT_URL)
-});
+// app.get("/logout", (req, res) => {
+//   req.logout();
+//   res.redirect(CLIENT_URL);
+// });
 
-app.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect(CLIENT_URL);
-});
+// app.get("/google", passport.authenticate("google", { scope: ["profile","email"] }));
 
-app.get("/google", passport.authenticate("google", { scope: ["profile","email"] }));
-
-app.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    successRedirect: CLIENT_URL,
-    failureRedirect: "/login/failed",
-  })
-);
+// app.get(
+//   "/google/callback",
+//   passport.authenticate("google", {
+//     successRedirect: CLIENT_URL,
+//     failureRedirect: "/login/failed",
+//   })
+// );
 
 const usersRoute = require('./routes/users')
 app.use('/users', usersRoute)
