@@ -89,5 +89,11 @@ export const styles = {
         backgroundColor: 'white',
         padding: 10,
         borderRadius: 4,
+        display: 'flex', 
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 30,
+        width: '100%',
+        maxWidth: 1000,
     }
 }
