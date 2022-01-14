@@ -7,6 +7,8 @@ const path = require('path')
 const mongoose = require('mongoose')
 require('dotenv').config()
 
+const passportJwt = require('passport-jwt');
+
 const DB_URI = process.env.MONGO_URI
 const port = process.env.PORT || 5000;
 const Process = require("process");
@@ -44,8 +46,8 @@ app.use(
   })
 );
 
-
 app.use(express.json({ limit: '50mb' }))
+
 
 const CLIENT_URL = "http://localhost:3000/admin/home"
 
@@ -54,6 +56,28 @@ app.get('/', (req, res) => {
     msg: "This is the server of Gymkhana IITI"
   })
 })
+
+function generateUserToken(req, res) {
+  const accessToken = token.generateAccessToken(req.user.id);
+  res.render('authenticated.html', {
+    token: accessToken
+  });
+}
+
+// app.get("/login/failed", (req, res) => {
+//   res.redirect(CLIENT_URL)
+// });
+
+// app.get('/google/success',
+//   passport.authenticate('google', { session: false, scope: ['openid', 'profile', 'email'] }));
+
+// app.get('/google/callback',
+//   passport.authenticate('google', { session: false,successRedirect: CLIENT_URL,failureRedirect: "/login/failed" }),
+//   generateUserToken);
+
+// app.get('/google',
+//   passport.authenticate('google', { session: false, scope: ['openid', 'profile', 'email'] }));
+
 
 app.get("/login/success", (req, res) => {
   if (req.user) {

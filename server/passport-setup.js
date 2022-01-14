@@ -8,18 +8,19 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.PERSONAL_CLIENT_SECRET,
     callbackURL: "/google/callback",
     passReqToCallback : true
-},
+  },
     function (request,accessToken, refreshToken, profile, done) {
+        console.log(profile)
         const email = (profile.emails[0].value);
         if(email==="cse200001044@iiti.ac.in"){return done(null,profile)}
         return done(null, false);
       }
 ));
 
-passport.serializeUser(function (user, done) {
-  done(null, user)
-})
+// passport.serializeUser(function (user, done) {
+//   done(null, user)
+// })
 
-passport.deserializeUser(function (user, done) {
-  done(null, user)
-})
+// passport.deserializeUser(function (user, done) {
+//   done(null, user)
+// })
