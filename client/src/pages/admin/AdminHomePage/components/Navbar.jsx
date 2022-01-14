@@ -1,5 +1,5 @@
 import React from "react";
-import { useState} from "react";
+import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import ProfilePic from "../../../../components/photos/dp.svg";
 import Modal from "react-bootstrap/Modal";
@@ -26,7 +26,7 @@ function AdminHomePageNavbar(props) {
         setShow(false);
         let sectionName = document.getElementById("myForm").elements[0].value;
         let sectionHeader = document.getElementById("myForm").elements[1].value;
-        props.handlingAdd(sectionName,sectionHeader);
+        props.handlingAdd(sectionName, sectionHeader);
     }
     const navigate = useNavigate();
     const redirect = () => {
@@ -38,7 +38,7 @@ function AdminHomePageNavbar(props) {
 
     const dispatch = useDispatch()
 
-    const getPublish = () =>{
+    const getPublish = () => {
         dispatch(publishVersion(props.userName))
         setDone(0);
         setLoading(0);
@@ -66,8 +66,8 @@ function AdminHomePageNavbar(props) {
                     </Modal.Header>
                     <Modal.Body>
                         <Form method="POST" id="myForm">
-                                <Form.Control as="textarea" id="sectionName" rows={1} placeholder="Section Name"/>
-                                <Form.Control as="textarea" id="sectionHeader" rows={1} placeholder="Section Header"/>
+                            <Form.Control as="textarea" id="sectionName" rows={1} placeholder="Section Name" />
+                            <Form.Control as="textarea" id="sectionHeader" rows={1} placeholder="Section Header" />
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
@@ -93,9 +93,9 @@ function AdminHomePageNavbar(props) {
                     onClick={getPublish}>
                     Publish
                 </Button>
-                    {done===0? (
-                        <Loading Loading={loading}/>
-                    ):null}
+                {done === 0 ? (
+                    <Loading Loading={loading} />
+                ) : null}
                 <Button
                     className={classes.buttonOpposite}
                     onClick={redirect}

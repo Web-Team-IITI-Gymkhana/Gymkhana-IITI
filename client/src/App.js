@@ -5,6 +5,7 @@ import Public from "./pages/public/Public";
 import Admin from "./pages/admin/Admin/Admin";
 
 import './index.css';
+import Authenticate from "./components/Auth/Authenticate";
 
 function App() {
 
@@ -14,9 +15,10 @@ function App() {
                 <div className="App">
                     <Router>
                         <Routes>
-                            <Route exact path="/" element = {<Navigate to="/public"/>}/>
+                            <Route exact path="/" element = {<Navigate to="/public/home"/>}/>
                             <Route path="/public/*" element={<Public/>}/>
                             <Route path="/admin/*" element={<Admin/>}/>
+                            <Route path="/auth" element={<Authenticate/>}/>
                         </Routes>
                     </Router>
                 </div>

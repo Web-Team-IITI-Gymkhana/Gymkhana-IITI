@@ -9,11 +9,14 @@
 
 .header{
     display: inline;
-    
+
 }
 
-#add{
+#add , #update {
     float: right;
     background-color: #3c2117 !important;
     color: white;
+/* =======
+    background-color: #e7e2c3 !important;
+    margin: 5px; */
 }

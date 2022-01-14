@@ -14,6 +14,11 @@ import {styles} from "../../../variable-css";
 
 const useStyles = makeStyles(styles)
 
+// const sectionHeaderStyle = {
+//     display : 'inline-flex',
+//     justifyContent : 'space-between'
+// }
+
 function AdminHomePage({userProfile}) {
     const classes = useStyles()
 
