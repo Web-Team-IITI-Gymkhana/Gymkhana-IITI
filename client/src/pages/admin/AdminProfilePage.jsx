@@ -6,23 +6,25 @@ import "../../components/admin/Logo/Logo.css";
 import "../../components/admin/Poster/Poster.css";
 import "../../components/admin/Form/Form.css";
 import Form from "../../components/admin/Form/Form";
-import { Grid } from "@material-ui/core";
+import { Grid, useTheme, useMediaQuery } from "@material-ui/core";
 import { EditableProfileImage } from '../../components/admin/EditableProfileImage'
-// import { styles } from "../../variable-css";
+import MobileNavbar from '../../components/admin/Navbar/MobileNavbar'
+import Navbar from '../../components/admin/Navbar/Navbar'
 
 function AdminProfilePage({ userProfile }) {
-//   const theme = useTheme();
-//   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <>
-      {/* {isMobile ? (
+      {isMobile ? (
           <MobileNavbar />
         ) : (
           <>
-            <Navbar />
+          <Navbar />
             <hr></hr>
           </>
-        )} */}
+        )}
 
       <Grid container spacing={2} style={{ padding: 20, justifyContent: 'center' }}>
         <Grid item sm={8} xs={12}>
