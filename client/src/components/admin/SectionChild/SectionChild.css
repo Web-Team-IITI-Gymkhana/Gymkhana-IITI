@@ -12,11 +12,14 @@
 #edit{
     float: right;
     color: gray;
-    /* background-color: #e7e2c3 !important; */
+    background-color: #ffefc7 !important;
+    margin: 5px;
 }
 
 #delete{
     /* background-color: #e7e2c3 !important; */
     color: gray;
     float: right;
+    background-color: #ffefc7 !important;
+    margin: 5px;
 }

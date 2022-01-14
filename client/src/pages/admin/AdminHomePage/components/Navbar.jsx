@@ -1,17 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import Button from "@material-ui/core/Button";
-import "../components/Navbar.css";
 import ProfilePic from "../../../../components/photos/dp.svg";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../../../components/Done/Loading';
 import { publishVersion } from "../../../../redux/actions/contentVersions";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
+import {styles} from "../../../../variable-css"
+import { makeStyles } from "@material-ui/core";
 
+const useStyles = makeStyles(styles)
 
 function AdminHomePageNavbar(props) {
+    const classes = useStyles()
 
     const [show, setShow] = useState(false);
     const [done, setDone] = useState(-1);
@@ -52,10 +55,7 @@ function AdminHomePageNavbar(props) {
         <div className="navbar">
             <span id="left">
                 <Button
-                    variant="contained"
-                    className="nav-btn"
-                    id="first-btn"
-                    color="primary"
+                    className={classes.buttonPrimary}
                     onClick={handleShow}
                 >
                     Add Section
@@ -83,19 +83,13 @@ function AdminHomePageNavbar(props) {
 
             <span id="right">
                 <Button
-                    variant="contained"
-                    className="nav-btn"
-                    id="third-btn"
-                    color="primary"
+                    className={classes.buttonPrimary}
                     onClick={preview}>
                     Preview
                 </Button>
 
                 <Button
-                    variant="contained"
-                    className="nav-btn"
-                    id="first-btn"
-                    color="primary"
+                   className={classes.buttonPrimary}
                     onClick={getPublish}>
                     Publish
                 </Button>
@@ -103,10 +97,7 @@ function AdminHomePageNavbar(props) {
                     <Loading Loading={loading} />
                 ) : null}
                 <Button
-                    variant="contained"
-                    className="nav-btn"
-                    id="fourth-btn"
-                    color="primary"
+                    className={classes.buttonOpposite}
                     onClick={redirect}
                 >
                     Profile Page
