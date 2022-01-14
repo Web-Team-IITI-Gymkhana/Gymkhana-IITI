@@ -100,12 +100,3 @@ export const uploadImageServer = (imageData) => async (dispatch) => {
     }
 }
 
-export const googleLoginCheck = () => async () => {
-    try{
-        const {profile} = await api.googleLoginCheck()
-        console.log("Redux Google ",profile)
-    }
-    catch(error){
-        console.log(error)
-    }
-}

@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from "react";
+import React, {useState} from "react";
 import "../../../index.css";
 import Container from "@material-ui/core/Container";
 import Navbar from "./components/Navbar";
@@ -14,36 +14,6 @@ import { useSelector,useDispatch} from "react-redux";
 
 
 function AdminHomePage({userProfile}) {
-
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        const getUser = () => {
-            fetch("http://localhost:5000/login/success", {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Credentials": true,
-                },
-            })
-            .then((response) => {
-                if (response.status === 200) return response.json();
-                throw new Error("authentication has been failed!");
-            })
-            .then((resObject) => {
-                setUser(resObject.user);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        };
-        getUser();
-    }, []);
-
-    console.log("GoogleUser",user)
-
     let contentVersions = useSelector((state)=> state.contentVersions)
     let sections = contentVersions[(contentVersions).length - 1].Sections
 

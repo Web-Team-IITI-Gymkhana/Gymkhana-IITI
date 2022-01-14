@@ -1,6 +1,5 @@
 const passport = require('passport')
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
-// const GoogleStrategy = require('passport-google-oauth2').Strategy;
 require('dotenv').config()
 const Users = require('./models/users')
 
@@ -11,10 +10,9 @@ passport.use(new GoogleStrategy({
     passReqToCallback : true
 },
     function (request,accessToken, refreshToken, profile, done) {
-        // use the profile info to check if user is existed or not in db
-        // console.log(profile)
-        // console.log("PassPortSetup",profile)
-        return done(null, profile);
+        const email = (profile.emails[0].value);
+        if(email==="cse200001044@iiti.ac.in"){return done(null,profile)}
+        return done(null, false);
       }
 ));
 

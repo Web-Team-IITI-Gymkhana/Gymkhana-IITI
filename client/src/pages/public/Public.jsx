@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setContentVersions } from "../../redux/actions/contentVersions";
 
-import { googleLoginCheck } from "../../redux/actions/contentVersions";
-
 import HomePage from "./HomePage/HomePage";
 import SectionView from "./SectionPage/SectionView";
 
@@ -16,9 +14,6 @@ function Public() {
 
     const currentUser = "Cynaptics"
     const dispatch = useDispatch();
-
-    const response = dispatch(googleLoginCheck)
-    console.log(response)
 
     useEffect(() => {
         dispatch(setContentVersions(currentUser))

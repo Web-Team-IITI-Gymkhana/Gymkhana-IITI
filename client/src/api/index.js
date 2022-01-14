@@ -3,13 +3,10 @@ import axios from 'axios'
 const usersURL = "http://localhost:5000/users"
 const contentURL = "http://localhost:5000/content"
 const imgUploadURL = "http://localhost:5000/uploadImage"
-const googleURL = "http://localhost:5000/checkUser"
 
 // const usersURL = "https://gymkhana-iiti.herokuapp.com/users"
 // const contentURL = "https://gymkhana-iiti.herokuapp.com/content"
 // const imgUploadURL = "https://gymkhana-iiti.herokuapp.com/uploadImage"
-
-export const googleLoginCheck = () => axios.get(googleURL)
 
 export const uploadImageServer = (imageData) => axios.post(imgUploadURL,imageData)
 
