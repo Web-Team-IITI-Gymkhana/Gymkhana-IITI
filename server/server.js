@@ -1,5 +1,6 @@
 const express = require('express')
-const session = require('express-session')
+// const session = require('express-session')
+const cookieSession = require("cookie-session");
 const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
@@ -11,6 +12,11 @@ const Process = require("process");
 const passport = require('passport')
 require('./passport-setup')
 const Users = require('./models/users')
+
+
+app.use(
+  cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
+);
 
 const cloudinary = require('cloudinary').v2
 cloudinary.config({
@@ -30,22 +36,42 @@ mongoose.connect(DB_URI, {
 
 
 //middleware
-app.use(session({secret: 'cats'}))
+// app.use(session({secret: 'cats'}))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(cors())
-app.use(express.json({ limit: '50mb' }))
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", '*');
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-  next();
-});
+// app.use(cors({
+//   origin: "http://localhost:3000",
+//   methods: "GET,POST,PUT,DELETE",
+//   credentials: true,
+// }))
 
-function isLoggedIn(req,res,next){
-  req.user ? next() : res.sendStatus(401)
-}
+// app.use(cors())
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
+
+
+app.use(express.json({ limit: '50mb' }))
+
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", '*');
+//   res.header("Access-Control-Allow-Credentials", true);
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//   res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+//   next();
+// });
+
+// function isLoggedIn(req,res,next){
+//   req.user ? next() : res.sendStatus(401)
+// }
+
+const CLIENT_URL = "http://localhost:3000/admin/home"
 
 //endpoints
 app.get('/', (req, res) => {
@@ -54,33 +80,38 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/success', isLoggedIn,(req, res) => {
-  // console.log(req.user)
-  res.redirect("http://localhost:3000")
-})
+app.get("/login/success", (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      message: "successfull",
+      user: req.user,
+      //   cookies: req.cookies
+    });
+  }
+});
 
-app.get('/checkUser',isLoggedIn,(req,res)=>{
-  return res.status(201).json({"user":req.user})
-})
+app.get("/login/failed", (req, res) => {
+  res.status(401).json({
+    success: false,
+    message: "failure",
+  });
+});
 
-app.get('/failure', (req, res) => {
-  res.send("Login failure!")
-})
+app.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect(CLIENT_URL);
+});
 
-app.get('/google',
-  passport.authenticate('google', {scope: ['profile', 'email']}));
+app.get("/google", passport.authenticate("google", { scope: ["profile","email"] }));
 
-app.get('/logout', (req, res) => {
-  req.session.destroy()
-  req.logout()
-  res.redirect('/')
-})
-
-app.get('/google/callback',
-passport.authenticate('google',{
-  successRedirect : '/success',
-  failureRedirect : '/failure'
-}))
+app.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: CLIENT_URL,
+    failureRedirect: "/login/failed",
+  })
+);
 
 const usersRoute = require('./routes/users')
 app.use('/users', usersRoute)
@@ -89,9 +120,6 @@ const contentRoute = require('./routes/content')
 app.use('/content', contentRoute)
 
 app.route('/uploadImage').post(async (req, res) => {
-
-  // console.log(req.body)
-
   try {
     let imgData  = req.body.img
     imgData = JSON.parse(imgData)

@@ -1,18 +1,19 @@
 const passport = require('passport')
-// var GoogleStrategy = require('passport-google-oauth20').Strategy;
-const GoogleStrategy = require('passport-google-oauth2').Strategy;
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+// const GoogleStrategy = require('passport-google-oauth2').Strategy;
 require('dotenv').config()
 const Users = require('./models/users')
 
 passport.use(new GoogleStrategy({
     clientID: process.env.PERSONAL_CLIENT_ID,
     clientSecret: process.env.PERSONAL_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/google/callback",
+    callbackURL: "/google/callback",
     passReqToCallback : true
 },
-    function (request , accessToken, refreshToken, profile, done) {
+    function (request,accessToken, refreshToken, profile, done) {
         // use the profile info to check if user is existed or not in db
-        console.log(profile)
+        // console.log(profile)
+        // console.log("PassPortSetup",profile)
         return done(null, profile);
       }
 ));

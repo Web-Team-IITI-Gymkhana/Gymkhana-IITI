@@ -1,13 +1,14 @@
 import React  from 'react'
+import Buttton from '@material-ui/core/Button'
 
 export default function Authenticate() {
+        const googleLogin = ()=>{
+            window.open("http://localhost:5000/google", "_self");
+        }
         return (
         <div>
-        {/* <form onSubmit={handleSubmit}>
-            <Button type="submit" variant='contained'>Login with Google</Button>
-        </form> */}
 
-        <a href="http://localhost:5000/google">Login With Google</a>
+            <Buttton onClick={googleLogin}>Login With Google</Buttton>
 
         </div>
     )
