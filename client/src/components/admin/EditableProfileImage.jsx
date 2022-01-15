@@ -11,7 +11,7 @@ export const EditableProfileImage = ({ imageAlt, type, imageSrc, userName }) => 
 
     return (
         <Paper style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', height: '100%', padding: '2%' }}>
-            <Typography className={classes.subheading}>{type.toUpperCase()}</Typography>
+            <Typography className={classes.subheadingBold}>{type.toUpperCase()}</Typography>
 
             <img
                 src={imageSrc}

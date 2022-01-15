@@ -8,7 +8,7 @@
   padding: 6% !important;
 }
 .field {
-  background-color: #d7d1ac;
+  background-color: white;
 }
 
 .handle2 {
@@ -17,6 +17,7 @@
 }
 
 #apply {
-  background-color: #d7d1ac;
+  /* background-color: #d7d1ac; */
+  background-color: white;
   margin-top: 15px;
 }

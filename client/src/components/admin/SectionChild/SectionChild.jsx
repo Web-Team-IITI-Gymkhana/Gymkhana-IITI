@@ -53,7 +53,7 @@ function SectionChild({userName,sectionID,sectionChild}) {
 
     return (
         <div className="sectionChild-div">
-            <Card sx={{ maxWidth: 345 }}>
+            <Card  sx={{ maxWidth: 345 }}>
                 <h5 className="child-header">{sectionChild.sectionChildName}</h5>
 
                 <SectionChildModal userName={userName} sectionID={sectionID} sectionChildID={sectionChild.sectionChildID} sectionChild={sectionChild}  type={"editSectionChild"} buttonStyle={editButton}/>

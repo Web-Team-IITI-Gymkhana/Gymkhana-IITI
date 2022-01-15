@@ -36,7 +36,7 @@ function Form({ userProfile }) {
   return (
 
     <Paper style={{ padding: 20 }}>
-      <Typography align="center" className={classes.subheading}>GENERAL DETAILS</Typography>
+      <Typography align="center" className={classes.subheadingBold}>GENERAL DETAILS</Typography>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <FormTextField fieldName={'name'} label={'Club Name'} type={'text'} autoCompleteHint={''} postData={postData} setPostData={setPostData} />
         <FormTextField fieldName={'email'} label={'Email'} type={'email'} autoCompleteHint={'email'} postData={postData} setPostData={setPostData} />
