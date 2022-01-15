@@ -27,10 +27,13 @@ passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
     return done(null, jwt_payload.data)
 }))
 
+// const CALLBACK_URL = "http://localhost:5000/google/callback"
+const CALLBACK_URL = "https://gymkhana-iiti.herokuapp.com/google/callback"
+
 passport.use(new GoogleStrategy({
       clientID: process.env.PERSONAL_CLIENT_ID,
       clientSecret: process.env.PERSONAL_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/google/callback"
+    callbackURL: CALLBACK_URL
   },
   function(accessToken, refreshToken, profile, done) {
       console.log("GOOGLE BASED OAUTH VALIDATION GETTING CALLED")

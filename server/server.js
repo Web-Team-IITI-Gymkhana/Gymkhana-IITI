@@ -15,11 +15,14 @@ const port = process.env.PORT || 5000;
 require('./passport-setup')
 const Users = require('./models/users')
 
+// const CLIENT_ORIGIN = "http://localhost:3000"
+const CLIENT_ORIGIN = "https://gymkhana-iiti.netlify.app"
+
 app.use(cookieParser())
 app.use(passport.initialize())
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: CLIENT_ORIGIN,
     methods: "GET,POST,PUT,DELETE,PATCH",
     credentials: true,
   })
@@ -42,7 +45,8 @@ mongoose.connect(DB_URI, {
   .catch(err => console.log(err))
 
 const config = {secretOrKey:"mysecret"}
-const CLIENT_URL = "http://localhost:3000/admin/home"
+// const CLIENT_URL = "http://localhost:3000/admin/home"
+const CLIENT_URL = "https://gymkhana-iiti.netlify.app/admin/home"
 
 app.get('/', (req, res) => {
   res.status(200).json({
