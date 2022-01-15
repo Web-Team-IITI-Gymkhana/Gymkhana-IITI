@@ -1,30 +1,3 @@
-// const passport = require('passport')
-// var GoogleStrategy = require('passport-google-oauth20').Strategy;
-// require('dotenv').config()
-// const Users = require('./models/users')
-
-// passport.use(new GoogleStrategy({
-//     clientID: process.env.PERSONAL_CLIENT_ID,
-//     clientSecret: process.env.PERSONAL_CLIENT_SECRET,
-//     callbackURL: "/google/callback",
-//     passReqToCallback : true
-//   },
-//     function (request,accessToken, refreshToken, profile, done) {
-//         console.log(profile)
-//         const email = (profile.emails[0].value);
-//         if(email==="cse200001044@iiti.ac.in"){return done(null,profile)}
-//         return done(null, false);
-//       }
-// ));
-
-// // passport.serializeUser(function (user, done) {
-// //   done(null, user)
-// // })
-
-// // passport.deserializeUser(function (user, done) {
-// //   done(null, user)
-// // })
-
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const JwtStrategy = require('passport-jwt').Strategy
@@ -61,7 +34,9 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
       console.log("GOOGLE BASED OAUTH VALIDATION GETTING CALLED")
-      return done(null, profile)
+      const email = profile.emails[0].value
+      if(email==='cse200001044@iiti.ac.in'){return done(null,profile)}
+      return done(null, false)
   }
 ))
 

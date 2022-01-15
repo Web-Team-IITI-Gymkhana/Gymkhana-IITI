@@ -1,30 +1,31 @@
 const express = require('express')
-// const cookieSession = require("cookie-session");
 const passport = require('passport')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const app = express()
 const path = require('path')
-const mongoose = require('mongoose')
-require('dotenv').config()
 const jwt = require('jsonwebtoken')
-
-// const passportJwt = require('passport-jwt');
+const mongoose = require('mongoose')
+const Process = require("process");
+require('dotenv').config()
 
 const DB_URI = process.env.MONGO_URI
 const port = process.env.PORT || 5000;
-const Process = require("process");
 
 require('./passport-setup')
 const Users = require('./models/users')
 
-const config = {secretOrKey:"mysecret"}
-
-// app.use(
-//   cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
-// );
-
 app.use(cookieParser())
+app.use(passport.initialize())
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET,POST,PUT,DELETE,PATCH",
+    credentials: true,
+  })
+);
+app.use(express.json({ limit: '50mb' }))
+
 
 const cloudinary = require('cloudinary').v2
 cloudinary.config({
@@ -40,21 +41,7 @@ mongoose.connect(DB_URI, {
   .then(res => console.log('mongoDB connected...'))
   .catch(err => console.log(err))
 
-
-app.use(passport.initialize())
-// app.use(passport.session())
-
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: "GET,POST,PUT,DELETE,PATCH",
-    credentials: true,
-  })
-);
-
-app.use(express.json({ limit: '50mb' }))
-
-
+const config = {secretOrKey:"mysecret"}
 const CLIENT_URL = "http://localhost:3000/admin/home"
 
 app.get('/', (req, res) => {
@@ -63,78 +50,33 @@ app.get('/', (req, res) => {
   })
 })
 
+
 app.get('/google',  passport.authenticate('google', { scope: ['profile','email'] }))
 
-app.get('/google/callback', passport.authenticate('google'),(req, res)=>{
+app.get('/google/callback', passport.authenticate('google',{failureRedirect:CLIENT_URL}),(req, res)=>{
   console.log('redirected', req.user)
   let user = {
       displayName: req.user.displayName,
       name: req.user.name.givenName,
       email: req.user._json.email,
       provider: req.user.provider }
-  console.log(user)
+      console.log(user)
 
   let token = jwt.sign({
       data: user
-      }, 'secret', { expiresIn: 4000 }); // expiry in seconds
-  res.cookie('jwt', token)
+      }, config.secretOrKey, { expiresIn: 4000 }); // expiry in seconds
+  res.cookie('jwt', token,{secure:true})
   res.redirect(CLIENT_URL)
 })
 
 app.get('/login/success', passport.authenticate('jwt', { session: false }) ,(req,res)=>{
-  res.status(200).json({user : req.user.email})
+  res.status(200).json({user : req.user})
 })
 
-// function generateUserToken(req, res) {
-//   const accessToken = token.generateAccessToken(req.user.id);
-//   res.render('authenticated.html', {
-//     token: accessToken
-//   });
-// }
-
-// app.get("/login/failed", (req, res) => {
-//   res.redirect(CLIENT_URL)
-// });
-
-// app.get("/login/success", (req, res) => {
-//   if (req.user) {
-//     res.status(200).json({
-//       success: true,
-//       message: "successfull",
-//       user: req.user,
-//     });
-//   }
-// });
-
-// app.get('/google/success',
-//   passport.authenticate('google', { session: false, scope: ['openid', 'profile', 'email'] }));
-
-// app.get('/google/callback',
-//   passport.authenticate('google', { session: false,successRedirect: CLIENT_URL,failureRedirect: "/login/failed" }),
-//   generateUserToken);
-
-// app.get('/google',
-//   passport.authenticate('google', { session: false, scope: ['openid', 'profile', 'email'] }));
-
-
-// app.get("/login/failed", (req, res) => {
-//   res.redirect(CLIENT_URL)
-// });
-
-// app.get("/logout", (req, res) => {
-//   req.logout();
-//   res.redirect(CLIENT_URL);
-// });
-
-// app.get("/google", passport.authenticate("google", { scope: ["profile","email"] }));
-
-// app.get(
-//   "/google/callback",
-//   passport.authenticate("google", {
-//     successRedirect: CLIENT_URL,
-//     failureRedirect: "/login/failed",
-//   })
-// );
+app.get("/logout", (req, res) => {
+    res.cookie('jwt',{})
+    res.redirect(CLIENT_URL)
+});
 
 const usersRoute = require('./routes/users')
 app.use('/users', usersRoute)

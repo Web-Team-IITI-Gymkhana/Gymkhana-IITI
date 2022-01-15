@@ -9,6 +9,7 @@ import AdminProfilePage from "../AdminProfilePage";
 import AdminHomePage from "../AdminHomePage/AdminHomePage";
 import SectionView from "../../public/SectionPage/SectionView";
 
+
 function Admin(){
 
     const [currentSections, setCurrentSections] = useState([]);
