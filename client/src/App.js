@@ -18,8 +18,9 @@ function App() {
 
 
     useEffect(() => {
-        const getUser = () => {
+        const getUser =  () => {
             console.log("Checking at URL ",configData.CHECK_URL)
+
             fetch(configData.CHECK_URL, {
                 method: "GET",
                 credentials: "include",
