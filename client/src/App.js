@@ -8,6 +8,7 @@ import Admin from "./pages/admin/Admin/Admin";
 import './index.css';
 import Authenticate from "./components/Auth/Authenticate";
 
+import configData from "./config.prod.json"
 
 import Cookies from 'js-cookie';
 
@@ -17,7 +18,7 @@ function App() {
 
     useEffect(() => {
         const getUser = () => {
-            fetch(process.env.REACT_APP_CHECK_URL, {
+            fetch(configData.CHECK_URL, {
                 method: "GET",
                 credentials: "include",
                 headers: {

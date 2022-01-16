@@ -1,4 +1,5 @@
 import axios from 'axios';
+import configData from "./../config.prod.json"
 
 const corsOptions = {
     credentials: "include",
@@ -9,9 +10,9 @@ const corsOptions = {
     },
 }
 
-const usersURL = process.env.REACT_APP_USERS_URL
-const contentURL = process.env.REACT_APP_CONTENT_URL
-const imgUploadURL = process.env.REACT_APP_IMG_UPLOAD_URL
+const usersURL = configData.USERS_URL
+const contentURL = configData.CONTENT_URL
+const imgUploadURL = configData.IMG_UPLOAD_URL
 
 export const uploadImageServer = (imageData) => axios.post(imgUploadURL,imageData,{... corsOptions,method:"POST"})
 
