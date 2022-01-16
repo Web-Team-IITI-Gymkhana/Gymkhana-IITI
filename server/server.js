@@ -1,12 +1,13 @@
 const express = require('express')
 const passport = require('passport')
-const cookieParser = require('cookie-parser')
+// const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const app = express()
 const path = require('path')
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 require('dotenv').config()
+const cookieSession = require("cookie-session");
 
 
 const DB_URI = process.env.MONGO_URI
@@ -17,7 +18,11 @@ const CLIENT_URL = process.env.CLIENT_URL
 require('./passport-setup')
 const Users = require('./models/users')
 
-const config = {secretOrKey:"mysecret"}
+// const config = {secretOrKey:"mysecret"}
+
+app.use(
+  cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
+);
 
 const corsOptions = {
   origin: CLIENT_ORIGIN,
@@ -25,8 +30,9 @@ const corsOptions = {
   credentials: true,
 }
 
-app.use(cookieParser())
+// app.use(cookieParser())
 app.use(passport.initialize())
+app.use(passport.session());
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' }))
 
@@ -52,35 +58,67 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/google',  passport.authenticate('google', { scope: [
-  'https://www.googleapis.com/auth/userinfo.profile',
-  'https://www.googleapis.com/auth/userinfo.email'
-]}))
+// app.get('/google',  passport.authenticate('google', { scope: [
+//   'https://www.googleapis.com/auth/userinfo.profile',
+//   'https://www.googleapis.com/auth/userinfo.email'
+// ]}))
 
-app.get('/google/callback', passport.authenticate('google',{failureRedirect:CLIENT_URL}),(req, res)=>{
-  // console.log('redirected', req.user)
-  let user = {
-      displayName: req.user.displayName,
-      name: req.user.name.givenName,
-      email: req.user._json.email,
-      provider: req.user.provider }
-      // console.log(user)
+// app.get('/google/callback', passport.authenticate('google',{failureRedirect:CLIENT_URL}),(req, res)=>{
+//   // console.log('redirected', req.user)
+//   let user = {
+//       displayName: req.user.displayName,
+//       name: req.user.name.givenName,
+//       email: req.user._json.email,
+//       provider: req.user.provider }
+//       // console.log(user)
 
-  let token = jwt.sign({
-      data: user
-      }, config.secretOrKey, { expiresIn: 4000 });
-  res.cookie('jwt', token,{secure:true})
-  res.redirect(CLIENT_URL)
-})
+//   let token = jwt.sign({
+//       data: user
+//       }, config.secretOrKey, { expiresIn: 4000 });
+//   res.cookie('jwt', token,{secure:true})
+//   res.redirect(CLIENT_URL)
+// })
 
-app.get('/login/success', passport.authenticate('jwt', { session: false }) ,(req,res)=>{
-  res.status(200).json({user : req.user})
-})
+// app.get('/login/success', passport.authenticate('jwt', { session: false }) ,(req,res)=>{
+//   res.status(200).json({user : req.user})
+// })
+
+// app.get("/logout", (req, res) => {
+//     res.cookie('jwt',{})
+//     res.redirect(CLIENT_URL)
+// });
+
+app.get("/login/success", (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      message: "successfull",
+      user: req.user,
+    });
+  }
+});
+
+// app.get("/login/failed", (req, res) => {
+//   res.status(401).json({
+//     success: false,
+//     message: "failure",
+//   });
+// });
 
 app.get("/logout", (req, res) => {
-    res.cookie('jwt',{})
-    res.redirect(CLIENT_URL)
+  req.logout();
+  res.redirect(CLIENT_URL);
 });
+
+app.get("/google", passport.authenticate("google", { scope: ["profile","email"] }));
+
+app.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: CLIENT_URL,
+    failureRedirect: CLIENT_URL,
+  })
+);
 
 const usersRoute = require('./routes/users')
 app.use('/users', usersRoute)
