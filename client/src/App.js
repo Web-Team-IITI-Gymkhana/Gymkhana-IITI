@@ -16,8 +16,10 @@ function App() {
 
     const [user, setUser] = useState(null);
 
+
     useEffect(() => {
         const getUser = () => {
+            console.log("Checking at URL ",configData.CHECK_URL)
             fetch(configData.CHECK_URL, {
                 method: "GET",
                 credentials: "include",
@@ -28,16 +30,19 @@ function App() {
                 },
             })
             .then((response) => {
+                console.log("Google Response ",response)
                 if (response.status === 200) return response.json();
                 else{<Navigate to="/"/>}
                 throw new Error("authentication has been failed!");
             })
             .then((resObject) => {
+                console.log("resObject ",resObject)
                 setUser(resObject.user);
             })
             .catch((err) => {
-                console.log(err);
+                console.log("Google Error", err);
             });
+            console.log("After Fetch")
         };
         getUser();
     }, []);
