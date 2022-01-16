@@ -53,7 +53,10 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/google',  passport.authenticate('google', { scope: ['profile','email'] }))
+app.get('/google',  passport.authenticate('google', { scope: [
+  'https://www.googleapis.com/auth/userinfo.profile',
+  'https://www.googleapis.com/auth/userinfo.email'
+]}))
 
 app.get('/google/callback', passport.authenticate('google',{failureRedirect:CLIENT_URL}),(req, res)=>{
   console.log('redirected', req.user)
