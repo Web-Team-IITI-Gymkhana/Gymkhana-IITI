@@ -14,6 +14,8 @@ const usersURL = configData.USERS_URL
 const contentURL = configData.CONTENT_URL
 const imgUploadURL = configData.IMG_UPLOAD_URL
 
+console.log("API URLS ",usersURL,contentURL,imgUploadURL)
+
 export const uploadImageServer = (imageData) => axios.post(imgUploadURL,imageData,{... corsOptions,method:"POST"})
 
 export const fetchUsers = () => axios.get(usersURL,{... corsOptions,method:"GET"})

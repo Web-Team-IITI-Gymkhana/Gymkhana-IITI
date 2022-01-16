@@ -24,6 +24,9 @@ app.use(
   cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
 );
 
+console.log("CLIENT ORIGIN IS ",CLIENT_ORIGIN)
+console.log("CLIENT URL IS ",CLIENT_URL)
+
 const corsOptions = {
   origin: CLIENT_ORIGIN,
   methods: "GET,POST,PUT,DELETE,PATCH",
@@ -88,12 +91,12 @@ app.get('/', (req, res) => {
 //     res.redirect(CLIENT_URL)
 // });
 
-app.get("/login/success", async (req, res) => {
+app.get("/login/success", (req, res) => {
   if (req.user) {
-    return res.status(200).json({
-      success: true,
-      message: "successfull",
-      user: req.user,
+    res.status(200).json({
+      "success": true,
+      "message": "successfull",
+      "user": req.user,
     });
   }
 });
