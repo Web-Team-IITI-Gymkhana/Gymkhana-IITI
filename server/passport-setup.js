@@ -3,7 +3,7 @@ const passport = require('passport')
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-
+require('dotenv').config()
 
 const config = {secretOrKey:"mysecret"}
 var opts = {}
@@ -27,13 +27,10 @@ passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
     return done(null, jwt_payload.data)
 }))
 
-// const CALLBACK_URL = "http://localhost:5000/google/callback"
-const CALLBACK_URL = "https://gymkhana-iiti.herokuapp.com/google/callback"
-
 passport.use(new GoogleStrategy({
-      clientID: process.env.PERSONAL_CLIENT_ID,
-      clientSecret: process.env.PERSONAL_CLIENT_SECRET,
-    callbackURL: CALLBACK_URL
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: process.env.CALLBACK_URL
   },
   function(accessToken, refreshToken, profile, done) {
       console.log("GOOGLE BASED OAUTH VALIDATION GETTING CALLED")
