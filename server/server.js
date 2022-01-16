@@ -58,13 +58,13 @@ app.get('/google',  passport.authenticate('google', { scope: [
 ]}))
 
 app.get('/google/callback', passport.authenticate('google',{failureRedirect:CLIENT_URL}),(req, res)=>{
-  console.log('redirected', req.user)
+  // console.log('redirected', req.user)
   let user = {
       displayName: req.user.displayName,
       name: req.user.name.givenName,
       email: req.user._json.email,
       provider: req.user.provider }
-      console.log(user)
+      // console.log(user)
 
   let token = jwt.sign({
       data: user

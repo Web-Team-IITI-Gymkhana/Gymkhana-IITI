@@ -37,6 +37,7 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, done) {
       console.log("GOOGLE BASED OAUTH VALIDATION GETTING CALLED")
       const email = profile.emails[0].value
+      console.log("GOOGLE EMAIL ",email)
       if(email==='cse200001044@iiti.ac.in'){return done(null,profile)}
       return done(null, false)
       // return done(null,profile)
