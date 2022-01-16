@@ -8,9 +8,10 @@ import Admin from "./pages/admin/Admin/Admin";
 import './index.css';
 import Authenticate from "./components/Auth/Authenticate";
 
-import configData from "./config.prod.json"
+import configData from "./config.dev.json"
 
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 function App() {
 
@@ -18,31 +19,45 @@ function App() {
 
 
     useEffect(() => {
-        const getUser = () => {
+        const getUser =  async () => {
             console.log("Checking at URL ",configData.CHECK_URL)
-            fetch(configData.CHECK_URL, {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Credentials": true,
-                },
-            })
-            .then((response) => {
-                console.log("Google Response ",response)
-                if (response.status === 200) return response.json();
-                else{<Navigate to="/"/>}
-                throw new Error("authentication has been failed!");
-            })
-            .then((resObject) => {
-                console.log("resObject ",resObject)
-                setUser(resObject.user);
-            })
-            .catch((err) => {
-                console.log("Google Error", err);
-            });
-            console.log("After Fetch")
+
+            // fetch(configData.CHECK_URL, {
+            //     method: "GET",
+            //     credentials: "include",
+            //     headers: {
+            //     Accept: "application/json",
+            //     "Content-Type": "application/json",
+            //     "Access-Control-Allow-Credentials": true,
+            //     },
+            // })
+            // .then((response) => {
+            //     console.log("Google Response ",response)
+            //     if (response.status === 200) return response.json();
+            //     else{<Navigate to="/"/>}
+            //     throw new Error("authentication has been failed!");
+            // })
+            // .then((resObject) => {
+            //     console.log("resObject ",resObject)
+            //     setUser(resObject.user);
+            // })
+            // .catch((err) => {
+            //     console.log("Google Error", err);
+            // });
+            // console.log("After Fetch")
+
+            const x = await axios.get(configData.CHECK_URL, {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Credentials": true,
+                    },
+                })
+
+            console.log("x",x)
+
         };
         getUser();
     }, []);

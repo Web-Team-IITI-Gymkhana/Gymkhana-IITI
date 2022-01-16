@@ -88,9 +88,9 @@ app.get('/', (req, res) => {
 //     res.redirect(CLIENT_URL)
 // });
 
-app.get("/login/success", (req, res) => {
+app.get("/login/success", async (req, res) => {
   if (req.user) {
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "successfull",
       user: req.user,
