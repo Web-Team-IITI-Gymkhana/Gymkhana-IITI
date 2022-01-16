@@ -9,7 +9,9 @@ import AdminProfilePage from "../AdminProfilePage";
 import AdminHomePage from "../AdminHomePage/AdminHomePage";
 import SectionView from "../../public/SectionPage/SectionView";
 
+
 function Admin(){
+
     const [currentSections, setCurrentSections] = useState([]);
     const [currentUserProfile, setCurrentProfile] = useState({});
 
@@ -47,14 +49,14 @@ function Admin(){
             })
 
         } catch (error) {
-            console.log(error)
+            setCurrentSections([])
         }
     }, [contentVersions])
 
     return(
         <>
         {
-            currentSections.length !== 0 ?
+            currentSections.length !== 0?
                 <div>
                     <Routes>
                         <Route path="/profile" element={<AdminProfilePage userProfile={currentUserProfile}/>}/>

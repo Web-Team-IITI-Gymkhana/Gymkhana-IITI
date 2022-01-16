@@ -1,16 +1,34 @@
 const express = require('express')
-const session = require('express-session')
-const mongoose = require('mongoose')
+const passport = require('passport')
+const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const app = express()
 const path = require('path')
+const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
+const Process = require("process");
 require('dotenv').config()
+
 const DB_URI = process.env.MONGO_URI
 const port = process.env.PORT || 5000;
-const Process = require("process");
-const passport = require('passport')
+
 require('./passport-setup')
 const Users = require('./models/users')
+
+// const CLIENT_ORIGIN = "http://localhost:3000"
+const CLIENT_ORIGIN = "https://gymkhana-iiti.netlify.app"
+
+app.use(cookieParser())
+app.use(passport.initialize())
+app.use(
+  cors({
+    origin: CLIENT_ORIGIN,
+    methods: "GET,POST,PUT,DELETE,PATCH",
+    credentials: true,
+  })
+);
+app.use(express.json({ limit: '50mb' }))
+
 
 const cloudinary = require('cloudinary').v2
 cloudinary.config({
@@ -19,52 +37,50 @@ cloudinary.config({
   api_secret: Process.env.CLOUDINARY_API_SECRET,
 })
 
-//database connection
 mongoose.connect(DB_URI, {
   useNewUrlParser: true,
-  // useCreateIndex: true,
   useUnifiedTopology: true
 })
   .then(res => console.log('mongoDB connected...'))
   .catch(err => console.log(err))
 
+const config = {secretOrKey:"mysecret"}
+// const CLIENT_URL = "http://localhost:3000/admin/home"
+const CLIENT_URL = "https://gymkhana-iiti.netlify.app/admin/home"
 
-//middleware
-app.use(session({
-  secret: 'cats'
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(cors())
-app.use(express.json({ limit: '50mb' }))
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", '*');
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-  next();
-});
-
-
-//endpoints
 app.get('/', (req, res) => {
   res.status(200).json({
     msg: "This is the server of Gymkhana IITI"
   })
 })
 
-app.get('/failed', (req, res) => {
-  res.send("Login failed!")
+
+app.get('/google',  passport.authenticate('google', { scope: ['profile','email'] }))
+
+app.get('/google/callback', passport.authenticate('google',{failureRedirect:CLIENT_URL}),(req, res)=>{
+  console.log('redirected', req.user)
+  let user = {
+      displayName: req.user.displayName,
+      name: req.user.name.givenName,
+      email: req.user._json.email,
+      provider: req.user.provider }
+      console.log(user)
+
+  let token = jwt.sign({
+      data: user
+      }, config.secretOrKey, { expiresIn: 4000 }); // expiry in seconds
+  res.cookie('jwt', token,{secure:true})
+  res.redirect(CLIENT_URL)
 })
 
-app.get('/google',
-  passport.authenticate('google', {scope: ['profile', 'email']}));
-
-app.get('/logout', (req, res) => {
-  req.session = null
-  req.logOut()
-  res.redirect('/')
+app.get('/login/success', passport.authenticate('jwt', { session: false }) ,(req,res)=>{
+  res.status(200).json({user : req.user})
 })
+
+app.get("/logout", (req, res) => {
+    res.cookie('jwt',{})
+    res.redirect(CLIENT_URL)
+});
 
 const usersRoute = require('./routes/users')
 app.use('/users', usersRoute)
@@ -73,9 +89,6 @@ const contentRoute = require('./routes/content')
 app.use('/content', contentRoute)
 
 app.route('/uploadImage').post(async (req, res) => {
-
-  // console.log(req.body)
-
   try {
     let imgData  = req.body.img
     imgData = JSON.parse(imgData)
@@ -84,7 +97,6 @@ app.route('/uploadImage').post(async (req, res) => {
     const dataFor = req.body.dataFor
 
     const uploadResponse = await cloudinary.uploader.upload(imgString);
-    console.log(uploadResponse)
     const imgURL = uploadResponse.secure_url
 
     let userName = req.body.userName
@@ -118,7 +130,7 @@ app.route('/uploadImage').post(async (req, res) => {
   }
 })
 
-// server
+
 app.listen(port, () => {
   console.log(`Listening on the port: ${port}`);
 });

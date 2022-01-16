@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import Public from "./pages/public/Public";
 import Admin from "./pages/admin/Admin/Admin";
@@ -7,7 +8,45 @@ import Admin from "./pages/admin/Admin/Admin";
 import './index.css';
 import Authenticate from "./components/Auth/Authenticate";
 
+
+import Cookies from 'js-cookie';
+
 function App() {
+
+    // const CHECK_URL = "http://localhost:5000/login/success"
+    const CHECK_URL = "https://gymkhana-iiti.herokuapp.com/login/success"
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const getUser = () => {
+            fetch(CHECK_URL, {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
+                },
+            })
+            .then((response) => {
+                if (response.status === 200) return response.json();
+                else{<Navigate to="/"/>}
+                throw new Error("authentication has been failed!");
+            })
+            .then((resObject) => {
+                setUser(resObject.user);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        };
+        getUser();
+    }, []);
+
+    console.log("GoogleUserAPI",user)
+
+    console.log("GoogleUserCookie",Cookies.get('jwt'))
 
     return (
         <>
@@ -17,8 +56,7 @@ function App() {
                         <Routes>
                             <Route exact path="/" element = {<Navigate to="/public/home"/>}/>
                             <Route path="/public/*" element={<Public/>}/>
-                            <Route path="/admin/*" element={<Admin/>}/>
-                            <Route path="/auth" element={<Authenticate/>}/>
+                            <Route path="/admin/*" element={user ?<Admin/>:<Authenticate/>}/>
                         </Routes>
                     </Router>
                 </div>

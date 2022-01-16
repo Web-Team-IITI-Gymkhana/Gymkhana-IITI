@@ -1,12 +1,17 @@
-import React from 'react'
-import Button from '@material-ui/core/Button';
+import React  from 'react'
+import Buttton from '@material-ui/core/Button'
 
 export default function Authenticate() {
-  return (
-    <div>
-      <form action="http://localhost:5000/google">
-        <Button type='submit' variant='contained'>Login with Google</Button>
-      </form>
-    </div>
-  )
+        // const LOGIN_URL = "http://localhost:5000/google"
+        const LOGIN_URL = "https://gymkhana-iiti.herokuapp.com/google"
+        const googleLogin = ()=>{
+            window.open(LOGIN_URL, "_self");
+        }
+        return (
+        <div>
+
+            <Buttton onClick={googleLogin}>Login With Google</Buttton>
+
+        </div>
+    )
 }

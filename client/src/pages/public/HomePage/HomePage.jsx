@@ -9,8 +9,6 @@ import {Box} from '@mui/material'
 export default function HomePage({userProfile, sections,type}) {
     return (
      <div>
-
-
         <Navbar userProfile={userProfile} sections={sections} type={type}/>
         <Hero userProfile={userProfile}/>
 
