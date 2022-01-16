@@ -48,6 +48,8 @@ function App() {
         getUser();
     }, []);
 
+    setUser("saasdads")
+
     console.log("GoogleUserAPI",user)
 
     console.log("GoogleUserCookie",Cookies.get('jwt'))
