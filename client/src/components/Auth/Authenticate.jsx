@@ -1,6 +1,6 @@
 import React  from 'react'
 import Buttton from '@material-ui/core/Button'
-import configData from "./../../config.prod.json"
+import configData from "./../../config.dev.json"
 
 export default function Authenticate() {
 
