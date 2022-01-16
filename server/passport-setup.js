@@ -6,7 +6,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require('dotenv').config()
 
 const config = {secretOrKey:"mysecret"}
-var opts = {}
+var opts = {proxy : true,passport:true,}
 opts.jwtFromRequest = function(req) {
     var token = null;
     if (req && req.cookies){
@@ -31,14 +31,15 @@ passport.use(new GoogleStrategy({
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
     callbackURL: process.env.CALLBACK_URL,
-    proxy : true
+    proxy : true,
+    passport : true,
   },
   function(accessToken, refreshToken, profile, done) {
       console.log("GOOGLE BASED OAUTH VALIDATION GETTING CALLED")
       const email = profile.emails[0].value
-      // if(email==='cse200001044@iiti.ac.in'){return done(null,profile)}
-      // return done(null, false)
-      return done(null,profile)
+      if(email==='cse200001044@iiti.ac.in'){return done(null,profile)}
+      return done(null, false)
+      // return done(null,profile)
   }
 ))
 
