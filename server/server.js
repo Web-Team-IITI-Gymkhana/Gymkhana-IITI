@@ -23,7 +23,6 @@ const corsOptions = {
   origin: CLIENT_ORIGIN,
   methods: "GET,POST,PUT,DELETE,PATCH",
   credentials: true,
-
 }
 
 app.use(cookieParser())
