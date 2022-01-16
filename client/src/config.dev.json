@@ -1,0 +1,7 @@
+{
+    "USERS_URL" : "http://localhost:5000/users",
+    "CONTENT_URL" : "http://localhost:5000/content",
+    "IMG_UPLOAD_URL" : "http://localhost:5000/uploadImage",
+    "CHECK_URL" : "http://localhost:5000/login/success",
+    "LOGIN_URL" : "http://localhost:5000/google"
+}

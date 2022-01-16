@@ -1,10 +1,11 @@
 import React  from 'react'
 import Buttton from '@material-ui/core/Button'
+import configData from "./../../config.prod.json"
 
 export default function Authenticate() {
 
         const googleLogin = ()=>{
-            window.open(process.env.REACT_APP_LOGIN_URL, "_self");
+            window.open(configData.LOGIN_URL, "_self");
         }
         return (
         <div>
