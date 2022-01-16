@@ -13,14 +13,11 @@ import Cookies from 'js-cookie';
 
 function App() {
 
-    // const CHECK_URL = "http://localhost:5000/login/success"
-    const CHECK_URL = "https://gymkhana-iiti.herokuapp.com/login/success"
-
     const [user, setUser] = useState(null);
 
     useEffect(() => {
         const getUser = () => {
-            fetch(CHECK_URL, {
+            fetch(process.env.REACT_APP_CHECK_URL, {
                 method: "GET",
                 credentials: "include",
                 headers: {
