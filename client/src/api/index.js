@@ -1,5 +1,5 @@
 import axios from 'axios';
-import configData from "./../config.dev.json"
+import configData from "./../config.prod.json"
 
 const corsOptions = {
     credentials: "include",
