@@ -1,7 +1,7 @@
 const colors = {
     primary: '#ffefc7',
     primaryShade: '#3c2117',
-    accent: '#3c2117', 
+    accent: '#3c2117',
     accentShade: 'white'
 }
 
@@ -20,42 +20,46 @@ export const styles = {
         fontSize: 25,
         textAlign: 'center'
     },
+    subheading2: {
+        fontSize: 20,
+        margin: 'auto',
+        fontWeight: 'bold'
+    },
 
 
     //AdminHomePage
-    mainContent: {
-        // backgroundColor: '#d7d1ac',
-        backgroundColor: colors.primaryShade,
-        paddingTop: '15px',
-        paddingLeft: '15px',
-        height: '85vh',
-        maxWidth: '95vw',
-        borderRadius: '25px',
+    mainContainer: {
+        padding: 10,
     },
-    
-    sectionHeader: {
-        backgroundColor: colors.primary,
-        alignItems: 'flex-start',
-        alignContent: 'center',
-        height: '80vh',
-        width: '20vw',
-        borderRadius: '10px 0px 0px 10px',
+    sectionHeadersContainer: {
+        
     },
-    sectionContent: {
-        backgroundColor: colors.primary,
-        marginLeft: '15px',
-        height: '80vh',
-        width: '71vw',
-        borderRadius: '0px 10px 10px 0px',
+    sectionContentContainer: {
+        
     },
     sectionHeaderCard: {
-        padding: '2px',
-        margin: '7px',
-        borderRadius: '10px 0px 0px 10px',
+        margin: 10,
+        padding: '5px 0',
+        borderRadius: 4,
         backgroundColor: colors.accentShade,
+        transition: '.3s'
     },
-    
-    
+    sectionHeaderCardSelected: {
+        margin: 10,
+        padding: '5px 0',
+        borderRadius: 4,
+        backgroundColor: colors.accent,
+        color: 'white',
+        transition: '.3s'
+    },
+
+    // SectionChild
+    sectionChildCard: {
+        width: 350,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1,
+    },
 
 
     // buttons
@@ -89,7 +93,7 @@ export const styles = {
         backgroundColor: 'white',
         padding: 10,
         borderRadius: 4,
-        display: 'flex', 
+        display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         gap: 30,
