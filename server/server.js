@@ -1,33 +1,17 @@
 const express = require('express')
-const passport = require('passport')
-const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const app = express()
-const path = require('path')
 const mongoose = require('mongoose')
 require('dotenv').config()
-const cookieSession = require("cookie-session");
-
 
 const DB_URI = process.env.MONGO_URI
 const PORT = process.env.PORT || 5000;
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN
-const CLIENT_URL = process.env.CLIENT_URL
 
-require('./passport-setup')
 const Users = require('./models/users')
 
-app.use(
-  cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
-);
-
-app.use(cookieParser())
-app.use(passport.initialize())
-app.use(passport.session());
 app.use(cors({ origin: CLIENT_ORIGIN, credentials: true }))
 app.use(express.json({ limit: '50mb' }))
-
-app.set("trust proxy", 1);
 
 const cloudinary = require('cloudinary').v2
 cloudinary.config({
@@ -48,29 +32,6 @@ app.get('/', (req, res) => {
     msg: "This is the server of Gymkhana IITI"
   })
 })
-
-app.get("/login/success", (req, res) => {
-  res.send(req.user);
-});
-
-app.get("/logout", (req, res) => {
-  res.cookie('user','false',{secure:true})
-  req.logout();
-  res.redirect(CLIENT_URL);
-});
-
-app.get("/google", passport.authenticate("google", { scope: ['email','profile'] }));
-
-app.get("/google/callback",
-    passport.authenticate('google', {failureRedirect: CLIENT_URL,session:true}),
-    function (req,res){
-      console.log("Authenticated Successfully")
-      const email = req.user.emails[0].value
-      console.log("Email in callback",email)
-      res.cookie('user', email,{secure:true})
-      res.redirect(CLIENT_URL)
-    }
-);
 
 const usersRoute = require('./routes/users')
 app.use('/users', usersRoute)
@@ -122,7 +83,5 @@ app.route('/uploadImage').post(async (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log("CLIENT ORIGIN IS ",CLIENT_ORIGIN)
-  console.log("CLIENT URL IS ",CLIENT_URL)
   console.log(`Listening on the port: ${PORT}`);
 });

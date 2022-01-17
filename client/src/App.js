@@ -7,15 +7,9 @@ import Admin from "./pages/admin/Admin/Admin";
 import './index.css';
 import Authenticate from "./components/Auth/Authenticate";
 
-import Cookie from 'js-cookie'
-
 function App() {
 
-
-    let user = Cookie.get('user');
-    if(user==='false'){user=null;}
-
-    console.log("GoogleUserCookie",user)
+    let user = "abc"
 
     return (
         <>
