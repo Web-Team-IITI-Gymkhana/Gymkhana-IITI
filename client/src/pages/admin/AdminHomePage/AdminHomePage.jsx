@@ -20,7 +20,7 @@ function AdminHomePage({ userProfile }) {
     let contentVersions = useSelector((state) => state.contentVersions)
     let sections = contentVersions[(contentVersions).length - 1].Sections
 
-    const [currSectionID, setSectionID] = useState(1)
+    const [currSectionID, setSectionID] = useState(0)
 
     const currentUser = userProfile.userName
     const dispatch = useDispatch()
@@ -45,38 +45,18 @@ function AdminHomePage({ userProfile }) {
         <>
             <Navbar handlingAdd={handledAdd} userName={currentUser} />
 
-            <Grid container className={classes.mainContainer}>
+            <Grid container className={classes.mainContainer} spacing={3}>
                 {/* section headers here */}
-                <Grid item lg={3} className={classes.sectionHeadersContainer}>
+                <Grid item lg={3} md={3} sm={12} xs={12}
+                    className={classes.sectionHeadersContainer}>
                     {sections.map(section => RenderSectionHeader(section.sectionID, currSectionID, section.sectionHeader))}
                 </Grid>
 
                 {/* the actual cards of sections */}
-                <Grid item lg={9}>
+                <Grid item lg={9} md={9} sm={12} xs={12}>
                     <Section userName={currentUser} currSectionID={currSectionID} />
                 </Grid>
             </Grid>
-
-            {/* <Container maxWidth="100">
-            <Box className={classes.mainContent} display={"flex"}>
-                <Box className={classes.sectionHeader}>
-                    <Box marginTop={"5px"}>
-                    <Typography className={classes.subheading}>
-                        {
-                            sections.map(section=>RenderSectionHeader(section.sectionID,section.sectionHeader))
-                        }
-                    </Typography>
-                    </Box>
-                </Box>
-                <Box className={classes.sectionContent}>
-                        {
-                            currSectionID===0 ? <Typography className={classes.headingBold}>No Section Selected</Typography>:
-                            <Section userName={currentUser} currSectionID={currSectionID}/>
-                        }
-
-                </Box>
-            </Box>
-            </Container> */}
         </>
     );
 }

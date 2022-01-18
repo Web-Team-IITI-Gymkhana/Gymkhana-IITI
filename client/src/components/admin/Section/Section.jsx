@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import SectionChild from "../SectionChild/SectionChild";
 import Box from "@material-ui/core/Box";
-import "./Section.css";
 import SectionChildModal from "../Modal/SectionChildModal";
 import SectionModal from "../Modal/SectionModal";
-import Button from '@material-ui/core/Button';
 
 import { useSelector } from "react-redux";
 import { deleteSection } from "../../../redux/actions/contentVersions";
 import { useDispatch } from "react-redux";
 import { Add, Delete, Edit, MoreVert } from "@mui/icons-material";
-import { ListItemIcon, ListItemText, MenuItem, Menu, MenuList, IconButton } from '@material-ui/core'
+import { ListItemIcon, ListItemText, MenuItem, Menu, MenuList, IconButton, Grid, Card } from '@material-ui/core'
+import { makeStyles } from "@mui/styles";
+import { styles } from "../../../variable-css";
+
+const useStyles = makeStyles(styles)
 
 function Section({ userName, currSectionID }) {
+    const classes = useStyles()
 
     const [anchorEl, setAnchorEl] = useState(null)
     const [menuOpen, setMenuOpen] = useState(false)
@@ -23,15 +26,10 @@ function Section({ userName, currSectionID }) {
     let section = sections.find(section => section.sectionID === currSectionID)
 
     let sectionID = -1
-    let addButton = {}
-    let updateButton = {}
     let sectionDetails = {}
 
     try {
         sectionID = section.sectionID
-
-        addButton = { "buttonName": `Add ${section.sectionName}`, "buttonID": "add", "buttonVariant": "contained" }
-        updateButton = { "buttonName": `Update Section`, "buttonID": "update", "buttonVariant": "contained" }
         sectionDetails = { "sectionName": section.sectionName, "sectionHeader": section.sectionHeader }
     } catch (error) {
         sectionID = -1
@@ -47,8 +45,8 @@ function Section({ userName, currSectionID }) {
     return (
 
         sectionID > 0 ?
-            <Box>
-                <Box display={'flex'} justifyContent={'space-between'}>
+            <Card className={classes.section}>
+                <Box display={'flex'} justifyContent={'space-between'} marginBottom={3}>
                     <h3 className="header">{section.sectionHeader}</h3>
                     <>
                         <IconButton onClick={(event) => {
@@ -95,12 +93,15 @@ function Section({ userName, currSectionID }) {
                         </Menu>
                     </>
                 </Box>
-                <Box id="section-box">
-                    {
-                        section.sectionContent.map(sectionChild => <SectionChild userName={userName} sectionID={sectionID} sectionChild={sectionChild} key={sectionChild.sectionChildID} />)
-                    }
-                </Box>
-            </Box> :
+                <Grid container spacing={3} justifyContent="center">
+                    {section.sectionContent.map(sectionChild =>
+                        <Grid item key={sectionChild.sectionChildID}>
+                            <SectionChild userName={userName}
+                                sectionID={sectionID}
+                                sectionChild={sectionChild} />
+                        </Grid>)}
+                </Grid>
+            </Card> :
             <></>
     );
 }

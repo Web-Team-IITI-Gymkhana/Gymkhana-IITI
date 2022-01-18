@@ -23,13 +23,36 @@ export const styles = {
     subheading2: {
         fontSize: 20,
         margin: 'auto',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textDecoration: 'underline'
     },
 
 
     //AdminHomePage
     mainContainer: {
-        padding: 10,
+        padding: 20,
+    },
+    sectionHeaderCard: {
+        margin: 10,
+        padding: 5,
+        borderRadius: 4,
+        backgroundColor: colors.accentShade,
+        transition: '.3s'
+    },
+    sectionHeaderCardSelected: {
+        margin: 10,
+        padding: 5,
+        borderRadius: 4,
+        backgroundColor: colors.accent,
+        color: 'white',
+        transition: '.3s'
+    },
+
+    // Section
+    section: {
+        backgroundColor: 'white',
+        borderRadius: 4,
+        padding: 20,
     },
     sectionHeadersContainer: {
         
@@ -37,28 +60,14 @@ export const styles = {
     sectionContentContainer: {
         
     },
-    sectionHeaderCard: {
-        margin: 10,
-        padding: '5px 0',
-        borderRadius: 4,
-        backgroundColor: colors.accentShade,
-        transition: '.3s'
-    },
-    sectionHeaderCardSelected: {
-        margin: 10,
-        padding: '5px 0',
-        borderRadius: 4,
-        backgroundColor: colors.accent,
-        color: 'white',
-        transition: '.3s'
-    },
 
     // SectionChild
     sectionChildCard: {
-        width: 350,
+        width: 300,
         display: 'flex',
         flexDirection: 'column',
         gap: 1,
+        backgroundColor: '#ffc8b3',
     },
 
 

@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
 import SectionChildModal from "../Modal/SectionChildModal";
 import { deleteSectionChild } from "../../../redux/actions/contentVersions"
 import { useDispatch } from "react-redux";
-import { MenuItem, MenuList, ListItemIcon, ListItemText, makeStyles } from "@material-ui/core";
+import { MenuItem, MenuList, ListItemIcon, ListItemText, makeStyles, Menu, Card, CardMedia, CardContent, CardActions, Collapse, Typography, IconButton, List, ListItem } from "@material-ui/core";
 import { Delete, Edit, MoreVert } from '@mui/icons-material';
 import { styles } from "../../../variable-css";
-import { Menu } from "@mui/material";
 
 const useStyles = makeStyles(styles)
 
@@ -57,7 +47,7 @@ function SectionChild({ userName, sectionID, sectionChild }) {
     return (
         <div>
             <Card className={classes.sectionChildCard}>
-                <span className={classes.subheading2} style={{marginBlock: '10px'}}>{sectionChild.sectionChildName}</span>
+                <span className={classes.subheading2} style={{ marginBlock: '10px' }}>{sectionChild.sectionChildName}</span>
                 <CardMedia
                     component="img"
                     height="100"

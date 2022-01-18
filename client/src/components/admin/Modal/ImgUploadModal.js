@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Box, Modal } from '@material-ui/core';
 import { useState } from "react";
@@ -18,6 +18,9 @@ export default function ImgUploadModal({ userName, type }) {
     const [selectedFile, setSelectedFile] = useState(null)
     const [crop, setCrop] = useState({});
 
+    const imageRef = useRef() // a ref to set the width of the crop to the image width when it renders for the first time, can't do it in imageLoaded func of the 
+    // react-image-crop, since it will trigger an infinite loop of update state.
+
     const dispatch = useDispatch();
 
     const handleFileInputChange = (e) => {
@@ -27,6 +30,10 @@ export default function ImgUploadModal({ userName, type }) {
         reader.readAsDataURL(file);
         reader.onloadend = () => {
             setSelectedFile(reader.result);
+            setCrop({
+                aspect: type === 'logo' ? 1 / 1 : 16 / 9,
+                width: imageRef.current.imageRef.current.width,
+            })
         };
         reader.onerror = () => {
             console.error('An error occurred!');
@@ -103,11 +110,10 @@ export default function ImgUploadModal({ userName, type }) {
 
     const classes = useStyles();
 
-    const handleModalClose = ()  => {
+    const handleModalClose = () => {
         setIsModalOpen(false)
         setFileInputState('')
         setSelectedFile(null)
-        setCrop({})
     }
 
     return (
@@ -117,7 +123,9 @@ export default function ImgUploadModal({ userName, type }) {
                 onClose={handleModalClose}
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Box className={classes.fileSelectModal}>
-                    {selectedFile != null ? <ReactCrop src={selectedFile} crop={crop} onChange={newCrop => setCrop(newCrop)} /> : null}
+                    {selectedFile != null ? <ReactCrop ref={imageRef} src={selectedFile} crop={crop} onChange={(newCrop) => {
+                        setCrop(newCrop)
+                    }} /> : null}
                     <form onSubmit={handleSubmitFile} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <input type="file" onChange={handleFileInputChange} value={fileInputState} />
                         <Button type="submit" className={classes.buttonPrimary}>
