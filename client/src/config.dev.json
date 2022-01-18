@@ -2,5 +2,6 @@
     "USERS_URL" : "http://localhost:5000/users",
     "CONTENT_URL" : "http://localhost:5000/content",
     "IMG_UPLOAD_URL" : "http://localhost:5000/uploadImage",
-    "LOGIN_URL" : "http://localhost:5000/auth/googlelogin"
+    "LOGIN_URL" : "http://localhost:5000/auth/googlelogin",
+    "VERIFY_URL" : "http://localhost:5000/auth/jwtverify"
 }

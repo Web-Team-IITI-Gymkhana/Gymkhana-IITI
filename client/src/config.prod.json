@@ -2,5 +2,6 @@
     "USERS_URL"  : "https://gymkhana-iiti.herokuapp.com/users",
     "CONTENT_URL" :  "https://gymkhana-iiti.herokuapp.com/content",
     "IMG_UPLOAD_URL" : "https://gymkhana-iiti.herokuapp.com/uploadImage",
-    "LOGIN_URL" : "https://gymkhana-iiti.herokuapp.com/auth/googlelogin"
+    "LOGIN_URL" : "https://gymkhana-iiti.herokuapp.com/auth/googlelogin",
+    "VERIFY_URL" : "https://gymkhana-iiti.herokuapp.com/auth/jwtverify"
 }
