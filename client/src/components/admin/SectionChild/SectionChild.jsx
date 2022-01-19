@@ -1,34 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-
-import "./SectionChild.css";
-
 import SectionChildModal from "../Modal/SectionChildModal";
 import { deleteSectionChild } from "../../../redux/actions/contentVersions"
 import { useDispatch } from "react-redux";
+import { MenuItem, MenuList, ListItemIcon, ListItemText, makeStyles, Menu, Card, CardMedia, CardContent, CardActions, Collapse, Typography, IconButton, List, ListItem } from "@material-ui/core";
+import { Delete, Edit, MoreVert } from '@mui/icons-material';
+import { styles } from "../../../variable-css";
+
+const useStyles = makeStyles(styles)
 
 const ExpandMore = styled((props) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { expand, ...other } = props;
     return <IconButton {...other} />;
-    })(({ theme, expand }) => ({
+})(({ theme, expand }) => ({
     transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
     marginLeft: "auto",
     transition: theme.transitions.create("transform", {
         duration: theme.transitions.duration.shortest,
     }),
-}));
+}))
 
 const flexContainer = {
     display: 'flex',
@@ -37,8 +28,12 @@ const flexContainer = {
 };
 
 
-function SectionChild({userName,sectionID,sectionChild}) {
-    const [expanded, setExpanded] = React.useState(false);
+function SectionChild({ userName, sectionID, sectionChild }) {
+    const classes = useStyles()
+
+    const [expanded, setExpanded] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null)
+    const [menuOpen, setMenuOpen] = useState(false)
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -46,19 +41,13 @@ function SectionChild({userName,sectionID,sectionChild}) {
 
     const dispatch = useDispatch()
     const handleDelete = (sectionChildID) => {
-        dispatch(deleteSectionChild(userName,sectionID,sectionChildID))
+        dispatch(deleteSectionChild(userName, sectionID, sectionChildID))
     }
 
-    const editButton = {"buttonName":"Edit","buttonID":"edit","buttonVariant":"text"}
-
     return (
-        <div className="sectionChild-div">
-            <Card  sx={{ maxWidth: 345 }}>
-                <h5 className="child-header">{sectionChild.sectionChildName}</h5>
-
-                <SectionChildModal userName={userName} sectionID={sectionID} sectionChildID={sectionChild.sectionChildID} sectionChild={sectionChild}  type={"editSectionChild"} buttonStyle={editButton}/>
-                <Button id="delete" variant="text" onClick={()=>{handleDelete(sectionChild.sectionChildID)}}>Delete</Button>
-
+        <div>
+            <Card className={classes.sectionChildCard}>
+                <span className={classes.subheading2} style={{ marginBlock: '10px' }}>{sectionChild.sectionChildName}</span>
                 <CardMedia
                     component="img"
                     height="100"
@@ -75,10 +64,41 @@ function SectionChild({userName,sectionID,sectionChild}) {
                         expand={expanded}
                         onClick={handleExpandClick}
                         aria-expanded={expanded}
-                        aria-label="show more"
-                    >
+                        aria-label="show more">
                         <ExpandMoreIcon />
                     </ExpandMore>
+                    <>
+                        <IconButton onClick={(event) => {
+                            setAnchorEl(event.currentTarget)
+                            setMenuOpen(true)
+                        }}>
+                            <MoreVert fontSize="small" />
+                        </IconButton>
+                        <Menu open={menuOpen} onClose={() => { setMenuOpen(false) }} anchorEl={anchorEl}>
+                            <MenuList>
+                                <SectionChildModal userName={userName}
+                                    sectionID={sectionID}
+                                    sectionChildID={sectionChild.sectionChildID}
+                                    sectionChild={sectionChild} type={"editSectionChild"}
+                                    triggerElement={
+                                        <MenuItem>
+                                            <ListItemIcon>
+                                                <Edit fontSize="small" />
+                                            </ListItemIcon>
+                                            <ListItemText>Edit</ListItemText>
+                                        </MenuItem>
+                                    } />
+                                <MenuItem>
+                                    <ListItemIcon onClick={() => {
+                                        handleDelete(sectionChild.sectionChildID)
+                                    }}>
+                                        <Delete fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText>Delete</ListItemText>
+                                </MenuItem>
+                            </MenuList>
+                        </Menu>
+                    </>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
@@ -89,7 +109,7 @@ function SectionChild({userName,sectionID,sectionChild}) {
                         <Typography paragraph variant="body2" color="text.secondary">
                             <h5>Links:</h5>
                             <List style={flexContainer}>
-                                {sectionChild.sectionChildLinks.map((link)=><ListItem key={link}><a href={link} key={link} style={{ textDecoration: 'none' }}> {link}</a></ListItem>)}
+                                {sectionChild.sectionChildLinks.map((link) => <ListItem key={link}><a href={link} key={link} style={{ textDecoration: 'none' }}> {link}</a></ListItem>)}
                             </List>
                         </Typography>
 
