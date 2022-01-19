@@ -1,4 +1,30 @@
 const Users = require('../models/users')
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const verifyToken = async (token,type) => {
+  try{
+      console.log("verifyToken called",type)
+      const decoded = jwt.verify(token, process.env.JWT_KEY)
+      console.log("Decoded token ",decoded)
+      const userEmailId = decoded.email
+      const user = await Users.findOne({userEmailId:userEmailId})
+      if(user)
+      {
+          console.log("User found")
+          return true
+      }
+      else
+      {
+          console.log("User not found")
+          return false
+      }
+  }
+  catch(error){
+    console.log(error)
+    return false;
+  }
+}
 
 const getAllUsers = async(req,res) => {
   try {
@@ -33,7 +59,6 @@ const addUser = async(req,res) => {
 
 const getUser = async(req,res) => {
     try {
-        console.log("In get user ",req.params)
         const {userName : userName} = req.params
         const user = await Users.findOne({userName:userName})
         return res.status(201).json({"user":user})
@@ -45,6 +70,9 @@ const getUser = async(req,res) => {
 
 const updateGeneralDetails = async(req,res) => {
     try {
+        const authRes = await verifyToken(req.headers.token,"updategendetails");
+        if(!authRes){return res.status(401).json({message:"JWT Auth Failed"})}
+
         const {userName : userName} = req.params
 
         let user = await Users.findOne({userName:userName})
@@ -76,7 +104,12 @@ const updateGeneralDetails = async(req,res) => {
 }
 
 const publishVersion = async(req,res)=>{
-  try {
+  try{
+
+      const authRes = await verifyToken(req.headers.token,"pubversion");
+      if(!authRes){return res.status(401).json({message:"JWT Auth Failed"})}
+
+
       const {userName : userName} = req.params
       let user = await Users.findOne({userName:userName})
       let contentVersions = user.contentVersions

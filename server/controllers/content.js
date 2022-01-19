@@ -1,4 +1,30 @@
 const Users = require('../models/users')
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const verifyToken = async (token,type) => {
+  try{
+      console.log("verifyToken called",type)
+      const decoded = jwt.verify(token, process.env.JWT_KEY)
+      console.log("Decoded token ",decoded)
+      const userEmailId = decoded.email
+      const user = await Users.findOne({userEmailId:userEmailId})
+      if(user)
+      {
+          console.log("User found")
+          return true
+      }
+      else
+      {
+          console.log("User not found")
+          return false
+      }
+  }
+  catch(error){
+    console.log(error)
+    return false;
+  }
+}
 
 const  getCurrentSections = async(req,res) => {
   try {
@@ -34,6 +60,9 @@ const  getPublishedSections = async(req,res) => {
 
 const  addSection = async(req,res) => {
     try {
+        const authRes = await verifyToken(req.headers.token,"addsection");
+        if(!authRes){return res.status(401).json({message:"JWT Auth Failed"})}
+
         const {userName : userName} = req.params
         let user = await Users.findOne({userName:userName});
         const versionIndex = (user.contentVersions).length - 1;
@@ -105,6 +134,10 @@ const  getPublishedSection = async(req,res) => {
 
 const updateSection = async(req,res) => {
     try {
+
+        const authRes = await verifyToken(req.headers.token,"updateSection");
+        if(!authRes){return res.status(401).json({message:"JWT Auth Failed"})}
+
         const {userName : userName , sectionID : sectionID} = req.params
 
         let user = await Users.findOne({userName:userName})
@@ -135,6 +168,9 @@ const updateSection = async(req,res) => {
 const deleteSection = async (req,res)=>{
 
     try {
+      const authRes = await verifyToken(req.headers.token,"delsection");
+      if(!authRes){return res.status(401).json({message:"JWT Auth Failed"})}
+
       const {userName : userName , sectionID : sectionID} = req.params
 
       let user = await Users.findOne({userName:userName})
@@ -202,6 +238,9 @@ const  getPublishedSectionChild = async(req,res) => {
 
 const  updateSectionChild = async(req,res) => {
     try {
+        const authRes = await verifyToken(req.headers.token,"updateSectionChild");
+        if(!authRes){return res.status(401).json({message:"JWT Auth Failed"})}
+
         const {userName : userName ,sectionID : sectionID, sectionChildID : sectionChildID} = req.params
 
         let user = await Users.findOne({userName:userName})
@@ -236,6 +275,9 @@ const  updateSectionChild = async(req,res) => {
 
 const  addSectionChild = async(req,res) => {
     try {
+        const authRes = await verifyToken(req.headers.token,"addsectionchild");
+        if(!authRes){return res.status(401).json({message:"JWT Auth Failed"})}
+
         const {userName : userName ,sectionID : sectionID} = req.params
 
         let user = await Users.findOne({userName:userName})
@@ -266,6 +308,9 @@ const  addSectionChild = async(req,res) => {
 
 const deleteSectionChild = async(req,res)=>{
     try {
+        const authRes = await verifyToken(req.headers.token,"delsectionchild");
+        if(!authRes){return res.status(401).json({message:"JWT Auth Failed"})}
+
         const {userName : userName ,sectionID : sectionID , sectionChildID : sectionChildID} = req.params
 
         let user = await Users.findOne({userName:userName})
