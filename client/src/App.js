@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
 
 import Public from "./pages/public/Public";
@@ -9,7 +10,8 @@ import Authenticate from "./components/Auth/Authenticate";
 
 function App() {
 
-    let user = "abc"
+    const [user,setUser] = useState(null)
+
 
     return (
         <>
@@ -19,7 +21,7 @@ function App() {
                         <Routes>
                             <Route exact path="/" element = {<Navigate to="/public/home"/>}/>
                             <Route path="/public/*" element={<Public/>}/>
-                            <Route path="/admin/*" element={user ?<Admin/>:<Authenticate/>}/>
+                            <Route path="/admin/*" element={user ?<Admin/>:<Authenticate setUser={setUser}/>}/>
                         </Routes>
                     </Router>
                 </div>

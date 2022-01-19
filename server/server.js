@@ -39,6 +39,9 @@ app.use('/users', usersRoute)
 const contentRoute = require('./routes/content')
 app.use('/content', contentRoute)
 
+const authRoute = require('./routes/auth')
+app.use('/auth',authRoute)
+
 app.route('/uploadImage').post(async (req, res) => {
   try {
     let imgData  = req.body.img
