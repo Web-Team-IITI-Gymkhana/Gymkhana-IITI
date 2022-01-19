@@ -6,4 +6,5 @@ const {getAllUsers,addUser,getUser , updateGeneralDetails,publishVersion,deleteU
 router.route('/').get(getAllUsers).post(addUser);
 router.route('/:userName').get(getUser).post(publishVersion).patch(updateGeneralDetails).delete(deleteUser);
 
+
 module.exports = router

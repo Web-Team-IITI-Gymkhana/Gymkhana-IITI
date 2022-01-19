@@ -33,6 +33,7 @@ const addUser = async(req,res) => {
 
 const getUser = async(req,res) => {
     try {
+        console.log("In get user ",req.params)
         const {userName : userName} = req.params
         const user = await Users.findOne({userName:userName})
         return res.status(201).json({"user":user})
