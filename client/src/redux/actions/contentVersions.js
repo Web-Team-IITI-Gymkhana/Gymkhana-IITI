@@ -5,14 +5,14 @@ export const setContentVersions = (userName,type,setUser) => async (dispatch) =>
         let user = null
         if(type==="admin")
         {
-            console.log("In admin user fetch action")
+            console.log("In admin user fetch action redux")
             try{
                 const {data} = await api.fetchUserAdmin(userName)
                 console.log("Fetch data",data)
                 user = data.user
             }
             catch(error){
-                console.log("In error")
+                console.log("In redux error")
                 setUser(null)
                 user = null
             }

@@ -14,7 +14,8 @@ export const fetchUserPublic = (userName) => axios.get(`${publicGetURL}/${userNa
 
 export const uploadImageServer = (imageData) => axios.post(imgUploadURL,imageData)
 export const fetchUsers = () => axios.get(usersURL)
-export const fetchUserAdmin = (userName) => axios.get(`${usersURL}/${userName}`,verifier)
+export const fetchUserAdmin = (userName) => axios.get(`${usersURL}/${userName}`,{headers: {token : localStorage.getItem('token')}})
+// export const fetchUserAdmin = (userName) => axios.get(`${usersURL}/${userName}`,verifier)
 export const updateGeneralDetails = (userName,postData) => axios.patch(`${usersURL}/${userName}`,postData,verifier)
 export const deleteUser = (userName) => axios.delete(`${usersURL}/${userName}`,verifier)
 

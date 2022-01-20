@@ -18,6 +18,7 @@ export default function Authenticate({setUser}) {
                 if(response.status === 200)
                 {
                     localStorage.setItem('token',response.data.token)
+                    console.log("After google login,setting token as ",response.data.token)
                     setUser(response.data)
                 }
             })

@@ -12,7 +12,12 @@ function App() {
 
     const [user,setUser] = useState(null)
 
-    useEffect(()=>setUser({token:localStorage.getItem('token')}),[])
+    useEffect(()=>{
+        if(localStorage.getItem('token'))
+        {
+            setUser({token:localStorage.getItem('token')})
+        }
+    },[])
     // useEffect(()=>setUser({token:localStorage.setItem('token',null)}),[])
 
     return (
