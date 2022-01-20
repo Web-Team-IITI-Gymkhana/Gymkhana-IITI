@@ -4,17 +4,19 @@ import configData from "../config.dev.json"
 const usersURL = configData.USERS_URL
 const contentURL = configData.CONTENT_URL
 const imgUploadURL = configData.IMG_UPLOAD_URL
+const publicGetURL = configData.PUBLIC_GET_URL
 
-console.log("API URLS ",usersURL,contentURL,imgUploadURL)
+console.log("API URLS ",usersURL,contentURL,imgUploadURL,publicGetURL)
 
-const verifier = {headers: {token : localStorage.getItem('token')}}
+let verifier = {headers: {token : localStorage.getItem('token')}}
+
+export const fetchUserPublic = (userName) => axios.get(`${publicGetURL}/${userName}`)
 
 export const uploadImageServer = (imageData) => axios.post(imgUploadURL,imageData)
 export const fetchUsers = () => axios.get(usersURL)
-export const fetchUser = (userName) => axios.get(`${usersURL}/${userName}`)
+export const fetchUserAdmin = (userName) => axios.get(`${usersURL}/${userName}`,verifier)
 export const updateGeneralDetails = (userName,postData) => axios.patch(`${usersURL}/${userName}`,postData,verifier)
 export const deleteUser = (userName) => axios.delete(`${usersURL}/${userName}`,verifier)
-
 
 export const fetchSections = (userName) => axios.get(`${contentURL}/sections/${userName}`)
 export const addSection = (userName,postData) => axios.post(`${contentURL}/sections/${userName}`,postData,verifier)

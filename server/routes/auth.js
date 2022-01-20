@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const {googlelogin, jwtverify} = require('../controllers/auth')
+const {googlelogin} = require('../controllers/auth')
 
 router.route('/googlelogin').post(googlelogin);
-router.route('/jwtverify').post(jwtverify);
+router.route('/jwtverify')
 
 module.exports = router

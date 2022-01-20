@@ -2,7 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken');
 require('dotenv').config()
+
 
 const DB_URI = process.env.MONGO_URI
 const PORT = process.env.PORT || 5000;
@@ -33,16 +35,34 @@ app.get('/', (req, res) => {
   })
 })
 
-const printToken = (req,res,next)=>{
-  console.log("JWT Middleware",req.headers.token)
-  next()
+const jwtAuth = async (req,res,next)=>{
+  try{
+    console.log("JWT Middleware",req.headers.token+"HelloMihir")
+    const decoded = jwt.verify(req.headers.token, process.env.JWT_KEY)
+    console.log("Decoded token ",decoded)
+
+    const userEmailId = decoded.email
+    const user = await Users.findOne({userEmailId:userEmailId})
+    if(user)
+    {
+        next()
+    }
+    else
+    {
+      return res.status(401).json({message:"JWT Auth Failed"})
+    }
+  }
+  catch(error){
+    console.log(error)
+    return res.status(401).json({message:"JWT Auth Failed"})
+  }
 }
 
 const usersRoute = require('./routes/users')
-app.use('/users', usersRoute)
+app.use('/users', jwtAuth,usersRoute)
 
 const contentRoute = require('./routes/content')
-app.use('/content', printToken,contentRoute)
+app.use('/content', jwtAuth,contentRoute)
 
 const authRoute = require('./routes/auth')
 app.use('/auth',authRoute)
@@ -86,6 +106,18 @@ app.route('/uploadImage').post(async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({ err: 'Something went wrong' });
+  }
+})
+
+app.route('/public/:userName').get(async (req,res)=>{
+  try {
+    console.log("Public user fetch called")
+    const {userName : userName} = req.params
+    const user = await Users.findOne({userName:userName})
+    return res.status(201).json({"user":user})
+
+  } catch (error) {
+      return res.status(404).json({message:error})
   }
 })
 

@@ -4,5 +4,5 @@
     "IMG_UPLOAD_URL" : "http://localhost:5000/uploadImage",
     "LOGIN_URL" : "http://localhost:5000/auth/googlelogin",
     "VERIFY_URL" : "http://localhost:5000/auth/jwtverify",
-    "TESTING" : true
+    "PUBLIC_GET_URL" : "http://localhost:5000/public"
 }

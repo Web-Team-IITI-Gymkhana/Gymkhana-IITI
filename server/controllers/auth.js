@@ -18,6 +18,7 @@ const googlelogin = (req,res) => {
           else{
             if(user){
               const token = jwt.sign({name:user.userName,email:user.userEmailId},process.env.JWT_KEY,{expiresIn:'7d'});
+              console.log("Generating token ",token)
               res.json({token,user:{userName : user.userName,userEmailId : user.userEmailId} })
             }
             else{
@@ -29,24 +30,4 @@ const googlelogin = (req,res) => {
   })
 }
 
-const jwtverify = async (req,res)=>{
-  const {token} = req.body
-
-  try {
-      const decoded = jwt.verify(token, process.env.JWT_KEY)
-      const userEmailId = decoded.email
-      const user = await Users.findOne({userEmailId:userEmailId})
-      if(user)
-      {
-          return res.status(200).json({user:user})
-      }
-      else
-      {
-          return res.status(400).json({error:"Invalid"})
-      }
-  } catch (error) {
-          return res.status(400).json({error:error})
-  }
-}
-
-module.exports = { googlelogin , jwtverify}
+module.exports = { googlelogin}

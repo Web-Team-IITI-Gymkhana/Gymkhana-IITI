@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import {BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
 
 import Public from "./pages/public/Public";
@@ -12,6 +12,8 @@ function App() {
 
     const [user,setUser] = useState(null)
 
+    useEffect(()=>setUser({token:localStorage.getItem('token')}),[])
+    // useEffect(()=>setUser({token:localStorage.setItem('token',null)}),[])
 
     return (
         <>
@@ -21,7 +23,7 @@ function App() {
                         <Routes>
                             <Route exact path="/" element = {<Navigate to="/public/home"/>}/>
                             <Route path="/public/*" element={<Public/>}/>
-                            <Route path="/admin/*" element={user ?<Admin/>:<Authenticate setUser={setUser}/>}/>
+                            <Route path="/admin/*" element={user ?<Admin setUser={setUser}/>:<Authenticate setUser={setUser}/>}/>
                         </Routes>
                     </Router>
                 </div>
