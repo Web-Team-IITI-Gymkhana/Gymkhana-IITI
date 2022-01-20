@@ -1,6 +1,8 @@
 import * as api from "../../api";
+import { logoutAdmin } from "./adminAuth";
+import { useDispatch} from "react-redux";
 
-export const setContentVersions = (userName,type,setUser) => async (dispatch) => {
+export const setContentVersions = (userName,type) => async (dispatch) => {
     try {
         let user = null
         if(type==="admin")
@@ -13,8 +15,7 @@ export const setContentVersions = (userName,type,setUser) => async (dispatch) =>
             }
             catch(error){
                 console.log("In redux error")
-                setUser(null)
-                user = null
+                dispatch({type:"ADMIN_LOGOUT"})
             }
         }
         else

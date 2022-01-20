@@ -10,7 +10,7 @@ import AdminHomePage from "../AdminHomePage/AdminHomePage";
 import SectionView from "../../public/SectionPage/SectionView";
 
 
-function Admin({setUser}){
+function Admin(){
 
     const [currentSections, setCurrentSections] = useState([]);
     const [currentUserProfile, setCurrentProfile] = useState({});
@@ -19,7 +19,7 @@ function Admin({setUser}){
 
     const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(setContentVersions(currentUser,"admin",setUser))
+        dispatch(setContentVersions(currentUser,"admin"))
     },[dispatch])
 
     let contentVersions = useSelector((state)=> state.contentVersions)
