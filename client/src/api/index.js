@@ -1,5 +1,5 @@
 import axios from 'axios';
-import configData from "../config.prod.json"
+import configData from "../config.dev.json"
 
 const usersURL = configData.USERS_URL
 const contentURL = configData.CONTENT_URL
@@ -7,7 +7,6 @@ const imgUploadURL = configData.IMG_UPLOAD_URL
 const publicGetURL = configData.PUBLIC_GET_URL
 
 console.log("API URLS ",usersURL,contentURL,imgUploadURL,publicGetURL)
-
 
 export const fetchUserPublic = (userName) => axios.get(`${publicGetURL}/${userName}`)
 

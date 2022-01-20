@@ -1,7 +1,7 @@
 const cynaptics =
 {
   "userName": "Cynaptics",
-  "userEmailId": "cynaptics@iiti.ac.in",
+  "userEmailId": "cse200001044@iiti.ac.in",
   "publishedVersion": 1,
   "contentVersions":
   [
