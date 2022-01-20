@@ -22,6 +22,7 @@ function App() {
                             <Route exact path="/" element = {<Navigate to="/public/home"/>}/>
                             <Route path="/public/*" element={<Public/>}/>
                             <Route path="/admin/*" element={user ?<Admin/>:<Authenticate setUser={setUser}/>}/>
+                            {/* <Route path="/admin/*" element={<Admin/>}/> */}
                         </Routes>
                     </Router>
                 </div>
