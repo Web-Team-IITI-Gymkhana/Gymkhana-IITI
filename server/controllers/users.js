@@ -44,6 +44,7 @@ const getUser = async(req,res) => {
 
 const updateGeneralDetails = async(req,res) => {
     try {
+
         const {userName : userName} = req.params
 
         let user = await Users.findOne({userName:userName})
@@ -75,14 +76,10 @@ const updateGeneralDetails = async(req,res) => {
 }
 
 const publishVersion = async(req,res)=>{
-  try {
+  try{
       const {userName : userName} = req.params
       let user = await Users.findOne({userName:userName})
       let contentVersions = user.contentVersions
-
-      // contentVersions = [contentVersions[0],contentVersions[1]]
-      // contentVersions[0].contentVersion = 1
-      // contentVersions[1].contentVersion = 2
 
       let versionIndex = contentVersions.length - 1
 

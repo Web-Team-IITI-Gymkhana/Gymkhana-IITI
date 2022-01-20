@@ -12,6 +12,7 @@ const useStyles = makeStyles(styles)
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
+    console.log(expand)
     return <IconButton {...other} />;
 })(({ theme, expand }) => ({
     transform: !expand ? "rotate(0deg)" : "rotate(180deg)",

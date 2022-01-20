@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Box, Modal } from '@material-ui/core';
 import { useState } from "react";
@@ -18,7 +18,7 @@ export default function ImgUploadModal({ userName, type }) {
     const [selectedFile, setSelectedFile] = useState(null)
     const [crop, setCrop] = useState({});
 
-    const imageRef = useRef() // a ref to set the width of the crop to the image width when it renders for the first time, can't do it in imageLoaded func of the 
+    const imageRef = useRef() // a ref to set the width of the crop to the image width when it renders for the first time, can't do it in imageLoaded func of the
     // react-image-crop, since it will trigger an infinite loop of update state.
 
     const dispatch = useDispatch();

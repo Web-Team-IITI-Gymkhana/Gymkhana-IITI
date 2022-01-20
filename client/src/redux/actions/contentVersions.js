@@ -1,10 +1,31 @@
 import * as api from "../../api";
+import { logoutAdmin } from "./adminAuth";
+import { useDispatch} from "react-redux";
 
-export const setContentVersions = (userName) => async (dispatch) => {
+export const setContentVersions = (userName,type) => async (dispatch) => {
     try {
-        const {data} = await api.fetchUser(userName)
-        dispatch({type:"SET_PUBLISHED_VERSION",payload:data.user.publishedVersion})
-        dispatch({type:"SET_CONTENT_VERSIONS",payload:data.user.contentVersions})
+        let user = null
+        if(type==="admin")
+        {
+            console.log("In admin user fetch action redux")
+            try{
+                const {data} = await api.fetchUserAdmin(userName)
+                console.log("Fetch data",data)
+                user = data.user
+            }
+            catch(error){
+                console.log("In redux error")
+                dispatch({type:"ADMIN_LOGOUT"})
+            }
+        }
+        else
+        {
+            const {data} = await api.fetchUserPublic(userName)
+            user = data.user
+        }
+
+        dispatch({type:"SET_PUBLISHED_VERSION",payload:user.publishedVersion})
+        dispatch({type:"SET_CONTENT_VERSIONS",payload:user.contentVersions})
     } catch (error) {
         console.log(error)
     }

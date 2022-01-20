@@ -105,6 +105,7 @@ const  getPublishedSection = async(req,res) => {
 
 const updateSection = async(req,res) => {
     try {
+
         const {userName : userName , sectionID : sectionID} = req.params
 
         let user = await Users.findOne({userName:userName})
@@ -135,6 +136,7 @@ const updateSection = async(req,res) => {
 const deleteSection = async (req,res)=>{
 
     try {
+
       const {userName : userName , sectionID : sectionID} = req.params
 
       let user = await Users.findOne({userName:userName})
