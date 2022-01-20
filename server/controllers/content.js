@@ -2,8 +2,12 @@ const Users = require('../models/users')
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+const TESTING = false
+
 const verifyToken = async (token,type) => {
   try{
+      if(TESTING){return true;}
+
       console.log("verifyToken called",type)
       const decoded = jwt.verify(token, process.env.JWT_KEY)
       console.log("Decoded token ",decoded)
