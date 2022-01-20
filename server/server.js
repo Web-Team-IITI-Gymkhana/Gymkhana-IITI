@@ -33,11 +33,16 @@ app.get('/', (req, res) => {
   })
 })
 
+const printToken = (req,res,next)=>{
+  console.log("JWT Middleware",req.headers.token)
+  next()
+}
+
 const usersRoute = require('./routes/users')
 app.use('/users', usersRoute)
 
 const contentRoute = require('./routes/content')
-app.use('/content', contentRoute)
+app.use('/content', printToken,contentRoute)
 
 const authRoute = require('./routes/auth')
 app.use('/auth',authRoute)
