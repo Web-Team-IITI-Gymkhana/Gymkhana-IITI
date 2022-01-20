@@ -8,21 +8,18 @@ import { useDispatch } from "react-redux";
 import "../Form/Form.css"
 import TextField from "@material-ui/core/TextField";
 
-export default function SectionModal({userName,sectionID,sectionDetails,type,buttonStyle}) {
+export default function SectionModal({ userName, sectionID, sectionDetails, type, triggerElement }) {
 
     console.log(type)
 
-    const [formSection,setFormSection] = useState(sectionDetails)
+    const [formSection, setFormSection] = useState(sectionDetails)
 
     const dispatch = useDispatch();
 
-    const handleEdit = ()=>{
-        dispatch(updateSection(userName,sectionID,formSection));
+    const handleEdit = () => {
+        dispatch(updateSection(userName, sectionID, formSection));
         setOpen(false);
     }
-
-
-
 
     function getModalStyle() {
         const top = 50
@@ -61,13 +58,11 @@ export default function SectionModal({userName,sectionID,sectionDetails,type,but
         setOpen(false);
     };
 
-
-
     return (
         <div>
-            <Button variant={buttonStyle.buttonVariant} id={buttonStyle.buttonID} onClick={handleOpen}>
-                {buttonStyle.buttonName}
-            </Button>
+            <div onClick={handleOpen}>
+                {triggerElement}
+            </div>
 
             <Modal
                 aria-labelledby="simple-modal-title"
@@ -78,35 +73,35 @@ export default function SectionModal({userName,sectionID,sectionDetails,type,but
                 <div style={modalStyle} className={classes.paper}>
                     <form id="form">
                         <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="section-name"
-                        label="Section Name"
-                        type="text"
-                        name="section-name"
-                        autoComplete="Section Name"
-                        className="field"
-                        value={formSection.sectionName}
-                        onChange={(e) => setFormSection({ ...formSection, sectionName : e.target.value })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="section-name"
+                            label="Section Name"
+                            type="text"
+                            name="section-name"
+                            autoComplete="Section Name"
+                            className="field"
+                            value={formSection.sectionName}
+                            onChange={(e) => setFormSection({ ...formSection, sectionName: e.target.value })}
                         />
                         <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        minRows={3}
-                        id="section-header"
-                        label="Section Header"
-                        type="text"
-                        name="section-header"
-                        autoComplete="Section Header"
-                        className="field"
-                        value={formSection.sectionHeader}
-                        onChange={(e) => setFormSection({ ...formSection, sectionHeader : e.target.value })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            minRows={3}
+                            id="section-header"
+                            label="Section Header"
+                            type="text"
+                            name="section-header"
+                            autoComplete="Section Header"
+                            className="field"
+                            value={formSection.sectionHeader}
+                            onChange={(e) => setFormSection({ ...formSection, sectionHeader: e.target.value })}
                         />
-                        <Button type="button" onClick={handleEdit}>{buttonStyle.buttonName}</Button>
+                        <Button type="button" onClick={handleEdit}>Confirm</Button>
                     </form>
                 </div>
             </Modal>

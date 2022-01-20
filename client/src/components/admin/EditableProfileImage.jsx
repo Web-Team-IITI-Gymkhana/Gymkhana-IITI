@@ -6,7 +6,7 @@ import { styles } from "../../variable-css"
 
 const useStyles = makeStyles(styles)
 
-export const EditableProfileImage = ({ imageAlt, type, imageSrc, userName }) => {
+export const EditableProfileImage = ({ imageAlt, type, imageSrc , userProfile}) => {
     const classes = useStyles()
 
     return (
@@ -17,7 +17,7 @@ export const EditableProfileImage = ({ imageAlt, type, imageSrc, userName }) => 
                 src={imageSrc}
                 alt={imageAlt} height={'60%'} />
 
-            <ImgUploadModal userName={userName} type={type} />
+            <ImgUploadModal userProfile={userProfile} type={type} />
         </Paper>
     )
 }

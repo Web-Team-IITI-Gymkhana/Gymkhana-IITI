@@ -3,18 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import { useState } from "react";
-import {uploadImageServer} from "../../../redux/actions/contentVersions"
+import { uploadImageServer } from "../../../redux/actions/contentVersions"
 import { useDispatch } from "react-redux";
 import "../Form/Form.css"
 import TextField from "@material-ui/core/TextField";
-import { addSectionChild,updateSectionChild } from "../../../redux/actions/contentVersions";
+import { addSectionChild, updateSectionChild } from "../../../redux/actions/contentVersions";
 
-export default function SectionChildModal({userName,sectionID,sectionChildID,sectionChild,type,buttonStyle}) {
+export default function SectionChildModal({ userName, sectionID, sectionChildID, sectionChild, type, triggerElement }) {
 
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
 
-    const [formSectionChild,setFormSectionChild] = useState(sectionChild)
+    const [formSectionChild, setFormSectionChild] = useState(sectionChild)
 
     const dispatch = useDispatch();
 
@@ -27,8 +27,7 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
     const handleEdit = (e) => {
         e.preventDefault();
 
-        if(!selectedFile)
-        {
+        if (!selectedFile) {
             submitEdit('imageError')
             return;
         }
@@ -49,18 +48,18 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
 
     const submitEdit = async (base64EncodedImage) => {
         try {
-            dispatch(updateSectionChild(userName,sectionID,sectionChildID,formSectionChild))
+            dispatch(updateSectionChild(userName, sectionID, sectionChildID, formSectionChild))
 
-            if(base64EncodedImage!=='imageError')
-            {
+            if (base64EncodedImage !== 'imageError') {
                 dispatch(uploadImageServer({
                     method: 'POST',
-                    img : JSON.stringify({ data: base64EncodedImage }),
-                    userName : userName,
-                    dataFor : type,
+                    img: JSON.stringify({ data: base64EncodedImage }),
+                    userName: userName,
+                    dataFor: type,
                     sectionID: sectionID,
-                    sectionChildID : sectionChildID,
-                    headers: { 'Content-Type': 'application/json' }}))
+                    sectionChildID: sectionChildID,
+                    headers: { 'Content-Type': 'application/json' }
+                }))
             }
 
             setFileInputState('');
@@ -70,10 +69,10 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
         }
     };
 
-    const handleAdd = ()=>{
+    const handleAdd = () => {
         console.log("Handling Add")
         console.log(formSectionChild)
-        dispatch(addSectionChild(userName,sectionID,formSectionChild));
+        dispatch(addSectionChild(userName, sectionID, formSectionChild));
         setFileInputState('');
         setOpen(false);
     }
@@ -122,9 +121,9 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
 
     return (
         <div>
-            <Button variant={buttonStyle.buttonVariant} id={buttonStyle.buttonID} onClick={handleOpen}>
-                {buttonStyle.buttonName}
-            </Button>
+            <div onClick={handleOpen}>
+                {triggerElement}
+            </div>
 
             <Modal
                 aria-labelledby="simple-modal-title"
@@ -135,68 +134,68 @@ export default function SectionChildModal({userName,sectionID,sectionChildID,sec
                 <div style={modalStyle} className={classes.paper}>
                     <form id="form">
                         <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="section-child-name"
-                        label="Section Child Name"
-                        type="text"
-                        name="section-child-name"
-                        autoComplete="Section Child Name"
-                        className="field"
-                        value={formSectionChild.sectionChildName}
-                        onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildName : e.target.value })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="section-child-name"
+                            label="Section Child Name"
+                            type="text"
+                            name="section-child-name"
+                            autoComplete="Section Child Name"
+                            className="field"
+                            value={formSectionChild.sectionChildName}
+                            onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildName: e.target.value })}
                         />
                         <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        minRows={3}
-                        id="section-child-short-desc"
-                        label="Section Child Short Description"
-                        type="text"
-                        name="section-child-short-desc"
-                        autoComplete="Section Child Short Description"
-                        className="field"
-                        value={formSectionChild.sectionChildShortDesc}
-                        onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildShortDesc : e.target.value })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            minRows={3}
+                            id="section-child-short-desc"
+                            label="Section Child Short Description"
+                            type="text"
+                            name="section-child-short-desc"
+                            autoComplete="Section Child Short Description"
+                            className="field"
+                            value={formSectionChild.sectionChildShortDesc}
+                            onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildShortDesc: e.target.value })}
                         />
                         <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        minRows={3}
-                        id="section-child-desc"
-                        label="Section Child Description"
-                        type="text"
-                        name="section-child-desc"
-                        autoComplete="Section Child Description"
-                        className="field"
-                        value={formSectionChild.sectionChildDesc}
-                        onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildDesc : e.target.value })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            minRows={3}
+                            id="section-child-desc"
+                            label="Section Child Description"
+                            type="text"
+                            name="section-child-desc"
+                            autoComplete="Section Child Description"
+                            className="field"
+                            value={formSectionChild.sectionChildDesc}
+                            onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildDesc: e.target.value })}
                         />
                         <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        minRows={3}
-                        id="section-child-links"
-                        label="Section Child Links"
-                        type="text"
-                        name="section-child-links"
-                        autoComplete="Section Child Links"
-                        className="field"
-                        value={formSectionChild.sectionChildLinks}
-                        onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildLinks : e.target.value.split(',') })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            minRows={3}
+                            id="section-child-links"
+                            label="Section Child Links"
+                            type="text"
+                            name="section-child-links"
+                            autoComplete="Section Child Links"
+                            className="field"
+                            value={formSectionChild.sectionChildLinks}
+                            onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildLinks: e.target.value.split(',') })}
                         />
                         {
-                            type==="editSectionChild"?<input  id="fileInput" type="file" name="image" onChange={handleFileInputChange} value={fileInputState} />:<></>
+                            type === "editSectionChild" ? <input id="fileInput" type="file" name="image" onChange={handleFileInputChange} value={fileInputState} /> : <></>
                         }
-                        <Button type="button" onClick={type==="editSectionChild"?handleEdit:handleAdd}>{buttonStyle.buttonName}</Button>
+                        <Button type="button" onClick={type === "editSectionChild" ? handleEdit : handleAdd}>Confirm</Button>
                     </form>
                 </div>
             </Modal>

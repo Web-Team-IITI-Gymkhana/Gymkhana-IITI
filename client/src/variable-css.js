@@ -1,7 +1,7 @@
 const colors = {
     primary: '#ffefc7',
     primaryShade: '#3c2117',
-    accent: '#3c2117', 
+    accent: '#3c2117',
     accentShade: 'white'
 }
 
@@ -20,42 +20,55 @@ export const styles = {
         fontSize: 25,
         textAlign: 'center'
     },
+    subheading2: {
+        fontSize: 20,
+        margin: 'auto',
+        fontWeight: 'bold',
+        textDecoration: 'underline'
+    },
 
 
     //AdminHomePage
-    mainContent: {
-        // backgroundColor: '#d7d1ac',
-        backgroundColor: colors.primaryShade,
-        paddingTop: '15px',
-        paddingLeft: '15px',
-        height: '85vh',
-        maxWidth: '95vw',
-        borderRadius: '25px',
-    },
-    
-    sectionHeader: {
-        backgroundColor: colors.primary,
-        alignItems: 'flex-start',
-        alignContent: 'center',
-        height: '80vh',
-        width: '20vw',
-        borderRadius: '10px 0px 0px 10px',
-    },
-    sectionContent: {
-        backgroundColor: colors.primary,
-        marginLeft: '15px',
-        height: '80vh',
-        width: '71vw',
-        borderRadius: '0px 10px 10px 0px',
+    mainContainer: {
+        padding: 20,
     },
     sectionHeaderCard: {
-        padding: '2px',
-        margin: '7px',
-        borderRadius: '10px 0px 0px 10px',
+        margin: 10,
+        padding: 5,
+        borderRadius: 4,
         backgroundColor: colors.accentShade,
+        transition: '.3s'
     },
-    
-    
+    sectionHeaderCardSelected: {
+        margin: 10,
+        padding: 5,
+        borderRadius: 4,
+        backgroundColor: colors.accent,
+        color: 'white',
+        transition: '.3s'
+    },
+
+    // Section
+    section: {
+        backgroundColor: 'white',
+        borderRadius: 4,
+        padding: 20,
+    },
+    sectionHeadersContainer: {
+        
+    },
+    sectionContentContainer: {
+        
+    },
+
+    // SectionChild
+    sectionChildCard: {
+        width: 300,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1,
+        backgroundColor: '#ffc8b3',
+    },
 
 
     // buttons
@@ -89,5 +102,11 @@ export const styles = {
         backgroundColor: 'white',
         padding: 10,
         borderRadius: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 30,
+        width: '100%',
+        maxWidth: 1000,
     }
 }
