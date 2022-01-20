@@ -1,7 +1,4 @@
 const Users = require('../models/users')
-require('dotenv').config();
-
-
 
 const  getCurrentSections = async(req,res) => {
   try {

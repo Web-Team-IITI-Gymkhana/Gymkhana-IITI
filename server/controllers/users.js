@@ -1,5 +1,4 @@
 const Users = require('../models/users')
-require('dotenv').config();
 
 const getAllUsers = async(req,res) => {
   try {
@@ -81,10 +80,6 @@ const publishVersion = async(req,res)=>{
       const {userName : userName} = req.params
       let user = await Users.findOne({userName:userName})
       let contentVersions = user.contentVersions
-
-      // contentVersions = [contentVersions[0],contentVersions[1]]
-      // contentVersions[0].contentVersion = 1
-      // contentVersions[1].contentVersion = 2
 
       let versionIndex = contentVersions.length - 1
 
