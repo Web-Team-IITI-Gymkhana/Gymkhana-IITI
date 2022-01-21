@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import configData from "../config.prod.json"
+import configData from "../config.dev.json"
 
 const usersURL = configData.USERS_URL
 const contentURL = configData.CONTENT_URL
@@ -26,5 +26,7 @@ export const deleteSection = (userName,sectionID) => axios.delete(`${contentURL}
 
 export const updateSectionChild = (userName,sectionID,sectionChildID,updateData) => axios.patch(`${contentURL}/sections/${userName}/${sectionID}/${sectionChildID}`,updateData,{headers: {authorization  : localStorage.getItem('token')}})
 export const deleteSectionChild = (userName,sectionID,sectionChildID) => axios.delete(`${contentURL}/sections/${userName}/${sectionID}/${sectionChildID}`,{headers: {authorization  : localStorage.getItem('token')}})
+
+export const autoSaveContent = (userName,contentVersions) => axios.patch(`${usersURL}/autosave/${userName}`,contentVersions,{headers: {authorization  : localStorage.getItem('token')}})
 
 export const publishVersion = (userName) => axios.post(`${usersURL}/${userName}`,{},{headers: {authorization  : localStorage.getItem('token')}})

@@ -85,7 +85,8 @@ const reducer =  (contentVersions=[],action) => {
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?deleteSectionChildHelper(section,action.payload.sectionChildID):section)
             return [... contentVersions]
 
-
+        case "AUTO_SAVE_cONTENT":
+            return [... contentVersions]
 
         default:
             return [... contentVersions]

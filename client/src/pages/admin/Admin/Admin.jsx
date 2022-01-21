@@ -9,11 +9,17 @@ import AdminProfilePage from "../AdminProfilePage";
 import AdminHomePage from "../AdminHomePage/AdminHomePage";
 import SectionView from "../../public/SectionPage/SectionView";
 
+import { autoSaveContent } from "../../../redux/actions/contentVersions";
+
 
 function Admin(){
 
     const [currentSections, setCurrentSections] = useState([]);
     const [currentUserProfile, setCurrentProfile] = useState({});
+
+    // setTimeout(()=>{
+
+    // },60000)
 
     const currentUser = "Cynaptics"
 
@@ -23,6 +29,15 @@ function Admin(){
     },[dispatch])
 
     let contentVersions = useSelector((state)=> state.contentVersions)
+
+    setTimeout(()=>{
+        if(contentVersions.length > 0)
+        {
+            dispatch(autoSaveContent(currentUser,contentVersions))
+        }
+    },30000)
+
+    
 
     useEffect(() => {
         try {

@@ -75,6 +75,21 @@ const updateGeneralDetails = async(req,res) => {
     }
 }
 
+const autoSaveContent = async (req,res)=>{
+    try {
+        console.log("Autosave controller called")
+        const {userName : userName} = req.params
+        const newContentVersions = req.body
+        console.log("New sections are",newContentVersions)
+        let user = await Users.findOne({userName:userName})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions`] : newContentVersions}},{new:true})
+        return res.status(201).json({"updatedUser":user});
+    } catch (error) {
+        console.log(error)
+        return res.status(404).json({message:"Failed Update"})
+    }
+}
+
 const publishVersion = async(req,res)=>{
   try{
       const {userName : userName} = req.params
@@ -105,4 +120,4 @@ const publishVersion = async(req,res)=>{
 
 }
 
-module.exports = {getAllUsers,addUser,getUser , updateGeneralDetails , publishVersion , deleteUser}
+module.exports = {getAllUsers,addUser,getUser , updateGeneralDetails , publishVersion , deleteUser,autoSaveContent}
