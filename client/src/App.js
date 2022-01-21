@@ -21,6 +21,7 @@ function App() {
                             <Route exact path="/" element = {<Navigate to="/public/home"/>}/>
                             <Route path="/public/*" element={<Public/>}/>
                             <Route path="/admin/*" element={adminAuth.isAuthenticated ?<Admin/>:<Authenticate/>}/>
+                            {/* <Route path="/admin/*" element={<Admin/>}/> */}
                         </Routes>
                     </Router>
                 </div>
