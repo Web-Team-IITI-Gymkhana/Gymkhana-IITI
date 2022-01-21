@@ -1,6 +1,4 @@
 import * as api from "../../api";
-import { logoutAdmin } from "./adminAuth";
-import { useDispatch} from "react-redux";
 
 export const setContentVersions = (userName,type) => async (dispatch) => {
     try {
