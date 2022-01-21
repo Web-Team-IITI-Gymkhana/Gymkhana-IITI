@@ -16,9 +16,9 @@ html, body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* background-color: rgb(255, 249, 223); */
-    /* background-color: red; */
-    background-image: url("../src/Background.png");
+    /* background-image: url("../src/Background.png"); */
     /* background-image: url("./components/photos/background.jpg");*/
+    background-color: white;
     background-repeat: no-repeat;
     background-size: cover;
   }
