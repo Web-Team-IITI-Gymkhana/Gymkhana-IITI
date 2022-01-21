@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "../../../index.css";
-import Container from "@material-ui/core/Container";
 import Navbar from "./components/Navbar";
 import Section from "../../../components/admin/Section/Section";
-import { Box, colors, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import { Typography } from "@material-ui/core";
 

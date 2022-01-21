@@ -17,9 +17,9 @@ const googlelogin = (req,res) => {
           }
           else{
             if(user){
-              const token = jwt.sign({_id:user._id},process.env.JWT_KEY,{expiresIn:'7d'});
-              const {_id,name,email} = user
-              res.json({token,user:{_id,name,email} })
+              const token = jwt.sign({name:user.userName,email:user.userEmailId},process.env.JWT_KEY,{expiresIn:'7d'});
+              console.log("Generating token ",token)
+              res.json({token,user:{userName : user.userName,userEmailId : user.userEmailId} })
             }
             else{
               return res.status(400).json({error:"Something went wrong"})
@@ -28,7 +28,6 @@ const googlelogin = (req,res) => {
         })
     }
   })
-  console.log()
 }
 
 module.exports = { googlelogin}

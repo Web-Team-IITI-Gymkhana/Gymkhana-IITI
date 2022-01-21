@@ -2,10 +2,12 @@ import React  from 'react'
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import configData from "../../config.prod.json"
+import { loginAdmin } from '../../redux/actions/adminAuth';
+import { useDispatch} from "react-redux";
 
+export default function Authenticate() {
 
-export default function Authenticate({setUser}) {
-
+        const dispatch = useDispatch()
         console.log("LOGIN ROUTE IS ",configData.LOGIN_URL)
 
         const responseSuccessGoogle = (response) => {
@@ -18,7 +20,9 @@ export default function Authenticate({setUser}) {
                 console.log(response)
                 if(response.status === 200)
                 {
-                    setUser(response.data)
+                    localStorage.setItem('token',response.data.token)
+                    console.log("After google login,setting token as ",response.data.token)
+                    dispatch(loginAdmin())
                 }
             })
         }

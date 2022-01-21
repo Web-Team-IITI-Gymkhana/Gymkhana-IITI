@@ -15,12 +15,11 @@ function Admin(){
     const [currentSections, setCurrentSections] = useState([]);
     const [currentUserProfile, setCurrentProfile] = useState({});
 
-
     const currentUser = "Cynaptics"
 
     const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(setContentVersions(currentUser))
+        dispatch(setContentVersions(currentUser,"admin"))
     },[dispatch])
 
     let contentVersions = useSelector((state)=> state.contentVersions)

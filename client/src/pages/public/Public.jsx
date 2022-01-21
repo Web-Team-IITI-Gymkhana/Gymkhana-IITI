@@ -16,7 +16,7 @@ function Public() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(setContentVersions(currentUser))
+        dispatch(setContentVersions(currentUser,"public"))
     }, [dispatch])
 
     let contentVersions = useSelector((state) => state.contentVersions)
