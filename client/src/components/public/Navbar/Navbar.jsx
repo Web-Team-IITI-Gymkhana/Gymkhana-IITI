@@ -3,11 +3,22 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
 import './style.css'
 import { Link } from 'react-router-dom';
+// import {styles} from "../../../variable-css"
+// import { makeStyles } from "@material-ui/core";
+// import { useNavigate } from 'react-router-dom';
+
+// const useStyles = makeStyles(styles)
 
 export default function Navbar({ userProfile, sections, type }) {
+    // const classes = useStyles()
     const [state, setState] = React.useState({
         right: false,
     });
+    // const navigate = useNavigate();
+    // const home = () => {
+    //     navigate('/')
+    // }
+
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (
