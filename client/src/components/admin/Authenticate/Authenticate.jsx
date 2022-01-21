@@ -3,7 +3,7 @@ import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import { useDispatch} from "react-redux";
 
-import configData from "../../../config.dev.json"
+import configData from "../../../config.prod.json"
 import { loginAdmin } from '../../../redux/actions/adminAuth';
 
 export default function Authenticate() {
