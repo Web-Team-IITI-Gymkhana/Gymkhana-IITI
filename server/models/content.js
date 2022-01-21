@@ -21,12 +21,11 @@ const contentSchema = mongoose.Schema({
         phoneNumber : Number
     },
 
+    sectionSequence : [String],
+
     Sections : { type : [sectionsSchema]},
 
-    themeDetails : {
-        color : {type: String , default: ''},
-        font : {type: String , default:''}
-    }
+    themeDetails : String
 })
 
 module.exports =  contentSchema

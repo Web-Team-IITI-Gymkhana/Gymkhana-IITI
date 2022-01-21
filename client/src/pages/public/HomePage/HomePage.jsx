@@ -1,10 +1,11 @@
 import React from 'react'
+import {Box} from '@mui/material'
+
 import Navbar from '../../../components/public/Navbar/Navbar';
 import Hero from '../../../components/public/Hero/Hero';
 import Footer from '../../../components/public/Footer/Footer';
 import Section from '../../../components/public/Section/Section';
 import SectionLoading from '../../../components/public/Section/SectionLoading';
-import {Box} from '@mui/material'
 
 export default function HomePage({userProfile, sections,type}) {
     return (

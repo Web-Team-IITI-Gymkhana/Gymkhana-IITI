@@ -2,8 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { useNavigate } from 'react-router-dom';
 
-import dp from "../../photos/dp.svg";
-function Navbar() {
+function Navbar({profilePic}) {
 
     const navigate = useNavigate();
     const redirect = () => {
@@ -55,7 +54,7 @@ function Navbar() {
         </Button>
         <img
           id="dp"
-          src={dp}
+          src={profilePic}
           alt="dp"
           height="45px"
           width="40px"

@@ -3,9 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setContentVersions } from "../../../redux/actions/contentVersions";
-import HomePage from "../../public/HomePage/HomePage";
 
-import AdminProfilePage from "../AdminProfilePage";
+import HomePage from "../../public/HomePage/HomePage";
+import AdminProfilePage from "../AdminProfilePage/AdminProfilePage";
 import AdminHomePage from "../AdminHomePage/AdminHomePage";
 import SectionView from "../../public/SectionPage/SectionView";
 
@@ -51,6 +51,8 @@ function Admin(){
             setCurrentSections([])
         }
     }, [contentVersions])
+
+    console.log("currentSections",currentSections)
 
     return(
         <>

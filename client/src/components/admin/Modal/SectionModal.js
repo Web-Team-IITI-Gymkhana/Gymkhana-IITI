@@ -1,12 +1,14 @@
 import React from "react";
-import { updateSection } from "../../../redux/actions/contentVersions";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import "../Form/Form.css"
 import TextField from "@material-ui/core/TextField";
+
+import "../Form/Form.css"
+
+import { updateSection } from "../../../redux/actions/contentVersions";
 
 export default function SectionModal({ userName, sectionID, sectionDetails, type, triggerElement }) {
 

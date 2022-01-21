@@ -1,8 +1,10 @@
 import React from "react"
 import { Paper, Typography } from '@material-ui/core'
-import ImgUploadModal from "./Modal/ImgUploadModal"
 import { makeStyles } from "@material-ui/styles"
-import { styles } from "../../variable-css"
+
+import { styles } from "../../../variable-css"
+
+import ImgUploadModal from "../Modal/ImgUploadModal"
 
 const useStyles = makeStyles(styles)
 

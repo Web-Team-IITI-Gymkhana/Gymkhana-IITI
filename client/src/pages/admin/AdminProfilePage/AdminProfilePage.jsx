@@ -1,15 +1,20 @@
 import React from "react";
-import "../../index.css";
-import "../../components/admin/Navbar/Navbar.css";
-import "../../components/admin/Navbar/MobileNavbar.css";
-import "../../components/admin/Logo/Logo.css";
-import "../../components/admin/Poster/Poster.css";
-import "../../components/admin/Form/Form.css";
-import Form from "../../components/admin/Form/Form";
 import { Grid, useTheme, useMediaQuery } from "@material-ui/core";
-import { EditableProfileImage } from '../../components/admin/EditableProfileImage'
-import MobileNavbar from '../../components/admin/Navbar/MobileNavbar'
-import Navbar from '../../components/admin/Navbar/Navbar'
+
+import "../../../index.css"
+
+import Form from "../../../components/admin/Form/Form";
+import Navbar from "../../../components/admin/Navbar/Navbar"
+import MobileNavbar from "../../../components/admin/Navbar/MobileNavbar"
+import {EditableProfileImage} from "../../../components/admin/EditableProfileImage/EditableProfileImage"
+
+
+import "../../../components/admin/Navbar/Navbar.css";
+import "../../../components/admin/Navbar/MobileNavbar.css";
+import "../../../components/admin/Logo/Logo.css";
+import "../../../components/admin/Poster/Poster.css";
+import "../../../components/admin/Form/Form.css";
+
 
 function AdminProfilePage({ userProfile }) {
   const theme = useTheme();
@@ -18,10 +23,10 @@ function AdminProfilePage({ userProfile }) {
   return (
     <>
       {isMobile ? (
-          <MobileNavbar />
+          <MobileNavbar profilePic={userProfile.logo} />
         ) : (
           <>
-          <Navbar />
+          <Navbar profilePic={userProfile.logo} />
             <hr></hr>
           </>
         )}
