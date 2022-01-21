@@ -21,7 +21,7 @@ const contentSchema = mongoose.Schema({
         phoneNumber : Number
     },
 
-    sectionSequence : [Number],
+    sectionSequence : [String],
 
     Sections : { type : [sectionsSchema]},
 
