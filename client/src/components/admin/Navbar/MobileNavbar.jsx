@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import dp from "../../photos/dp.svg";
 import {
     Button,
     IconButton,
@@ -12,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 
-function MobileNavbar() {
+function MobileNavbar({profilePic}) {
     // const [isOpen, setOpen] = useState(false);
     const [openDrawer, setOpenDrawer] = useState(false);
     return (
@@ -51,7 +50,7 @@ function MobileNavbar() {
             <span className="not-ham">
                 <img
                     id="dp"
-                    src={dp}
+                    src={profilePic}
                     alt="dp"
                     height="45px"
                     width="40px"

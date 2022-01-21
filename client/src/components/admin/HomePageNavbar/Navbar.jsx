@@ -1,15 +1,17 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch} from "react-redux";
 import Button from "@material-ui/core/Button";
-import ProfilePic from "../../../../components/photos/dp.svg";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from 'react-router-dom';
-import Loading from '../../../../components/Done/Loading';
-import { publishVersion } from "../../../../redux/actions/contentVersions";
-import { useDispatch} from "react-redux";
-import {styles} from "../../../../variable-css"
 import { makeStyles } from "@material-ui/core";
+
+import Loading from "../PublishDone/Loading"
+import { publishVersion } from "../../../redux/actions/contentVersions";
+
+import {styles} from "../../../variable-css"
+
 
 const useStyles = makeStyles(styles)
 
@@ -104,7 +106,7 @@ function AdminHomePageNavbar(props) {
                 </Button>
                 <img
                     id="ProfilePic"
-                    src={ProfilePic}
+                    src={props.profilePic}
                     alt="ProfilePic"
                     height="45px"
                     width="40px"

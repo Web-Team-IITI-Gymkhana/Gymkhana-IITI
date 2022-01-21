@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import SectionChild from "../SectionChild/SectionChild";
 import Box from "@material-ui/core/Box";
-import SectionChildModal from "../Modal/SectionChildModal";
-import SectionModal from "../Modal/SectionModal";
-
 import { useSelector } from "react-redux";
-import { deleteSection } from "../../../redux/actions/contentVersions";
 import { useDispatch } from "react-redux";
 import { Add, Delete, Edit, MoreVert } from "@mui/icons-material";
 import { ListItemIcon, ListItemText, MenuItem, Menu, MenuList, IconButton, Grid, Card } from '@material-ui/core'
 import { makeStyles } from "@mui/styles";
+
 import { styles } from "../../../variable-css";
+
+import SectionChildModal from "../Modal/SectionChildModal";
+import SectionModal from "../Modal/SectionModal";
+
+import { deleteSection } from "../../../redux/actions/contentVersions";
 
 const useStyles = makeStyles(styles)
 

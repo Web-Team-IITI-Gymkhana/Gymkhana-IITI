@@ -2,11 +2,13 @@ import React, { useRef } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Box, Modal } from '@material-ui/core';
 import { useState } from "react";
-import { uploadImageServer } from "../../../redux/actions/contentVersions"
 import { useDispatch } from "react-redux";
-import { styles } from "../../../variable-css";
-import 'react-image-crop/dist/ReactCrop.css';
 import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
+
+import { styles } from "../../../variable-css";
+
+import { uploadImageServer } from "../../../redux/actions/contentVersions"
 
 const useStyles = makeStyles(styles)
 

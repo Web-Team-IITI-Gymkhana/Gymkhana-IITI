@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import "../../../index.css";
-import Navbar from "./components/Navbar";
-import Section from "../../../components/admin/Section/Section";
 import { Grid } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import { Typography } from "@material-ui/core";
-
-import { addSection } from "../../../redux/actions/contentVersions";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/styles"
+
+import "../../../index.css";
 import { styles } from "../../../variable-css";
+
+import Navbar from "../../../components/admin/HomePageNavbar/Navbar"
+import Section from "../../../components/admin/Section/Section";
+
+import { addSection } from "../../../redux/actions/contentVersions";
 
 const useStyles = makeStyles(styles)
 
@@ -42,10 +44,9 @@ function AdminHomePage({ userProfile }) {
 
     return (
         <>
-            <Navbar handlingAdd={handledAdd} userName={currentUser} />
+            <Navbar handlingAdd={handledAdd} userName={currentUser} profilePic={userProfile.logo} />
 
             <Grid container className={classes.mainContainer} spacing={3}>
-                {/* section headers here */}
                 <Grid item lg={3} md={3} sm={12} xs={12}
                     className={classes.sectionHeadersContainer}>
                     {sections.map(section => RenderSectionHeader(section.sectionID, currSectionID, section.sectionHeader))}

@@ -1,5 +1,6 @@
-import { Box, Paper } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import React from "react";
+
 import ImgUploadModal from "../Modal/ImgUploadModal"
 
 function Poster({ userProfile }) {

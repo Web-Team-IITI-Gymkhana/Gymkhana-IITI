@@ -2,11 +2,11 @@ import React from "react";
 import {BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Public from "./pages/public/Public";
+import Public from "./pages/public/Public/Public";
 import Admin from "./pages/admin/Admin/Admin";
+import Authenticate from "./components/admin/Authenticate/Authenticate";
 
 import './index.css';
-import Authenticate from "./components/Auth/Authenticate";
 
 function App() {
 
@@ -21,7 +21,6 @@ function App() {
                             <Route exact path="/" element = {<Navigate to="/public/home"/>}/>
                             <Route path="/public/*" element={<Public/>}/>
                             <Route path="/admin/*" element={adminAuth.isAuthenticated ?<Admin/>:<Authenticate/>}/>
-                            {/* <Route path="/admin/*" element={<Admin/>}/> */}
                         </Routes>
                     </Router>
                 </div>

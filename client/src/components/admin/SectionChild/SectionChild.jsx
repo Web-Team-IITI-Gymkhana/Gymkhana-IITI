@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import SectionChildModal from "../Modal/SectionChildModal";
-import { deleteSectionChild } from "../../../redux/actions/contentVersions"
 import { useDispatch } from "react-redux";
 import { MenuItem, MenuList, ListItemIcon, ListItemText, makeStyles, Menu, Card, CardMedia, CardContent, CardActions, Collapse, Typography, IconButton, List, ListItem } from "@material-ui/core";
 import { Delete, Edit, MoreVert } from '@mui/icons-material';
+
 import { styles } from "../../../variable-css";
+
+import SectionChildModal from "../Modal/SectionChildModal";
+
+import { deleteSectionChild } from "../../../redux/actions/contentVersions"
 
 const useStyles = makeStyles(styles)
 

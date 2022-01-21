@@ -2,10 +2,11 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { setContentVersions } from "../../redux/actions/contentVersions";
 
-import HomePage from "./HomePage/HomePage";
-import SectionView from "./SectionPage/SectionView";
+import { setContentVersions } from "../../../redux/actions/contentVersions";
+
+import HomePage from "../HomePage/HomePage";
+import SectionView from "../SectionPage/SectionView";
 
 function Public() {
 

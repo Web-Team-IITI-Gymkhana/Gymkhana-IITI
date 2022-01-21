@@ -10,7 +10,8 @@ const cynaptics =
       "userDetails": {"name": "Cynaptics Club","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
       "homePagePoster": {"src": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287157/bwzsqfd65g6vrb6ylgi9.jpg","caption": "Caption Cyn"},
       "contactDetails": {"email": "cynaptics@iiti.ac.in","phoneNumber": 123123},
-      "themeDetails": {"color": "Blue","font": "Arial"},
+      "themeDetails": "goodtheme",
+      "sectionSequence" : [],
       "Sections":
       [
         {
@@ -61,7 +62,8 @@ const cynaptics =
       "userDetails": {"name": "Cynaptics Club","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
       "homePagePoster": {"src": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287157/bwzsqfd65g6vrb6ylgi9.jpg","caption": "Caption Cyn"},
       "contactDetails": {"email": "cynaptics@iiti.ac.in","phoneNumber": 123123},
-      "themeDetails": {"color": "Blue","font": "Arial"},
+      "themeDetails": "goodtheme",
+      "sectionSequence" : [],
       "Sections":
       [
         {
@@ -123,7 +125,8 @@ const pclub =
       "userDetails": {"name": "P Club","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
       "homePagePoster": {"src": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287157/bwzsqfd65g6vrb6ylgi9.jpg","caption": "Caption P"},
       "contactDetails": {"email": "PClub@iiti.ac.in","phoneNumber": 123123},
-      "themeDetails": {"color": "Blue","font": "Arial"},
+      "themeDetails": "goodtheme",
+      "sectionSequence" : [],
       "Sections":
       [
         {
@@ -174,7 +177,8 @@ const pclub =
       "userDetails": {"name": "PClub Club","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
       "homePagePoster": {"src": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287157/bwzsqfd65g6vrb6ylgi9.jpg","caption": "Caption Cyn"},
       "contactDetails": {"email": "PClub@iiti.ac.in","phoneNumber": 123123},
-      "themeDetails": {"color": "Blue","font": "Arial"},
+      "themeDetails": "goodtheme",
+      "sectionSequence" : [],
       "Sections":
       [
         {

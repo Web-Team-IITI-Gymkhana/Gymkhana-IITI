@@ -3,9 +3,12 @@ import Button from "@material-ui/core/Button"
 import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateGeneralDetails } from "../../../redux/actions/contentVersions";
 import { makeStyles, Paper, Typography } from "@material-ui/core";
+
 import { styles } from "../../../variable-css";
+
+import { updateGeneralDetails } from "../../../redux/actions/contentVersions";
+
 
 const useStyles = makeStyles(styles)
 
