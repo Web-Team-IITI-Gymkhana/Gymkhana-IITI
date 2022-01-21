@@ -3,21 +3,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
 import './style.css'
 import { Link } from 'react-router-dom';
-import {styles} from "../../../variable-css"
-import { makeStyles } from "@material-ui/core";
-import { useNavigate } from 'react-router-dom';
-
-const useStyles = makeStyles(styles)
 
 export default function Navbar({ userProfile, sections, type }) {
-    const classes = useStyles()
     const [state, setState] = React.useState({
         right: false,
     });
-    const navigate = useNavigate();
-    const home = () => {
-        navigate('/')
-    }
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (
@@ -69,7 +59,7 @@ export default function Navbar({ userProfile, sections, type }) {
         <>
             <div className="navbar-wrapper container-fluid">
                 <div className="container">
-                    <div className="row d-flex align-items-center py-3">
+                    <div className="row d-flex align-items-center py-1">
                         <a href="/public/home" className="col-1 px-0 col-lg-0 logo-wrapper">
                             <img className="club-logo" src={userProfile.logo} alt="Club Logo" />
                         </a>
