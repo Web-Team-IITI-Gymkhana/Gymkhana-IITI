@@ -21,8 +21,10 @@ export default function Authenticate() {
                 console.log(response)
                 if(response.status === 200)
                 {
+                    console.log(response)
                     localStorage.setItem('token',response.data.token)
                     console.log("After google login,setting token as ",response.data.token)
+                    console.log("Logging in as",response.data.user.userName)
                     dispatch(loginAdmin())
                 }
             })

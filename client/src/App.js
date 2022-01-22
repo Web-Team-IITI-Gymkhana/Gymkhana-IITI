@@ -11,7 +11,8 @@ import './index.css';
 function App() {
 
     let adminAuth = useSelector((state)=> state.adminAuth)
-    
+    console.log("adminAuth",adminAuth)
+
     return (
         <>
             {

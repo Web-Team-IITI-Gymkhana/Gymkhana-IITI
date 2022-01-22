@@ -11,8 +11,9 @@ import "../Form/Form.css"
 import { addSectionChild, updateSectionChild } from "../../../redux/actions/contentVersions";
 import { uploadImageServer } from "../../../redux/actions/contentVersions"
 
+import { sectionsChildSchema } from "../../../schema";
 
-export default function SectionChildModal({ userName, sectionID, sectionChildID, sectionChild, type, triggerElement }) {
+export default function SectionChildModal({ userName, sectionID, sectionName, sectionChildID, sectionChild, type, triggerElement }) {
 
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
@@ -51,7 +52,7 @@ export default function SectionChildModal({ userName, sectionID, sectionChildID,
 
     const submitEdit = async (base64EncodedImage) => {
         try {
-            dispatch(updateSectionChild(userName, sectionID, sectionChildID, formSectionChild))
+            dispatch(updateSectionChild(sectionID, sectionChildID, formSectionChild))
 
             if (base64EncodedImage !== 'imageError') {
                 dispatch(uploadImageServer({
@@ -75,7 +76,7 @@ export default function SectionChildModal({ userName, sectionID, sectionChildID,
     const handleAdd = () => {
         console.log("Handling Add")
         console.log(formSectionChild)
-        dispatch(addSectionChild(userName, sectionID, formSectionChild));
+        dispatch(addSectionChild(sectionID, formSectionChild));
         setFileInputState('');
         setOpen(false);
     }
@@ -142,7 +143,7 @@ export default function SectionChildModal({ userName, sectionID, sectionChildID,
                             required
                             fullWidth
                             id="section-child-name"
-                            label="Section Child Name"
+                            label={sectionsChildSchema[sectionName].sectionChildName.label}
                             type="text"
                             name="section-child-name"
                             autoComplete="Section Child Name"
@@ -157,7 +158,7 @@ export default function SectionChildModal({ userName, sectionID, sectionChildID,
                             fullWidth
                             minRows={3}
                             id="section-child-short-desc"
-                            label="Section Child Short Description"
+                            label={sectionsChildSchema[sectionName].sectionChildShortDesc.label}
                             type="text"
                             name="section-child-short-desc"
                             autoComplete="Section Child Short Description"
@@ -172,7 +173,7 @@ export default function SectionChildModal({ userName, sectionID, sectionChildID,
                             fullWidth
                             minRows={3}
                             id="section-child-desc"
-                            label="Section Child Description"
+                            label={sectionsChildSchema[sectionName].sectionChildDesc.label}
                             type="text"
                             name="section-child-desc"
                             autoComplete="Section Child Description"
@@ -187,7 +188,7 @@ export default function SectionChildModal({ userName, sectionID, sectionChildID,
                             fullWidth
                             minRows={3}
                             id="section-child-links"
-                            label="Section Child Links"
+                            label={sectionsChildSchema[sectionName].sectionChildLinks.label}
                             type="text"
                             name="section-child-links"
                             autoComplete="Section Child Links"

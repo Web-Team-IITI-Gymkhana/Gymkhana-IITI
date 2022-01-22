@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SectionChild from "../SectionChild/SectionChild";
 import Box from "@material-ui/core/Box";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -8,6 +7,8 @@ import { ListItemIcon, ListItemText, MenuItem, Menu, MenuList, IconButton, Grid,
 import { makeStyles } from "@mui/styles";
 
 import { styles } from "../../../variable-css";
+
+import SectionChild from "../SectionChild/SectionChild";
 
 import SectionChildModal from "../Modal/SectionChildModal";
 import SectionModal from "../Modal/SectionModal";
@@ -41,7 +42,7 @@ function Section({ userName, currSectionID }) {
 
     const dispatch = useDispatch()
     const handleDelete = () => {
-        dispatch(deleteSection(userName, sectionID))
+        dispatch(deleteSection(sectionID))
     }
 
     return (
@@ -61,13 +62,14 @@ function Section({ userName, currSectionID }) {
                             <MenuList>
                                 <SectionChildModal userName={userName}
                                     sectionID={sectionID}
+                                    sectionName={section.sectionName}
                                     sectionChildID={0}
                                     sectionChild={newSectionChild}
                                     type={"addSectionChild"}
                                     triggerElement={
                                         <MenuItem>
                                             <ListItemIcon onClick={() => {
-                                                handleDelete(0)
+                                                // handleDelete(0)
                                             }}>
                                                 <Add fontSize="small" />
                                             </ListItemIcon>
@@ -85,7 +87,7 @@ function Section({ userName, currSectionID }) {
                                     type={"updateSection"}
                                     sectionDetails={sectionDetails} triggerElement={
                                         <MenuItem>
-                                            <ListItemIcon onClick={handleDelete}>
+                                            <ListItemIcon>
                                                 <Edit fontSize="small" />
                                             </ListItemIcon>
                                             <ListItemText>Update</ListItemText>
@@ -100,6 +102,7 @@ function Section({ userName, currSectionID }) {
                         <Grid item key={sectionChild.sectionChildID}>
                             <SectionChild userName={userName}
                                 sectionID={sectionID}
+                                sectionName={section.sectionName} 
                                 sectionChild={sectionChild} />
                         </Grid>)}
                 </Grid>

@@ -23,12 +23,15 @@ export default function Navbar({ userProfile, sections, type }) {
     };
 
     let routeLink = ""
+    let homeLink = ""
 
     if (type == "public") {
         routeLink = "/public/home/section/"
+        homeLink = "/public/home"
     }
     else {
         routeLink = "/admin/preview/section/"
+        homeLink = "/admin/home"
     }
 
     const list = (anchor) => (
@@ -60,14 +63,14 @@ export default function Navbar({ userProfile, sections, type }) {
             <div className="navbar-wrapper theme-orange container-fluid">
                 <div className="container">
                     <div className="row d-flex align-items-center py-1">
-                        <a href="/public/home" className="col-1 px-0 col-lg-0 logo-wrapper">
+                        <a href={homeLink} className="col-1 px-0 col-lg-0 logo-wrapper">
                             <img className="club-logo" src={userProfile.logo} alt="Club Logo" />
                         </a>
                         <div className="container col-11 align-items-right container-fluid links-wrapper" >
                             <div className="col d-flex" style={{ flexDirection: "row-reverse" }}>
-                                <a href="/public/home" className='contactUs col-2 py-2 text-center'>Contact Us</a>
+                                <a href={homeLink} className='contactUs col-2 py-2 text-center'>Contact Us</a>
                                 {sections.map(section => <div className="col-2 quick-links py-2 " key={section.sectionID}><Link to={routeLink + section.sectionID} className="quick-links">{section.sectionName}</Link></div>)}
-                                <a href="/public/home" className='quick-links col-2 py-2 text-center'>Home</a>
+                                <a href={homeLink} className='quick-links col-2 py-2 text-center'>Home</a>
                             </div>
                         </div>
                         <div className="col-11 toggleDrawer" >

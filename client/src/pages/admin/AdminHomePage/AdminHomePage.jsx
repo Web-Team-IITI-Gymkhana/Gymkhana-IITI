@@ -19,7 +19,7 @@ function AdminHomePage({ userProfile }) {
     const classes = useStyles()
 
     let contentVersions = useSelector((state) => state.contentVersions)
-    let sections = contentVersions[(contentVersions).length - 1].Sections
+    let sections = (contentVersions.length > 0)? contentVersions[(contentVersions).length - 1].Sections : null;
 
     const [currSectionID, setSectionID] = useState(0)
 
@@ -39,13 +39,14 @@ function AdminHomePage({ userProfile }) {
 
     const handledAdd = (sectionName, sectionHeader) => {
         const newSection = { "sectionName": sectionName, "sectionHeader": sectionHeader, "sectionContent": [] }
-        dispatch(addSection(currentUser, newSection))
+        dispatch(addSection(newSection))
     }
 
     return (
         <>
             <Navbar handlingAdd={handledAdd} userName={currentUser} profilePic={userProfile.logo} />
 
+            {sections && 
             <Grid container className={classes.mainContainer} spacing={3}>
                 <Grid item lg={3} md={3} sm={12} xs={12}
                     className={classes.sectionHeadersContainer}>
@@ -57,6 +58,7 @@ function AdminHomePage({ userProfile }) {
                     <Section userName={currentUser} currSectionID={currSectionID} />
                 </Grid>
             </Grid>
+            }
         </>
     );
 }

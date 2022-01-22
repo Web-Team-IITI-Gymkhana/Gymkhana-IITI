@@ -42,11 +42,13 @@ const jwtAuth = async (req,res,next)=>{
     const decoded = jwt.verify(req.headers.authorization, process.env.JWT_KEY)
     console.log("Decoded token ",decoded)
 
+    req.userName = decoded.name
+
     const userEmailId = decoded.email
     const user = await Users.findOne({userEmailId:userEmailId})
     if(user)
     {
-        next()
+      return next()
     }
     else
     {
@@ -68,6 +70,8 @@ app.use('/content', jwtAuth,contentRoute)
 const authRoute = require('./routes/auth')
 app.use('/auth',authRoute)
 
+app.use('/uploadImage',jwtAuth)
+
 app.route('/uploadImage').post(async (req, res) => {
   try {
     let imgData  = req.body.img
@@ -79,7 +83,8 @@ app.route('/uploadImage').post(async (req, res) => {
     const uploadResponse = await cloudinary.uploader.upload(imgString);
     const imgURL = uploadResponse.secure_url
 
-    let userName = req.body.userName
+    let userName = req.userName
+
 
     let user = await Users.findOne({userName:userName})
     const versionIndex = (user.contentVersions).length - 1;

@@ -19,7 +19,7 @@ export default function SectionModal({ userName, sectionID, sectionDetails, type
     const dispatch = useDispatch();
 
     const handleEdit = () => {
-        dispatch(updateSection(userName, sectionID, formSection));
+        dispatch(updateSection(sectionID, formSection));
         setOpen(false);
     }
 

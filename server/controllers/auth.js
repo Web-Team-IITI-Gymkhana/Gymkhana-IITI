@@ -17,6 +17,7 @@ const googlelogin = (req,res) => {
           }
           else{
             if(user){
+              console.log("In auth controller",user)
               const token = jwt.sign({name:user.userName,email:user.userEmailId},process.env.JWT_KEY,{expiresIn:'7d'});
               console.log("Generating token ",token)
               res.json({token,user:{userName : user.userName,userEmailId : user.userEmailId} })

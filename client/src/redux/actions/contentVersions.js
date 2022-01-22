@@ -7,7 +7,7 @@ export const setContentVersions = (userName,type) => async (dispatch) => {
         {
             console.log("In admin user fetch action redux")
             try{
-                const {data} = await api.fetchUserAdmin(userName)
+                const {data} = await api.fetchUserAdmin()
                 console.log("Fetch data",data)
                 user = data.user
             }
@@ -21,8 +21,6 @@ export const setContentVersions = (userName,type) => async (dispatch) => {
             const {data} = await api.fetchUserPublic(userName)
             user = data.user
         }
-
-        dispatch({type:"SET_PUBLISHED_VERSION",payload:user.publishedVersion})
         dispatch({type:"SET_CONTENT_VERSIONS",payload:user.contentVersions})
     } catch (error) {
         console.log(error)
@@ -30,9 +28,9 @@ export const setContentVersions = (userName,type) => async (dispatch) => {
 }
 
 
-export const updateGeneralDetails = (userName,postData) => async (dispatch) => {
+export const updateGeneralDetails = (postData) => async (dispatch) => {
     try{
-        await api.updateGeneralDetails(userName,postData)
+        await api.updateGeneralDetails(postData)
         dispatch({type:"UPDATE_GENERAL_DETAILS",payload:postData})
     }
     catch(error){
@@ -40,9 +38,9 @@ export const updateGeneralDetails = (userName,postData) => async (dispatch) => {
     }
 }
 
-export const addSection = (userName,postData) => async (dispatch) => {
+export const addSection = (postData) => async (dispatch) => {
     try{
-        await api.addSection(userName,postData)
+        await api.addSection(postData)
         dispatch({type:"ADD_SECTION",payload:postData})
     }
     catch(error){
@@ -50,9 +48,9 @@ export const addSection = (userName,postData) => async (dispatch) => {
     }
 }
 
-export const addSectionChild = (userName,sectionID,postData) => async (dispatch) => {
+export const addSectionChild = (sectionID,postData) => async (dispatch) => {
     try{
-        await api.addSectionChild(userName,sectionID,postData)
+        await api.addSectionChild(sectionID,postData)
         dispatch({type:"ADD_SECTION_CHILD",payload:{sectionID:sectionID,postData:postData}})
     }
     catch(error){
@@ -60,18 +58,18 @@ export const addSectionChild = (userName,sectionID,postData) => async (dispatch)
     }
 }
 
-export const updateSection = (userName,sectionID,updateData) => async (dispatch) => {
+export const updateSection = (sectionID,updateData) => async (dispatch) => {
     try {
-      await api.updateSection(userName,sectionID,updateData)
+      await api.updateSection(sectionID,updateData)
       dispatch({type:"UPDATE_SECTION",payload:{sectionID:sectionID,updateData:updateData}})
     } catch (error) {
         console.log(error)
     }
   }
 
-export const deleteSection = (userName,sectionID) => async (dispatch) => {
+export const deleteSection = (sectionID) => async (dispatch) => {
     try {
-      await api.deleteSection(userName,sectionID)
+      await api.deleteSection(sectionID)
       dispatch({type:"DELETE_SECTION",payload:{sectionID:sectionID}})
     } catch (error) {
         console.log(error)
@@ -79,9 +77,9 @@ export const deleteSection = (userName,sectionID) => async (dispatch) => {
   }
 
 
-export const updateSectionChild = (userName,sectionID,sectionChildID,updateData) => async (dispatch) => {
+export const updateSectionChild = (sectionID,sectionChildID,updateData) => async (dispatch) => {
     try{
-        await api.updateSectionChild(userName,sectionID,sectionChildID,updateData)
+        await api.updateSectionChild(sectionID,sectionChildID,updateData)
         dispatch({type:"UPDATE_SECTION_CHILD",payload:{sectionID:sectionID,sectionChildID:sectionChildID,updateData:updateData}})
     }
     catch(error){
@@ -89,9 +87,9 @@ export const updateSectionChild = (userName,sectionID,sectionChildID,updateData)
     }
 }
 
-export const deleteSectionChild = (userName,sectionID,sectionChildID) => async (dispatch) => {
+export const deleteSectionChild = (sectionID,sectionChildID) => async (dispatch) => {
     try{
-        await api.deleteSectionChild(userName,sectionID,sectionChildID)
+        await api.deleteSectionChild(sectionID,sectionChildID)
         dispatch({type:"DELETE_SECTION_CHILD",payload:{sectionID:sectionID,sectionChildID:sectionChildID}})
     }
     catch(error){
@@ -99,10 +97,9 @@ export const deleteSectionChild = (userName,sectionID,sectionChildID) => async (
     }
 }
 
-export const publishVersion = (userName) => async (dispatch) => {
+export const publishVersion = () => async (dispatch) => {
     try{
-        await api.publishVersion(userName)
-        dispatch({type:"PUBLISH_VERSION"})
+        await api.publishVersion()
     }
     catch(error){
         console.log(error)
