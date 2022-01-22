@@ -81,25 +81,13 @@ const publishVersion = async(req,res)=>{
   try{
         const userName = req.userName
         console.log("Publish version called",userName)
-      let user = await Users.findOne({userName:userName})
-      let contentVersions = user.contentVersions
+        let user = await Users.findOne({userName:userName})
+        let contentVersions = user.contentVersions
 
-      let versionIndex = contentVersions.length - 1
+        contentVersions[0] = contentVersions[1]
 
-      if(versionIndex==-1)
-      {
-        contentVersions.push({})
-      }
-      else
-      {
-          let newVersion = contentVersions[versionIndex]
-          newVersion.contentVersion = contentVersions.length + 1
-          contentVersions.push(newVersion);
-      }
-
-      user = await Users.updateOne({userName:userName},{'$set': { [`publishedVersion`] : contentVersions.length-1}},{new:true})
-      user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions`] : contentVersions}},{new:true})
-      return res.status(201).json({"updatedUser":user})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions`] : contentVersions}},{new:true})
+        return res.status(201).json({"updatedUser":user})
 
   } catch (error) {
     console.log(error)

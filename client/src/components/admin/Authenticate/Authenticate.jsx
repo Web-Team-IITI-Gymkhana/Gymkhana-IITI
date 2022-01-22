@@ -6,7 +6,7 @@ import { useDispatch} from "react-redux";
 import configData from "../../../config.dev.json"
 import { loginAdmin } from '../../../redux/actions/adminAuth';
 
-export default function Authenticate() {
+export default function Authenticate({setCurrentUser}) {
 
         const dispatch = useDispatch()
         console.log("LOGIN ROUTE IS ",configData.LOGIN_URL)
@@ -21,8 +21,10 @@ export default function Authenticate() {
                 console.log(response)
                 if(response.status === 200)
                 {
+                    console.log(response)
                     localStorage.setItem('token',response.data.token)
                     console.log("After google login,setting token as ",response.data.token)
+                    console.log("Logging in as",response.data.user.userName)
                     dispatch(loginAdmin())
                 }
             })

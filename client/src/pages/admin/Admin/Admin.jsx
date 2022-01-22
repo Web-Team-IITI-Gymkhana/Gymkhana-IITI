@@ -15,8 +15,6 @@ function Admin(){
     const [currentSections, setCurrentSections] = useState([]);
     const [currentUserProfile, setCurrentProfile] = useState({});
 
-    const currentUser = "Cynaptics"
-
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(setContentVersions("","admin"))
@@ -26,9 +24,8 @@ function Admin(){
 
     useEffect(() => {
         try {
-            let userName = currentUser
 
-            let currentVersion = contentVersions[(contentVersions).length - 1]
+            let currentVersion = contentVersions[1]
 
             let currentName = currentVersion.userDetails.name
             let currentLogoSrc = currentVersion.userDetails.logo
@@ -43,7 +40,7 @@ function Admin(){
             let currentThemeDetails = currentVersion.themeDetails
 
             setCurrentProfile({
-                "userName":userName,"name": currentName, "email": currentEmail, "logo": currentLogoSrc, "socialMedia": currentSocialMedia, "phoneNumber": currentPhoneNumber,
+                "name": currentName, "email": currentEmail, "logo": currentLogoSrc, "socialMedia": currentSocialMedia, "phoneNumber": currentPhoneNumber,
                 "src": currentHomePagePoster.src, "caption": currentHomePagePoster.caption, "theme": currentThemeDetails
             })
 

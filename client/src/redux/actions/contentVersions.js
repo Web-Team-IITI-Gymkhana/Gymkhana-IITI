@@ -21,8 +21,6 @@ export const setContentVersions = (userName,type) => async (dispatch) => {
             const {data} = await api.fetchUserPublic(userName)
             user = data.user
         }
-
-        dispatch({type:"SET_PUBLISHED_VERSION",payload:user.publishedVersion})
         dispatch({type:"SET_CONTENT_VERSIONS",payload:user.contentVersions})
     } catch (error) {
         console.log(error)
@@ -102,7 +100,6 @@ export const deleteSectionChild = (sectionID,sectionChildID) => async (dispatch)
 export const publishVersion = () => async (dispatch) => {
     try{
         await api.publishVersion()
-        dispatch({type:"PUBLISH_VERSION"})
     }
     catch(error){
         console.log(error)

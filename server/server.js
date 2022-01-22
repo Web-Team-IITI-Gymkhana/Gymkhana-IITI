@@ -70,6 +70,8 @@ app.use('/content', jwtAuth,contentRoute)
 const authRoute = require('./routes/auth')
 app.use('/auth',authRoute)
 
+app.use('/upload',jwtAuth)
+
 app.route('/uploadImage').post(async (req, res) => {
   try {
     let imgData  = req.body.img
@@ -81,7 +83,8 @@ app.route('/uploadImage').post(async (req, res) => {
     const uploadResponse = await cloudinary.uploader.upload(imgString);
     const imgURL = uploadResponse.secure_url
 
-    let userName = req.body.userName
+    let userName = req.userName
+
 
     let user = await Users.findOne({userName:userName})
     const versionIndex = (user.contentVersions).length - 1;
