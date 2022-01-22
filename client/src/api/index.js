@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import configData from "../config.dev.json"
+import configData from "../config.prod.json"
 
 const usersURL = configData.USERS_URL
 const contentURL = configData.CONTENT_URL
