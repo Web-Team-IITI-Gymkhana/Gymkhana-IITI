@@ -33,7 +33,8 @@ const addUser = async(req,res) => {
 
 const getUser = async(req,res) => {
     try {
-        const {userName : userName} = req.params
+        const userName = req.userName
+        console.log("Get user admin called",userName)
         const user = await Users.findOne({userName:userName})
         return res.status(201).json({"user":user})
 
@@ -45,7 +46,8 @@ const getUser = async(req,res) => {
 const updateGeneralDetails = async(req,res) => {
     try {
 
-        const {userName : userName} = req.params
+        const userName = req.userName
+        console.log("Update general Details called",userName)
 
         let user = await Users.findOne({userName:userName})
         const versionIndex = (user.contentVersions).length - 1;
@@ -77,26 +79,15 @@ const updateGeneralDetails = async(req,res) => {
 
 const publishVersion = async(req,res)=>{
   try{
-      const {userName : userName} = req.params
-      let user = await Users.findOne({userName:userName})
-      let contentVersions = user.contentVersions
+        const userName = req.userName
+        console.log("Publish version called",userName)
+        let user = await Users.findOne({userName:userName})
+        let contentVersions = user.contentVersions
 
-      let versionIndex = contentVersions.length - 1
+        contentVersions[0] = contentVersions[1]
 
-      if(versionIndex==-1)
-      {
-        contentVersions.push({})
-      }
-      else
-      {
-          let newVersion = contentVersions[versionIndex]
-          newVersion.contentVersion = contentVersions.length + 1
-          contentVersions.push(newVersion);
-      }
-
-      user = await Users.updateOne({userName:userName},{'$set': { [`publishedVersion`] : contentVersions.length-1}},{new:true})
-      user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions`] : contentVersions}},{new:true})
-      return res.status(201).json({"updatedUser":user})
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions`] : contentVersions}},{new:true})
+        return res.status(201).json({"updatedUser":user})
 
   } catch (error) {
     console.log(error)

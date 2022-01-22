@@ -2,7 +2,8 @@ const Users = require('../models/users')
 
 const  addSection = async(req,res) => {
     try {
-        const {userName : userName} = req.params
+        const userName = req.userName
+        console.log("Add section called",userName)
         let user = await Users.findOne({userName:userName});
         const versionIndex = (user.contentVersions).length - 1;
 
@@ -33,8 +34,10 @@ const  addSection = async(req,res) => {
 
 const updateSection = async(req,res) => {
     try {
+        const userName = req.userName
+        console.log("Update section called",userName)
 
-        const {userName : userName , sectionID : sectionID} = req.params
+        const {sectionID : sectionID} = req.params
 
         let user = await Users.findOne({userName:userName})
         const versionIndex = (user.contentVersions).length - 1;
@@ -64,8 +67,9 @@ const updateSection = async(req,res) => {
 const deleteSection = async (req,res)=>{
 
     try {
-
-      const {userName : userName , sectionID : sectionID} = req.params
+    const userName = req.userName
+    console.log("Delete section called",userName)
+      const { sectionID : sectionID} = req.params
 
       let user = await Users.findOne({userName:userName})
       const versionIndex = (user.contentVersions).length - 1;
@@ -88,7 +92,9 @@ const deleteSection = async (req,res)=>{
 
 const  updateSectionChild = async(req,res) => {
     try {
-        const {userName : userName ,sectionID : sectionID, sectionChildID : sectionChildID} = req.params
+        const userName = req.userName
+        console.log("Update section child called",userName)
+        const {sectionID : sectionID, sectionChildID : sectionChildID} = req.params
 
         let user = await Users.findOne({userName:userName})
         let versionIndex = (user.contentVersions).length - 1;
@@ -122,7 +128,9 @@ const  updateSectionChild = async(req,res) => {
 
 const  addSectionChild = async(req,res) => {
     try {
-        const {userName : userName ,sectionID : sectionID} = req.params
+        const userName = req.userName
+        console.log("Add section child called",userName)
+        const {sectionID : sectionID} = req.params
 
         let user = await Users.findOne({userName:userName})
         const versionIndex = (user.contentVersions).length - 1;
@@ -152,7 +160,11 @@ const  addSectionChild = async(req,res) => {
 
 const deleteSectionChild = async(req,res)=>{
     try {
-        const {userName : userName ,sectionID : sectionID , sectionChildID : sectionChildID} = req.params
+
+        const userName = req.userName
+        console.log("Delete section child called",userName)
+
+        const {sectionID : sectionID , sectionChildID : sectionChildID} = req.params
 
         let user = await Users.findOne({userName:userName})
         const versionIndex = (user.contentVersions).length - 1;

@@ -52,7 +52,7 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
 
     const submitEdit = async (base64EncodedImage) => {
         try {
-            dispatch(updateSectionChild(userName, sectionID, sectionChildID, formSectionChild))
+            dispatch(updateSectionChild(sectionID, sectionChildID, formSectionChild))
 
             if (base64EncodedImage !== 'imageError') {
                 dispatch(uploadImageServer({
@@ -76,7 +76,7 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
     const handleAdd = () => {
         console.log("Handling Add")
         console.log(formSectionChild)
-        dispatch(addSectionChild(userName, sectionID, formSectionChild));
+        dispatch(addSectionChild(sectionID, formSectionChild));
         setFileInputState('');
         setOpen(false);
     }

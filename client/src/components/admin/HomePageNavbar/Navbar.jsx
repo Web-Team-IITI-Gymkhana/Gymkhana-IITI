@@ -41,7 +41,7 @@ function AdminHomePageNavbar(props) {
     const dispatch = useDispatch()
 
     const getPublish = () => {
-        dispatch(publishVersion(props.userName))
+        dispatch(publishVersion())
         setDone(0);
         setLoading(0);
         setTimeout(() => {

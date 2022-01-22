@@ -10,10 +10,11 @@ import SectionView from "../SectionPage/SectionView";
 
 function Public() {
 
+    const currentUser = "Cynaptics"
+    
     const [publishedSections, setPublishedSections] = useState([]);
     const [publishedUserProfile, setPublishedProfile] = useState({});
 
-    const currentUser = "Cynaptics"
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,13 +22,12 @@ function Public() {
     }, [dispatch])
 
     let contentVersions = useSelector((state) => state.contentVersions)
-    let publishedVersionNum = useSelector((state) => state.publishedVersionNum)
-
+    
     useEffect(() => {
         try {
             let userName = currentUser
 
-            let publishedVersion = contentVersions[publishedVersionNum - 1]
+            let publishedVersion = contentVersions[0]
 
             let publishedName = publishedVersion.userDetails.name
             let publishedLogoSrc = publishedVersion.userDetails.logo
@@ -50,7 +50,7 @@ function Public() {
 
 
         } catch (error) {
-            console.log(error)
+            setPublishedSections([])
         }
     }, [contentVersions])
 
