@@ -35,7 +35,6 @@ export default function Navbar({ userProfile, sections, type }) {
         <Box 
             className='drawer'
             role="presentation"
-            width={100}
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
@@ -43,7 +42,7 @@ export default function Navbar({ userProfile, sections, type }) {
             <List>
                 {sections.map((text) => (
                     <a className='quick-links' href={routeLink + text.sectionID} key={text.sectionID}>
-                        <ListItem button key={text.sectionName}>
+                        <ListItem className='quick-links' button key={text.sectionName}>
                             <ListItemText style={{textAlign: 'center'}} primary={text.sectionName} />
                         </ListItem>
                     </a>
@@ -58,22 +57,20 @@ export default function Navbar({ userProfile, sections, type }) {
 
     return (
         <>
-            <div className="navbar-wrapper container-fluid">
+            <div className="navbar-wrapper theme-orange container-fluid">
                 <div className="container">
                     <div className="row d-flex align-items-center py-1">
                         <a href="/public/home" className="col-1 px-0 col-lg-0 logo-wrapper">
                             <img className="club-logo" src={userProfile.logo} alt="Club Logo" />
                         </a>
-                        <div className="col-5 col-lg-5">
-                            <a href="/public/home" className="club-name">{userProfile.name}</a>
-                        </div>
-                        <div className="container col-6 container-fluid links-wrapper" >
+                        <div className="container col-11 align-items-right container-fluid links-wrapper" >
                             <div className="col d-flex" style={{ flexDirection: "row-reverse" }}>
-                                {sections.map(section => <div className="col-4 quick-links col-lg-2 py-3 text-center " key={section.sectionID}><Link to={routeLink + section.sectionID} className="quick-links">{section.sectionName}</Link></div>)}
-                                <a href="/public/home" className='quick-links col-3 col-lg-2 py-2 text-center'>Home</a>
+                                <a href="/public/home" className='contactUs col-2 py-2 text-center'>Contact Us</a>
+                                {sections.map(section => <div className="col-2 quick-links py-2 " key={section.sectionID}><Link to={routeLink + section.sectionID} className="quick-links">{section.sectionName}</Link></div>)}
+                                <a href="/public/home" className='quick-links col-2 py-2 text-center'>Home</a>
                             </div>
                         </div>
-                        <div className="col-6 toggleDrawer" >
+                        <div className="col-11 toggleDrawer" >
                             <React.Fragment>
                                 <Button onClick={toggleDrawer('right', true)}><MenuIcon color='action' /></Button>
                                 <Drawer
@@ -82,22 +79,21 @@ export default function Navbar({ userProfile, sections, type }) {
                                     open={state['right']}
                                     onClose={toggleDrawer('right', false)}
                                 >
-                                    <a href="/public/home" style={{textAlign: 'center', marginTop: '20px'}}>
+                                    <a className='club-logo-navbar' href="/public/home">
                                         <img className="club-logo-navbar" src={userProfile.logo} alt="Club Logo" />
                                     </a>
-                                    <a href="/" className='quick-links row-1 py-2 row-lg-2 text-center' style={{margin: '0px', marginTop: '10px'}}>Home</a>
+                                    <a href="/" className='quick-links'>Home</a>
                                     {list('right')}
+                                    <a href="/" className='contact'>Contact Us</a>
                                 </Drawer>
                             </React.Fragment>
 
                         </div>
                     </div>
-                    <hr />
                 </div>
 
                 
             </div>
-            <hr />
         </>
     )
 }
