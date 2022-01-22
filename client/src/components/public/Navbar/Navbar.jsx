@@ -23,12 +23,15 @@ export default function Navbar({ userProfile, sections, type }) {
     };
 
     let routeLink = ""
+    let homeLink = ""
 
     if (type == "public") {
         routeLink = "/public/home/section/"
+        homeLink = "/public/home"
     }
     else {
         routeLink = "/admin/preview/section/"
+        homeLink = "/admin/home"
     }
 
     const list = (anchor) => (
@@ -61,16 +64,16 @@ export default function Navbar({ userProfile, sections, type }) {
             <div className="navbar-wrapper container-fluid">
                 <div className="container">
                     <div className="row d-flex align-items-center py-1">
-                        <a href="/public/home" className="col-1 px-0 col-lg-0 logo-wrapper">
+                        <a href={homeLink} className="col-1 px-0 col-lg-0 logo-wrapper">
                             <img className="club-logo" src={userProfile.logo} alt="Club Logo" />
                         </a>
                         <div className="col-5 col-lg-5">
-                            <a href="/public/home" className="club-name">{userProfile.name}</a>
+                            <a href={homeLink} className="club-name">{userProfile.name}</a>
                         </div>
                         <div className="container col-6 container-fluid links-wrapper" >
                             <div className="col d-flex" style={{ flexDirection: "row-reverse" }}>
                                 {sections.map(section => <div className="col-4 quick-links col-lg-2 py-3 text-center " key={section.sectionID}><Link to={routeLink + section.sectionID} className="quick-links">{section.sectionName}</Link></div>)}
-                                <a href="/public/home" className='quick-links col-3 col-lg-2 py-2 text-center'>Home</a>
+                                <a href={homeLink} className='quick-links col-3 col-lg-2 py-2 text-center'>Home</a>
                             </div>
                         </div>
                         <div className="col-6 toggleDrawer" >

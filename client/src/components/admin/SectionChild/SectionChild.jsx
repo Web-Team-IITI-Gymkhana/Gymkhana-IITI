@@ -45,7 +45,7 @@ function SectionChild({ userName, sectionID, sectionChild }) {
 
     const dispatch = useDispatch()
     const handleDelete = (sectionChildID) => {
-        dispatch(deleteSectionChild(userName, sectionID, sectionChildID))
+        dispatch(deleteSectionChild(sectionID, sectionChildID))
     }
 
     return (

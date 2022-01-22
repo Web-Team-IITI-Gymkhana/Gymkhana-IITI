@@ -19,7 +19,7 @@ function Admin(){
 
     const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(setContentVersions(currentUser,"admin"))
+        dispatch(setContentVersions("","admin"))
     },[dispatch])
 
     let contentVersions = useSelector((state)=> state.contentVersions)

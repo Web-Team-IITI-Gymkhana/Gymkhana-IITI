@@ -33,7 +33,7 @@ function Form({ userProfile }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(updateGeneralDetails(userProfile.userName, postData));
+    dispatch(updateGeneralDetails(postData));
   }
 
   return (

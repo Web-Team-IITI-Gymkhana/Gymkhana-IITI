@@ -42,6 +42,8 @@ const jwtAuth = async (req,res,next)=>{
     const decoded = jwt.verify(req.headers.authorization, process.env.JWT_KEY)
     console.log("Decoded token ",decoded)
 
+    req.userName = decoded.name
+
     const userEmailId = decoded.email
     const user = await Users.findOne({userEmailId:userEmailId})
     if(user)

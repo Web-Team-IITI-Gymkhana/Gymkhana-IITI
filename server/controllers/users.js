@@ -33,7 +33,8 @@ const addUser = async(req,res) => {
 
 const getUser = async(req,res) => {
     try {
-        const {userName : userName} = req.params
+        const userName = req.userName
+        console.log("Get user admin called",userName)
         const user = await Users.findOne({userName:userName})
         return res.status(201).json({"user":user})
 
@@ -45,7 +46,8 @@ const getUser = async(req,res) => {
 const updateGeneralDetails = async(req,res) => {
     try {
 
-        const {userName : userName} = req.params
+        const userName = req.userName
+        console.log("Update general Details called",userName)
 
         let user = await Users.findOne({userName:userName})
         const versionIndex = (user.contentVersions).length - 1;
@@ -77,7 +79,8 @@ const updateGeneralDetails = async(req,res) => {
 
 const publishVersion = async(req,res)=>{
   try{
-      const {userName : userName} = req.params
+        const userName = req.userName
+        console.log("Publish version called",userName)
       let user = await Users.findOne({userName:userName})
       let contentVersions = user.contentVersions
 
