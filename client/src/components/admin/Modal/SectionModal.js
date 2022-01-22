@@ -10,7 +10,7 @@ import "../Form/Form.css"
 
 import { updateSection } from "../../../redux/actions/contentVersions";
 
-export default function SectionModal({ userName, sectionID, sectionDetails, type, triggerElement }) {
+export default function SectionModal({sectionID, sectionDetails, type, triggerElement }) {
 
     console.log(type)
 

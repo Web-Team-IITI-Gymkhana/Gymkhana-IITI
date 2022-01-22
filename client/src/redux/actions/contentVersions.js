@@ -99,6 +99,7 @@ export const deleteSectionChild = (sectionID,sectionChildID) => async (dispatch)
 
 export const publishVersion = () => async (dispatch) => {
     try{
+        console.log(dispatch)
         await api.publishVersion()
     }
     catch(error){
