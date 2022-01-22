@@ -11,6 +11,8 @@ import SectionChildModal from "../Modal/SectionChildModal";
 
 import { deleteSectionChild } from "../../../redux/actions/contentVersions"
 
+import { sectionsChildSchema } from "../../../schema";
+
 const useStyles = makeStyles(styles)
 
 const ExpandMore = styled((props) => {
@@ -32,7 +34,7 @@ const flexContainer = {
 };
 
 
-function SectionChild({ userName, sectionID, sectionChild }) {
+function SectionChild({ userName, sectionID, sectionChild, sectionName }) {
     const classes = useStyles()
 
     const [expanded, setExpanded] = useState(false);
@@ -60,6 +62,7 @@ function SectionChild({ userName, sectionID, sectionChild }) {
                 />
                 <CardContent>
                     <Typography variant="body2" color="text.secondary">
+                        <b>{sectionsChildSchema[sectionName].sectionChildShortDesc.label}: </b>
                         {sectionChild.sectionChildShortDesc}
                     </Typography>
                 </CardContent>
@@ -82,6 +85,7 @@ function SectionChild({ userName, sectionID, sectionChild }) {
                             <MenuList>
                                 <SectionChildModal userName={userName}
                                     sectionID={sectionID}
+                                    sectionName={sectionName}
                                     sectionChildID={sectionChild.sectionChildID}
                                     sectionChild={sectionChild} type={"editSectionChild"}
                                     triggerElement={
@@ -107,13 +111,21 @@ function SectionChild({ userName, sectionID, sectionChild }) {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Typography paragraph variant="body2" color="text.secondary">
+                            <h5>{sectionsChildSchema[sectionName].sectionChildDesc.label}: </h5>
                             {sectionChild.sectionChildDesc}
                         </Typography>
 
                         <Typography paragraph variant="body2" color="text.secondary">
                             <h5>Links:</h5>
                             <List style={flexContainer}>
-                                {sectionChild.sectionChildLinks.map((link) => <ListItem key={link}><a href={link} key={link} style={{ textDecoration: 'none' }}> {link}</a></ListItem>)}
+                                {sectionChild.sectionChildLinks.map((link) =>{
+                                    let href = link.match(/\((..*?)\)/)? link.match(/\((..*?)\)/)[1] : null;
+                                    let text = link.match(/\[(..*?)\]/)? link.match(/\[(..*?)\]/)[1] : href;
+                                    return href &&
+                                    (<ListItem key={link}>
+                                        <a href={href} key={href} style={{ textDecoration: 'none' }} rel="noreferrer" target="_blank" > {text}</a>
+                                    </ListItem>)
+                                })}
                             </List>
                         </Typography>
 
