@@ -48,7 +48,7 @@ const jwtAuth = async (req,res,next)=>{
     const user = await Users.findOne({userEmailId:userEmailId})
     if(user)
     {
-        next()
+      return next()
     }
     else
     {
@@ -70,7 +70,7 @@ app.use('/content', jwtAuth,contentRoute)
 const authRoute = require('./routes/auth')
 app.use('/auth',authRoute)
 
-app.use('/upload',jwtAuth)
+app.use('/uploadImage',jwtAuth)
 
 app.route('/uploadImage').post(async (req, res) => {
   try {

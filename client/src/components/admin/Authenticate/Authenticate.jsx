@@ -6,7 +6,7 @@ import { useDispatch} from "react-redux";
 import configData from "../../../config.prod.json"
 import { loginAdmin } from '../../../redux/actions/adminAuth';
 
-export default function Authenticate({setCurrentUser}) {
+export default function Authenticate() {
 
         const dispatch = useDispatch()
         console.log("LOGIN ROUTE IS ",configData.LOGIN_URL)
