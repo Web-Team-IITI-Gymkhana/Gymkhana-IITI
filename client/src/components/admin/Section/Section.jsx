@@ -61,6 +61,7 @@ function Section({ userName, currSectionID }) {
                             <MenuList>
                                 <SectionChildModal userName={userName}
                                     sectionID={sectionID}
+                                    sectionName={section.sectionName}
                                     sectionChildID={0}
                                     sectionChild={newSectionChild}
                                     type={"addSectionChild"}
@@ -100,6 +101,7 @@ function Section({ userName, currSectionID }) {
                         <Grid item key={sectionChild.sectionChildID}>
                             <SectionChild userName={userName}
                                 sectionID={sectionID}
+                                sectionName={section.sectionName} 
                                 sectionChild={sectionChild} />
                         </Grid>)}
                 </Grid>
