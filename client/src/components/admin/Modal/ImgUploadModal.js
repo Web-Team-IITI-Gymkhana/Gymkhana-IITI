@@ -9,6 +9,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 import { styles } from "../../../variable-css";
 
 import { uploadImageServer } from "../../../redux/actions/contentVersions"
+import { UploadImage } from "../UploadImage/UploadImage";
 
 const useStyles = makeStyles(styles)
 
@@ -119,15 +120,15 @@ export default function ImgUploadModal({ userName, type }) {
     }
 
     return (
-        <div>
+        <>
             <Modal
                 open={isModalOpen}
                 onClose={handleModalClose}
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Box className={classes.fileSelectModal}>
-                    {selectedFile != null ? <ReactCrop ref={imageRef} src={selectedFile} crop={crop} onChange={(newCrop) => {
+                    <ReactCrop ref={imageRef} src={selectedFile} style={{display: selectedFile === null ? 'none': 'block'}} crop={crop} onChange={(newCrop) => {
                         setCrop(newCrop)
-                    }} /> : null}
+                    }} />
                     <form onSubmit={handleSubmitFile} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <input type="file" onChange={handleFileInputChange} value={fileInputState} />
                         <Button type="submit" className={classes.buttonPrimary}>
@@ -139,6 +140,7 @@ export default function ImgUploadModal({ userName, type }) {
             <Button onClick={() => setIsModalOpen(true)} type="submit" className={classes.buttonPrimary}>
                 EDIT
             </Button>
-        </div>
+            <UploadImage/>
+        </>
     );
 }

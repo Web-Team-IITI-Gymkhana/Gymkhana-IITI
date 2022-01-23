@@ -108,5 +108,13 @@ export const styles = {
         gap: 30,
         width: '100%',
         maxWidth: 1000,
-    }
+    },
+    cropImageModal: {
+        backgroundColor: 'transparent',
+        borderRadius: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
 }
