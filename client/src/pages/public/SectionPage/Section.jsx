@@ -15,7 +15,7 @@ const Section = ({section}) => {
 
       <Paper sx={{width: '90%', maxWidth: '1150px'}} elevation={3}>
 
-          {section.sectionContent.map(sectionChild => <SectionChildCard key={sectionChild.sectionChildID} sectionChild={sectionChild}/>)}
+          {section.sectionContent.map(sectionChild => <SectionChildCard key={sectionChild.sectionChildID} sectionChild={sectionChild} sectionName={section.sectionName}/>)}
 
       </Paper>
     </Box>
