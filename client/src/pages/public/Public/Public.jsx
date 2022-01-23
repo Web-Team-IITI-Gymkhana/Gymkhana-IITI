@@ -7,22 +7,23 @@ import { setContentVersions } from "../../../redux/actions/contentVersions";
 
 import HomePage from "../HomePage/HomePage";
 import SectionView from "../SectionPage/SectionView";
+import Loader from "../../../components/Loader/Loader";
 
 function Public() {
 
     const currentUser = "Cynaptics"
-    
+
     const [publishedSections, setPublishedSections] = useState([]);
     const [publishedUserProfile, setPublishedProfile] = useState({});
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(setContentVersions(currentUser,"public"))
+        dispatch(setContentVersions(currentUser, "public"))
     }, [dispatch])
 
     let contentVersions = useSelector((state) => state.contentVersions)
-    
+
     useEffect(() => {
         try {
             let userName = currentUser
@@ -63,7 +64,7 @@ function Public() {
                             <Route path="/home" element={<HomePage userProfile={publishedUserProfile} sections={publishedSections} type="public" />} />
                             {publishedSections.map(section => <Route path={"/home/section/" + section.sectionID} element={<SectionView userProfile={publishedUserProfile} sections={publishedSections} id={section.sectionID} type="public" />} key={section.sectionID} />)}
                         </Routes>
-                    </div> : ""
+                    </div> : <Loader/>
             }
 
         </>

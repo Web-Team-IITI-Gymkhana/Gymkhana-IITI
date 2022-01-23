@@ -14,11 +14,12 @@ import { addSectionChild, updateSectionChild } from "../../../redux/actions/cont
 import { uploadImageServer } from "../../../redux/actions/contentVersions"
 
 import { sectionsChildSchema } from "../../../schema";
+import { UploadImage } from "../UploadImage/UploadImage";
 
 export default function SectionChildModal({ userName, sectionID, sectionName, sectionChildID, sectionChild, type, triggerElement }) {
 
-    const [fileInputState, setFileInputState] = useState('');
-    const [selectedFile, setSelectedFile] = useState();
+    const [fileInputState, setFileInputState] = useState('')
+    const [selectedFile, setSelectedFile] = useState()
 
     const [formSectionChild, setFormSectionChild] = useState(sectionChild)
 
@@ -208,7 +209,25 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
                             onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildLinks: e.target.value.split(',') })}
                         />
                         {
-                            type === "editSectionChild" ? <input id="fileInput" type="file" name="image" onChange={handleFileInputChange} value={fileInputState} /> : <></>
+                            type === "editSectionChild" ?
+                                <>
+                                    <input id="fileInput" type="file" name="image" onChange={handleFileInputChange} value={fileInputState} />
+                                    <UploadImage aspectRatio={16 / 9} onChange={(base64EncodedImage) => {
+                                        return new Promise((resolve, reject) => {
+                                            dispatch(uploadImageServer({
+                                                method: 'POST',
+                                                img: JSON.stringify({ data: base64EncodedImage }),
+                                                userName: userName,
+                                                dataFor: type,
+                                                sectionID: sectionID,
+                                                sectionChildID: sectionChildID,
+                                                headers: { 'Content-Type': 'application/json' }
+                                            }))
+                                            resolve()
+                                        })
+                                    }} />
+                                </>
+                                : <></>
                         }
                             
                         {type === "editSectionChild" ? <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} />} label="Visible"/> : ""}
