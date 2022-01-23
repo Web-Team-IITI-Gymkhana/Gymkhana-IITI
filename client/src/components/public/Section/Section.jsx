@@ -4,7 +4,7 @@ import Carousel from 'react-material-ui-carousel'
 import SectionChildCard from '../SectionChild/SectionChildCard';
 
 const Section = ({ section }) => {
-
+  section.sectionContent = section.sectionContent.filter(sectionChild => sectionChild.visible === true)
   return (
     <Box display={"flex"} flexDirection={"column"} alignItems={"center"} paddingY={5} >
 
@@ -14,6 +14,8 @@ const Section = ({ section }) => {
           <Typography variant={'h5'} fontWeight={'bold'} fontFamily={'arial'}>{section.sectionName}</Typography>
         </Box>
       </Box>
+
+      
 
       {/*the carousel*/}
       <Paper sx={{ width: '90%', maxWidth: '1150px' }} elevation={3}>

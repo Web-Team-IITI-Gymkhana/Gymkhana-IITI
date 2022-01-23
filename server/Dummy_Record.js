@@ -1,13 +1,13 @@
 const personal =
 {
-  "userName": "Mukul",
-  "userEmailId": "cse200001050@iiti.ac.in",
+  "userName": "Mihir",
+  "userEmailId": "cse200001044@iiti.ac.in",
   "publishedVersion": 1,
   "contentVersions":
   [
     {
       "contentVersion": 1,
-      "userDetails": {"name": "Mukul Jain","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
+      "userDetails": {"name": "Mihir Karandikar","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
       "homePagePoster": {"src": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287157/bwzsqfd65g6vrb6ylgi9.jpg","caption": "Caption Cyn"},
       "contactDetails": {"email": "cynaptics@iiti.ac.in","phoneNumber": 123123},
       "themeDetails": "goodtheme",
@@ -25,7 +25,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641281338/k87iwwi0o6yluelw9yjq.jpg",
                 "sectionChildShortDesc": "Short Desc for Workshop 1",
                 "sectionChildDesc": "Detailed Desc for Workshop 1 ",
-                "sectionChildLinks": [""]
+                "sectionChildLinks": [""],
+                "visible" : true
               },
               {
                 "sectionChildID": 2,
@@ -33,7 +34,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641280763/jobpnbbgaltgjgt99lbb.png",
                 "sectionChildShortDesc": "Second Workshop",
                 "sectionChildDesc": "This is the latest workshop",
-                "sectionChildLinks": ["kadk"]
+                "sectionChildLinks": ["kadk"],
+                "visible" : true
               }
             ]
         },
@@ -48,7 +50,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287666/dh4zrnfylgwjhw37qvqn.png",
                 "sectionChildShortDesc": "Short Project Desc",
                 "sectionChildDesc": "Long Project Desc ",
-                "sectionChildLinks": ["https://github.com/"]
+                "sectionChildLinks": ["https://github.com/"],
+                "visible" : true
 
               }
             ]
@@ -59,7 +62,7 @@ const personal =
     },
     {
       "contentVersion": 2,
-      "userDetails": {"name": "Mukul Jain","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
+      "userDetails": {"name": "Mihir Karandikar","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
       "homePagePoster": {"src": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287157/bwzsqfd65g6vrb6ylgi9.jpg","caption": "Caption Cyn"},
       "contactDetails": {"email": "cynaptics@iiti.ac.in","phoneNumber": 123123},
       "themeDetails": "goodtheme",
@@ -77,7 +80,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641281338/k87iwwi0o6yluelw9yjq.jpg",
                 "sectionChildShortDesc": "Short Desc for Workshop 1",
                 "sectionChildDesc": "Detailed Desc for Workshop 1 ",
-                "sectionChildLinks": [""]
+                "sectionChildLinks": [""],
+                "visible" : true
               },
               {
                 "sectionChildID": 2,
@@ -85,7 +89,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641280763/jobpnbbgaltgjgt99lbb.png",
                 "sectionChildShortDesc": "Second Workshop",
                 "sectionChildDesc": "This is the latest workshop",
-                "sectionChildLinks": ["kadk"]
+                "sectionChildLinks": ["kadk"],
+                "visible" : true
               }
             ]
         },
@@ -100,8 +105,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287666/dh4zrnfylgwjhw37qvqn.png",
                 "sectionChildShortDesc": "Short Project Desc",
                 "sectionChildDesc": "Long Project Desc ",
-                "sectionChildLinks": ["https://github.com/"]
-
+                "sectionChildLinks": ["https://github.com/"],
+                "visible" : true
               }
             ]
         }

@@ -15,6 +15,7 @@ const updateSectionChild = (sectionChild,updateData)=>{
     sectionChild.sectionChildShortDesc = updateData.sectionChildShortDesc
     sectionChild.sectionChildDesc = updateData.sectionChildDesc
     sectionChild.sectionChildLinks = updateData.sectionChildLinks
+    sectionChild.visible = updateData.visible
     return sectionChild
 }
 
@@ -38,6 +39,7 @@ const deleteSectionChildHelper = (section,sectionChildID)=>{
 const updateSectionHelper = (section,updateData) => {
     section.sectionName = updateData.sectionName
     section.sectionHeader = updateData.sectionHeader
+    section.visible = updateData.visible
     return section
 }
 

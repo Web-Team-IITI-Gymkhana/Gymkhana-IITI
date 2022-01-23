@@ -33,7 +33,7 @@ function Section({ userName, currSectionID }) {
 
     try {
         sectionID = section.sectionID
-        sectionDetails = { "sectionName": section.sectionName, "sectionHeader": section.sectionHeader }
+        sectionDetails = { "sectionName": section.sectionName, "sectionHeader": section.sectionHeader, "visible" : section.visible }
     } catch (error) {
         sectionID = -1
     }
@@ -84,7 +84,6 @@ function Section({ userName, currSectionID }) {
                                 </MenuItem>
                                 <SectionModal userName={userName}
                                     sectionID={sectionID}
-                                    type={"updateSection"}
                                     sectionDetails={sectionDetails} triggerElement={
                                         <MenuItem>
                                             <ListItemIcon>

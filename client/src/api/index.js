@@ -9,7 +9,7 @@ const publicGetURL = configData.PUBLIC_GET_URL
 
 console.log("API URLS ",usersURL,contentURL,imgUploadURL,publicGetURL)
 
-export const uploadImageServer = (imageData) => axios.post(imgUploadURL,imageData)
+export const uploadImageServer = (imageData) => axios.post(imgUploadURL,imageData,{headers: {authorization : localStorage.getItem('token')}})
 
 export const fetchUserPublic = (userName) => axios.get(`${publicGetURL}/${userName}`)
 

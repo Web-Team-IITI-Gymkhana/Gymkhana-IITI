@@ -46,6 +46,7 @@ const updateSection = async(req,res) => {
 
         let sectionName = updateDetails.sectionName;
         let sectionHeader = updateDetails.sectionHeader;
+        let visible = updateDetails.visible
 
         let allSections = user.contentVersions[versionIndex].Sections;
 
@@ -55,7 +56,7 @@ const updateSection = async(req,res) => {
 
         if(sectionName){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionName`] : sectionName}},{new:true})}
         if(sectionHeader){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionHeader`] : sectionHeader}},{new:true})}
-
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.visible`] : visible}},{new:true})
         return res.status(201).json({"updatedUser": user})
 
     } catch (error) {
@@ -104,6 +105,7 @@ const  updateSectionChild = async(req,res) => {
         let sectionChildShortDesc = updateDetails.sectionChildShortDesc;
         let sectionChildDesc = updateDetails.sectionChildDesc;
         let sectionChildLinks = updateDetails.sectionChildLinks;
+        let visible = updateDetails.visible
 
 
         let allSections = user.contentVersions[versionIndex].Sections;
@@ -117,7 +119,7 @@ const  updateSectionChild = async(req,res) => {
         if(sectionChildShortDesc){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildShortDesc`] : sectionChildShortDesc}},{new:true})}
         if(sectionChildDesc){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildDesc`] : sectionChildDesc}},{new:true})}
         if(sectionChildLinks){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildLinks`] : sectionChildLinks}},{new:true})}
-
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.visible`] : visible}},{new:true})
         return res.status(201).json({"updatedUser": user})
 
     } catch (error) {
