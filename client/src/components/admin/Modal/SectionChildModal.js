@@ -224,6 +224,7 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
                                                 headers: { 'Content-Type': 'application/json' }
                                             }))
                                             resolve()
+                                            console.log(reject)
                                         })
                                     }} />
                                 </>
