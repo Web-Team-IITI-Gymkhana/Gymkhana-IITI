@@ -8,13 +8,7 @@ import { styles } from "../../../variable-css"
 
 const useStyles = makeStyles(styles)
 
-export const UploadImage = ({ onChange = (base64EncodedImage) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve()
-        }, 2000);
-    })
-}, aspectRatio = 1 / 1 }) => {
+export const UploadImage = ({ onChange, aspectRatio }) => {
     const classes = useStyles()
 
     const [isCropImageModalOpen, setIsCropImageModalOpen] = useState(false)
@@ -72,10 +66,15 @@ export const UploadImage = ({ onChange = (base64EncodedImage) => {
         reader.onloadend = () => {
             setSelectedFile(reader.result);
             setIsCropImageModalOpen(true)
-            setCrop({
-                aspect: aspectRatio,
-                width: imageRef.current.imageRef.current.width,
-            })
+
+            const image = new Image()
+            image.src = reader.result
+            setTimeout(() => {
+                setCrop({
+                    aspect: aspectRatio,
+                    width: imageRef.current.imageRef.current.width,
+                })
+            }, 100)
         };
         reader.onerror = () => {
             console.error('An error occurred!');
@@ -119,7 +118,7 @@ export const UploadImage = ({ onChange = (base64EncodedImage) => {
             <input type={'file'} ref={inputRef} style={{ display: 'none' }} onChange={handleFileInputChange} />
             {loading ?
                 <Button className={classes.buttonPrimary}>
-                    <CircularProgress/>
+                    <CircularProgress />
                 </Button>
                 : <Button className={classes.buttonPrimary} onClick={handleButtonClick}>Upload</Button>}
             <Modal
