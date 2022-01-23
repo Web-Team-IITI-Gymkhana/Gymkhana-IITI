@@ -10,7 +10,8 @@ const sectionsSchema = mongoose.Schema({
         sectionChildImage : String,
         sectionChildShortDesc : String,
         sectionChildDesc : String,
-        sectionChildLinks : [String]
+        sectionChildLinks : [String],
+        visible : Boolean
     }]
 })
 

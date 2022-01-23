@@ -19,10 +19,11 @@ const Section = ({ section }) => {
       <Paper sx={{ width: '90%', maxWidth: '1150px' }} elevation={3}>
         <Carousel autoPlay={false}>
           {section.sectionContent.map(sectionChild => 
+            sectionChild.visible ? 
             <SectionChildCard 
               key={sectionChild.sectionChildID}
               sectionName={section.sectionName} 
-              sectionChild={sectionChild} />)
+              sectionChild={sectionChild} /> : "")
           }
         </Carousel>
       </Paper>
