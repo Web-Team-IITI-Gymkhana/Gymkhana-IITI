@@ -8,6 +8,7 @@ import Section from '../../../components/public/Section/Section';
 import SectionLoading from '../../../components/public/Section/SectionLoading';
 
 export default function HomePage({userProfile, sections,type}) {
+    sections = sections.filter(section => section.visible === true)
     return (
      <div>
         <Navbar userProfile={userProfile} sections={sections} type={type}/>

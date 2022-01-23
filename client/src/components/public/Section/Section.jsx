@@ -4,7 +4,7 @@ import Carousel from 'react-material-ui-carousel'
 import SectionChildCard from '../SectionChild/SectionChildCard';
 
 const Section = ({ section }) => {
-
+  section.sectionContent = section.sectionContent.filter(sectionChild => sectionChild.visible === true)
   return (
     <Box display={"flex"} flexDirection={"column"} alignItems={"center"} paddingY={5} >
 
@@ -15,15 +15,16 @@ const Section = ({ section }) => {
         </Box>
       </Box>
 
+      
+
       {/*the carousel*/}
       <Paper sx={{ width: '90%', maxWidth: '1150px' }} elevation={3}>
         <Carousel autoPlay={false}>
           {section.sectionContent.map(sectionChild => 
-            sectionChild.visible ? 
             <SectionChildCard 
               key={sectionChild.sectionChildID}
               sectionName={section.sectionName} 
-              sectionChild={sectionChild} /> : "")
+              sectionChild={sectionChild} />)
           }
         </Carousel>
       </Paper>

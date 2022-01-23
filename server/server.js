@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 const jwtAuth = async (req,res,next)=>{
   try{
-    // return next()
+    return next()
     console.log("JWT Middleware",req.headers.authorization)
     const decoded = jwt.verify(req.headers.authorization, process.env.JWT_KEY)
     console.log("Decoded token ",decoded)
@@ -127,40 +127,6 @@ app.route('/public/:userName').get(async (req,res)=>{
       return res.status(404).json({message:error})
   }
 })
-
-app.route('/addVisibility/:userName').patch(async (req,res)=>{
-  try{
-    const {userName : userName} = req.params
-    let user = await Users.findOne({userName : userName})
-    let contentVersions = user.contentVersions
-    let currentVersion = contentVersions[0] , publishedVersion = contentVersions[1]
-    for(let i=0; i<currentVersion.Sections.length;i++)
-    {
-        for(let j=0; j<currentVersion.Sections[i].sectionContent.length; j++)
-        {
-            currentVersion.Sections[i].sectionContent[j].visible = true
-        }
-    }
-    for(let i=0; i<publishedVersion.Sections.length;i++)
-    {
-        for(let j=0; j<publishedVersion.Sections[i].sectionContent.length; j++)
-        {
-            publishedVersion.Sections[i].sectionContent[j].visible = true
-        }
-    }
-
-    
-    contentVersions[0]=currentVersion;
-    contentVersions[1]=publishedVersion;
-    user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions`] : contentVersions}},{new:true})
-    return res.status(201).json({"updatedUser": user})
-  }
-  catch(error){
-      console.log(error)
-      return res.status(404).json({message:error}) 
-  }
-})
-
 
 app.listen(PORT, () => {
   console.log(`Listening on the port: ${PORT}`);

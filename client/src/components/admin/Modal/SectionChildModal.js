@@ -5,6 +5,8 @@ import Modal from '@material-ui/core/Modal';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import "../Form/Form.css"
 
@@ -19,6 +21,12 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
     const [selectedFile, setSelectedFile] = useState();
 
     const [formSectionChild, setFormSectionChild] = useState(sectionChild)
+
+    const [checked, setChecked] = useState(sectionChild.visible);
+    const handleChange = (event) => {
+      setChecked(event.target.checked);
+    };
+
 
     const dispatch = useDispatch();
 
@@ -52,6 +60,8 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
 
     const submitEdit = async (base64EncodedImage) => {
         try {
+            console.log("Visibility status on edit submit",checked)
+            formSectionChild.visible = checked
             dispatch(updateSectionChild(sectionID, sectionChildID, formSectionChild))
 
             if (base64EncodedImage !== 'imageError') {
@@ -75,6 +85,7 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
 
     const handleAdd = () => {
         console.log("Handling Add")
+        formSectionChild.visible = true
         console.log(formSectionChild)
         dispatch(addSectionChild(sectionID, formSectionChild));
         setFileInputState('');
@@ -121,7 +132,7 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
         setOpen(false);
     };
 
-
+    // const initial = sectionChild.visible
 
     return (
         <div>
@@ -199,6 +210,9 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
                         {
                             type === "editSectionChild" ? <input id="fileInput" type="file" name="image" onChange={handleFileInputChange} value={fileInputState} /> : <></>
                         }
+                            
+                        {type === "editSectionChild" ? <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} />} label="Visible"/> : ""}
+                        <br></br>
                         <Button type="button" onClick={type === "editSectionChild" ? handleEdit : handleAdd}>Confirm</Button>
                     </form>
                 </div>

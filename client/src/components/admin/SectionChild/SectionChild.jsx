@@ -50,6 +50,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName }) {
         dispatch(deleteSectionChild(sectionID, sectionChildID))
     }
 
+    
     return (
         <div>
             <Card className={classes.sectionChildCard}>

@@ -5,6 +5,8 @@ import './style.css'
 import { Link } from 'react-router-dom';
 
 export default function Navbar({ userProfile, sections, type }) {
+
+    sections = sections.filter(section => section.visible === true)
     
     const [state, setState] = React.useState({
         right: false,

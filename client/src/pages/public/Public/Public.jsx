@@ -10,7 +10,7 @@ import SectionView from "../SectionPage/SectionView";
 
 function Public() {
 
-    const currentUser = "Cynaptics"
+    const currentUser = "Mihir"
     
     const [publishedSections, setPublishedSections] = useState([]);
     const [publishedUserProfile, setPublishedProfile] = useState({});

@@ -25,7 +25,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641281338/k87iwwi0o6yluelw9yjq.jpg",
                 "sectionChildShortDesc": "Short Desc for Workshop 1",
                 "sectionChildDesc": "Detailed Desc for Workshop 1 ",
-                "sectionChildLinks": [""]
+                "sectionChildLinks": [""],
+                "visible" : true
               },
               {
                 "sectionChildID": 2,
@@ -33,7 +34,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641280763/jobpnbbgaltgjgt99lbb.png",
                 "sectionChildShortDesc": "Second Workshop",
                 "sectionChildDesc": "This is the latest workshop",
-                "sectionChildLinks": ["kadk"]
+                "sectionChildLinks": ["kadk"],
+                "visible" : true
               }
             ]
         },
@@ -48,7 +50,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287666/dh4zrnfylgwjhw37qvqn.png",
                 "sectionChildShortDesc": "Short Project Desc",
                 "sectionChildDesc": "Long Project Desc ",
-                "sectionChildLinks": ["https://github.com/"]
+                "sectionChildLinks": ["https://github.com/"],
+                "visible" : true
 
               }
             ]
@@ -77,7 +80,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641281338/k87iwwi0o6yluelw9yjq.jpg",
                 "sectionChildShortDesc": "Short Desc for Workshop 1",
                 "sectionChildDesc": "Detailed Desc for Workshop 1 ",
-                "sectionChildLinks": [""]
+                "sectionChildLinks": [""],
+                "visible" : true
               },
               {
                 "sectionChildID": 2,
@@ -85,7 +89,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641280763/jobpnbbgaltgjgt99lbb.png",
                 "sectionChildShortDesc": "Second Workshop",
                 "sectionChildDesc": "This is the latest workshop",
-                "sectionChildLinks": ["kadk"]
+                "sectionChildLinks": ["kadk"],
+                "visible" : true
               }
             ]
         },
@@ -100,8 +105,8 @@ const personal =
                 "sectionChildImage": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287666/dh4zrnfylgwjhw37qvqn.png",
                 "sectionChildShortDesc": "Short Project Desc",
                 "sectionChildDesc": "Long Project Desc ",
-                "sectionChildLinks": ["https://github.com/"]
-
+                "sectionChildLinks": ["https://github.com/"],
+                "visible" : true
               }
             ]
         }

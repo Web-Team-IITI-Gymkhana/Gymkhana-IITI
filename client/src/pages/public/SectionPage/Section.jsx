@@ -3,7 +3,7 @@ import {Box, Paper, Typography} from "@mui/material";
 import SectionChildCard from '../../../components/public/SectionChild/SectionChildCard';
 
 const Section = ({section}) => {
-
+  section.sectionContent = section.sectionContent.filter(sectionChild => sectionChild.visible === true)
   return (
     <Box display={"flex"} flexDirection={"column"} alignItems={"center"} paddingY={5} >
 
