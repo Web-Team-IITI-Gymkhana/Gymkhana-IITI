@@ -5,6 +5,8 @@ import Modal from '@material-ui/core/Modal';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import "../Form/Form.css"
 

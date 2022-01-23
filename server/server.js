@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 const jwtAuth = async (req,res,next)=>{
   try{
-    return next()
+    // return next()
     console.log("JWT Middleware",req.headers.authorization)
     const decoded = jwt.verify(req.headers.authorization, process.env.JWT_KEY)
     console.log("Decoded token ",decoded)
