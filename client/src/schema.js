@@ -18,7 +18,7 @@ export const sectionsChildSchema = {
       sectionChildLinks: {
         required: false,
         visible: true,
-        label: "Social Media"
+        label: "Social Media {format:[text](link)}"
       }
     },
     Events: {
@@ -40,7 +40,7 @@ export const sectionsChildSchema = {
         sectionChildLinks: {
           required: false,
           visible: true,
-          label: "Links in format [text](link)"
+          label: "Links {format:[text](link)}"
         }
     },
     Projects: {
@@ -62,7 +62,7 @@ export const sectionsChildSchema = {
         sectionChildLinks: {
             required: false,
             visible: true,
-            label: "Links"
+            label: "Links {format:[text](link)}"
         }
     }
 };

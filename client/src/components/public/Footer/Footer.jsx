@@ -42,7 +42,7 @@ export default function Footer({userProfile}) {
             <InstaIcon/>
              </div>
              <div className='col-4'>
-            <Typography>{userProfile.socialMedia[0]}</Typography>
+            <Typography>{userProfile.socialMedia && userProfile.socialMedia[0]}</Typography>
              </div>
            </div>
            <div className='row'>
@@ -50,7 +50,7 @@ export default function Footer({userProfile}) {
             <FacebookIcon/>
              </div>
              <div className='col-4'>
-            <Typography>{userProfile.socialMedia[1]}</Typography>
+            <Typography>{userProfile.socialMedia && userProfile.socialMedia[1]}</Typography>
              </div>
            </div>
            </div>
