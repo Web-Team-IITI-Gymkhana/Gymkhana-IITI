@@ -11,6 +11,7 @@ import Loading from "../PublishDone/Loading"
 import { publishVersion } from "../../../redux/actions/contentVersions";
 
 import {styles} from "../../../variable-css"
+import { sectionsChildSchema } from "../../../schema";
 
 
 const useStyles = makeStyles(styles)
@@ -68,7 +69,11 @@ function AdminHomePageNavbar(props) {
                     </Modal.Header>
                     <Modal.Body>
                         <Form method="POST" id="myForm">
-                            <Form.Control as="textarea" id="sectionName" rows={1} placeholder="Section Name" />
+                            <Form.Select id="sectionName">
+                                {Object.keys(sectionsChildSchema).map(option=>
+                                    <option key={option} value={option}>{option}</option>
+                                )}
+                            </Form.Select>
                             <Form.Control as="textarea" id="sectionHeader" rows={1} placeholder="Section Header" />
                         </Form>
                     </Modal.Body>
