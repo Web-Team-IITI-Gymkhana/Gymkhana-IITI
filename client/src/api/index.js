@@ -21,6 +21,8 @@ export const addSection = (postData) => axios.post(`${contentURL}/sections`,post
 export const updateSection = (sectionID,updateData) => axios.patch(`${contentURL}/sections/${sectionID}`,updateData,{headers: {authorization  : localStorage.getItem('token')}})
 export const deleteSection = (sectionID) => axios.delete(`${contentURL}/sections/${sectionID}`,{headers: {authorization  : localStorage.getItem('token')}})
 
+export const changeSequence = (sectionID,actionType) => axios.patch(`${contentURL}/sectionSequence/${sectionID}`,{actionType : actionType},{headers: {authorization  : localStorage.getItem('token')}})
+
 export const addSectionChild = (sectionID,postData) => axios.post(`${contentURL}/sections/${sectionID}`,postData,{headers: {authorization  : localStorage.getItem('token')}})
 export const updateSectionChild = (sectionID,sectionChildID,updateData) => axios.patch(`${contentURL}/sections/${sectionID}/${sectionChildID}`,updateData,{headers: {authorization  : localStorage.getItem('token')}})
 export const deleteSectionChild = (sectionID,sectionChildID) => axios.delete(`${contentURL}/sections/${sectionID}/${sectionChildID}`,{headers: {authorization  : localStorage.getItem('token')}})

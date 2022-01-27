@@ -118,3 +118,12 @@ export const uploadImageServer = (imageData) => async (dispatch) => {
     }
 }
 
+export const changeSequence = (sectionID,actionType) => async (dispatch) => {
+    try {
+        await api.changeSequence(sectionID,actionType)
+        dispatch({type:"CHANGE_SEQUENCE",payload:{sectionID:sectionID,actionType:actionType}})
+    } catch (error) {
+        console.log(error)
+    }
+}
+

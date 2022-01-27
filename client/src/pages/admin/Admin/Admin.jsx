@@ -25,18 +25,16 @@ function Admin(){
     const findSectionsAccToSequence = (sections,sequence) => {
         console.log("In admin ")
         console.log("Orig Sections",sections)
-        console.log("Sequence",sequence.length)
+        console.log("Sequence",sequence)
         let sectionsAccToSequence = []
-        for(let i=0;i<sequence.length();i++)
+        for(let i=0;i<sequence.length;i++)
         {
             let sectionID = parseInt(sequence[i])
             let section = sections.find(section => section.sectionID === sectionID)
-            sectionsAccToSequence.push(section)
+            if(section){sectionsAccToSequence.push(section)}
         }
-        console.log("Loop done")
-        // if(sections[2]){sectionsAccToSequence.push(sections[2])}
+        console.log("Sequence Sections admin",sectionsAccToSequence)
         
-        console.log("Sequence Sections",sectionsAccToSequence)
         return sectionsAccToSequence
     }
 
@@ -50,7 +48,7 @@ function Admin(){
             let currentSocialMedia = currentVersion.userDetails.socialMedia
             let sectionSequence = currentVersion.sectionSequence
             
-            const sectionsAccToSequence = findSectionsAccToSequence(currentVersion.Sections,sectionSequence)
+            let sectionsAccToSequence = findSectionsAccToSequence(currentVersion.Sections,sectionSequence)
 
             setCurrentSections(sectionsAccToSequence)
 

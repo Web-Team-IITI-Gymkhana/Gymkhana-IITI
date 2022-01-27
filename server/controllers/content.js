@@ -139,6 +139,46 @@ const  updateSectionChild = async(req,res) => {
     }
 }
 
+const changeSequence = async(req,res) => {
+    try {
+        const userName = req.userName
+        const actionType = req.body.actionType
+        const {sectionID : sectionID} = req.params
+
+        console.log("Change sequence called",userName,actionType,sectionID)
+
+        let user = await Users.findOne({userName:userName});
+        const versionIndex = (user.contentVersions).length - 1;
+
+        let sectionSequence = user.contentVersions[versionIndex].sectionSequence
+        
+        const ind = sectionSequence.indexOf(sectionID.toString());
+
+        
+
+        if(actionType==="UP" && ind>0)
+        {
+            let temp = sectionSequence[ind-1]
+            sectionSequence[ind-1] = sectionSequence[ind]
+            sectionSequence[ind] = temp
+        }
+        else if(actionType==="DOWN" && ind<(sectionSequence.length-1))
+        {
+            let temp = sectionSequence[ind+1]
+            sectionSequence[ind+1] = sectionSequence[ind]
+            sectionSequence[ind] = temp
+        }
+
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.sectionSequence`] : sectionSequence}},{new:true})
+
+        return res.status(201).json({"updatedUser": user})
+
+    } catch (error) {
+        console.log(error)
+        return res.status(404).json({"message":error})
+    }
+}
+
 const  addSectionChild = async(req,res) => {
     try {
         const userName = req.userName
@@ -199,4 +239,4 @@ const deleteSectionChild = async(req,res)=>{
 
 }
 
-module.exports = {addSection, updateSection, addSectionChild, updateSectionChild , deleteSectionChild, deleteSection}
+module.exports = {addSection, updateSection, addSectionChild, updateSectionChild , deleteSectionChild, deleteSection , changeSequence}

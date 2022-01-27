@@ -43,6 +43,24 @@ const updateSectionHelper = (section,updateData) => {
     return section
 }
 
+const changeSequenceHelper = (sectionSequence,sectionID,actionType) => {
+    const ind = sectionSequence.indexOf(sectionID.toString());
+    console.log("Change sequence helper called",sectionSequence,sectionID,actionType)
+    if(actionType==="UP" && ind>0)
+    {
+        let temp = sectionSequence[ind-1]
+        sectionSequence[ind-1] = sectionSequence[ind]
+        sectionSequence[ind] = temp
+    }
+    else if(actionType==="DOWN" && ind<(sectionSequence.length-1))
+    {
+        let temp = sectionSequence[ind+1]
+        sectionSequence[ind+1] = sectionSequence[ind]
+        sectionSequence[ind] = temp
+    }
+    return sectionSequence
+}
+
 const reducer =  (contentVersions=[],action) => {
 
     let lastIndex = contentVersions.length - 1
@@ -62,7 +80,8 @@ const reducer =  (contentVersions=[],action) => {
             return [... contentVersions]
 
         case "ADD_SECTION":
-            (contentVersions[lastIndex].Sections).push({... action.payload,sectionID:findSectionID(contentVersions)})
+            (contentVersions[lastIndex].sectionSequence).push((findSectionID(contentVersions)).toString());
+            (contentVersions[lastIndex].Sections).push({... action.payload,sectionID:findSectionID(contentVersions)});
             return [... contentVersions]
 
         case "ADD_SECTION_CHILD":
@@ -74,7 +93,8 @@ const reducer =  (contentVersions=[],action) => {
             return [... contentVersions]
 
         case "DELETE_SECTION":
-            (contentVersions[lastIndex].Sections) = (contentVersions[lastIndex].Sections).filter((section)=>section.sectionID!==action.payload.sectionID)
+            (contentVersions[lastIndex].sectionSequence) = (contentVersions[lastIndex].sectionSequence).filter((sectionID)=>sectionID!==(action.payload.sectionID.toString()));
+            (contentVersions[lastIndex].Sections) = (contentVersions[lastIndex].Sections).filter((section)=>section.sectionID!==action.payload.sectionID);
             return [... contentVersions]
 
         case "UPDATE_SECTION_CHILD":
@@ -87,7 +107,9 @@ const reducer =  (contentVersions=[],action) => {
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?deleteSectionChildHelper(section,action.payload.sectionChildID):section)
             return [... contentVersions]
 
-
+        case "CHANGE_SEQUENCE":
+            (contentVersions[lastIndex].sectionSequence) = changeSequenceHelper(contentVersions[lastIndex].sectionSequence,action.payload.sectionID,action.payload.actionType)
+            return [... contentVersions]
 
         default:
             return [... contentVersions]

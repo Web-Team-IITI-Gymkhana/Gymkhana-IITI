@@ -19,19 +19,18 @@ function AdminHomePage({ userProfile }) {
     const classes = useStyles()
 
     const findSectionsAccToSequence = (sections,sequence) => {
-        console.log("In admin home page")
-        console.log("Orig Sections",sections)
-        console.log("Sequence",sequence.length)
+        console.log("In admin home ")
+        console.log("Orig Sections admin home",sections)
+        console.log("Sequence home",sequence)
         let sectionsAccToSequence = []
-        for(let i=0;i<sequence.length();i++)
+        for(let i=0;i<sequence.length;i++)
         {
             let sectionID = parseInt(sequence[i])
             let section = sections.find(section => section.sectionID === sectionID)
-            sectionsAccToSequence.push(section)
+            if(section){sectionsAccToSequence.push(section)}
         }
-        console.log("Loop done")
-        // if(sections[2]){sectionsAccToSequence.push(sections[2])}
-        console.log("Sequence Sections",sectionsAccToSequence)
+        console.log("Sequence Sections admin home",sectionsAccToSequence)
+        
         return sectionsAccToSequence
     }
 
@@ -56,6 +55,8 @@ function AdminHomePage({ userProfile }) {
             </Card>
         )
     };
+
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 
     const handledAdd = (sectionName, sectionHeader) => {
         const newSection = { "sectionName": sectionName, "sectionHeader": sectionHeader, "sectionContent": [] }
