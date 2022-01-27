@@ -22,7 +22,10 @@ const  addSection = async(req,res) => {
         allSections.push(newSection);
 
         user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}},{new:true})
-
+        await Users.updateOne(
+      { username: username },
+      { $push: { sectionSequence: newSection.sectionID } }
+    );
         return res.status(201).json({"updatedUser": user})
 
 
@@ -82,7 +85,10 @@ const deleteSection = async (req,res)=>{
       allSections.splice(sectionIndex,1);
 
       user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}},{new:true})
-
+      await Users.updateOne(
+      { username: username },
+      { $pull: { sectionSequence: sectionID } }
+    );
       return res.status(201).json({"updatedUser": user})
 
     } catch (error) {
