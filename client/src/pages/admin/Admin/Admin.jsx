@@ -22,6 +22,24 @@ function Admin(){
 
     let contentVersions = useSelector((state)=> state.contentVersions)
 
+    const findSectionsAccToSequence = (sections,sequence) => {
+        console.log("In admin ")
+        console.log("Orig Sections",sections)
+        console.log("Sequence",sequence.length)
+        let sectionsAccToSequence = []
+        for(let i=0;i<sequence.length();i++)
+        {
+            let sectionID = parseInt(sequence[i])
+            let section = sections.find(section => section.sectionID === sectionID)
+            sectionsAccToSequence.push(section)
+        }
+        console.log("Loop done")
+        // if(sections[2]){sectionsAccToSequence.push(sections[2])}
+        
+        console.log("Sequence Sections",sectionsAccToSequence)
+        return sectionsAccToSequence
+    }
+
     useEffect(() => {
         try {
 
@@ -30,8 +48,11 @@ function Admin(){
             let currentName = currentVersion.userDetails.name
             let currentLogoSrc = currentVersion.userDetails.logo
             let currentSocialMedia = currentVersion.userDetails.socialMedia
+            let sectionSequence = currentVersion.sectionSequence
+            
+            const sectionsAccToSequence = findSectionsAccToSequence(currentVersion.Sections,sectionSequence)
 
-            setCurrentSections(currentVersion.Sections)
+            setCurrentSections(sectionsAccToSequence)
 
             let currentEmail = currentVersion.contactDetails.email
             let currentPhoneNumber = currentVersion.contactDetails.phoneNumber

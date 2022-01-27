@@ -10,6 +10,7 @@ export const setContentVersions = (userName,type) => async (dispatch) => {
                 const {data} = await api.fetchUserAdmin()
                 console.log("Fetch data",data)
                 user = data.user
+                if(!user){dispatch({type:"ADMIN_LOGOUT"})}
             }
             catch(error){
                 console.log("In redux error")

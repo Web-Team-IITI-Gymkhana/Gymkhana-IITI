@@ -18,8 +18,28 @@ const useStyles = makeStyles(styles)
 function AdminHomePage({ userProfile }) {
     const classes = useStyles()
 
+    const findSectionsAccToSequence = (sections,sequence) => {
+        console.log("In admin home page")
+        console.log("Orig Sections",sections)
+        console.log("Sequence",sequence.length)
+        let sectionsAccToSequence = []
+        for(let i=0;i<sequence.length();i++)
+        {
+            let sectionID = parseInt(sequence[i])
+            let section = sections.find(section => section.sectionID === sectionID)
+            sectionsAccToSequence.push(section)
+        }
+        console.log("Loop done")
+        // if(sections[2]){sectionsAccToSequence.push(sections[2])}
+        console.log("Sequence Sections",sectionsAccToSequence)
+        return sectionsAccToSequence
+    }
+
     let contentVersions = useSelector((state) => state.contentVersions)
-    let sections = (contentVersions.length > 0)? contentVersions[(contentVersions).length - 1].Sections : null;
+    let origSections = (contentVersions.length > 0)? contentVersions[(contentVersions).length - 1].Sections : null;
+    let sectionSequence = contentVersions[(contentVersions).length - 1].sectionSequence
+
+    let sections = findSectionsAccToSequence(origSections,sectionSequence)
 
     const [currSectionID, setSectionID] = useState(0)
 

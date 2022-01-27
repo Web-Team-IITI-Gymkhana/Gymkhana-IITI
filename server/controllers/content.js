@@ -19,8 +19,14 @@ const  addSection = async(req,res) => {
           newSection.sectionID = 1
         }
 
+        let sectionSequence = user.contentVersions[versionIndex].sectionSequence
+        sectionSequence.push((newSection.sectionID).toString())
+    
+      
+
         allSections.push(newSection);
 
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.sectionSequence`] : sectionSequence}},{new:true})
         user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}},{new:true})
 
         return res.status(201).json({"updatedUser": user})
@@ -81,6 +87,11 @@ const deleteSection = async (req,res)=>{
 
       allSections.splice(sectionIndex,1);
 
+     
+      let sectionSequence = user.contentVersions[versionIndex].sectionSequence
+      sectionSequence = sectionSequence.filter(id=>id!==(sectionID.toString()))
+    
+      user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.sectionSequence`] : sectionSequence}},{new:true})
       user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}},{new:true})
 
       return res.status(201).json({"updatedUser": user})
