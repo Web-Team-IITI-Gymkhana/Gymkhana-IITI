@@ -47,8 +47,8 @@ function AdminHomePage({ userProfile }) {
 
     const RenderSectionHeader = (sectionID, currentSectionId, sectionHeader) => {
         return (
-            <Card className={sectionID === currentSectionId ? classes.sectionHeaderCardSelected : classes.sectionHeaderCard}
-                onClick={() => { setSectionID(sectionID) }}>
+            <Card className={sectionID === currentSectionId ? classes.sectionHeaderCardSelected : classes.sectionHeaderCard} 
+                onClick={() => { setSectionID(sectionID) }} key={sectionID}>
                 <Typography className={classes.subheading}>
                     {sectionHeader}
                 </Typography>
