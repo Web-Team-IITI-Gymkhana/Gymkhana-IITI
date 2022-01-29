@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import configData from "../config.prod.json"
+import configData from "../config.dev.json"
 
 const usersURL = configData.USERS_URL
 const contentURL = configData.CONTENT_URL
@@ -20,9 +20,6 @@ export const publishVersion = () => axios.post(`${usersURL}`,{},{headers: {autho
 export const addSection = (postData) => axios.post(`${contentURL}/sections`,postData,{headers: {authorization: localStorage.getItem('token')}})
 export const updateSection = (sectionID,updateData) => axios.patch(`${contentURL}/sections/${sectionID}`,updateData,{headers: {authorization  : localStorage.getItem('token')}})
 export const deleteSection = (sectionID) => axios.delete(`${contentURL}/sections/${sectionID}`,{headers: {authorization  : localStorage.getItem('token')}})
-
-export const addSectionChild = (sectionID,postData) => axios.post(`${contentURL}/sections/${sectionID}`,postData,{headers: {authorization  : localStorage.getItem('token')}})
-export const updateSectionChild = (sectionID,sectionChildID,updateData) => axios.patch(`${contentURL}/sections/${sectionID}/${sectionChildID}`,updateData,{headers: {authorization  : localStorage.getItem('token')}})
-export const deleteSectionChild = (sectionID,sectionChildID) => axios.delete(`${contentURL}/sections/${sectionID}/${sectionChildID}`,{headers: {authorization  : localStorage.getItem('token')}})
+export const saveSection = (sectionID,updatedSection) => axios.patch(`${contentURL}/sections/save/${sectionID}`,updatedSection,{headers: {authorization  : localStorage.getItem('token')}})
 
 
