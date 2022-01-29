@@ -48,16 +48,6 @@ export const addSection = (postData) => async (dispatch) => {
     }
 }
 
-export const addSectionChild = (sectionID,postData) => async (dispatch) => {
-    try{
-        await api.addSectionChild(sectionID,postData)
-        dispatch({type:"ADD_SECTION_CHILD",payload:{sectionID:sectionID,postData:postData}})
-    }
-    catch(error){
-        console.log(error)
-    }
-}
-
 export const updateSection = (sectionID,updateData) => async (dispatch) => {
     try {
       await api.updateSection(sectionID,updateData)
@@ -69,17 +59,25 @@ export const updateSection = (sectionID,updateData) => async (dispatch) => {
 
 export const deleteSection = (sectionID) => async (dispatch) => {
     try {
-      await api.deleteSection(sectionID)
-      dispatch({type:"DELETE_SECTION",payload:{sectionID:sectionID}})
+    await api.deleteSection(sectionID)
+    dispatch({type:"DELETE_SECTION",payload:{sectionID:sectionID}})
     } catch (error) {
         console.log(error)
     }
-  }
+}
+
+export const addSectionChild = (sectionID,postData) => async (dispatch) => {
+    try{
+        dispatch({type:"ADD_SECTION_CHILD",payload:{sectionID:sectionID,postData:postData}})
+    }
+    catch(error){
+        console.log(error)
+    }
+}
 
 
 export const updateSectionChild = (sectionID,sectionChildID,updateData) => async (dispatch) => {
     try{
-        await api.updateSectionChild(sectionID,sectionChildID,updateData)
         dispatch({type:"UPDATE_SECTION_CHILD",payload:{sectionID:sectionID,sectionChildID:sectionChildID,updateData:updateData}})
     }
     catch(error){
@@ -89,8 +87,17 @@ export const updateSectionChild = (sectionID,sectionChildID,updateData) => async
 
 export const deleteSectionChild = (sectionID,sectionChildID) => async (dispatch) => {
     try{
-        await api.deleteSectionChild(sectionID,sectionChildID)
         dispatch({type:"DELETE_SECTION_CHILD",payload:{sectionID:sectionID,sectionChildID:sectionChildID}})
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
+export const saveSection = (sectionID,updatedSection) => async (dispatch) => {
+    try{
+        console.log(dispatch)
+        await api.saveSection(sectionID,updatedSection);
     }
     catch(error){
         console.log(error)

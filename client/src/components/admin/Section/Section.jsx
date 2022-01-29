@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { Add, Delete, Edit, MoreVert } from "@mui/icons-material";
 import { ListItemIcon, ListItemText, MenuItem, Menu, MenuList, IconButton, Grid, Card } from '@material-ui/core'
 import { makeStyles } from "@mui/styles";
+import { Button } from "@material-ui/core";
 
 import { styles } from "../../../variable-css";
 
@@ -14,6 +15,7 @@ import SectionChildModal from "../Modal/SectionChildModal";
 import SectionModal from "../Modal/SectionModal";
 
 import { deleteSection } from "../../../redux/actions/contentVersions";
+import { saveSection } from "../../../redux/actions/contentVersions";
 
 const useStyles = makeStyles(styles)
 
@@ -45,12 +47,17 @@ function Section({ userName, currSectionID }) {
         dispatch(deleteSection(sectionID))
     }
 
+    const handleSaveSection = () => {
+        dispatch(saveSection(sectionID,section))
+    }
+
     return (
 
         sectionID > 0 ?
             <Card className={classes.section}>
                 <Box display={'flex'} justifyContent={'space-between'} marginBottom={3}>
                     <h3 className="header">{section.sectionHeader}</h3>
+                    <Button variant="contained" onClick={()=>{handleSaveSection()}}>SAVE</Button>
                     <>
                         <IconButton onClick={(event) => {
                             setAnchorEl(event.currentTarget)
