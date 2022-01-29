@@ -1,7 +1,7 @@
 import { Box, Button, Drawer, List, ListItem, ListItemText } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
-import './style.css'
+import '../public.css'
 import { Link } from 'react-router-dom';
 
 export default function Navbar({ userProfile, sections, type }) {
