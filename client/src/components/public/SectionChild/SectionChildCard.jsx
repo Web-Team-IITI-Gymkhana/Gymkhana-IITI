@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Typography, List, ListItem } from "@mui/material";
-import './SectionChildCard.css'
+import '../public.css'
 import { sectionsChildSchema } from '../../../schema';
 
 const SectionChildCard = ({ sectionChild, sectionName }) => {

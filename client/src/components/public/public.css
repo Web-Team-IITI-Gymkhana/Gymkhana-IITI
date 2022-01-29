@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway&family=Roboto&display=swap');
+
+.theme-orange{
+    --themeColor: #ff9600;
+  }
+  .theme-purple{
+    --themeColor: #DA28F6;
+  }
+  .theme-blue{
+    --themeColor: #35B6FF;
+  }
+  .theme-green{
+    --themeColor: #44CA5A;
+  }
+  .theme-yellow{
+    --themeColor: #FFD600;
+  }
+  .theme-pink{
+    --themeColor: #FF004C;
+  }
+
+  /* Navbar */
+
+  .club-logo {
+      border-radius: 100%;
+      height: 70px;
+      width: 70px;
+      margin: 5px;
+  }
+  
+  .drawer {
+      width: 100;
+  }
+  
+  .quick-links {
+      font-style: normal;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 430;
+      color: #7e7e7e;
+      text-decoration: none;
+  }
+  
+  .contactUs {
+      background-color: var(--themeColor);
+      border-radius: 100px;
+      font-style: normal;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 430;
+      color: white;
+      text-decoration: none;
+      box-shadow: 10px 10px 10px 10px var(--themeColor);
+      box-shadow: var(--themeColor) 0px 1px 10px 0px;
+  }
+  
+  .toggleDrawer {
+      display: none;
+  }
+  
+  .quick-links:hover {
+      color: black;
+      font-weight: 500;
+  }
+  .contactUs:hover {
+      color: var(--themeColor);
+      font-weight: 500;
+      background-color: white;
+  }
+  
+  @media only screen and (max-width: 700px) {
+      .club-logo {
+          height: 35px;
+          width: 35px;
+      }
+      .club-logo-navbar {
+          height: 50px;
+          width: 50px;
+          border-radius: 100%;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      .quick-links {
+          margin-top: 13px;
+          text-align: center;
+          font-size: 17px;
+          font-weight: 430;
+          color: #7e7e7e;
+          text-decoration: none;
+          align-items: center;
+      }
+  
+      .contact {
+          margin: 0px;
+          text-align: center;
+          font-size: 17px;
+          font-weight: 430;
+          color: #7e7e7e;
+          text-decoration: none;
+      }
+  
+      .contact:hover {
+        background: rgb(233, 233, 233);
+        color: black;
+    }
+  
+      .quick-links:hover {
+          background: rgb(233, 233, 233);
+          color: black;
+      }
+  
+      .drawer {
+          min-width: 85vw;
+          margin: 0px;
+      }
+  
+      .links-wrapper {
+          display: none;
+      }
+      .toggleDrawer {
+          display: flex;
+          flex-direction: row-reverse;
+          align-self: flex-end;
+      }
+  }
+
+  /* Hero */
+
+  .heroBg {
+    height: 90vh;
+    width: 100vw;
+    padding-bottom: 5;
+    padding-top: 10;
+    align-items: center;
+    opacity: 0.95;
+  }
+
+  .heroText {
+    height: 90vh;
+    top: 25%;
+    position: relative;
+    width: 100vw;
+    margin: 0;
+  }
+
+  .heroVL {
+    border-left: 1vw solid var(--themeColor);
+    height: 20vw;
+    position: relative;
+    left: 100%;
+  }
+
+  .heroWelcome {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    text-align: left;
+    font-size: 1.5vw;
+    background-color: var(--themeColor);
+    border-radius: 25px;
+    color: white;
+  }
+
+  .heroClubName {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 6vw;
+    text-align: left;
+    color: white;
+    width: 100vw;
+  }
+
+  .heroClubDes {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 1.5vw;
+    text-align: left;
+    color: white;
+  }
+  
+  .heroContacts {
+    text-align: right;
+    color: white;
+    top: 15vw;
+    position: relative;
+    padding: 1rem;
+  }
+
+  .heroIcons {
+    font-size: 2vw;
+    color: white;
+    margin: 2rem;
+  }
+
+  .heroIcons:hover {
+    color: var(--themeColor);
+  }
+
+  @media (max-width: 800px) {
+    .heroBg {
+      height: 55vw;
+      padding-bottom: 5;
+      flex-direction: column; 
+      align-items: center;
+    }
+  }
+
+  /* Section Loading and Section Child Card */
+  
+  .wrapper {
+    display: flex;
+    max-width: 1200px !important;
+  }
+  
+  @media (max-width: 800px) {
+    .wrapper {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  /* Work Card */
+
+  .workCard {
+    display: flex;
+  }
+  
+  @media (max-width: 800px) {
+    .workCard {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+  
+  
+
