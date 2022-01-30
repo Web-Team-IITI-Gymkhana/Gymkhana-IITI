@@ -19,15 +19,20 @@ function AdminHomePage({ userProfile }) {
 
     let contentVersions = useSelector((state) => state.contentVersions)
     let sections = (contentVersions.length > 0)? contentVersions[(contentVersions).length - 1].Sections : null;
-    const sectionSequence= contentVersions[0].sectionSequence
+    const sectionSequence= contentVersions[1].sectionSequence
     const [selectedSection, setSelectedSection]=useState(null)
+
+    console.log("Current Sequence",sectionSequence)
+    console.log("Current sections",sections)
+
 
     const currentUser = userProfile.userName
     const dispatch = useDispatch()
     function createSectionSequence(sections, sectionSequence) {
-        const sequence = sectionSequence.map((id) => {
+        let sequence = sectionSequence.map((id) => {
             const section = sections.find((section) => section.sectionID == id)
-            return {'sectionID':section.sectionID, 'sectionHeader':section.sectionHeader}
+            if(!section){return;}
+            return {'sectionID':(section.sectionID).toString(), 'sectionHeader':section.sectionHeader}
         })
         return sequence
     }
