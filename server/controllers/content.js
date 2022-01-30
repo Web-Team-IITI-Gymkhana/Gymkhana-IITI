@@ -19,8 +19,12 @@ const  addSection = async(req,res) => {
           newSection.sectionID = 1
         }
 
+        let sectionSequence = user.contentVersions[versionIndex].sectionSequence
+        sectionSequence.push((newSection.sectionID).toString())
+
         allSections.push(newSection);
 
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.sectionSequence`] : sectionSequence}},{new:true})
         user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}},{new:true})
 
         return res.status(201).json({"updatedUser": user})
@@ -81,6 +85,10 @@ const deleteSection = async (req,res)=>{
 
       allSections.splice(sectionIndex,1);
 
+      let sectionSequence = user.contentVersions[versionIndex].sectionSequence
+      sectionSequence = sectionSequence.filter(id=>id!==(sectionID.toString()))
+
+      user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.sectionSequence`] : sectionSequence}},{new:true})
       user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections`] : allSections}},{new:true})
 
       return res.status(201).json({"updatedUser": user})
@@ -118,8 +126,24 @@ const saveSection = async (req,res)=>{
 
 }
 
+const saveSequence = async (req,res)=>{
+  try {
+    const userName = req.userName
+    const sectionSequence = req.body.sectionSequence
+    console.log("Save sequence called",userName,sectionSequence)
+    let user = await Users.findOne({userName:userName})
+    const versionIndex = (user.contentVersions).length - 1;
+    user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.sectionSequence`] : sectionSequence}},{new:true})
+    return res.status(201).json({"updatedUser": user})
+  
+  } catch (error) {
+    console.log(error)
+    return res.status(404).json({"message":error})
+  }
+}
 
 
 
 
-module.exports = {addSection, updateSection,deleteSection,saveSection}
+
+module.exports = {addSection, updateSection,deleteSection,saveSection,saveSequence}

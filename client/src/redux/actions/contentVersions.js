@@ -10,6 +10,7 @@ export const setContentVersions = (userName,type) => async (dispatch) => {
                 const {data} = await api.fetchUserAdmin()
                 console.log("Fetch data",data)
                 user = data.user
+                if(!user){dispatch({type:"ADMIN_LOGOUT"})}
             }
             catch(error){
                 console.log("In redux error")
@@ -104,6 +105,16 @@ export const saveSection = (sectionID,updatedSection) => async (dispatch) => {
     }
 }
 
+export const saveSequence = (sequence) => async (dispatch) => {
+    try {
+        await api.saveSequence(sequence)
+        dispatch({type:"SAVE_SEQUENCE",payload:{sectionSequence : sequence}})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 export const publishVersion = () => async (dispatch) => {
     try{
         console.log(dispatch)
@@ -123,4 +134,5 @@ export const uploadImageServer = (imageData) => async (dispatch) => {
         console.log(error)
     }
 }
+
 

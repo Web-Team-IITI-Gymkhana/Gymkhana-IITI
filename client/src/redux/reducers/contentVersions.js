@@ -62,7 +62,8 @@ const reducer =  (contentVersions=[],action) => {
             return [... contentVersions]
 
         case "ADD_SECTION":
-            (contentVersions[lastIndex].Sections).push({... action.payload,sectionID:findSectionID(contentVersions)})
+            (contentVersions[lastIndex].sectionSequence).push((findSectionID(contentVersions)).toString());
+            (contentVersions[lastIndex].Sections).push({... action.payload,sectionID:findSectionID(contentVersions)});
             return [... contentVersions]
 
         case "ADD_SECTION_CHILD":
@@ -74,7 +75,8 @@ const reducer =  (contentVersions=[],action) => {
             return [... contentVersions]
 
         case "DELETE_SECTION":
-            (contentVersions[lastIndex].Sections) = (contentVersions[lastIndex].Sections).filter((section)=>section.sectionID!==action.payload.sectionID)
+            (contentVersions[lastIndex].sectionSequence) = (contentVersions[lastIndex].sectionSequence).filter((sectionID)=>sectionID!==(action.payload.sectionID.toString()));
+            (contentVersions[lastIndex].Sections) = (contentVersions[lastIndex].Sections).filter((section)=>section.sectionID!==action.payload.sectionID);
             return [... contentVersions]
 
         case "UPDATE_SECTION_CHILD":
@@ -87,7 +89,9 @@ const reducer =  (contentVersions=[],action) => {
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?deleteSectionChildHelper(section,action.payload.sectionChildID):section)
             return [... contentVersions]
 
-
+        case "SAVE_SEQUENCE":
+            (contentVersions[lastIndex].sectionSequence) = action.payload.sectionSequence
+            return [... contentVersions]
 
         default:
             return [... contentVersions]

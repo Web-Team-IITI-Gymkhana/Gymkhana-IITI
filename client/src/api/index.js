@@ -21,5 +21,5 @@ export const addSection = (postData) => axios.post(`${contentURL}/sections`,post
 export const updateSection = (sectionID,updateData) => axios.patch(`${contentURL}/sections/${sectionID}`,updateData,{headers: {authorization  : localStorage.getItem('token')}})
 export const deleteSection = (sectionID) => axios.delete(`${contentURL}/sections/${sectionID}`,{headers: {authorization  : localStorage.getItem('token')}})
 export const saveSection = (sectionID,updatedSection) => axios.patch(`${contentURL}/sections/save/${sectionID}`,updatedSection,{headers: {authorization  : localStorage.getItem('token')}})
-
+export const saveSequence = (sequence) => axios.patch(`${contentURL}/sections`,{sectionSequence:sequence},{headers: {authorization  : localStorage.getItem('token')}})
 
