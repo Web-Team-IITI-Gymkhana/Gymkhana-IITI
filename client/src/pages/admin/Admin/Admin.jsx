@@ -14,6 +14,7 @@ function Admin(){
 
     const [currentSections, setCurrentSections] = useState([]);
     const [currentUserProfile, setCurrentProfile] = useState({});
+    const [loading,setLoading] = useState(true);
 
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -44,6 +45,8 @@ function Admin(){
                 "src": currentHomePagePoster.src, "caption": currentHomePagePoster.caption, "theme": currentThemeDetails
             })
 
+            setLoading(false)
+
         } catch (error) {
             setCurrentSections([])
         }
@@ -54,7 +57,7 @@ function Admin(){
     return(
         <>
         {
-            currentSections.length !== 0?
+            !loading ?
                 <div>
                     <Routes>
                         <Route path="/profile" element={<AdminProfilePage userProfile={currentUserProfile}/>}/>

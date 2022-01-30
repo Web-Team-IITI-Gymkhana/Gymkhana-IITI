@@ -15,6 +15,7 @@ function Public() {
 
     const [publishedSections, setPublishedSections] = useState([]);
     const [publishedUserProfile, setPublishedProfile] = useState({});
+    const [loading,setLoading] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -48,6 +49,7 @@ function Public() {
             })
 
 
+            setLoading(false)
 
 
         } catch (error) {
@@ -58,7 +60,7 @@ function Public() {
     return (
         <>
             {
-                publishedSections.length !== 0 ?
+                !loading ?
                     <div>
                         <Routes>
                             <Route path="/home" element={<HomePage userProfile={publishedUserProfile} sections={publishedSections} type="public" />} />
