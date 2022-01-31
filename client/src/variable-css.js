@@ -33,19 +33,27 @@ export const styles = {
         padding: 20,
     },
     sectionHeaderCard: {
-        margin: 10,
+        marginInline: 5,
+        marginBlock: 2,
         padding: 5,
         borderRadius: 4,
         backgroundColor: colors.accentShade,
-        transition: '.3s'
+        transition: '.3s',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     sectionHeaderCardSelected: {
-        margin: 10,
+        marginInline: 5,
+        marginBlock: 2,
         padding: 5,
         borderRadius: 4,
         backgroundColor: colors.accent,
         color: 'white',
-        transition: '.3s'
+        transition: '.3s',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
 
     // Section
@@ -55,10 +63,10 @@ export const styles = {
         padding: 20,
     },
     sectionHeadersContainer: {
-        
+
     },
     sectionContentContainer: {
-        
+
     },
 
     // SectionChild

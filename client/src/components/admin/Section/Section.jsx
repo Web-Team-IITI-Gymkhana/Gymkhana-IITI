@@ -57,7 +57,7 @@ function Section({ userName, currSectionID }) {
             <Card className={classes.section}>
                 <Box display={'flex'} justifyContent={'space-between'} marginBottom={3}>
                     <h3 className="header">{section.sectionHeader}</h3>
-                    <Button variant="contained" onClick={()=>{handleSaveSection()}}>SAVE</Button>
+                    <Button className={classes.buttonPrimary} onClick={()=>{handleSaveSection()}}>SAVE</Button>
                     <>
                         <IconButton onClick={(event) => {
                             setAnchorEl(event.currentTarget)
