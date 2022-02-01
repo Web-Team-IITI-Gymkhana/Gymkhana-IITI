@@ -48,7 +48,7 @@ function Section({ userName, currSectionID }) {
     const [formSection, setFormSection] = useState(sectionDetails)
     const [checked, setChecked] = useState(sectionDetails.visible);
 
-    const newSectionChild = { "sectionChildName": "", "sectionChildImage": "", "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] }
+    const newSectionChild = { "sectionChildName": "", "sectionChildImage": "", "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] ,"visible":true}
 
     const dispatch = useDispatch()
     const handleDelete = () => {

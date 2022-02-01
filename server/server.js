@@ -121,7 +121,7 @@ app.route('/public/:userName').get(async (req,res)=>{
     const {userName : userName} = req.params
     const user = await Users.findOne({userName:userName})
     return res.status(201).json({"user":user})
-    
+
 
   } catch (error) {
       return res.status(404).json({message:error})
