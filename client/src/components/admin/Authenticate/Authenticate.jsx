@@ -7,7 +7,7 @@ import { loginAdmin } from '../../../redux/actions/adminAuth';
 export default function Authenticate() {
 
     const dispatch = useDispatch()
-    const loginURL = process.env.REACT_APP_DEV ? "http://localhost:5000/auth/googlelogin" : "https://gymkhana-iiti.herokuapp.com/auth/googlelogin";
+    const loginURL = process.env.REACT_APP_DEV === 'true' ? "http://localhost:5000/auth/googlelogin" : "https://gymkhana-iiti.herokuapp.com/auth/googlelogin";
     console.log("LOGIN ROUTE IS ", loginURL)
 
     const responseSuccessGoogle = (response) => {
