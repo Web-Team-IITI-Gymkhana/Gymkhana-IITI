@@ -1,13 +1,10 @@
-import { Box, Typography } from '@mui/material'
+
 import EmailIcon from '@mui/icons-material/Email';
-import InstaIcon from '@mui/icons-material/Instagram'
-import FacebookIcon from '@mui/icons-material/Facebook';
 import Contact from '@mui/icons-material/Contacts';
 import Location from '@mui/icons-material/LocationOn';
 import MobileIcon from '@mui/icons-material/Phone'
 
 import React from 'react'
-import Email from '@mui/icons-material/Email';
 
 export default function Footer({userProfile}) {
   console.log(userProfile);
