@@ -1,0 +1,21 @@
+.react-multi-carousel-track li div {
+    margin: 10px auto;
+}
+.section-name {
+    transform: rotate(90deg);
+    font-size: 50px;
+    font-weight: bold;
+}
+@media screen and (max-width: 572px) {
+    .section-box-child {
+        flex-direction: column-reverse;
+    }
+    .section-box-child .typo {
+        font-size: 8px;
+    }
+    .section-name {
+        transform: rotate(0deg);
+        font-size: 20px;
+        margin-left: 10px;
+    }
+}
