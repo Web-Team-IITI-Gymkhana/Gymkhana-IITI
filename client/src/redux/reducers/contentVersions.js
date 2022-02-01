@@ -58,6 +58,7 @@ const reducer =  (contentVersions=[],action) => {
             contentVersions[lastIndex].homePagePoster.caption = action.payload.caption
             contentVersions[lastIndex].contactDetails.email = action.payload.email
             contentVersions[lastIndex].contactDetails.phoneNumber = action.payload.phoneNumber
+            contentVersions[lastIndex].themeDetails = action.payload.themeDetails
 
             return [... contentVersions]
 

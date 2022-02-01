@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { makeStyles, Paper, Typography } from "@material-ui/core";
+import { FormControl, InputLabel,Select,MenuItem } from "@material-ui/core";
 
 import { styles } from "../../../variable-css";
 
@@ -41,6 +42,11 @@ function Form({ userProfile }) {
         dispatch(updateGeneralDetails(postData));
     }
 
+    const handleThemeChange = (e) => {
+        console.log("Theme Change",e.target.value)
+        setPostData({... postData,themeDetails : e.target.value})
+    }
+
     return (
 
         <Paper style={{ padding: 20 }}>
@@ -59,6 +65,25 @@ function Form({ userProfile }) {
             value={postData.socialMedia}
             onChange={(e) => setPostData({ ...postData, socialMedia: e.target.value.split(',') })} style={{ marginBlock: 10 }}
             disabled={!editing}/>
+
+            <FormControl fullWidth>
+                <InputLabel variant={'standard'}>Theme</InputLabel>
+                <Select
+                    value={userProfile.themeDetails}
+                    label="Theme"
+                    onChange={handleThemeChange}
+                    disabled={!editing}
+                    variant={'standard'}>
+                    <MenuItem value={'theme-orange'}>Orange</MenuItem>
+                    <MenuItem value={'theme-purple'}>Purple</MenuItem>
+                    <MenuItem value={'theme-blue'}>Blue</MenuItem>
+                    <MenuItem value={'theme-green'}>Green</MenuItem>
+                    <MenuItem value={'theme-yellow'}>Yellow</MenuItem>
+                    <MenuItem value={'theme-pink'}>Pink</MenuItem>
+                </Select>
+            </FormControl>
+
+
 
             <FormTextField fieldName={'caption'} label={'Poster Caption'} type={'text'} autoCompleteHint={''} postData={postData} setPostData={setPostData} editing={editing}/>
 

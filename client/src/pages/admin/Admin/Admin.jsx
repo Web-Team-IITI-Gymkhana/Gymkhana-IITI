@@ -42,7 +42,7 @@ function Admin(){
 
             setCurrentProfile({
                 "name": currentName, "email": currentEmail, "logo": currentLogoSrc, "socialMedia": currentSocialMedia, "phoneNumber": currentPhoneNumber,
-                "src": currentHomePagePoster.src, "caption": currentHomePagePoster.caption, "theme": currentThemeDetails
+                "src": currentHomePagePoster.src, "caption": currentHomePagePoster.caption, "themeDetails": currentThemeDetails
             })
 
             setLoading(false)

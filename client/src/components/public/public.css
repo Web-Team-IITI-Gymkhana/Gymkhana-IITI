@@ -27,11 +27,11 @@
       width: 70px;
       margin: 5px;
   }
-  
+
   .drawer {
       width: 100;
   }
-  
+
   .quick-links {
       font-style: normal;
       text-align: center;
@@ -40,7 +40,7 @@
       color: #7e7e7e;
       text-decoration: none;
   }
-  
+
   .contactUs {
       background-color: var(--themeColor);
       border-radius: 100px;
@@ -53,11 +53,11 @@
       box-shadow: 10px 10px 10px 10px var(--themeColor);
       box-shadow: var(--themeColor) 0px 1px 10px 0px;
   }
-  
+
   .toggleDrawer {
       display: none;
   }
-  
+
   .quick-links:hover {
       color: black;
       font-weight: 500;
@@ -67,7 +67,7 @@
       font-weight: 500;
       background-color: white;
   }
-  
+
   @media only screen and (max-width: 700px) {
       .club-logo {
           height: 35px;
@@ -91,7 +91,7 @@
           text-decoration: none;
           align-items: center;
       }
-  
+
       .contact {
           margin: 0px;
           text-align: center;
@@ -100,22 +100,22 @@
           color: #7e7e7e;
           text-decoration: none;
       }
-  
+
       .contact:hover {
         background: rgb(233, 233, 233);
         color: black;
     }
-  
+
       .quick-links:hover {
           background: rgb(233, 233, 233);
           color: black;
       }
-  
+
       .drawer {
           min-width: 85vw;
           margin: 0px;
       }
-  
+
       .links-wrapper {
           display: none;
       }
@@ -178,7 +178,7 @@
     text-align: left;
     color: white;
   }
-  
+
   .heroContacts {
     text-align: right;
     color: white;
@@ -201,18 +201,18 @@
     .heroBg {
       height: 55vw;
       padding-bottom: 5;
-      flex-direction: column; 
+      flex-direction: column;
       align-items: center;
     }
   }
 
   /* Section Loading and Section Child Card */
-  
+
   .wrapper {
     display: flex;
     max-width: 1200px !important;
   }
-  
+
   @media (max-width: 800px) {
     .wrapper {
       flex-direction: column;
@@ -226,7 +226,7 @@
   .workCard {
     display: flex;
   }
-  
+
   @media (max-width: 800px) {
     .workCard {
       flex-direction: column;
@@ -234,6 +234,6 @@
       text-align: center;
     }
   }
-  
-  
+
+
 
