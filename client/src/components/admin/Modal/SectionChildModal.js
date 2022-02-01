@@ -230,7 +230,7 @@ export default function SectionChildModal({ userName, sectionID, sectionName, se
                                 </>
                                 : <></>
                         }
-                            
+
                         {type === "editSectionChild" ? <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} />} label="Visible"/> : ""}
                         <br></br>
                         <Button type="button" onClick={type === "editSectionChild" ? handleEdit : handleAdd}>Confirm</Button>
