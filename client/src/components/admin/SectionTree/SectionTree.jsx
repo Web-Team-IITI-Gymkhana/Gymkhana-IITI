@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { makeStyles } from "@material-ui/styles"
 import { Card, Grid, Typography } from '@material-ui/core';
 import { styles } from "../../../variable-css";
+import { useDispatch } from 'react-redux';
+
+import { saveSequence } from '../../../redux/actions/contentVersions';
 
 const useStyles = makeStyles(styles)
 
 function SectionTree({ sectionSequence, selectedSection, onSelectionChange }) {
     const classes = useStyles()
 
+    
+
+    const dispatch = useDispatch()
+
     const [currentSectionSeq, setCurrSecSeq] = useState(sectionSequence);
     const [editMode, setEditMode]=useState(false)
+
+    console.log("In section tree sectionseq",sectionSequence)
+    console.log("In section tree currsectionseq",currentSectionSeq)
+
+    useEffect(()=>{
+        setCurrSecSeq(sectionSequence)
+    },[sectionSequence])
+
+
+
 
     function handleUp(index) {
         if (index == 0) {
@@ -35,14 +52,13 @@ function SectionTree({ sectionSequence, selectedSection, onSelectionChange }) {
     function handleEdit() {
         setEditMode(!editMode)
         const sequence= currentSectionSeq.map((section)=>section.sectionID)
-        //write code for dispatching sequence
-        console.log("dispatch", sequence)
+        dispatch(saveSequence(sequence))
     }
     const sections = currentSectionSeq.map((section, index) => {
         return (
             <Grid item xs={12} key={index}>
                 <Card
-                className={section.sectionID === selectedSection.sectionID ? classes.sectionHeaderCardSelected : classes.sectionHeaderCard}>
+                className={section.sectionID == selectedSection.sectionID ? classes.sectionHeaderCardSelected : classes.sectionHeaderCard}>
                <Typography onClick={()=>onSelectionChange(section.sectionID)}> {section.sectionHeader} </Typography>
                 {editMode ? <div>
                         {index != 0 ? <button onClick={() => handleUp(index)}>Up</button>: null}
