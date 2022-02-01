@@ -3,7 +3,7 @@ import Section from "./Section";
 import Navbar from "../../../components/public/Navbar/Navbar";
 
 function SectionView({userProfile,sections,id,type}){
-
+    console.log(sections)
     return(
         <div>
             <Navbar userProfile={userProfile} sections={sections} type={type}/>
