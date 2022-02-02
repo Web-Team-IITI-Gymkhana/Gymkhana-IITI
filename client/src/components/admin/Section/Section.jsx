@@ -6,6 +6,8 @@ import { Add, Delete, Edit, MoreVert } from "@mui/icons-material";
 import { ListItemIcon, ListItemText, MenuItem, Menu, MenuList, IconButton, Grid, Card } from '@material-ui/core'
 import { makeStyles } from "@mui/styles";
 import { Button } from "@material-ui/core";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import { styles } from "../../../variable-css";
 
@@ -14,6 +16,7 @@ import SectionChild from "../SectionChild/SectionChild";
 import SectionChildModal from "../Modal/SectionChildModal";
 import SectionModal from "../Modal/SectionModal";
 
+import { updateSection } from "../../../redux/actions/contentVersions";
 import { deleteSection } from "../../../redux/actions/contentVersions";
 import { saveSection } from "../../../redux/actions/contentVersions";
 
@@ -40,7 +43,12 @@ function Section({ userName, currSectionID }) {
         sectionID = -1
     }
 
-    const newSectionChild = { "sectionChildName": "", "sectionChildImage": "", "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] }
+    console.log("section details",sectionDetails)
+
+    const [formSection, setFormSection] = useState(sectionDetails)
+    const [checked, setChecked] = useState(sectionDetails.visible);
+
+    const newSectionChild = { "sectionChildName": "", "sectionChildImage": "", "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] ,"visible":true}
 
     const dispatch = useDispatch()
     const handleDelete = () => {
@@ -51,13 +59,22 @@ function Section({ userName, currSectionID }) {
         dispatch(saveSection(sectionID,section))
     }
 
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+        formSection.visible = event.target.checked
+        setFormSection({... formSection,visible : event.target.checked})
+        console.log("Before dispatch",formSection)
+        dispatch(updateSection(sectionID, formSection));
+    };
+
     return (
 
         sectionID > 0 ?
             <Card className={classes.section}>
                 <Box display={'flex'} justifyContent={'space-between'} marginBottom={3}>
                     <h3 className="header">{section.sectionHeader}</h3>
-                    <Button className={classes.buttonPrimary} onClick={()=>{handleSaveSection()}}>SAVE</Button>
+                    <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} />} label="Visible"/>
+                    <Button variant="contained" onClick={()=>{handleSaveSection()}}>SAVE</Button>
                     <>
                         <IconButton onClick={(event) => {
                             setAnchorEl(event.currentTarget)
@@ -108,7 +125,7 @@ function Section({ userName, currSectionID }) {
                         <Grid item key={sectionChild.sectionChildID}>
                             <SectionChild userName={userName}
                                 sectionID={sectionID}
-                                sectionName={section.sectionName} 
+                                sectionName={section.sectionName}
                                 sectionChild={sectionChild} />
                         </Grid>)}
                 </Grid>

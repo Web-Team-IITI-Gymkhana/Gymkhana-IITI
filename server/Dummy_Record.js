@@ -1,17 +1,17 @@
 const personal =
 {
-  "userName": "Mihir",
-  "userEmailId": "cse200001044@iiti.ac.in",
+  "userName": "Suman",
+  "userEmailId": "ee200002072@iiti.ac.in",
   "publishedVersion": 1,
   "contentVersions":
   [
     {
       "contentVersion": 1,
-      "userDetails": {"name": "Mihir Karandikar","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
+      "userDetails": {"name": "Suman Jaiswal","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
       "homePagePoster": {"src": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287157/bwzsqfd65g6vrb6ylgi9.jpg","caption": "Caption Cyn"},
       "contactDetails": {"email": "cynaptics@iiti.ac.in","phoneNumber": 123123},
       "themeDetails": "goodtheme",
-      "sectionSequence" : [],
+      "sectionSequence" : ["1","2"],
       "Sections":
       [
         {
@@ -62,11 +62,11 @@ const personal =
     },
     {
       "contentVersion": 2,
-      "userDetails": {"name": "Mihir Karandikar","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
+      "userDetails": {"name": "Suman Jaiswal","logo": "http://res.cloudinary.com/dofy83qux/image/upload/v1641382937/r0aldylmcfqobog2ypp1.jpg","socialMedia": ["instaCyn.com","fbCyn.com"]},
       "homePagePoster": {"src": "http://res.cloudinary.com/dofy83qux/image/upload/v1641287157/bwzsqfd65g6vrb6ylgi9.jpg","caption": "Caption Cyn"},
       "contactDetails": {"email": "cynaptics@iiti.ac.in","phoneNumber": 123123},
       "themeDetails": "goodtheme",
-      "sectionSequence" : [],
+      "sectionSequence" : ["1","2"],
       "Sections":
       [
         {
@@ -117,7 +117,7 @@ const personal =
   ]
 }
 
-const cynaptics = 
+const cynaptics =
 {
   "userName": "Cynaptics",
   "userEmailId": "cynaptics@iiti.ac.in",

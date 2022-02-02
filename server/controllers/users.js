@@ -59,7 +59,7 @@ const updateGeneralDetails = async(req,res) => {
         let caption = updateDetails.caption;
         let email = updateDetails.email;
         let phoneNumber = updateDetails.phoneNumber;
-        // let publishedVersion = updateDetails.publishedVersion
+        let themeDetails = updateDetails.themeDetails;
         let publishedVersion = (user.contentVersions).length - 1
 
         if(name){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.userDetails.name`] : name}},{new:true})}
@@ -67,6 +67,7 @@ const updateGeneralDetails = async(req,res) => {
         if(caption){ user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.homePagePoster.caption`] : caption}},{new:true})}
         if(email){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.contactDetails.email`] : email }},{new:true})}
         if(phoneNumber){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.contactDetails.phoneNumber`] : phoneNumber}},{new:true})}
+        if(themeDetails){user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.themeDetails`] : themeDetails}},{new:true})}
         if(publishedVersion){await Users.updateOne({userName:userName},{'$set': { [`publishedVersion`] : publishedVersion}},{new:true})}
 
         return res.status(201).json({"updatedUser":user});
