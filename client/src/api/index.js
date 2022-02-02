@@ -2,7 +2,6 @@ import axios from 'axios';
 
 var dev = process.env.REACT_APP_DEV
 console.log(dev)
-
 const allURLs = {
     usersURL: dev === 'true' ? "http://localhost:5000/users" : "https://gymkhana-iiti.herokuapp.com/users",
     contentURL: dev === 'true' ? "http://localhost:5000/content" : "https://gymkhana-iiti.herokuapp.com/content",

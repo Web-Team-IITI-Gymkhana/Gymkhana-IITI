@@ -55,7 +55,10 @@ function Public() {
         } catch (error) {
             setPublishedSections([])
         }
+
     }, [contentVersions])
+
+    console.log("Published sections",publishedSections)
 
     return (
         <>

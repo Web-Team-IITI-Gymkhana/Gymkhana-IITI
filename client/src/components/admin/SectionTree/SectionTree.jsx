@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { makeStyles } from "@material-ui/styles"
-import { Box, Card, Container, Grid, Icon, IconButton, Typography } from '@material-ui/core';
+import { Box, Card, Grid, IconButton, Typography } from '@material-ui/core';
 import { styles } from "../../../variable-css";
 import { useDispatch } from 'react-redux';
 
@@ -52,13 +52,15 @@ function SectionTree({ sectionSequence, selectedSection, onSelectionChange }) {
     }
     function handleEdit() {
         setEditMode(!editMode)
-        const sequence = currentSectionSeq.map((section) => section.sectionID)
-        dispatch(saveSequence(sequence))
+        let save = true
+        const sequence= currentSectionSeq.map((section)=>section?section.sectionID:save=false)
+        if(save){dispatch(saveSequence(sequence))}
     }
     const sections = currentSectionSeq.map((section, index) => {
+        if(!section || !selectedSection){return null;}
         const isSelected = section.sectionID == selectedSection.sectionID
-
         return (
+
             <Grid item xs={12} key={index}>
                 <Card
                     className={isSelected ? classes.sectionHeaderCardSelected : classes.sectionHeaderCard}>
