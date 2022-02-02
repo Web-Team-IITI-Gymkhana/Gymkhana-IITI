@@ -2,21 +2,29 @@
 
 .theme-orange {
     --themeColor: #ff9600;
+    --themeLight: #ffb75a;
+    --themeVLight:#ffb75a;
 }
 .theme-purple {
     --themeColor: #da28f6;
+    --themeLight: #f3a8ff;
+    --themeVLight: #fbe2ff;
 }
 .theme-blue {
     --themeColor: #35b6ff;
+    --themeLight: #c5e9fd;
 }
 .theme-green {
     --themeColor: #44ca5a;
+    --themeLight: #acf1b8;
 }
 .theme-yellow {
     --themeColor: #ffd600;
+    --themeLight: #fff5c5;
 }
 .theme-pink {
     --themeColor: #ff004c;
+    --themeLight: #ffc6d7;
 }
 
 /* Navbar */
@@ -168,7 +176,6 @@
     font-size: 6vw;
     text-align: left;
     color: white;
-    width: 100vw;
 }
 
 .heroClubDes {
@@ -234,3 +241,52 @@
         text-align: center;
     }
 }
+
+/* Section */
+
+.react-multi-carousel-track li div {
+    margin: 10px auto;
+}
+.section-bg {
+    background-image: linear-gradient(to right, var(--themeLight), var(--themeColor))
+}
+.section-white-bg {
+    background-image: linear-gradient(to right, rgb(255,255,255), rgb(255,255,255))
+}
+.section-icon-white {
+    color: white;
+}
+.section-icon {
+    color: var(--themeColor);
+}
+.section-name {
+    transform: rotate(90deg);
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    color: var(--themeColor);
+    font-family: 'Montserrat';
+    padding-bottom: 5px
+}
+.section-white-name {
+    transform: rotate(90deg);
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-family: 'Montserrat'
+}
+@media screen and (max-width: 572px) {
+    .section-box-child {
+        flex-direction: column-reverse;
+    }
+    .section-box-child .typo {
+        font-size: 8px;
+    }
+    .section-name {
+        transform: rotate(0deg);
+        font-size: 20px;
+        margin-left: 10px;
+    }
+}
+

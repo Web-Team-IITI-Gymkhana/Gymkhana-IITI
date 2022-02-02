@@ -1,17 +1,17 @@
-import React from 'react'
-import { Box, Paper, Typography } from "@mui/material";
+import {React, useState} from 'react'
 import SectionChildCard from '../SectionChild/SectionChildCard';
 import ParticlesBg from 'particles-bg'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import './Section.css'
+import '../public.css';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
-import { height } from '@mui/system';
 
 const Section = ({ section }) => {
     section.sectionContent = section.sectionContent.filter(sectionChild => sectionChild.visible === true)
+    const [particle, setParticle] = useState(true);
+    console.log(section)
 
     const responsive = {
         largeDesktop: {
@@ -32,24 +32,31 @@ const Section = ({ section }) => {
             items: 1
         }
     };
-
+    const changeState = () => {
+        if(particle){
+            setParticle(false)
+        }
+        else{
+            setParticle(true)
+        }
+    }
     return (
-        <div className='section-box py-4' style={{
-            backgroundImage: "linear-gradient(to right, #ACE1FFB2, #35B6FFB2)"
-        }}>
+        <div className={`section-box theme-orange py-4 ${section.sectionID%2===0?"section-white-bg":"section-bg"}`} >
+            {/* {particle?setParticle(false):setParticle(true)} */}
+            {changeState}
 
             <ParticlesBg type="cobweb" bg={{
                 position: "absolute",
-                zIndex: -1,
+                zIndex: 0,
                 width: '100%',
                 height: '70%',
-                overflow: 'hidden'
+                overflow: 'hidden',
             }}
                 config={{
                     rps: 1,
                     g: 1
                 }}
-                color={['#666666']}
+                color={[`${section.sectionID%2===0?"#808080":"#ffffff"}`]}
             />
 
             <div className="ps-3 d-flex justify-content-evenly align-items-center section-box-child">
@@ -71,19 +78,16 @@ const Section = ({ section }) => {
                         }
                     </Carousel>
                 </div>
-                <div className="d-flex typo">
-                    <div className='section-name' style={{
-                        textShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)',
+                <div className={`d-flex typo ${section.sectionID%2===0?"section-name":"section-white-name"}`}>
+                    <div style={{
                         height: 'max-content',
-                        color: 'white',
-                        fontFamily: 'Montserrat'
                     }}>
                         {section.sectionName}
                     </div>
                     <Link to={'/public/home/section/' + section.sectionID} style={{
                         zIndex: 1000
                     }}>
-                        <FontAwesomeIcon size='4x' color='white' icon={faAngleRight} />
+                        <FontAwesomeIcon size='4px' className={`${section.sectionID%2===0?"section-icon":"section-icon-white"}`} icon={faAngleRight} />
                     </Link>
                 </div>
 
