@@ -47,7 +47,8 @@ function AdminHomePage({ userProfile }) {
     }
     return (
         <>
-            {sections &&
+        {
+            sections &&
                 <Grid container >
                     <Grid item xs={12}>
                         <Navbar handlingAdd={handledAdd} userName={currentUser} profilePic={userProfile.logo} />
@@ -59,11 +60,16 @@ function AdminHomePage({ userProfile }) {
                             onSelectionChange={handleSelectionChange} />
                     </Grid>
                     {/* the actual cards of sections */}
-                    <Grid item lg={9} md={9} sm={12} xs={12}>
-                        <Section userName={currentUser} currSectionID={selectedSection? selectedSection.sectionID : sections[0].sectionID} />
-                    </Grid>
+                    {
+                        sections.length>0?
+                        <Grid item lg={9} md={9} sm={12} xs={12}>
+                            <Section userName={currentUser} currSectionID={selectedSection? selectedSection.sectionID :  sections[0].sectionID} />
+                        </Grid>:
+                        <h1>No sections to show</h1>
+                    }
+
                 </Grid>
-            }
+        }
         </>
     );
 }

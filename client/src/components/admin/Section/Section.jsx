@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@material-ui/core/Box";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,6 @@ import SectionChild from "../SectionChild/SectionChild";
 import SectionChildModal from "../Modal/SectionChildModal";
 import SectionModal from "../Modal/SectionModal";
 
-import { updateSection } from "../../../redux/actions/contentVersions";
 import { deleteSection } from "../../../redux/actions/contentVersions";
 import { saveSection } from "../../../redux/actions/contentVersions";
 
@@ -32,6 +31,7 @@ function Section({ userName, currSectionID }) {
     let sections = contentVersions[(contentVersions).length - 1].Sections
 
     let section = sections.find(section => section.sectionID === currSectionID)
+    console.log("Section is ",section)
 
     let sectionID = -1
     let sectionDetails = {}
@@ -43,10 +43,8 @@ function Section({ userName, currSectionID }) {
         sectionID = -1
     }
 
-    console.log("section details",sectionDetails)
 
-    const [formSection, setFormSection] = useState(sectionDetails)
-    const [checked, setChecked] = useState(sectionDetails.visible);
+    const [checked, setChecked] = useState(section?section.visible:false);
 
     const newSectionChild = { "sectionChildName": "", "sectionChildImage": "", "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] ,"visible":true}
 
@@ -55,16 +53,17 @@ function Section({ userName, currSectionID }) {
         dispatch(deleteSection(sectionID))
     }
 
+    useEffect(()=>{
+        if(section){setChecked(section.visible)}
+    },[section])
+
     const handleSaveSection = () => {
+        section.visible = checked
         dispatch(saveSection(sectionID,section))
     }
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
-        formSection.visible = event.target.checked
-        setFormSection({... formSection,visible : event.target.checked})
-        console.log("Before dispatch",formSection)
-        dispatch(updateSection(sectionID, formSection));
     };
 
     return (

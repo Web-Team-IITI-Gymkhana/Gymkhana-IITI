@@ -12,7 +12,7 @@ const useStyles = makeStyles(styles)
 function SectionTree({ sectionSequence, selectedSection, onSelectionChange }) {
     const classes = useStyles()
 
-    
+
 
     const dispatch = useDispatch()
 
@@ -51,10 +51,12 @@ function SectionTree({ sectionSequence, selectedSection, onSelectionChange }) {
     }
     function handleEdit() {
         setEditMode(!editMode)
-        const sequence= currentSectionSeq.map((section)=>section.sectionID)
-        dispatch(saveSequence(sequence))
+        let save = true
+        const sequence= currentSectionSeq.map((section)=>section?section.sectionID:save=false)
+        if(save){dispatch(saveSequence(sequence))}
     }
     const sections = currentSectionSeq.map((section, index) => {
+        if(!section || !selectedSection){return null;}
         return (
             <Grid item xs={12} key={index}>
                 <Card

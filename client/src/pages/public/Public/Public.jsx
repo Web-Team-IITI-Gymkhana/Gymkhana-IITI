@@ -11,7 +11,7 @@ import Loader from "../../../components/Loader/Loader";
 
 function Public() {
 
-    const currentUser = "PClub"
+    const currentUser = "Mihir"
 
     const [publishedSections, setPublishedSections] = useState([]);
     const [publishedUserProfile, setPublishedProfile] = useState({});
@@ -55,7 +55,10 @@ function Public() {
         } catch (error) {
             setPublishedSections([])
         }
+
     }, [contentVersions])
+
+    console.log("Published sections",publishedSections)
 
     return (
         <>
