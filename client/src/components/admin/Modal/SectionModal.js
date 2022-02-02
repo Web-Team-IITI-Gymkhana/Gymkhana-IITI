@@ -5,8 +5,6 @@ import Modal from '@material-ui/core/Modal';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import "../Form/Form.css"
 
@@ -16,15 +14,9 @@ export default function SectionModal({sectionID, sectionDetails, triggerElement 
 
     const [formSection, setFormSection] = useState(sectionDetails)
 
-    const [checked, setChecked] = useState(sectionDetails.visible);
-    const handleChange = (event) => {
-      setChecked(event.target.checked);
-    };
-
     const dispatch = useDispatch();
 
     const handleEdit = () => {
-        formSection.visible = checked
         dispatch(updateSection(sectionID, formSection));
         setOpen(false);
     }
@@ -109,8 +101,6 @@ export default function SectionModal({sectionID, sectionDetails, triggerElement 
                             value={formSection.sectionHeader}
                             onChange={(e) => setFormSection({ ...formSection, sectionHeader: e.target.value })}
                         />
-                        <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} />} label="Visible"/> 
-                        <br></br>
                         <Button type="button" onClick={handleEdit}>Confirm</Button>
                     </form>
                 </div>

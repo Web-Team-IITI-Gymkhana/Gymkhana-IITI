@@ -27,89 +27,91 @@
     --themeLight: #ffc6d7;
 }
 
-/* Navbar */
+  /* Navbar */
 
-.club-logo {
-    border-radius: 100%;
-    height: 70px;
-    width: 70px;
-    margin: 5px;
-}
+  .club-logo {
+      border-radius: 100%;
+      height: 70px;
+      width: 70px;
+      margin: 5px;
+  }
 
-.drawer {
-    width: 100;
-}
+  .drawer {
+      width: 100;
+  }
 
-.quick-links {
-    font-style: normal;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 430;
-    color: #7e7e7e;
-    text-decoration: none;
-}
+  .quick-links {
+      font-style: normal;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 430;
+      color: #7e7e7e;
+      text-decoration: none;
+  }
 
-.contactUs {
-    background-color: var(--themeColor);
-    border-radius: 100px;
-    font-style: normal;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 430;
-    color: white;
-    text-decoration: none;
-    box-shadow: 10px 10px 10px 10px var(--themeColor);
-    box-shadow: var(--themeColor) 0px 1px 10px 0px;
-}
+  .contactUs {
+      background-color: var(--themeColor);
+      border-radius: 100px;
+      font-style: normal;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 430;
+      color: white;
+      text-decoration: none;
+      box-shadow: 10px 10px 10px 10px var(--themeColor);
+      box-shadow: var(--themeColor) 0px 1px 10px 0px;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  .toggleDrawer {
+      display: none;
+  }
 
-.toggleDrawer {
-    display: none;
-}
+  .quick-links:hover {
+      color: black;
+      font-weight: 500;
+  }
+  .contactUs:hover {
+      color: var(--themeColor);
+      font-weight: 500;
+      background-color: white;
+  }
 
-.quick-links:hover {
-    color: black;
-    font-weight: 500;
-}
-.contactUs:hover {
-    color: var(--themeColor);
-    font-weight: 500;
-    background-color: white;
-}
+  @media only screen and (max-width: 700px) {
+      .club-logo {
+          height: 35px;
+          width: 35px;
+      }
+      .club-logo-navbar {
+          height: 50px;
+          width: 50px;
+          border-radius: 100%;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      .quick-links {
+          margin-top: 13px;
+          text-align: center;
+          font-size: 17px;
+          font-weight: 430;
+          color: #7e7e7e;
+          text-decoration: none;
+          align-items: center;
+      }
 
-@media only screen and (max-width: 700px) {
-    .club-logo {
-        height: 35px;
-        width: 35px;
-    }
-    .club-logo-navbar {
-        height: 50px;
-        width: 50px;
-        border-radius: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .quick-links {
-        margin-top: 13px;
-        text-align: center;
-        font-size: 17px;
-        font-weight: 430;
-        color: #7e7e7e;
-        text-decoration: none;
-        align-items: center;
-    }
+      .contact {
+          margin: 0px;
+          text-align: center;
+          font-size: 17px;
+          font-weight: 430;
+          color: #7e7e7e;
+          text-decoration: none;
+      }
 
-    .contact {
-        margin: 0px;
-        text-align: center;
-        font-size: 17px;
-        font-weight: 430;
-        color: #7e7e7e;
-        text-decoration: none;
-    }
-
-    .contact:hover {
+      .contact:hover {
         background: rgb(233, 233, 233);
         color: black;
     }
@@ -184,9 +186,9 @@
     font-size: 1.5vw;
     text-align: left;
     color: white;
-}
+  }
 
-.heroContacts {
+  .heroContacts {
     text-align: right;
     color: white;
     top: 15vw;
@@ -206,21 +208,21 @@
 
 @media (max-width: 800px) {
     .heroBg {
-        height: 55vw;
-        padding-bottom: 5;
-        flex-direction: column;
-        align-items: center;
+      height: 55vw;
+      padding-bottom: 5;
+      flex-direction: column;
+      align-items: center;
     }
 }
 
-/* Section Loading and Section Child Card */
+  /* Section Loading and Section Child Card */
 
-.wrapper {
+  .wrapper {
     display: flex;
     max-width: 1200px !important;
-}
+  }
 
-@media (max-width: 800px) {
+  @media (max-width: 800px) {
     .wrapper {
         flex-direction: column;
         align-items: center;
@@ -232,9 +234,9 @@
 
 .workCard {
     display: flex;
-}
+  }
 
-@media (max-width: 800px) {
+  @media (max-width: 800px) {
     .workCard {
         flex-direction: column;
         align-items: center;
@@ -288,5 +290,101 @@
         font-size: 20px;
         margin-left: 10px;
     }
-}
+  }
 
+  /* Footer */
+
+
+  .copyright {
+    background-color: #292626;
+    /* padding: 60px 0px; */
+    padding: 5px;
+    text-align: center;
+    color: white;
+  }
+
+  /* .copyright p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } */
+
+  .footbox {
+    background-color: '#E5E5E5';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 200px; */
+    padding: 70px 0px;
+  }
+
+  .aboutlocation{
+    background-color: white;
+    border-radius: 0.5rem;
+    width: 90%;
+    box-shadow: 0px 0px 5px 1.5px #2926266b;
+  }
+
+  .aboutlocation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* height: 200px; */
+    padding: 10px 10px;
+  }
+
+  .contactus-footer {
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+  }
+
+  .cont {
+    font-weight: bold;
+    color: var(--themeColor);
+    /* text-decoration: underline; */
+  }
+
+  .line {
+    width: 60%;
+    background-color: var(--themeColor);
+    height: 5px;
+    border-radius: 10px;
+  }
+
+  .contactus-footer td {
+    /* font-face: normal; */
+    max-width: 300px;
+    padding: 10px;
+    text-align: left;
+    align-items: center;
+  }
+
+  .cicon {
+    color: var(--themeColor);
+  }
+
+  @media (max-width: 800px) {
+    .footbox {
+      padding: 40px 0px;
+    }
+    .aboutlocation {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    iframe {
+      height: 250px;
+      width: 90%;
+    }
+    .contactus-footer {
+      align-items: center;
+    }
+    .contactus-footer td {
+      text-align: center;
+    }
+  }
