@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { makeStyles } from "@material-ui/styles"
-import { Card, Grid, Typography } from '@material-ui/core';
+import { Box, Card, Grid, IconButton, Typography } from '@material-ui/core';
 import { styles } from "../../../variable-css";
 import { useDispatch } from 'react-redux';
 
 import { saveSequence } from '../../../redux/actions/contentVersions';
+import { ArrowUpward, ArrowDownward } from '@mui/icons-material';
 
 const useStyles = makeStyles(styles)
 
@@ -17,14 +18,14 @@ function SectionTree({ sectionSequence, selectedSection, onSelectionChange }) {
     const dispatch = useDispatch()
 
     const [currentSectionSeq, setCurrSecSeq] = useState(sectionSequence);
-    const [editMode, setEditMode]=useState(false)
+    const [editMode, setEditMode] = useState(false)
 
-    console.log("In section tree sectionseq",sectionSequence)
-    console.log("In section tree currsectionseq",currentSectionSeq)
+    console.log("In section tree sectionseq", sectionSequence)
+    console.log("In section tree currsectionseq", currentSectionSeq)
 
-    useEffect(()=>{
+    useEffect(() => {
         setCurrSecSeq(sectionSequence)
-    },[sectionSequence])
+    }, [sectionSequence])
 
 
 
@@ -33,17 +34,17 @@ function SectionTree({ sectionSequence, selectedSection, onSelectionChange }) {
         if (index == 0) {
             return
         }
-        let newSeq= [...currentSectionSeq];
+        let newSeq = [...currentSectionSeq];
         let temp = newSeq[index];
         newSeq[index] = newSeq[index - 1];
         newSeq[index - 1] = temp;
         setCurrSecSeq(newSeq)
     }
     function handleDown(index) {
-        if (index == currentSectionSeq.length-1) {
+        if (index == currentSectionSeq.length - 1) {
             return
         }
-        let newSeq= [...currentSectionSeq];
+        let newSeq = [...currentSectionSeq];
         let temp = newSeq[index];
         newSeq[index] = newSeq[index + 1];
         newSeq[index + 1] = temp;
@@ -57,25 +58,27 @@ function SectionTree({ sectionSequence, selectedSection, onSelectionChange }) {
     }
     const sections = currentSectionSeq.map((section, index) => {
         if(!section || !selectedSection){return null;}
+        const isSelected = section.sectionID == selectedSection.sectionID
         return (
+
             <Grid item xs={12} key={index}>
                 <Card
-                className={section.sectionID == selectedSection.sectionID ? classes.sectionHeaderCardSelected : classes.sectionHeaderCard}>
-               <Typography onClick={()=>onSelectionChange(section.sectionID)}> {section.sectionHeader} </Typography>
-                {editMode ? <div>
-                        {index != 0 ? <button onClick={() => handleUp(index)}>Up</button>: null}
-                        {index != currentSectionSeq.length - 1 ? <button onClick={() => handleDown(index)}>Down</button> : null}
-                    </div> : null}
+                    className={isSelected ? classes.sectionHeaderCardSelected : classes.sectionHeaderCard}>
+                    <Typography onClick={() => onSelectionChange(section.sectionID)}> {section.sectionHeader} </Typography>
+                    {editMode ? <Box display={'flex'}>
+                        {index != 0 ? <IconButton onClick={() => handleUp(index)}><ArrowUpward htmlColor={isSelected ? 'white' : 'black'} /></IconButton> : null}
+                        {index != currentSectionSeq.length - 1 ? <IconButton onClick={() => handleDown(index)}><ArrowDownward htmlColor={isSelected ? 'white' : 'black'} /></IconButton> : null}
+                    </Box> : null}
                 </Card>
             </Grid>
         )
     })
     return (
         <Grid container spacing={1}>
-                {sections}
-            <Grid item xs={12}>
-                <button onClick={handleEdit}>{ editMode?'Save':'Edit'}</button>
-            </Grid>
+            {sections}
+            <Box display={'flex'} width={'100%'} margin={2} justifyContent={'center'}>
+                <button className={classes.buttonPrimary} onClick={handleEdit}>{editMode ? 'Save' : 'Edit'}</button>
+            </Box>
         </Grid>
     );
 }
