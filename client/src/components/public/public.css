@@ -3,7 +3,7 @@
 .theme-orange {
     --themeColor: #ff9600;
     --themeLight: #ffb75a;
-    --themeVLight:#ffb75a;
+    --themeVLight:#ffe9cc;
 }
 .theme-purple {
     --themeColor: #da28f6;
@@ -13,18 +13,22 @@
 .theme-blue {
     --themeColor: #35b6ff;
     --themeLight: #c5e9fd;
+    --themeVLight: #ebf8ff;
 }
 .theme-green {
     --themeColor: #44ca5a;
     --themeLight: #acf1b8;
+    --themeVLight: #dbf5df;
 }
 .theme-yellow {
     --themeColor: #ffd600;
     --themeLight: #fff5c5;
+    --themeVLight: #fffbe7;
 }
 .theme-pink {
     --themeColor: #ff004c;
     --themeLight: #ffc6d7;
+    --themeVLight: #ffe5ed;
 }
 
   /* Navbar */
@@ -253,13 +257,16 @@
     background-image: linear-gradient(to right, var(--themeLight), var(--themeColor))
 }
 .section-white-bg {
-    background-image: linear-gradient(to right, rgb(255,255,255), rgb(255,255,255))
+    background-image: linear-gradient(to right, var(--themeVLight), var(--themeVLight))
+    
 }
 .section-icon-white {
     color: white;
+    margin: 15px;
 }
 .section-icon {
     color: var(--themeColor);
+    margin: 15px;
 }
 .section-name {
     transform: rotate(90deg);
@@ -290,6 +297,18 @@
         font-size: 20px;
         margin-left: 10px;
     }
+    .section-icon-white {
+      margin: 1vw;
+  }
+  .section-icon {
+      margin: 1vw;
+  }
+  .section-white-name {
+    transform: rotate(0deg);
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  
   }
 
   /* Footer */

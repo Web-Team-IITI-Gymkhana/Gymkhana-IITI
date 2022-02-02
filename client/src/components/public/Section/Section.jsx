@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React} from 'react'
 import SectionChildCard from '../SectionChild/SectionChildCard';
 import ParticlesBg from 'particles-bg'
 import Carousel from "react-multi-carousel";
@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom'
 
 const Section = ({ section }) => {
     section.sectionContent = section.sectionContent.filter(sectionChild => sectionChild.visible === true)
-    const [particle, setParticle] = useState(true);
     console.log(section)
 
     const responsive = {
@@ -32,19 +31,9 @@ const Section = ({ section }) => {
             items: 1
         }
     };
-    const changeState = () => {
-        if(particle){
-            setParticle(false)
-        }
-        else{
-            setParticle(true)
-        }
-    }
     return (
         <div className={`section-box theme-orange py-4 ${section.sectionID%2===0?"section-white-bg":"section-bg"}`} >
-            {/* {particle?setParticle(false):setParticle(true)} */}
-            {changeState}
-
+            {section.sectionID%2===0?"":
             <ParticlesBg type="cobweb" bg={{
                 position: "absolute",
                 zIndex: 0,
@@ -58,6 +47,7 @@ const Section = ({ section }) => {
                 }}
                 color={[`${section.sectionID%2===0?"#808080":"#ffffff"}`]}
             />
+            }
 
             <div className="ps-3 d-flex justify-content-evenly align-items-center section-box-child">
                 <div style={{
@@ -87,7 +77,7 @@ const Section = ({ section }) => {
                     <Link to={'/public/home/section/' + section.sectionID} style={{
                         zIndex: 1000
                     }}>
-                        <FontAwesomeIcon size='4px' className={`${section.sectionID%2===0?"section-icon":"section-icon-white"}`} icon={faAngleRight} />
+                    <FontAwesomeIcon size='4px' className={`${section.sectionID%2===0?"section-icon":"section-icon-white"}`} icon={faAngleRight} />
                     </Link>
                 </div>
 
