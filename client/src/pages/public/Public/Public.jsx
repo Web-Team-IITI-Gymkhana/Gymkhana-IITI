@@ -11,11 +11,27 @@ import Loader from "../../../components/Loader/Loader";
 
 function Public() {
 
-    const currentUser = "PClub"
+    const currentUser = "Mihir"
 
     const [publishedSections, setPublishedSections] = useState([]);
     const [publishedUserProfile, setPublishedProfile] = useState({});
     const [loading,setLoading] = useState(true);
+
+    const findSectionsAccToSequence = (sections,sequence) => {
+        console.log("In public ")
+        console.log("Orig Sections",sections)
+        console.log("Sequence",sequence)
+        let sectionsAccToSequence = []
+        for(let i=0;i<sequence.length;i++)
+        {
+            let sectionID = parseInt(sequence[i])
+            let section = sections.find(section => section.sectionID === sectionID)
+            if(section){sectionsAccToSequence.push(section)}
+        }
+        console.log("Sequence Sections public",sectionsAccToSequence)
+
+        return sectionsAccToSequence
+    }
 
     const dispatch = useDispatch();
 
@@ -34,6 +50,13 @@ function Public() {
             let publishedName = publishedVersion.userDetails.name
             let publishedLogoSrc = publishedVersion.userDetails.logo
             let publishedSocialMedia = publishedVersion.userDetails.socialMedia
+            let sectionSequence = publishedVersion.sectionSequence
+
+            let sectionsAccToSequence = findSectionsAccToSequence(publishedVersion.Sections,sectionSequence)
+
+            setPublishedSections(sectionsAccToSequence)
+
+            console.log("Published sections",publishedSections)
 
             setPublishedSections(publishedVersion.Sections)
 
