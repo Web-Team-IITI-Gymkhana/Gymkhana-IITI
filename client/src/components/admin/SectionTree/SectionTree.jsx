@@ -63,7 +63,7 @@ function SectionTree({ sectionSequence, selectedSection, onSelectionChange }) {
 
             <Grid item xs={12} key={index}>
                 <Card
-                    className={isSelected ? classes.sectionHeaderCardSelected : classes.sectionHeaderCard}>
+                    className={isSelected ? classes.sectionHeaderCardSelected : classes.sectionHeaderCard} onClick={() => onSelectionChange(section.sectionID)}>
                     <Typography onClick={() => onSelectionChange(section.sectionID)}> {section.sectionHeader} </Typography>
                     {editMode ? <Box display={'flex'}>
                         {index != 0 ? <IconButton onClick={() => handleUp(index)}><ArrowUpward htmlColor={isSelected ? 'white' : 'black'} /></IconButton> : null}

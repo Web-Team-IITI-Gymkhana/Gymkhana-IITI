@@ -11,7 +11,7 @@ import Loader from "../../../components/Loader/Loader";
 
 function Public() {
 
-    const currentUser = "Mihir"
+    const currentUser = "Cynaptics"
 
     const [publishedSections, setPublishedSections] = useState([]);
     const [publishedUserProfile, setPublishedProfile] = useState({});
@@ -53,12 +53,11 @@ function Public() {
             let sectionSequence = publishedVersion.sectionSequence
 
             let sectionsAccToSequence = findSectionsAccToSequence(publishedVersion.Sections,sectionSequence)
-
+            console.log("After returning",sectionsAccToSequence)
             setPublishedSections(sectionsAccToSequence)
 
             console.log("Published sections",publishedSections)
 
-            setPublishedSections(publishedVersion.Sections)
 
             let publishedEmail = publishedVersion.contactDetails.email
             let publishedPhoneNumber = publishedVersion.contactDetails.phoneNumber
