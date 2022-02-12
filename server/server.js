@@ -128,6 +128,51 @@ app.route('/public/:userName').get(async (req,res)=>{
   }
 })
 
+app.route('/addSectionChildSeq').patch(async (req,res)=>{
+  try{
+    const userNames = ["Mukul","Gaurav","Rashi","Hasnain","PClub","Cynaptics","Suman","Mihir"]
+    for(let ind in userNames)
+    {
+        const userName = userNames[ind]
+        let user = await Users.findOne({userName : userName})
+        let contentVersions = user.contentVersions
+        let publishedVersion = contentVersions[0] , currentVersion = contentVersions[1]
+
+        let publishedSections = publishedVersion.Sections;
+        let currentSections = currentVersion.Sections;
+
+        publishedSections.map((section,sectionIndex)=>{
+            let publishedSectionChildSequence = [];
+            section.sectionContent.map((sectionChild)=>{
+                publishedSectionChildSequence.push((sectionChild.sectionChildID).toString())
+            })
+            publishedVersion.Sections[sectionIndex].sectionChildSequence = publishedSectionChildSequence
+        })
+
+        currentSections.map((section,sectionIndex)=>{
+          let currentSectionChildSequence = [];
+          section.sectionContent.map((sectionChild)=>{
+              currentSectionChildSequence.push((sectionChild.sectionChildID).toString())
+          })
+          currentVersion.Sections[sectionIndex].sectionChildSequence = currentSectionChildSequence
+      })
+
+
+
+        contentVersions[0]=publishedVersion;
+        contentVersions[1]=currentVersion;
+
+        user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions`] : contentVersions}},{new:true})
+    }
+
+    return res.status(201).send("Updated successfully")
+  }
+  catch(error){
+      console.log(error)
+      return res.status(404).json({message:error})
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`Listening on the port: ${PORT}`);
 });

@@ -13,52 +13,87 @@ import { styles } from "../../../variable-css";
 
 import SectionChild from "../SectionChild/SectionChild";
 
-import SectionChildModal from "../Modal/SectionChildModal";
 import SectionModal from "../Modal/SectionModal";
 
 import { deleteSection } from "../../../redux/actions/contentVersions";
 import { saveSection } from "../../../redux/actions/contentVersions";
+import { addSectionChild } from "../../../redux/actions/contentVersions";
 
 const useStyles = makeStyles(styles)
 
 function Section({ userName, currSectionID }) {
     const classes = useStyles()
 
+    const findAccToSequence = (sectionChildren,sectionChildSequence)=> {
+        console.log("section child seq",sectionChildSequence)
+        let res = []
+        for(let i=0;i<sectionChildSequence.length;i++)
+        {
+            let sectionChildID = parseInt(sectionChildSequence[i])
+            let sectionChild = sectionChildren.find(sectionChild => sectionChild.sectionChildID === sectionChildID)
+            if(sectionChild){res.push(sectionChild)}
+        }
+        console.log("Sequence Section Children admin",res)
+        return res
+    }
+
     const [anchorEl, setAnchorEl] = useState(null)
     const [menuOpen, setMenuOpen] = useState(false)
 
+    const [editing , setEditing] = useState(false)
+
     let contentVersions = useSelector((state) => state.contentVersions)
     let sections = contentVersions[(contentVersions).length - 1].Sections
+    let logo = contentVersions[(contentVersions).length - 1].userDetails.logo
 
     let section = sections.find(section => section.sectionID === currSectionID)
     console.log("Section is ",section)
 
+    const [sectionChildSequence,setSectionChildSequence] = useState(section.sectionChildSequence)
+
+    let sectionChildrenBySeq = []
+
     let sectionID = -1
     let sectionDetails = {}
 
+    useEffect(()=>{
+        if(section){setSectionChildSequence(section.sectionChildSequence)}
+    },[contentVersions])
+
     try {
         sectionID = section.sectionID
-        sectionDetails = { "sectionName": section.sectionName, "sectionHeader": section.sectionHeader, "visible" : section.visible }
+        sectionDetails = { "sectionName": section.sectionName, "sectionHeader": section.sectionHeader, "visible" : section.visible}
+        let sectionChildren = section.sectionContent
+        sectionChildrenBySeq = findAccToSequence(sectionChildren,sectionChildSequence)
     } catch (error) {
+        console.log(error)
         sectionID = -1
     }
 
-
     const [checked, setChecked] = useState(section?section.visible:false);
 
-    const newSectionChild = { "sectionChildName": "", "sectionChildImage": "", "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] ,"visible":true}
+    const newSectionChild = { "sectionChildName": "", "sectionChildImage": logo, "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] ,"visible":true}
 
     const dispatch = useDispatch()
-    const handleDelete = () => {
-        dispatch(deleteSection(sectionID))
-    }
+
 
     useEffect(()=>{
         if(section){setChecked(section.visible)}
     },[section])
 
+    const handleDelete = () => {
+        dispatch(deleteSection(sectionID))
+    }
+
+    const handleAdd = () => {
+        console.log("Add section child called")
+        dispatch(addSectionChild(sectionID, newSectionChild));
+    }
+
     const handleSaveSection = () => {
         section.visible = checked
+        section.sectionChildSequence = sectionChildSequence
+        setEditing(false)
         dispatch(saveSection(sectionID,section))
     }
 
@@ -73,7 +108,12 @@ function Section({ userName, currSectionID }) {
                 <Box display={'flex'} justifyContent={'space-between'} marginBottom={3}>
                     <h3 className="header">{section.sectionHeader}</h3>
                     <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} />} label="Visible"/>
-                    <Button variant="contained" onClick={()=>{handleSaveSection()}}>SAVE</Button>
+                    {
+                        editing?
+                        <Button variant="contained" onClick={()=>{handleSaveSection()}}>SAVE</Button>:
+                        <Button variant="contained" onClick={()=>{setEditing(true)}}>EDIT</Button>
+                    }
+
                     <>
                         <IconButton onClick={(event) => {
                             setAnchorEl(event.currentTarget)
@@ -83,22 +123,16 @@ function Section({ userName, currSectionID }) {
                         </IconButton>
                         <Menu open={menuOpen} onClose={() => { setMenuOpen(false) }} anchorEl={anchorEl}>
                             <MenuList>
-                                <SectionChildModal userName={userName}
-                                    sectionID={sectionID}
-                                    sectionName={section.sectionName}
-                                    sectionChildID={0}
-                                    sectionChild={newSectionChild}
-                                    type={"addSectionChild"}
-                                    triggerElement={
-                                        <MenuItem>
-                                            <ListItemIcon onClick={() => {
-                                                // handleDelete(0)
-                                            }}>
-                                                <Add fontSize="small" />
-                                            </ListItemIcon>
-                                            <ListItemText>{`Add ${section.sectionName}`}</ListItemText>
-                                        </MenuItem>
-                                    } />
+                                {
+                                    editing?<MenuItem>
+                                    <ListItemIcon onClick={handleAdd}>
+                                        <Add fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText>{`Add ${section.sectionName}`}</ListItemText>
+                                </MenuItem> : ""
+                                }
+
+
                                 <MenuItem>
                                     <ListItemIcon onClick={handleDelete}>
                                         <Delete fontSize="small" />
@@ -120,12 +154,15 @@ function Section({ userName, currSectionID }) {
                     </>
                 </Box>
                 <Grid container spacing={3} justifyContent="center">
-                    {section.sectionContent.map(sectionChild =>
+                    {sectionChildrenBySeq.map(sectionChild =>
                         <Grid item key={sectionChild.sectionChildID}>
                             <SectionChild userName={userName}
                                 sectionID={sectionID}
                                 sectionName={section.sectionName}
-                                sectionChild={sectionChild} />
+                                sectionChild={sectionChild}
+                                editing={editing}
+                                sectionChildSequence={sectionChildSequence}
+                                setSectionChildSequence={setSectionChildSequence}/>
                         </Grid>)}
                 </Grid>
             </Card> :

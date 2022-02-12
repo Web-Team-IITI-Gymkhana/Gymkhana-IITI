@@ -71,13 +71,18 @@ export const styles = {
 
     // SectionChild
     sectionChildCard: {
-        width: 300,
-        display: 'flex',
-        flexDirection: 'column',
+        width: 900,
+        height : 400,
         gap: 1,
         backgroundColor: '#ffc8b3',
     },
 
+    sectionChildForm : {
+        marginLeft : 10,
+        marginRight : 10,
+        marginBottom : 10,
+        width : 550
+    },
 
     // buttons
     buttonPrimary: {

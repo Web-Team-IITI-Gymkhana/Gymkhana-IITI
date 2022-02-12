@@ -37,7 +37,7 @@ function AdminHomePage({ userProfile }) {
         return sequence
     }
     const handledAdd = (sectionName, sectionHeader) => {
-        const newSection = { "sectionName": sectionName, "sectionHeader": sectionHeader, "sectionContent": [],"visible" : true }
+        const newSection = { "sectionName": sectionName, "sectionHeader": sectionHeader, "sectionContent": [],"visible" : true,"sectionChildSequence" : [] }
         dispatch(addSection(newSection))
     }
     const handleSelectionChange = (id) => {

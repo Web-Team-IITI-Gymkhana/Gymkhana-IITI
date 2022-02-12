@@ -5,6 +5,7 @@ const sectionsSchema = mongoose.Schema({
     sectionID : Number,
     sectionHeader : String,
     visible : Boolean,
+    sectionChildSequence : [String],
     sectionContent: [{
         sectionChildID : Number,
         sectionChildName : String,

@@ -135,7 +135,7 @@ const saveSequence = async (req,res)=>{
     const versionIndex = (user.contentVersions).length - 1;
     user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.sectionSequence`] : sectionSequence}},{new:true})
     return res.status(201).json({"updatedUser": user})
-  
+
   } catch (error) {
     console.log(error)
     return res.status(404).json({"message":error})

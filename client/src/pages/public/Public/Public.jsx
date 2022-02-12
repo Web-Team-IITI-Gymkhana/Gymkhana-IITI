@@ -11,7 +11,7 @@ import Loader from "../../../components/Loader/Loader";
 
 function Public() {
 
-    const currentUser = "Mihir"
+    const currentUser = "PClub"
 
     const [publishedSections, setPublishedSections] = useState([]);
     const [publishedUserProfile, setPublishedProfile] = useState({});
