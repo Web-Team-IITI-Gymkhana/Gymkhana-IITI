@@ -17,6 +17,22 @@ function Public() {
     const [publishedUserProfile, setPublishedProfile] = useState({});
     const [loading,setLoading] = useState(true);
 
+    const findSectionsAccToSequence = (sections,sequence) => {
+        console.log("In public ")
+        console.log("Orig Sections",sections)
+        console.log("Sequence",sequence)
+        let sectionsAccToSequence = []
+        for(let i=0;i<sequence.length;i++)
+        {
+            let sectionID = parseInt(sequence[i])
+            let section = sections.find(section => section.sectionID === sectionID)
+            if(section){sectionsAccToSequence.push(section)}
+        }
+        console.log("Sequence Sections public",sectionsAccToSequence)
+
+        return sectionsAccToSequence
+    }
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -34,8 +50,14 @@ function Public() {
             let publishedName = publishedVersion.userDetails.name
             let publishedLogoSrc = publishedVersion.userDetails.logo
             let publishedSocialMedia = publishedVersion.userDetails.socialMedia
+            let sectionSequence = publishedVersion.sectionSequence
 
-            setPublishedSections(publishedVersion.Sections)
+            let sectionsAccToSequence = findSectionsAccToSequence(publishedVersion.Sections,sectionSequence)
+            console.log("After returning",sectionsAccToSequence)
+            setPublishedSections(sectionsAccToSequence)
+
+            console.log("Published sections",publishedSections)
+
 
             let publishedEmail = publishedVersion.contactDetails.email
             let publishedPhoneNumber = publishedVersion.contactDetails.phoneNumber

@@ -120,7 +120,7 @@ export const UploadImage = ({ onChange, aspectRatio }) => {
                 <Button className={classes.buttonPrimary}>
                     <CircularProgress />
                 </Button>
-                : <Button className={classes.buttonPrimary} onClick={handleButtonClick}>Upload</Button>}
+                : <Button className={classes.buttonPrimary} onClick={handleButtonClick} style={{color:'white'}}>Upload</Button>}
             <Modal
                 open={isCropImageModalOpen}
                 onClose={handleModalClose} className={classes.cropImageModal}>

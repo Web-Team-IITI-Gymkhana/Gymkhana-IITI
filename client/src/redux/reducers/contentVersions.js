@@ -6,7 +6,8 @@ const addSectionChildHelper = (section,postData)=>{
         postData.sectionChildID = 1
     }
 
-    (section.sectionContent).push(postData)
+    (section.sectionChildSequence).push((postData.sectionChildID).toString());
+    (section.sectionContent).push(postData);
     return section
 }
 
@@ -32,6 +33,7 @@ const findSectionID = (contentVersions)=>{
 }
 
 const deleteSectionChildHelper = (section,sectionChildID)=>{
+    section.sectionChildSequence = (section.sectionChildSequence).filter((sectionChildIDArr)=>(parseInt(sectionChildIDArr))!=sectionChildID)
     section.sectionContent = (section.sectionContent).filter((sectionChild)=>sectionChild.sectionChildID!==sectionChildID)
     return section
 }
