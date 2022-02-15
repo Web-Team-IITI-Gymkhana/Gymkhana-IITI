@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { makeStyles,  Card, CardMedia} from "@material-ui/core";
 
-import TextField from "@material-ui/core/TextField";
+import TextField from '@mui/material/TextField'
 import Button from '@material-ui/core/Button';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -15,6 +15,8 @@ import { updateSectionChild } from "../../../redux/actions/contentVersions";
 import { uploadImageServer } from "../../../redux/actions/contentVersions";
 
 import { sectionsChildSchema } from "../../../schema";
+import SocialModal from "../Modal/SocialModal";
+// import { fontWeight, minHeight, padding } from "@mui/system";
 
 
 
@@ -68,12 +70,12 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
         dispatch(updateSectionChild(sectionID, sectionChildID, formSectionChild))
     };
 
-
+    const [openModal, setOpenModal] = useState(false);
 
 
     return (
         <div>
-            <Card className={classes.sectionChildCard}>
+            <Card className={classes.sectionChildCard} style={{padding: '20px 40px' , minHeight: '450px', display:'flex' , flexDirection: 'column'}}>
                 <span className={classes.subheading2} style={{ marginLeft: '10px' , textDecoration:'none' }}>{sectionChild.sectionChildName}</span>
                 <br/>
                 <div style={{display:'flex',justifyContent:'space-evenly',flexDirection:'row'}}>
@@ -114,21 +116,22 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
 
                     <div className={classes.sectionChildForm}>
                         <form id="form" style={{height:100}}>
+                        
                             <TextField
-                                variant="outlined"
-                                margin="normal"
                                 required
                                 fullWidth
                                 id="section-child-name"
+                                margin="normal"
                                 label={sectionsChildSchema[sectionName].sectionChildName.label}
                                 type="text"
                                 name="section-child-name"
                                 autoComplete="Section Child Name"
-                                className="field"
+                                // className="field"
                                 value={formSectionChild.sectionChildName}
                                 onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildName: e.target.value })}
                                 size="small"
                                 disabled={!editing}
+                                
                             />
                             <TextField
                                 variant="outlined"
@@ -140,7 +143,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
                                 type="text"
                                 name="section-child-short-desc"
                                 autoComplete="Section Child Short Description"
-                                className="field"
+                                
                                 value={formSectionChild.sectionChildShortDesc}
                                 onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildShortDesc: e.target.value })}
                                 size="small"
@@ -157,13 +160,13 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
                                 type="text"
                                 name="section-child-desc"
                                 autoComplete="Section Child Description"
-                                className="field"
+                                
                                 value={formSectionChild.sectionChildDesc}
                                 onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildDesc: e.target.value })}
                                 size="small"
                                 disabled={!editing}
                             />
-                            <TextField
+                            {/* <TextField
                                 variant="outlined"
                                 margin="normal"
                                 required
@@ -179,7 +182,20 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
                                 onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildLinks: e.target.value.split(',') })}
                                 size="small"
                                 disabled={!editing}
-                            />
+                            /> */}
+                            <Button
+                                style={{
+                                    marginTop:15,
+                                    color: '#3C2117',
+                                    fontWeight: 'bold'
+                                }}
+                                onClick={() => {
+                                    setOpenModal(true);
+                                }}
+                            >
+                                + Add Social Media Links
+                            </Button>
+                            {openModal && <SocialModal closeModal={setOpenModal}></SocialModal>}
                             <div style={{display:'flex',flexDirection:'row',marginTop:10}}>
                                 <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} disabled={!editing}/>} label="Visible" style={{marginRight:50,marginLeft:100}}/>
                                 {
