@@ -107,7 +107,7 @@ function Section({ userName, currSectionID }) {
             <Card className={classes.section}>
                 <Box display={'flex'} justifyContent={'space-between'} marginBottom={3}>
                     <h3 className="header">{section.sectionHeader}</h3>
-                    <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} />} label="Visible"/>
+                    {editing && <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} />} label="Visible"/>}
                     {
                         editing?
                         <Button variant="contained" onClick={()=>{handleSaveSection()}}>SAVE</Button>:
