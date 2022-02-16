@@ -124,8 +124,8 @@ function Section({ userName, currSectionID }) {
                         <Menu open={menuOpen} onClose={() => { setMenuOpen(false) }} anchorEl={anchorEl}>
                             <MenuList>
                                 {
-                                    editing?<MenuItem>
-                                    <ListItemIcon onClick={handleAdd}>
+                                    editing?<MenuItem  onClick={handleAdd}>
+                                    <ListItemIcon>
                                         <Add fontSize="small" />
                                     </ListItemIcon>
                                     <ListItemText>{`Add ${section.sectionName}`}</ListItemText>
@@ -133,8 +133,8 @@ function Section({ userName, currSectionID }) {
                                 }
 
 
-                                <MenuItem>
-                                    <ListItemIcon onClick={handleDelete}>
+                                <MenuItem onClick={handleDelete}>
+                                    <ListItemIcon >
                                         <Delete fontSize="small" />
                                     </ListItemIcon>
                                     <ListItemText>Delete</ListItemText>
