@@ -9,7 +9,7 @@ import React from 'react'
 export default function Footer({userProfile}) {
   console.log(userProfile);
   return (
-    <div className='footer theme-orange'>
+    <div className='footer theme-orange' id="contactus">
       <div className="footbox" style={{backgroundColor: '#E5E5E5'}}>
         <div className='aboutlocation'>
           <div className='contactus-footer'>

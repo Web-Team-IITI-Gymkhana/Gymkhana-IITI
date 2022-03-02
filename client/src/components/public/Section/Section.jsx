@@ -32,7 +32,7 @@ const Section = ({ section }) => {
         }
     };
     return (
-        <div className={`section-box theme-orange py-4 ${section.sectionID%2===0?"section-white-bg":"section-bg"}`} >
+        <div className={`section-box theme-orange py-4 ${section.sectionID%2===0?"section-white-bg":"section-bg"}`} id={`${section.sectionName}`}>
             {section.sectionID%2===0?"":
             <ParticlesBg type="cobweb" bg={{
                 position: "absolute",
