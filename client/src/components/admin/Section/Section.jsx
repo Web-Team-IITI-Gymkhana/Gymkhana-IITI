@@ -23,6 +23,8 @@ const useStyles = makeStyles(styles)
 
 function Section({ userName, currSectionID }) {
 
+    console.log("currsection id ",currSectionID)
+
     let sectionID = currSectionID>=0 ? currSectionID : -1 ;
     let sectionDetails = {}
 
@@ -40,13 +42,13 @@ function Section({ userName, currSectionID }) {
 
     let section = sections.find(section => section.sectionID === currSectionID)
 
-    const [sectionChildSequence,setSectionChildSequence] = useState(section.sectionChildSequence)
-    const [sectionChildBySequence,setSectionChildBySequence] = useState(section.sectionContent)
+    const [checked, setChecked] = useState(section?section.visible:false);
 
+    const find = (section)=>{
 
-    const findAccToSequence = (sectionChildren,sectionChildSequence)=> {
-        console.log("received sequence in find ",sectionChildSequence)
-        console.log("section child seq",sectionChildSequence)
+        let sectionChildSequence = section.sectionChildSequence
+        let sectionChildren = section.sectionContent
+
         let res = []
         for(let i=0;i<sectionChildSequence.length;i++)
         {
@@ -55,38 +57,25 @@ function Section({ userName, currSectionID }) {
             if(sectionChild){res.push(sectionChild)}
         }
         console.log("Sequence Section Children admin",res)
-        setSectionChildBySequence(res)
+        return res
     }
 
-
-
-    useEffect(()=>{
-        try {
-            sectionID = currSectionID
-            sectionDetails = { "sectionName": section.sectionName, "sectionHeader": section.sectionHeader, "visible" : section.visible}
-            let sectionChildren = section.sectionContent
-            setSectionChildSequence(section.sectionChildSequence)
-            findAccToSequence(sectionChildren,section.sectionChildSequence)
-            console.log("sectionChildrenBySeq set as ",sectionChildBySequence)
-        } catch (error) {
-            console.log(error)
-            sectionID = -1
-        }
-    },[section])
-
-    console.log("Asdad ",sectionChildBySequence)
-
-
-    const [checked, setChecked] = useState(section?section.visible:false);
+    const [sectionChildBySeq,setSectionChildBySeq] = useState([... find(section)])
 
     const newSectionChild = { "sectionChildName": "", "sectionChildImage": logo, "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] ,"visible":true}
 
     const dispatch = useDispatch()
 
 
+
     useEffect(()=>{
-        if(section){setChecked(section.visible)}
-    },[section])
+        if(section)
+        {
+            setChecked(section.visible)
+            setSectionChildBySeq(find(section))
+        }
+
+    },[contentVersions])
 
     const handleDelete = () => {
         dispatch(deleteSection(sectionID))
@@ -99,7 +88,6 @@ function Section({ userName, currSectionID }) {
 
     const handleSaveSection = () => {
         section.visible = checked
-        section.sectionChildSequence = sectionChildSequence
         setEditing(false)
         dispatch(saveSection(sectionID,section))
     }
@@ -161,15 +149,14 @@ function Section({ userName, currSectionID }) {
                     </>
                 </Box>
                 <Grid container spacing={3} justifyContent="center">
-                    {sectionChildBySequence.map(sectionChild =>
+                    {find(section).map(sectionChild =>
                         <Grid item key={sectionChild.sectionChildID}>
                             <SectionChild userName={userName}
                                 sectionID={sectionID}
                                 sectionName={section.sectionName}
                                 sectionChild={sectionChild}
-                                editing={editing}
-                                sectionChildSequence={sectionChildSequence}
-                                setSectionChildSequence={setSectionChildSequence}/>
+                                sectionChildSequence={section.sectionChildSequence}
+                                editing={editing}/>
                         </Grid>)}
                 </Grid>
             </Card> :

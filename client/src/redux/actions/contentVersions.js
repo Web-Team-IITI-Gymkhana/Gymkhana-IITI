@@ -135,4 +135,12 @@ export const uploadImageServer = (imageData) => async (dispatch) => {
     }
 }
 
+export const sectionChildSeqChange = (sectionID,sectionChildID,type) => async (dispatch) => {
+    try {
+        dispatch({type:"CHANGE_SECTION_CHILD_SEQ",payload:{sectionID:sectionID,sectionChildID:sectionChildID,type:type}})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 

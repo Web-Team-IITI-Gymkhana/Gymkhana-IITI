@@ -51,7 +51,6 @@ function SocialModal({ closeModal , formSectionChild ,setFormSectionChild}) {
                             label="Facebook"
                             value={socialMedia[0]}
                             onChange={(e)=>{setSocialMedia([e.target.value,socialMedia[1],socialMedia[2]])}}
-                            // defaultValue="https://www.facebook.com/IIT-Indore-108781240868622"
                         />
                         <TextField
                             fullWidth
@@ -60,7 +59,6 @@ function SocialModal({ closeModal , formSectionChild ,setFormSectionChild}) {
                             label="Instagram"
                             value={socialMedia[1]}
                             onChange={(e)=>{setSocialMedia([socialMedia[0],e.target.value,socialMedia[2]])}}
-                            // defaultValue="https://www.instagram.com/iitindoreofficial/"
                         />
                         <TextField
                             fullWidth
@@ -69,7 +67,6 @@ function SocialModal({ closeModal , formSectionChild ,setFormSectionChild}) {
                             label="LinkedIn"
                             value={socialMedia[2]}
                             onChange={(e)=>{setSocialMedia([socialMedia[0],socialMedia[1],e.target.value])}}
-                            // defaultValue="https://www.linkedin.com/school/iit-indore/"
                         />
 
                     </div>

@@ -45,6 +45,23 @@ const updateSectionHelper = (section,updateData) => {
     return section
 }
 
+const changeSequenceHelper = (section,sectionChildID,type) => {
+    let sectionChildIndex = section.sectionChildSequence.findIndex((index)=>(parseInt(index))===sectionChildID)
+    if(type==='UP')
+    {
+        let temp = section.sectionChildSequence[sectionChildIndex]
+        section.sectionChildSequence[sectionChildIndex] = section.sectionChildSequence[sectionChildIndex-1]
+        section.sectionChildSequence[sectionChildIndex-1] = temp
+    }
+    else if(type==='DOWN')
+    {
+        let temp = section.sectionChildSequence[sectionChildIndex]
+        section.sectionChildSequence[sectionChildIndex] = section.sectionChildSequence[sectionChildIndex+1]
+        section.sectionChildSequence[sectionChildIndex+1] = temp
+    }
+    return section
+}
+
 const reducer =  (contentVersions=[],action) => {
 
     let lastIndex = contentVersions.length - 1
@@ -92,9 +109,14 @@ const reducer =  (contentVersions=[],action) => {
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?deleteSectionChildHelper(section,action.payload.sectionChildID):section)
             return [... contentVersions]
 
+        case "CHANGE_SECTION_CHILD_SEQ":
+            (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?changeSequenceHelper(section,action.payload.sectionChildID,action.payload.type):section)
+            return [... contentVersions]
         case "SAVE_SEQUENCE":
             (contentVersions[lastIndex].sectionSequence) = action.payload.sectionSequence
             return [... contentVersions]
+
+
 
         default:
             return [... contentVersions]
