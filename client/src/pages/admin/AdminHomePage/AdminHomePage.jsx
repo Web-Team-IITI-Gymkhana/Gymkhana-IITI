@@ -45,6 +45,9 @@ function AdminHomePage({ userProfile }) {
         setSelectedSection(section[0])
         console.log("section change", section[0])
     }
+
+    console.log("selctedSection",selectedSection)
+
     return (
         <>
         {

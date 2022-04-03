@@ -50,6 +50,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
     const dispatch = useDispatch()
 
     const handleDelete = () => {
+        console.log("delete section child called ",sectionID,sectionChildID)
         dispatch(deleteSectionChild(sectionID, sectionChildID))
     }
 
@@ -62,6 +63,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
 
 
     const handleEdit = async () => {
+        console.log("Handle edit called ")
         console.log("Visibility status on edit submit",checked)
         formSectionChild.visible = checked
         console.log("Saving section child",formSectionChild)
