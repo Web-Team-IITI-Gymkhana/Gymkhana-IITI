@@ -154,6 +154,22 @@ function SectionChild({ userName, sectionID,  sectionName , sectionChild, sectio
                                 size="small"
                                 disabled={!editing}
                             />
+                            {/* <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                minRows={3}
+                                id="section-child-links"
+                                label={sectionsChildSchema[sectionName].sectionChildLinks.label}
+                                type="text"
+                                name="section-child-links"
+                                autoComplete="Section Child Links"
+                                className="field"
+                                value={formSectionChild.sectionChildLinks}
+                                size="small"
+                                disabled={true}
+                            /> */}
                             {
                                 editing &&
                                 <Button
