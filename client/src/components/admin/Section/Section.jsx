@@ -22,10 +22,33 @@ import { addSectionChild } from "../../../redux/actions/contentVersions";
 const useStyles = makeStyles(styles)
 
 function Section({ userName, currSectionID }) {
+
+    console.log("currsection id ",currSectionID)
+
+    let sectionID = currSectionID>=0 ? currSectionID : -1 ;
+    let sectionDetails = {}
+
+    const [anchorEl, setAnchorEl] = useState(null)
+    const [menuOpen, setMenuOpen] = useState(false)
+
+    const [editing , setEditing] = useState(false)
+
     const classes = useStyles()
 
-    const findAccToSequence = (sectionChildren,sectionChildSequence)=> {
-        console.log("section child seq",sectionChildSequence)
+    let contentVersions = useSelector((state) => state.contentVersions)
+
+    let sections = contentVersions[(contentVersions).length - 1].Sections
+    let logo = contentVersions[(contentVersions).length - 1].userDetails.logo
+
+    let section = sections.find(section => section.sectionID === currSectionID)
+
+    const [checked, setChecked] = useState(section?section.visible:false);
+
+    const find = (section)=>{
+
+        let sectionChildSequence = section.sectionChildSequence
+        let sectionChildren = section.sectionContent
+
         let res = []
         for(let i=0;i<sectionChildSequence.length;i++)
         {
@@ -37,49 +60,22 @@ function Section({ userName, currSectionID }) {
         return res
     }
 
-    const [anchorEl, setAnchorEl] = useState(null)
-    const [menuOpen, setMenuOpen] = useState(false)
-
-    const [editing , setEditing] = useState(false)
-
-    let contentVersions = useSelector((state) => state.contentVersions)
-    let sections = contentVersions[(contentVersions).length - 1].Sections
-    let logo = contentVersions[(contentVersions).length - 1].userDetails.logo
-
-    let section = sections.find(section => section.sectionID === currSectionID)
-    console.log("Section is ",section)
-
-    const [sectionChildSequence,setSectionChildSequence] = useState(section.sectionChildSequence)
-
-    let sectionChildrenBySeq = []
-
-    let sectionID = -1
-    let sectionDetails = {}
-
-    useEffect(()=>{
-        if(section){setSectionChildSequence(section.sectionChildSequence)}
-    },[contentVersions])
-
-    try {
-        sectionID = section.sectionID
-        sectionDetails = { "sectionName": section.sectionName, "sectionHeader": section.sectionHeader, "visible" : section.visible}
-        let sectionChildren = section.sectionContent
-        sectionChildrenBySeq = findAccToSequence(sectionChildren,sectionChildSequence)
-    } catch (error) {
-        console.log(error)
-        sectionID = -1
-    }
-
-    const [checked, setChecked] = useState(section?section.visible:false);
+    const [sectionChildBySeq,setSectionChildBySeq] = useState([... find(section)])
 
     const newSectionChild = { "sectionChildName": "", "sectionChildImage": logo, "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] ,"visible":true}
 
     const dispatch = useDispatch()
 
 
+
     useEffect(()=>{
-        if(section){setChecked(section.visible)}
-    },[section])
+        if(section)
+        {
+            setChecked(section.visible)
+            setSectionChildBySeq(find(section))
+        }
+
+    },[contentVersions])
 
     const handleDelete = () => {
         dispatch(deleteSection(sectionID))
@@ -92,7 +88,6 @@ function Section({ userName, currSectionID }) {
 
     const handleSaveSection = () => {
         section.visible = checked
-        section.sectionChildSequence = sectionChildSequence
         setEditing(false)
         dispatch(saveSection(sectionID,section))
     }
@@ -154,15 +149,14 @@ function Section({ userName, currSectionID }) {
                     </>
                 </Box>
                 <Grid container spacing={3} justifyContent="center">
-                    {sectionChildrenBySeq.map(sectionChild =>
+                    {find(section).map(sectionChild =>
                         <Grid item key={sectionChild.sectionChildID}>
                             <SectionChild userName={userName}
                                 sectionID={sectionID}
                                 sectionName={section.sectionName}
                                 sectionChild={sectionChild}
-                                editing={editing}
-                                sectionChildSequence={sectionChildSequence}
-                                setSectionChildSequence={setSectionChildSequence}/>
+                                sectionChildSequence={section.sectionChildSequence}
+                                editing={editing}/>
                         </Grid>)}
                 </Grid>
             </Card> :

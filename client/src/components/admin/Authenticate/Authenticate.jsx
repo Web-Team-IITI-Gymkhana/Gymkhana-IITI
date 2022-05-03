@@ -38,7 +38,7 @@ export default function Authenticate() {
         <div className="bggg">
             <div className="wrapper fadeInDown">
             <div id="formContent">
-                
+
                 <div className="fadeIn first">
                     {/* <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72">
                         <g fill="#fff">
@@ -51,7 +51,7 @@ export default function Authenticate() {
                     <img src={Logo} alt="Logo" height={90}/>
                 </div>
                 <br></br>
-                
+
                 <h4 className="fadeIn second">Hey, good to see you again!</h4>
                 <p className="fadeIn third">Login to get going.</p>
                 <br></br>
@@ -64,7 +64,7 @@ export default function Authenticate() {
                 ></GoogleLogin>
                 <br/><br/>
                 <p className="fadeIn fourth">Please Use College ID</p>
-               
+
             </div>
             </div>
 
