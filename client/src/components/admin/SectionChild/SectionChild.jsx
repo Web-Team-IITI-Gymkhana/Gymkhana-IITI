@@ -16,9 +16,6 @@ import { uploadImageServer } from "../../../redux/actions/contentVersions";
 
 import { sectionsChildSchema } from "../../../schema";
 import SocialModal from "../Modal/SocialModal";
-// import { fontWeight, minHeight, padding } from "@mui/system";
-
-
 
 const useStyles = makeStyles(styles)
 
@@ -67,6 +64,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
     const handleEdit = async () => {
         console.log("Visibility status on edit submit",checked)
         formSectionChild.visible = checked
+        console.log("Saving section child",formSectionChild)
         dispatch(updateSectionChild(sectionID, sectionChildID, formSectionChild))
     };
 
@@ -116,7 +114,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
 
                     <div className={classes.sectionChildForm}>
                         <form id="form" style={{height:100}}>
-                        
+
                             <TextField
                                 required
                                 fullWidth
@@ -131,7 +129,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
                                 onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildName: e.target.value })}
                                 size="small"
                                 disabled={!editing}
-                                
+
                             />
                             <TextField
                                 variant="outlined"
@@ -143,7 +141,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
                                 type="text"
                                 name="section-child-short-desc"
                                 autoComplete="Section Child Short Description"
-                                
+
                                 value={formSectionChild.sectionChildShortDesc}
                                 onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildShortDesc: e.target.value })}
                                 size="small"
@@ -160,7 +158,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
                                 type="text"
                                 name="section-child-desc"
                                 autoComplete="Section Child Description"
-                                
+
                                 value={formSectionChild.sectionChildDesc}
                                 onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildDesc: e.target.value })}
                                 size="small"
@@ -179,11 +177,12 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
                                 autoComplete="Section Child Links"
                                 className="field"
                                 value={formSectionChild.sectionChildLinks}
-                                onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildLinks: e.target.value.split(',') })}
                                 size="small"
-                                disabled={!editing}
+                                disabled={true}
                             /> */}
-                            <Button
+                            {
+                                editing &&
+                                <Button
                                 style={{
                                     marginTop:15,
                                     color: '#3C2117',
@@ -192,10 +191,12 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
                                 onClick={() => {
                                     setOpenModal(true);
                                 }}
-                            >
-                                + Add Social Media Links
-                            </Button>
-                            {openModal && <SocialModal closeModal={setOpenModal}></SocialModal>}
+                                >
+                                    + Add Social Media Links
+                                </Button>
+                            }
+
+                            {openModal && editing && <SocialModal closeModal={setOpenModal} formSectionChild={formSectionChild} setFormSectionChild={setFormSectionChild}></SocialModal>}
                             <div style={{display:'flex',flexDirection:'row',marginTop:10}}>
                                 <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} disabled={!editing}/>} label="Visible" style={{marginRight:50,marginLeft:100}}/>
                                 {
