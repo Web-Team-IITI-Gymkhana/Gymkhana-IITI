@@ -13,6 +13,7 @@ import { styles } from "../../../variable-css";
 import { deleteSectionChild } from "../../../redux/actions/contentVersions";
 import { updateSectionChild } from "../../../redux/actions/contentVersions";
 import { uploadImageServer } from "../../../redux/actions/contentVersions";
+import { sectionChildSeqChange } from "../../../redux/actions/contentVersions";
 
 import { sectionsChildSchema } from "../../../schema";
 import SocialModal from "../Modal/SocialModal";
@@ -20,7 +21,7 @@ import SocialModal from "../Modal/SocialModal";
 const useStyles = makeStyles(styles)
 
 
-function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,sectionChildSequence,setSectionChildSequence}) {
+function SectionChild({ userName, sectionID,  sectionName , sectionChild, sectionChildSequence ,editing}) {
     const classes = useStyles()
 
     let sectionChildID = sectionChild.sectionChildID
@@ -31,25 +32,13 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
     const handleChildSeqChange = (type)=>{
         console.log("Seq change called",type)
 
-        if(type==='UP')
-        {
-            let temp = sectionChildSequence[sectionChildIndex]
-            sectionChildSequence[sectionChildIndex] = sectionChildSequence[sectionChildIndex-1]
-            sectionChildSequence[sectionChildIndex-1] = temp
-            setSectionChildSequence([... sectionChildSequence])
-        }
-        else if(type==='DOWN')
-        {
-            let temp = sectionChildSequence[sectionChildIndex]
-            sectionChildSequence[sectionChildIndex] = sectionChildSequence[sectionChildIndex+1]
-            sectionChildSequence[sectionChildIndex+1] = temp
-            setSectionChildSequence([... sectionChildSequence])
-        }
+        dispatch(sectionChildSeqChange(sectionID,sectionChildID,type))
     }
 
     const dispatch = useDispatch()
 
     const handleDelete = () => {
+        console.log("delete section child called ",sectionID,sectionChildID)
         dispatch(deleteSectionChild(sectionID, sectionChildID))
     }
 
@@ -62,6 +51,7 @@ function SectionChild({ userName, sectionID, sectionChild, sectionName ,editing,
 
 
     const handleEdit = async () => {
+        console.log("Handle edit called ")
         console.log("Visibility status on edit submit",checked)
         formSectionChild.visible = checked
         console.log("Saving section child",formSectionChild)

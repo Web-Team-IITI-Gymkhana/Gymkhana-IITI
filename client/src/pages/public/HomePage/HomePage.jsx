@@ -16,7 +16,7 @@ export default function HomePage({userProfile, sections,type}) {
 
 
         {
-            sections.length > 0 ? sections.map(section => <Section key={section.sectionID} section={section} />) :
+            sections.length > 0 ? sections.map(section => section.sectionContent.length>0? <Section key={section.sectionID} section={section} />:"") :
             <SectionsLoading />
         }
 

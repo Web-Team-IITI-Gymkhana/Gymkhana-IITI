@@ -25,7 +25,7 @@ export default function Hero({userProfile}) {
             {userProfile.name}
           </div>
           <div className='heroClubDes'>
-            {userProfile.caption} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sit veritatis libero vero dolorem doloremque sed quasi esse commodi ad, in culpa modi eligendi minus nisi maiores fugiat error consequuntur.
+            {userProfile.caption}
           </div>
           </div>
         <div className='col-1 heroContacts'>
