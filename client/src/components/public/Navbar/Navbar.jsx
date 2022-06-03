@@ -2,7 +2,7 @@ import { Box, Button, Drawer, List, ListItem, ListItemText } from '@mui/material
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
 import '../public.css'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export default function Navbar({ userProfile, sections, type }) {
 
@@ -24,15 +24,15 @@ export default function Navbar({ userProfile, sections, type }) {
         setState({ ...state, [anchor]: open });
     };
 
-    let routeLink = ""
+    // let routeLink = ""
     let homeLink = ""
 
     if (type == "public") {
-        routeLink = "/public/home/section/"
+        // routeLink = "/public/home/section/"
         homeLink = "/public/home"
     }
     else {
-        routeLink = "/admin/preview/section/"
+        // routeLink = "/admin/preview/section/"
         homeLink = "/admin/home"
     }
 
@@ -46,7 +46,7 @@ export default function Navbar({ userProfile, sections, type }) {
 
             <List>
                 {sections.map((text) => (
-                    <a className='quick-links' href={routeLink + text.sectionID} key={text.sectionID}>
+                    <a className='quick-links' href={`#${text.sectionName}`} key={text.sectionID}>
                         <ListItem className='quick-links' button key={text.sectionName}>
                             <ListItemText style={{textAlign: 'center'}} primary={text.sectionName} />
                         </ListItem>
@@ -70,8 +70,9 @@ export default function Navbar({ userProfile, sections, type }) {
                         </a>
                         <div className="container col-11 align-items-right container-fluid links-wrapper" >
                             <div className="col d-flex" style={{ flexDirection: "row-reverse" }}>
-                                <a href={homeLink} className='contactUs col-2 py-2 text-center'>Contact Us</a>
-                                {sections.map(section => <div className="col-2 quick-links py-2 " key={section.sectionID}><Link to={routeLink + section.sectionID} className="quick-links">{section.sectionName}</Link></div>)}
+                                <a href="#contactus" className='contactUs col-2 py-2 text-center'>Contact Us</a>
+                                {/* {sections.map(section => <div className="col-2 quick-links py-2 " key={section.sectionID}><Link to={routeLink + section.sectionID} className="quick-links">{section.sectionName}</Link></div>)} */}
+                                {sections.map(section => <div className="col-2 quick-links py-2 " key={section.sectionID}><a href={`#${section.sectionName}`} className='quick-links'>{section.sectionName}</a></div>)}
                                 <a href={homeLink} className='quick-links col-2 py-2 text-center'>Home</a>
                             </div>
                         </div>
@@ -89,7 +90,7 @@ export default function Navbar({ userProfile, sections, type }) {
                                     </a>
                                     <a href="/" className='quick-links'>Home</a>
                                     {list('right')}
-                                    <a href="/" className='contact'>Contact Us</a>
+                                    <a href="#contactus" className='contact'>Contact Us</a>
                                 </Drawer>
                             </React.Fragment>
 
