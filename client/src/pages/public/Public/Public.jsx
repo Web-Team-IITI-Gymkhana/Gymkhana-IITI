@@ -9,9 +9,12 @@ import HomePage from "../HomePage/HomePage";
 import SectionView from "../SectionPage/SectionView";
 import Loader from "../../../components/Loader/Loader";
 
+import urlMap from "./urlMap"
+
 function Public() {
 
-    const currentUser = "Mihir"
+    const currentUser = urlMap[window.location.href]
+
 
     const [publishedSections, setPublishedSections] = useState([]);
     const [publishedUserProfile, setPublishedProfile] = useState({});
