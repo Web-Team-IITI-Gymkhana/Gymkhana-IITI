@@ -61,6 +61,7 @@ function Section({ userName, currSectionID }) {
     }
 
     const [sectionChildBySeq,setSectionChildBySeq] = useState([... find(section)])
+    console.log(sectionChildBySeq)
 
     const newSectionChild = { "sectionChildName": "", "sectionChildImage": logo, "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] ,"visible":true}
 
