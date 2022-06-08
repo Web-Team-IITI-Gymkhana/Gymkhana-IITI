@@ -13,7 +13,7 @@ const CLIENT_ORIGINS = ["http://localhost:3000/public/home","https://gymkhana-ii
 
 const Users = require('./models/users')
 
-app.use(cors({ origins:CLIENT_ORIGINS, credentials: true }))
+app.use(cors({ origin :CLIENT_ORIGINS, credentials: true }))
 app.use(express.json({ limit: '50mb' }))
 
 const cloudinary = require('cloudinary').v2
