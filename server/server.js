@@ -13,7 +13,8 @@ const CLIENT_ORIGINS = ["http://localhost:3000","https://gymkhana-iiti.netlify.a
 
 const Users = require('./models/users')
 
-app.use(cors({ origin :CLIENT_ORIGINS, credentials: true }))
+// app.use(cors({ origin :CLIENT_ORIGINS, credentials: true }))
+app.use(cors({ origin : "https://cynaptics-club.netlify.app", credentials: true }))
 app.use(express.json({ limit: '50mb' }))
 
 const cloudinary = require('cloudinary').v2
