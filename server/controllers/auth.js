@@ -3,11 +3,11 @@ const {OAuth2Client} = require('google-auth-library')
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const client = new OAuth2Client("750894076426-off7cchrpi2kgcfec64h6vr2ddgl4vfn.apps.googleusercontent.com")
+const client = new OAuth2Client("687468938838-qv69j02oai1engmjkd6el428ui4uquom.apps.googleusercontent.com")
 
 const googlelogin = (req,res) => {
   const {tokenId} = req.body
-  client.verifyIdToken({idToken:tokenId,audience : "750894076426-off7cchrpi2kgcfec64h6vr2ddgl4vfn.apps.googleusercontent.com"}).then(response=>{
+  client.verifyIdToken({idToken:tokenId,audience : "687468938838-qv69j02oai1engmjkd6el428ui4uquom.apps.googleusercontent.com"}).then(response=>{
     const {email_verified,name,email} = response.payload;
     if(email_verified)
     {
