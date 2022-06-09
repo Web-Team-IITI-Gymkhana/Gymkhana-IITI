@@ -11,9 +11,12 @@ export default function Authenticate() {
     const dispatch = useDispatch()
     const loginURL = process.env.REACT_APP_DEV === 'true' ? "http://localhost:5000/auth/googlelogin" : "https://gymkhana-iiti.herokuapp.com/auth/googlelogin";
     console.log("LOGIN ROUTE IS ", loginURL)
-    
-    const CLIENT_ORIGINS = ["http://localhost:3000","https://gymkhana-iiti.netlify.app",
-                        "https://cynaptics-club.netlify.app","https://p-club.netlify.app"]
+
+    // const CLIENT_ORIGINS = ["http://localhost:3000","https://gymkhana-iiti.netlify.app",
+                        // "https://cynaptics-club.netlify.app","https://p-club.netlify.app"]
+
+    console.log(window.location.origin)
+
 
     const responseSuccessGoogle = (response) => {
         console.log(response)
@@ -63,7 +66,7 @@ export default function Authenticate() {
                     buttonText="Log in with Google"
                     onSuccess={responseSuccessGoogle}
                     onFailure={responseErrorGoogle}
-                    cookiePolicy={CLIENT_ORIGINS}
+                    cookiePolicy={(window.location.origin).toString()}
                 ></GoogleLogin>
                 <br/><br/>
                 <p className="fadeIn fourth">Please Use College ID</p>
