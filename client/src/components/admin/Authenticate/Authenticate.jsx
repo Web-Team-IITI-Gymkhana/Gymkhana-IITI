@@ -62,7 +62,7 @@ export default function Authenticate() {
                 <p className="fadeIn third">Login to get going.</p>
                 <br></br>
                 <GoogleLogin
-                    clientId="750894076426-off7cchrpi2kgcfec64h6vr2ddgl4vfn.apps.googleusercontent.com"
+                    clientId="687468938838-qv69j02oai1engmjkd6el428ui4uquom.apps.googleusercontent.com"
                     buttonText="Log in with Google"
                     onSuccess={responseSuccessGoogle}
                     onFailure={responseErrorGoogle}
