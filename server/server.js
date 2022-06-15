@@ -9,7 +9,7 @@ require('dotenv').config()
 const DB_URI = process.env.MONGO_URI
 const PORT = process.env.PORT || 5000;
 const CLIENT_ORIGINS = ["http://localhost:3000","https://gymkhana-iiti.netlify.app",
-                        "https://cynaptics-club.netlify.app","https://p-club.netlify.app"]
+                        "https://cynaptics-club.netlify.app","https://pclub-iiti.netlify.app"]
 
 const Users = require('./models/users')
 
