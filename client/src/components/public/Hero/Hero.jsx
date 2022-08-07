@@ -15,33 +15,33 @@ export default function Hero({userProfile}) {
           <div className='heroVL'></div>
         </div>
         <div className='col-10 row'>
-          <div className='col-11'>
-          <div style={{maxWidth: 'fit-content'}}>
-          <div className='heroWelcome container'>
-            Welcome to the
-          </div>
-          </div>
-          <div className='heroClubName'>
-            {userProfile.name}
-          </div>
-          <div className='heroClubDes'>
-            {userProfile.caption}
-          </div>
-          </div>
-        <div className='col-1 heroContacts'>
-          <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[0]}>
-          <Linkedin/>
-          </a ></div>
-          <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[0]}>
-          <Instagram/>
-          </a ></div>
-          <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[0]}>
-          <Facebook/>
-          </a ></div>
-          <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[0]}>
-          <Discord/>
-          </a ></div>
-        </div>
+            <div className='col-11'>
+                <div style={{maxWidth: 'fit-content'}}>
+                    <div className='heroWelcome container'>
+                        Welcome to the
+                    </div>
+                </div>
+                <div className='heroClubName'>
+                    {userProfile.name}
+                </div>
+                <div className='heroClubDes'>
+                    {userProfile.caption}
+                </div>
+            </div>
+            <div className='col-1 heroContacts'>
+                <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[0]}>
+                <Linkedin/>
+                </a ></div>
+                <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[1]}>
+                <Instagram/>
+                </a ></div>
+                <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[2]}>
+                <Facebook/>
+                </a ></div>
+                <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[3]}>
+                <Discord/>
+                </a ></div>
+            </div>
         </div>
       </div>
 

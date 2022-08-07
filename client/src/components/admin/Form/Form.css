@@ -21,3 +21,15 @@
   background-color: white;
   margin-top: 15px;
 }
+
+
+.socialMediaInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.smi{
+    margin: 20px;
+}
