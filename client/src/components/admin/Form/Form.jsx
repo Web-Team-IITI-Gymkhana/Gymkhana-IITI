@@ -57,13 +57,13 @@ function Form({ userProfile }) {
             <FormTextField fieldName={'phoneNumber'} label={'Phone Number'} type={'tel'} autoCompleteHint={''} postData={postData} setPostData={setPostData} editing={editing}/>
 
             <TextField
-            variant={'standard'}
-            fullWidth
-            label={'Social Media'}
-            type={'text'}
-            autoComplete={''}
-            value={postData.socialMedia}
-            onChange={(e) => setPostData({ ...postData, socialMedia: e.target.value.split(',') })} style={{ marginBlock: 10 }}
+                variant={'standard'}
+                // fullWidth
+                label={'Social Media'}
+                type={'text'}
+                autoComplete={''}
+                value={postData.socialMedia}
+                onChange={(e) => setPostData({ ...postData, socialMedia: e.target.value.split(',') })} style={{ marginBlock: 10 }}
             disabled={!editing}/>
 
             <FormControl fullWidth>

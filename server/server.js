@@ -53,12 +53,12 @@ const jwtAuth = async (req,res,next)=>{
     }
     else
     {
-      return res.status(401).json({message:"JWT Auth Failed"})
+      return res.status(403).json({message:"JWT Auth Failed"})
     }
   }
   catch(error){
     console.log(error)
-    return res.status(401).json({message:"JWT Auth Failed"})
+    return res.status(403).json({message:"JWT Auth Failed"})
   }
 }
 

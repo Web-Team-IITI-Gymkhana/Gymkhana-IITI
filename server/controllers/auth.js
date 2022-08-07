@@ -10,7 +10,7 @@ const googlelogin = (req,res) => {
 
   Users.findOne({userEmailId:email}).exec((err,user)=>{
     if(err){
-      return res.status(400).json({error:"Something went wrong"})
+      return res.status(403).json({error:"Something went wrong"})
     }
     else{
       if(user){
@@ -20,7 +20,7 @@ const googlelogin = (req,res) => {
         res.json({token,user:{userName : user.userName,userEmailId : user.userEmailId} })
       }
       else{
-        return res.status(400).json({error:"Something went wrong"})
+        return res.status(403).json({error:"Something went wrong"})
       }
     }
   })
