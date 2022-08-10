@@ -8,7 +8,12 @@ const contentSchema = mongoose.Schema({
     userDetails : {
         name : {type:String , required:true},
         logo : {type:String , required:true},
-        socialMedia : [String]
+        socialMedia : {
+          Instagram : { type : String, default: ""},
+          LinkedIn : { type : String, default: ""},
+          Facebook : { type : String, default: ""},
+          Discord : { type : String, default: ""},
+        }
     },
 
     homePagePoster : {

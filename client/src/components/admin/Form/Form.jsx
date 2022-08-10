@@ -55,16 +55,50 @@ function Form({ userProfile }) {
             <FormTextField fieldName={'name'} label={'Club Name'} type={'text'} autoCompleteHint={''} postData={postData} setPostData={setPostData}  editing={editing}/>
             <FormTextField fieldName={'email'} label={'Email'} type={'email'} autoCompleteHint={'email'} postData={postData} setPostData={setPostData} editing={editing} />
             <FormTextField fieldName={'phoneNumber'} label={'Phone Number'} type={'tel'} autoCompleteHint={''} postData={postData} setPostData={setPostData} editing={editing}/>
+            <br/>
+            <div className="grid-container">
+                <TextField
+                    variant={'standard'}
+                    // fullWidth
+                    label={'LinkedIn'}
+                    type={'url'}
+                    autoComplete={''}
+                    value={postData.socialMedia.LinkedIn}
+                    onChange={(e) => setPostData({...postData,socialMedia:{...postData.socialMedia, LinkedIn : e.target.value}})} style={{ marginBlock: 10 }}
+                disabled={!editing}/>
 
-            <TextField
-                variant={'standard'}
-                // fullWidth
-                label={'Social Media'}
-                type={'text'}
-                autoComplete={''}
-                value={postData.socialMedia}
-                onChange={(e) => setPostData({ ...postData, socialMedia: e.target.value.split(',') })} style={{ marginBlock: 10 }}
-            disabled={!editing}/>
+                <TextField
+                    variant={'standard'}
+                    // fullWidth
+                    label={'Instagram'}
+                    type={'url'}
+                    autoComplete={''}
+                    value={postData.socialMedia.Instagram}
+                    onChange={(e) => setPostData({...postData,socialMedia:{...postData.socialMedia, Instagram : e.target.value}})} style={{ marginBlock: 10 }}
+                disabled={!editing}/>
+
+                <TextField
+                    variant={'standard'}
+                    // fullWidth
+                    label={'Facebook'}
+                    type={'url'}
+                    autoComplete={''}
+                    value={postData.socialMedia.Facebook}
+                    onChange={(e) => setPostData({...postData,socialMedia:{...postData.socialMedia, Facebook : e.target.value}})} style={{ marginBlock: 10 }}
+                disabled={!editing}/>
+
+                <TextField
+                    variant={'standard'}
+                    // fullWidth
+                    label={'Discord'}
+                    type={'url'}
+                    autoComplete={''}
+                    value={postData.socialMedia.Discord}
+                    onChange={(e) => setPostData({...postData,socialMedia:{...postData.socialMedia, Discord : e.target.value}})} style={{ marginBlock: 10 }}
+                disabled={!editing}/>
+            </div>
+
+
 
             <FormControl fullWidth>
                 <InputLabel variant={'standard'}>Theme</InputLabel>
