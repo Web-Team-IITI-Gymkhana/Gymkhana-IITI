@@ -1,11 +1,14 @@
 import {Box} from '@mui/material'
 import React from 'react'
 import '../public.css'
-import background from '../backgroundPublic.jpg'
+// import background from '../backgroundPublic.jpg'
 import { Discord, Linkedin, Instagram, Facebook} from 'react-bootstrap-icons';
 
 export default function Hero({userProfile}) {
   console.log(userProfile)
+
+  let background = userProfile.src
+
   return (
     // <Box className='heroBg' style={{backgroundImage: `url(${userProfile.src})`,backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
     <Box className='heroBg' style={{backgroundImage: `url(${background})`,backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
@@ -29,16 +32,16 @@ export default function Hero({userProfile}) {
                 </div>
             </div>
             <div className='col-1 heroContacts'>
-                <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[0]}>
+                <div><a className='heroIcons' href={userProfile.socialMedia.LinkedIn}>
                 <Linkedin/>
                 </a ></div>
-                <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[1]}>
+                <div><a className='heroIcons' href={userProfile.socialMedia.Instagram}>
                 <Instagram/>
                 </a ></div>
-                <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[2]}>
+                <div><a className='heroIcons' href={userProfile.socialMedia.Facebook}>
                 <Facebook/>
                 </a ></div>
-                <div><a className='heroIcons' href={"https://"+userProfile.socialMedia[3]}>
+                <div><a className='heroIcons' href={userProfile.socialMedia.Discord}>
                 <Discord/>
                 </a ></div>
             </div>

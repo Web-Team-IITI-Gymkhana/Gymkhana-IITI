@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, List, ListItem, Paper } from "@mui/material";
+import { Box, Typography, Paper } from "@mui/material";
 import '../public.css'
 import { sectionsChildSchema } from '../../../schema';
 
@@ -20,16 +20,16 @@ const SectionChildCard = ({ sectionChild, sectionName }) => {
                     </Typography>
                     <Typography paragraph variant="body2" color="text.secondary">
                         <p>Links:</p>
-                        <List>
+                        <div className='section-child-links'>
                             {sectionChild.sectionChildLinks.map((link) => {
                                 let href = link.match(/\((..*?)\)/) ? link.match(/\((..*?)\)/)[1] : null;
                                 let text = link.match(/\[(..*?)\]/) ? link.match(/\[(..*?)\]/)[1] : href;
                                 return href &&
-                                    (<ListItem key={link}>
+                                    (<div key={link} >
                                         <a href={href} key={href} style={{ textDecoration: 'none' }} rel="noreferrer" target="_blank" > {text}</a>
-                                    </ListItem>)
+                                    </div>)
                             })}
-                        </List>
+                        </div>
                     </Typography>
                 </Box>
             </Box>

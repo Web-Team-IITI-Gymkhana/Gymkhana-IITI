@@ -23,11 +23,10 @@
 }
 
 
-.socialMediaInput{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px;
+.grid-container{
+    display: grid;
+    gap : 20px;
+    grid-template-columns: auto auto;
 }
 
 .smi{

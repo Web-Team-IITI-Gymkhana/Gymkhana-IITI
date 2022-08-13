@@ -23,6 +23,7 @@ const deleteUser = async(req,res) => {
 
 const addUser = async(req,res) => {
     try {
+        console.log("Adding a new user ",req.body)
         const user = await Users.create(req.body)
         return res.status(201).json({"newUser":user})
 
