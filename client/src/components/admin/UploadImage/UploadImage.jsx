@@ -124,7 +124,8 @@ export const UploadImage = ({ onChange, aspectRatio }) => {
             <Modal
                 open={isCropImageModalOpen}
                 onClose={handleModalClose} className={classes.cropImageModal}>
-                <Box bgcolor={'white'} padding={2} display={'flex'} flexDirection={'column'} gridGap={20} alignItems={'center'} borderRadius={4}>
+                <Box bgcolor={'white'} padding={2} display={'flex'} flexDirection={'column'} gridGap={20} alignItems={'center'} borderRadius={4}
+                maxHeight={500}>
                     <ReactCrop ref={imageRef} src={selectedFile} crop={crop} onChange={(newCrop) => {
                         setCrop(newCrop)
                     }} />

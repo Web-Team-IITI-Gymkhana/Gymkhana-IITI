@@ -23,10 +23,9 @@ const useStyles = makeStyles(styles)
 
 function Section({ userName, currSectionID }) {
 
-    console.log("currsection id ",currSectionID)
-
     let sectionID = currSectionID>=0 ? currSectionID : -1 ;
-    let sectionDetails = {}
+
+    // console.log("currsectionid ",currSectionID)
 
     const [anchorEl, setAnchorEl] = useState(null)
     const [menuOpen, setMenuOpen] = useState(false)
@@ -42,9 +41,17 @@ function Section({ userName, currSectionID }) {
 
     let section = sections.find(section => section.sectionID === currSectionID)
 
+    let sectionDetails = section ? {sectionName : section.sectionName, sectionHeader : section.sectionHeader} : {}
+
+    // console.log("currsection ",currSectionID,section)
+
     const [checked, setChecked] = useState(section?section.visible:false);
 
     const find = (section)=>{
+
+        if(!section){
+            return []
+        }
 
         let sectionChildSequence = section.sectionChildSequence
         let sectionChildren = section.sectionContent
@@ -56,7 +63,6 @@ function Section({ userName, currSectionID }) {
             let sectionChild = sectionChildren.find(sectionChild => sectionChild.sectionChildID === sectionChildID)
             if(sectionChild){res.push(sectionChild)}
         }
-        console.log("Sequence Section Children admin",res)
         return res
     }
 
@@ -65,9 +71,8 @@ function Section({ userName, currSectionID }) {
 
     const newSectionChild = { "sectionChildName": "", "sectionChildImage": logo, "sectionChildShortDesc": "", "sectionChildDesc": "", "sectionChildLinks": [] ,"visible":true}
 
+
     const dispatch = useDispatch()
-
-
 
     useEffect(()=>{
         if(section)
@@ -83,7 +88,6 @@ function Section({ userName, currSectionID }) {
     }
 
     const handleAdd = () => {
-        console.log("Add section child called")
         dispatch(addSectionChild(sectionID, newSectionChild));
     }
 
@@ -99,7 +103,7 @@ function Section({ userName, currSectionID }) {
 
     return (
 
-        sectionID > 0 ?
+        sectionID>0 && section ?
             <Card className={classes.section}>
                 <Box display={'flex'} justifyContent={'space-between'} marginBottom={3}>
                     <h3 className="header">{section.sectionHeader}</h3>
@@ -155,9 +159,11 @@ function Section({ userName, currSectionID }) {
                             <SectionChild userName={userName}
                                 sectionID={sectionID}
                                 sectionName={section.sectionName}
-                                sectionChild={sectionChild}
+                                sectionChild={{...sectionChild}}
                                 sectionChildSequence={section.sectionChildSequence}
-                                editing={editing}/>
+                                editing={editing}
+                                key={sectionChild.sectionChildID}
+                                />
                         </Grid>)}
                 </Grid>
             </Card> :

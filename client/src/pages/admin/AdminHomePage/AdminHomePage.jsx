@@ -20,11 +20,7 @@ function AdminHomePage({ userProfile }) {
     let contentVersions = useSelector((state) => state.contentVersions)
     let sections = (contentVersions.length > 0)? contentVersions[(contentVersions).length - 1].Sections : null;
     const sectionSequence= contentVersions[1].sectionSequence
-    const [selectedSection, setSelectedSection]=useState(null)
-
-    console.log("Current Sequence",sectionSequence)
-    console.log("Current sections",sections)
-
+    const [selectedSection, setSelectedSection]=useState((sections.length>0?(sections[0]):null))
 
     const currentUser = userProfile.userName
     const dispatch = useDispatch()
@@ -43,10 +39,7 @@ function AdminHomePage({ userProfile }) {
     const handleSelectionChange = (id) => {
         const section = sections.filter((section) => section.sectionID == id)
         setSelectedSection(section[0])
-        console.log("section change", section[0])
     }
-
-    console.log("selctedSection",selectedSection)
 
     return (
         <>
@@ -62,11 +55,11 @@ function AdminHomePage({ userProfile }) {
                             selectedSection={selectedSection? selectedSection:  sections[0]}
                             onSelectionChange={handleSelectionChange} />
                     </Grid>
-                    {/* the actual cards of sections */}
+
                     {
                         sections.length>0?
                         <Grid item lg={9} md={9} sm={12} xs={12}>
-                            <Section userName={currentUser} currSectionID={selectedSection? selectedSection.sectionID :  sections[0].sectionID} />
+                            <Section userName={currentUser} currSectionID={selectedSection? selectedSection.sectionID :  sections[0].sectionID} key={selectedSection? selectedSection.sectionID :  sections[0].sectionID} />
                         </Grid>:
                         <h1>No sections to show</h1>
                     }

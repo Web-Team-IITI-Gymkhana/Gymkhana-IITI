@@ -1,6 +1,6 @@
-const Users = require('../models/users')
+import Users from '../models/users.js'
 
-const getAllUsers = async(req,res) => {
+export const getAllUsers = async(req,res) => {
   try {
       const users = await Users.find({})
       return res.status(201).json({"users":users})
@@ -10,7 +10,7 @@ const getAllUsers = async(req,res) => {
   }
 }
 
-const deleteUser = async(req,res) => {
+export const deleteUser = async(req,res) => {
     try {
         const {userName : userName} = req.params
         await Users.deleteOne({userName:userName});
@@ -21,7 +21,7 @@ const deleteUser = async(req,res) => {
     }
 }
 
-const addUser = async(req,res) => {
+export const addUser = async(req,res) => {
     try {
         console.log("Adding a new user ",req.body)
         const user = await Users.create(req.body)
@@ -32,7 +32,7 @@ const addUser = async(req,res) => {
     }
 }
 
-const getUser = async(req,res) => {
+export const getUser = async(req,res) => {
     try {
         const userName = req.userName
         console.log("Get user admin called",userName)
@@ -44,7 +44,7 @@ const getUser = async(req,res) => {
     }
 }
 
-const updateGeneralDetails = async(req,res) => {
+export const updateGeneralDetails = async(req,res) => {
     try {
 
         const userName = req.userName
@@ -79,7 +79,7 @@ const updateGeneralDetails = async(req,res) => {
     }
 }
 
-const publishVersion = async(req,res)=>{
+export const publishVersion = async(req,res)=>{
   try{
         const userName = req.userName
         console.log("Publish version called",userName)
@@ -97,5 +97,3 @@ const publishVersion = async(req,res)=>{
   }
 
 }
-
-module.exports = {getAllUsers,addUser,getUser , updateGeneralDetails , publishVersion , deleteUser}

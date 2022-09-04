@@ -2,13 +2,12 @@ import React from "react";
 import Button from "@material-ui/core/Button"
 import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { makeStyles, Paper, Typography } from "@material-ui/core";
 import { FormControl, InputLabel,Select,MenuItem } from "@material-ui/core";
 
 import { styles } from "../../../variable-css";
 
-import { updateGeneralDetails } from "../../../redux/actions/contentVersions";
+
 
 
 const useStyles = makeStyles(styles)
@@ -27,20 +26,29 @@ const FormTextField = ({ fieldName, label, type, autoCompleteHint, postData, set
   )
 }
 
-function Form({ userProfile }) {
-    const [postData, setPostData] = useState(userProfile)
+function Form({ postData , setPostData , handleSubmit}) {
+
     const [editing,setEditing] = useState(false)
 
     console.log("Editing",editing)
 
-    const dispatch = useDispatch();
+    const submitHelper = (e)=>{
+
+        e.preventDefault();
+
+        if(!editing){
+            setEditing(true);
+            return;
+        }
+
+        setEditing(false);
+        handleSubmit();
+    }
+
+
     const classes = useStyles()
 
-    const handleSubmit = (e) => {
-        setEditing(!editing)
-        e.preventDefault();
-        dispatch(updateGeneralDetails(postData));
-    }
+
 
     const handleThemeChange = (e) => {
         console.log("Theme Change",e.target.value)
@@ -51,7 +59,7 @@ function Form({ userProfile }) {
 
         <Paper style={{ padding: 20 }}>
         <Typography align="center" className={classes.subheadingBold}>GENERAL DETAILS</Typography>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <form onSubmit={submitHelper} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <FormTextField fieldName={'name'} label={'Club Name'} type={'text'} autoCompleteHint={''} postData={postData} setPostData={setPostData}  editing={editing}/>
             <FormTextField fieldName={'email'} label={'Email'} type={'email'} autoCompleteHint={'email'} postData={postData} setPostData={setPostData} editing={editing} />
             <FormTextField fieldName={'phoneNumber'} label={'Phone Number'} type={'tel'} autoCompleteHint={''} postData={postData} setPostData={setPostData} editing={editing}/>
@@ -103,7 +111,7 @@ function Form({ userProfile }) {
             <FormControl fullWidth>
                 <InputLabel variant={'standard'}>Theme</InputLabel>
                 <Select
-                    value={userProfile.themeDetails}
+                    value={postData.themeDetails}
                     label="Theme"
                     onChange={handleThemeChange}
                     disabled={!editing}
