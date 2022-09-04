@@ -1,6 +1,6 @@
-const Users = require('../models/users')
+import Users from '../models/users.js'
 
-const  addSection = async(req,res) => {
+export const  addSection = async(req,res) => {
     try {
         const userName = req.userName
         console.log("Add section called",userName)
@@ -36,7 +36,7 @@ const  addSection = async(req,res) => {
     }
 }
 
-const updateSection = async(req,res) => {
+export const updateSection = async(req,res) => {
     try {
         const userName = req.userName
         console.log("Update section called",userName)
@@ -69,7 +69,7 @@ const updateSection = async(req,res) => {
     }
 }
 
-const deleteSection = async (req,res)=>{
+export const deleteSection = async (req,res)=>{
 
     try {
     const userName = req.userName
@@ -99,7 +99,7 @@ const deleteSection = async (req,res)=>{
 
 }
 
-const saveSection = async (req,res)=>{
+export const saveSection = async (req,res)=>{
 
     try {
         const userName = req.userName
@@ -126,7 +126,7 @@ const saveSection = async (req,res)=>{
 
 }
 
-const saveSequence = async (req,res)=>{
+export const saveSequence = async (req,res)=>{
   try {
     const userName = req.userName
     const sectionSequence = req.body.sectionSequence
@@ -142,8 +142,3 @@ const saveSequence = async (req,res)=>{
   }
 }
 
-
-
-
-
-module.exports = {addSection, updateSection,deleteSection,saveSection,saveSequence}

@@ -97,6 +97,7 @@ export const deleteSectionChild = (sectionID,sectionChildID) => async (dispatch)
 
 export const saveSection = (sectionID,updatedSection) => async (dispatch) => {
     try{
+        console.log("Save section called ",sectionID,updatedSection)
         console.log(dispatch)
         await api.saveSection(sectionID,updatedSection);
     }

@@ -1,8 +1,8 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
 
-const {googlelogin} = require('../controllers/auth')
+import {googlelogin} from '../controllers/auth.js'
 
 router.route('/googlelogin').post(googlelogin);
 
-module.exports = router
+export default router;

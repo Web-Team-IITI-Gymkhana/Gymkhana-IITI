@@ -12,11 +12,14 @@ import { styles } from "../../../variable-css";
 
 import { deleteSectionChild } from "../../../redux/actions/contentVersions";
 import { updateSectionChild } from "../../../redux/actions/contentVersions";
-import { uploadImageServer } from "../../../redux/actions/contentVersions";
 import { sectionChildSeqChange } from "../../../redux/actions/contentVersions";
+
+import { uploadImageServer } from "../../../api";
 
 import { sectionsChildSchema } from "../../../schema";
 import SocialModal from "../Modal/SocialModal";
+
+
 
 const useStyles = makeStyles(styles)
 
@@ -42,7 +45,7 @@ function SectionChild({ userName, sectionID,  sectionName , sectionChild, sectio
         dispatch(deleteSectionChild(sectionID, sectionChildID))
     }
 
-    const [formSectionChild, setFormSectionChild] = useState(sectionChild)
+    const [formSectionChild, setFormSectionChild] = useState({...sectionChild})
 
     const [checked, setChecked] = useState(sectionChild.visible);
     const handleChange = (event) => {
@@ -54,11 +57,13 @@ function SectionChild({ userName, sectionID,  sectionName , sectionChild, sectio
         console.log("Handle edit called ")
         console.log("Visibility status on edit submit",checked)
         formSectionChild.visible = checked
-        console.log("Saving section child",formSectionChild)
+        console.log("Saving section child ",sectionID,sectionChildID,formSectionChild)
         dispatch(updateSectionChild(sectionID, sectionChildID, formSectionChild))
     };
 
     const [openModal, setOpenModal] = useState(false);
+
+    console.log("Form section child ",formSectionChild)
 
 
     return (
@@ -70,21 +75,21 @@ function SectionChild({ userName, sectionID,  sectionName , sectionChild, sectio
                     <div style={{display:'flex',alignItems:'center',flexDirection:'column'}}>
                         <CardMedia
                         component="img"
-                            image={sectionChild.sectionChildImage}
+                            image={formSectionChild.sectionChildImage}
                             style={{
                                 borderRadius: '50%',
                                 height : 300,
                                 width : 300,
                                 margin : 10
                             }}
-                            alt="event-photo"
+                            alt={formSectionChild.sectionChildImage}
                         />
                         {
                             editing?
                             <>
                                 <UploadImage aspectRatio={16 / 9} onChange={(base64EncodedImage) => {
                                         return new Promise((resolve, reject) => {
-                                            dispatch(uploadImageServer({
+                                            uploadImageServer({
                                                 method: 'POST',
                                                 img: JSON.stringify({ data: base64EncodedImage }),
                                                 userName: userName,
@@ -92,9 +97,15 @@ function SectionChild({ userName, sectionID,  sectionName , sectionChild, sectio
                                                 sectionID: sectionID,
                                                 sectionChildID: sectionChildID,
                                                 headers: { 'Content-Type': 'application/json' }
-                                            }))
-                                            resolve()
-                                            console.log(reject)
+                                            }).then((res)=>{
+                                                console.log("image upload response",res);
+                                                setFormSectionChild({...formSectionChild,sectionChildImage:res.data.imgURL});
+                                                handleEdit()
+                                                resolve()
+                                            }).catch((err)=>{
+                                                console.log(err)
+                                                reject()
+                                            })
                                         })
                                     }} />
                             </>:""
@@ -114,7 +125,6 @@ function SectionChild({ userName, sectionID,  sectionName , sectionChild, sectio
                                 type="text"
                                 name="section-child-name"
                                 autoComplete="Section Child Name"
-                                // className="field"
                                 value={formSectionChild.sectionChildName}
                                 onChange={(e) => setFormSectionChild({ ...formSectionChild, sectionChildName: e.target.value })}
                                 size="small"
@@ -154,22 +164,6 @@ function SectionChild({ userName, sectionID,  sectionName , sectionChild, sectio
                                 size="small"
                                 disabled={!editing}
                             />
-                            {/* <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                minRows={3}
-                                id="section-child-links"
-                                label={sectionsChildSchema[sectionName].sectionChildLinks.label}
-                                type="text"
-                                name="section-child-links"
-                                autoComplete="Section Child Links"
-                                className="field"
-                                value={formSectionChild.sectionChildLinks}
-                                size="small"
-                                disabled={true}
-                            /> */}
                             {
                                 editing &&
                                 <Button

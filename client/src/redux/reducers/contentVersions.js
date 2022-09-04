@@ -16,6 +16,7 @@ const updateSectionChild = (sectionChild,updateData)=>{
     sectionChild.sectionChildShortDesc = updateData.sectionChildShortDesc
     sectionChild.sectionChildDesc = updateData.sectionChildDesc
     sectionChild.sectionChildLinks = updateData.sectionChildLinks
+    sectionChild.sectionChildImage = updateData.sectionChildImage
     sectionChild.visible = updateData.visible
     return sectionChild
 }
@@ -73,8 +74,10 @@ const reducer =  (contentVersions=[],action) => {
         case "UPDATE_GENERAL_DETAILS":
 
             contentVersions[lastIndex].userDetails.name = action.payload.name
+            contentVersions[lastIndex].userDetails.logo = action.payload.logo
             contentVersions[lastIndex].userDetails.socialMedia = action.payload.socialMedia
             contentVersions[lastIndex].homePagePoster.caption = action.payload.caption
+            contentVersions[lastIndex].homePagePoster.src = action.payload.src
             contentVersions[lastIndex].contactDetails.email = action.payload.email
             contentVersions[lastIndex].contactDetails.phoneNumber = action.payload.phoneNumber
             contentVersions[lastIndex].themeDetails = action.payload.themeDetails
@@ -100,9 +103,7 @@ const reducer =  (contentVersions=[],action) => {
             return [... contentVersions]
 
         case "UPDATE_SECTION_CHILD":
-            console.log(action.payload.updateData);
             (contentVersions[lastIndex].Sections).map((section)=>section.sectionID===action.payload.sectionID?updateSectionChildHelper(section,action.payload.sectionChildID,action.payload.updateData):section)
-            console.log(contentVersions)
             return [... contentVersions]
 
         case "DELETE_SECTION_CHILD":
@@ -115,8 +116,6 @@ const reducer =  (contentVersions=[],action) => {
         case "SAVE_SEQUENCE":
             (contentVersions[lastIndex].sectionSequence) = action.payload.sectionSequence
             return [... contentVersions]
-
-
 
         default:
             return [... contentVersions]

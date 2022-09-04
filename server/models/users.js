@@ -1,13 +1,14 @@
-const mongoose = require('mongoose')
-const contentSchema = require('./content')
+import mongoose from 'mongoose'
+import contentSchema from './content.js'
 
 const usersSchema = mongoose.Schema({
     userName : String,
     userEmailId : String,
-    publishedVersion : Number,
-    contentVersions : [contentSchema]
+    publishedVersion : Number, //change to id
+    contentVersions : [contentSchema] //array of ids
 })
 
-var Users = mongoose.model('Users', usersSchema);
+const Users = mongoose.model('Users', usersSchema);
 
-module.exports = Users
+export default Users;
+

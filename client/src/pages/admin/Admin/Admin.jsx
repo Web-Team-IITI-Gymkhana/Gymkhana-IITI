@@ -2,13 +2,13 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { setContentVersions } from "../../../redux/actions/contentVersions";
 
 import HomePage from "../../public/HomePage/HomePage";
 import AdminProfilePage from "../AdminProfilePage/AdminProfilePage";
 import AdminHomePage from "../AdminHomePage/AdminHomePage";
 import SectionView from "../../public/SectionPage/SectionView";
 
+import { setContentVersions } from "../../../redux/actions/contentVersions";
 
 function Admin(){
 
@@ -51,8 +51,6 @@ function Admin(){
             setCurrentSections([])
         }
     }, [contentVersions])
-
-    console.log("currentSections",currentSections)
 
     return(
         <>

@@ -85,6 +85,7 @@ export default function SectionModal({sectionID, sectionDetails, triggerElement 
                             className="field"
                             value={formSection.sectionName}
                             onChange={(e) => setFormSection({ ...formSection, sectionName: e.target.value })}
+                            disabled = {true}
                         />
                         <TextField
                             variant="outlined"
