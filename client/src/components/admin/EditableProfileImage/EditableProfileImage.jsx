@@ -5,14 +5,13 @@ import { makeStyles } from "@material-ui/styles"
 import { styles } from "../../../variable-css"
 
 import { UploadImage } from "../UploadImage/UploadImage"
-import { useDispatch } from "react-redux"
-import { uploadImageServer } from "../../../redux/actions/contentVersions"
+
+import { uploadImageServer } from "../../../api"
 
 const useStyles = makeStyles(styles)
 
-export const EditableProfileImage = ({ imageAlt, type, imageSrc, userProfile }) => {
+export const EditableProfileImage = ({ postData , setPostData , handleSubmit, imageAlt, type, imageSrc, userProfile }) => {
     const classes = useStyles()
-    const dispatch = useDispatch()
 
     return (
         <Paper style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', height: '100%', padding: '2%' }}>
@@ -25,14 +24,27 @@ export const EditableProfileImage = ({ imageAlt, type, imageSrc, userProfile }) 
             <UploadImage aspectRatio={type === 'logo' ? 1 / 1 : 16 / 9} onChange={(base64EncodedImage) => {
                 return new Promise((resolve, reject) => {
                     try {
-                        dispatch(uploadImageServer({
+                        uploadImageServer({
                             method: 'POST',
                             img: JSON.stringify({ data: base64EncodedImage }),
                             userName: userProfile.userName,
                             dataFor: type,
                             headers: { 'Content-Type': 'application/json' }
-                        }))
-                        resolve()
+                        }).then((res)=>{
+                            console.log("image upload response",res);
+
+                            if(type=="poste"){
+                                setPostData({...postData,src:res.data.imgURL});
+                            }
+                            else{
+                                setPostData({...postData,logo:res.data.imgURL});
+                            }
+                            handleSubmit()
+                            resolve()
+                        }).catch((err)=>{
+                            console.log(err)
+                            reject()
+                        })
                     } catch (err) {
                         console.error(err);
                         reject()

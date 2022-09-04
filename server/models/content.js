@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const sectionsSchema = require('./sections')
+import mongoose from 'mongoose'
+import sectionsSchema from './sections.js'
 
 const contentSchema = mongoose.Schema({
 
@@ -33,4 +33,4 @@ const contentSchema = mongoose.Schema({
     themeDetails : String
 })
 
-module.exports =  contentSchema
+export default contentSchema;

@@ -1,22 +1,25 @@
-const express = require('express')
-const cors = require('cors')
-const app = express()
-const mongoose = require('mongoose')
-const jwt = require('jsonwebtoken');
-require('dotenv').config()
+import express from 'express';
+import cors from 'cors'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+import cloudinaryPkg from 'cloudinary'
 
+import {jwtAuth} from './middleware.js';
+import Users from './models/users.js';
+
+const app = express()
+dotenv.config()
 
 const DB_URI = process.env.MONGO_URI
 const PORT = process.env.PORT || 5000;
 const CLIENT_ORIGINS = ["http://localhost:3000","https://gymkhana-iiti.netlify.app",
                         "https://cynaptics-club.netlify.app","https://pclub-iiti.netlify.app"]
 
-const Users = require('./models/users')
 
 app.use(cors({ origin :CLIENT_ORIGINS, credentials: true }))
 app.use(express.json({ limit: '50mb' }))
 
-const cloudinary = require('cloudinary').v2
+const cloudinary = cloudinaryPkg.v2
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -32,43 +35,18 @@ mongoose.connect(DB_URI, {
 
 app.get('/', (req, res) => {
   res.status(200).json({
-    msg: "This is the server of Gymkhana IITI"
+    msg: "This is the server of Gymkhana IITI Central Website"
   })
 })
 
-const jwtAuth = async (req,res,next)=>{
-  try{
-    // return next()
-    console.log("JWT Middleware",req.headers.authorization)
-    const decoded = jwt.verify(req.headers.authorization, process.env.JWT_KEY)
-    console.log("Decoded token ",decoded)
 
-    req.userName = decoded.name
-
-    const userEmailId = decoded.email
-    const user = await Users.findOne({userEmailId:userEmailId})
-    if(user)
-    {
-      return next()
-    }
-    else
-    {
-      return res.status(403).json({message:"JWT Auth Failed"})
-    }
-  }
-  catch(error){
-    console.log(error)
-    return res.status(403).json({message:"JWT Auth Failed"})
-  }
-}
-
-const usersRoute = require('./routes/users')
+import usersRoute from './routes/users.js';
 app.use('/users', jwtAuth,usersRoute)
 
-const contentRoute = require('./routes/content')
+import contentRoute from './routes/content.js';
 app.use('/content', jwtAuth,contentRoute)
 
-const authRoute = require('./routes/auth')
+import authRoute from './routes/auth.js';
 app.use('/auth',authRoute)
 
 app.use('/uploadImage',jwtAuth)
@@ -100,16 +78,18 @@ app.route('/uploadImage').post(async (req, res) => {
     }
     else if(dataFor=="editSectionChild")
     {
+
         const sectionID = req.body.sectionID
         const sectionChildID = req.body.sectionChildID
         let allSections = user.contentVersions[versionIndex].Sections;
         let sectionIndex = allSections.findIndex((element) => element.sectionID === parseInt(sectionID));
         let sectionContent = allSections[sectionIndex].sectionContent;
         let sectionChildIndex = sectionContent.findIndex((element) => element.sectionChildID === parseInt(sectionChildID))
+        console.log("Edit section child image called ",sectionID,sectionChildID,versionIndex,imgURL)
         user = await Users.updateOne({userName:userName},{'$set': { [`contentVersions.${versionIndex}.Sections.${sectionIndex}.sectionContent.${sectionChildIndex}.sectionChildImage`] : imgURL}},{new:true})
     }
 
-    res.json({ msg: 'success' });
+    res.json({ msg: 'success' , imgURL : imgURL });
   } catch (error) {
     console.log(error)
     res.status(500).json({ err: 'Something went wrong' });

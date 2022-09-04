@@ -1,23 +1,23 @@
 import React from "react";
 import {BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 import Public from "./pages/public/Public/Public";
 import Admin from "./pages/admin/Admin/Admin";
 import Authenticate from "./components/admin/Authenticate/Authenticate";
 
-import axios from "axios";
+import './index.css';
+
 import { useDispatch } from "react-redux";
 import { logoutAdmin } from "./redux/actions/adminAuth";
 
-import './index.css';
 
 function App() {
 
     const dispatch = useDispatch()
 
     let adminAuth = useSelector((state)=> state.adminAuth)
-    console.log("adminAuth",adminAuth)
 
     axios.interceptors.response.use((response) => {
         return response

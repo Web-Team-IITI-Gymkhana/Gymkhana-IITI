@@ -1,11 +1,11 @@
-const Users = require('../models/users')
-const {OAuth2Client} = require('google-auth-library')
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+import Users from '../models/users.js'
+import  jwt from 'jsonwebtoken';
 
-const client = new OAuth2Client("687468938838-qv69j02oai1engmjkd6el428ui4uquom.apps.googleusercontent.com")
+import dotenv from 'dotenv'
+dotenv.config()
 
-const googlelogin = (req,res) => {
+
+export  const googlelogin = (req,res) => {
   const {email} = req.body
 
   Users.findOne({userEmailId:email}).exec((err,user)=>{
@@ -27,5 +27,3 @@ const googlelogin = (req,res) => {
 
 
 }
-
-module.exports = { googlelogin}
